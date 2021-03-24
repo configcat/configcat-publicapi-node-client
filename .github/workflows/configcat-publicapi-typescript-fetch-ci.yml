@@ -28,11 +28,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: SED
-        run: |
-          cd dist
-          sed -i "s/npm install PATH_TO_GENERATED_PACKAGE\/dist.tgz --save/npm install PATH_TO_GENERATED_PACKAGE\/dist.tgz --save\\n\`\`\`/" README.md
-      
   publish:
     needs: test
     runs-on: ubuntu-latest
@@ -53,11 +48,6 @@ jobs:
         
       - name: Build
         run: npm run build
-
-      - name: SED
-        run: |
-          cd dist
-          sed -i "s/npm install PATH_TO_GENERATED_PACKAGE\/dist.tgz --save/npm install PATH_TO_GENERATED_PACKAGE\/dist.tgz --save\\n\`\`\`/" README.md
 
       - name: 🚀Publish
         run: npm publish
