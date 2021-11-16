@@ -5,7 +5,7 @@ ConfigCat [Public Management API]((https://api.configcat.com/docs/index.html)) c
 ## Installation & Usage
 The client is automatically generated via a GitHub Action and published on npmjs.com.
 
-Installation: https://www.npmjs.com/package/configcat-publicapi-node-client
+NPM package: https://www.npmjs.com/package/configcat-publicapi-node-client
 
 
 ## About
