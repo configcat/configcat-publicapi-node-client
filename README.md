@@ -2,9 +2,10 @@
 
 ConfigCat [Public Management API]((https://api.configcat.com/docs/index.html)) client for Node.js. The purpose of this client is to access the ConfigCat Public Management API programmatically. Using this client you can Create, Read, Update and Delete any entities like Feature Flags, Configs, Environments or Products within ConfigCat.
 
-## configcat-publicapi-node-client
+## Installation & Usage
+The client is automatically generated via a GitHub Action and published on npmjs.com.
 
-Available via NPM: https://www.npmjs.com/package/configcat-publicapi-node-client
+Installation: https://www.npmjs.com/package/configcat-publicapi-node-client
 
 
 ## About
