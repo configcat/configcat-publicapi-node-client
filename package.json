@@ -6,8 +6,7 @@
     "types": "dist/api.d.ts",
     "scripts": {
         "clean": "rm -Rf node_modules/ *.js",
-        "build": "tsc",
-        "test": "npm run build && node dist/client.js"
+        "build": "tsc"
     },
     "dependencies": {
         "bluebird": "^3.5.0",
