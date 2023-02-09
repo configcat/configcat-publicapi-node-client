@@ -1,4 +1,4 @@
-# ConfigcatPublicapiNodeClient
+# ConfigCatPublicapiNodeClient
 
 ## Release
 
