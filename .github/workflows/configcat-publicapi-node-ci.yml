@@ -18,9 +18,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-        
-      - name: Generate client
-        run: docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate -i ${{ secrets.SWAGGER_JSON }} -g typescript-node --additional-properties=npmName=configcat-publicapi-node-client,npmVersion=1.0.1,supportsES6=true -o /local
 
       - name: Install dependencies
         run: npm install
@@ -39,9 +36,6 @@ jobs:
         with:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
-          
-      - name: Generate client
-        run: docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate -i ${{ secrets.SWAGGER_JSON }} -g typescript-node --additional-properties=npmName=configcat-publicapi-node-client,npmVersion=1.0.1,supportsES6=true -o /local
 
       - name: Install dependencies
         run: npm install
