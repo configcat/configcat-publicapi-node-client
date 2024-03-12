@@ -13,23 +13,57 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ProductModel } from './product-model';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * Details of the Environment.
+ * @export
+ * @interface EnvironmentModel
+ */
+export interface EnvironmentModel {
+    /**
+     * 
+     * @type {ProductModel}
+     * @memberof EnvironmentModel
+     */
+    'product'?: ProductModel;
+    /**
+     * Identifier of the Environment.
+     * @type {string}
+     * @memberof EnvironmentModel
+     */
+    'environmentId'?: string;
+    /**
+     * Name of the Environment.
+     * @type {string}
+     * @memberof EnvironmentModel
+     */
+    'name'?: string | null;
+    /**
+     * The configured color of the Environment.
+     * @type {string}
+     * @memberof EnvironmentModel
+     */
+    'color'?: string | null;
+    /**
+     * Description of the Environment.
+     * @type {string}
+     * @memberof EnvironmentModel
+     */
+    'description'?: string | null;
+    /**
+     * The order of the Environment represented on the ConfigCat Dashboard.
+     * @type {number}
+     * @memberof EnvironmentModel
+     */
+    'order'?: number;
+    /**
+     * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
+     * @type {boolean}
+     * @memberof EnvironmentModel
+     */
+    'reasonRequired'?: boolean;
+}
 

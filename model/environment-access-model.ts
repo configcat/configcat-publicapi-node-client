@@ -13,23 +13,59 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { EnvironmentAccessType } from './environment-access-type';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * 
+ * @export
+ * @interface EnvironmentAccessModel
+ */
+export interface EnvironmentAccessModel {
+    /**
+     * Identifier of the Environment.
+     * @type {string}
+     * @memberof EnvironmentAccessModel
+     */
+    'environmentId'?: string;
+    /**
+     * Name of the Environment.
+     * @type {string}
+     * @memberof EnvironmentAccessModel
+     */
+    'name'?: string | null;
+    /**
+     * Color of the Environment.
+     * @type {string}
+     * @memberof EnvironmentAccessModel
+     */
+    'color'?: string | null;
+    /**
+     * Description of the Environment.
+     * @type {string}
+     * @memberof EnvironmentAccessModel
+     */
+    'description'?: string | null;
+    /**
+     * The order of the Environment represented on the ConfigCat Dashboard.
+     * @type {number}
+     * @memberof EnvironmentAccessModel
+     */
+    'order'?: number;
+    /**
+     * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
+     * @type {boolean}
+     * @memberof EnvironmentAccessModel
+     */
+    'reasonRequired'?: boolean;
+    /**
+     * 
+     * @type {EnvironmentAccessType}
+     * @memberof EnvironmentAccessModel
+     */
+    'environmentAccessType'?: EnvironmentAccessType;
+}
+
+
 

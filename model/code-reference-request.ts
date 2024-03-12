@@ -13,23 +13,63 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { FlagReference } from './flag-reference';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * 
+ * @export
+ * @interface CodeReferenceRequest
+ */
+export interface CodeReferenceRequest {
+    /**
+     * The Config\'s identifier the scanning was performed against.
+     * @type {string}
+     * @memberof CodeReferenceRequest
+     */
+    'configId': string;
+    /**
+     * The source control repository that contains the scanned code. (Source of the repository selector on the ConfigCat Dashboard)
+     * @type {string}
+     * @memberof CodeReferenceRequest
+     */
+    'repository': string;
+    /**
+     * The source control branch on where the scan was performed. (Source of the branch selector on the ConfigCat Dashboard)
+     * @type {string}
+     * @memberof CodeReferenceRequest
+     */
+    'branch': string;
+    /**
+     * The related commit\'s URL. (Appears on the ConfigCat Dashboard)
+     * @type {string}
+     * @memberof CodeReferenceRequest
+     */
+    'commitUrl'?: string | null;
+    /**
+     * The related commit\'s hash. (Appears on the ConfigCat Dashboard)
+     * @type {string}
+     * @memberof CodeReferenceRequest
+     */
+    'commitHash'?: string | null;
+    /**
+     * The scanning tool\'s name. (Appears on the ConfigCat Dashboard)
+     * @type {string}
+     * @memberof CodeReferenceRequest
+     */
+    'uploader'?: string | null;
+    /**
+     * The currently active branches of the repository. Each previously uploaded report that belongs to a non-reported active branch is being deleted.
+     * @type {Array<string>}
+     * @memberof CodeReferenceRequest
+     */
+    'activeBranches'?: Array<string> | null;
+    /**
+     * The actual code reference collection.
+     * @type {Array<FlagReference>}
+     * @memberof CodeReferenceRequest
+     */
+    'flagReferences'?: Array<FlagReference> | null;
+}
 

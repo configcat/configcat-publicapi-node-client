@@ -13,23 +13,39 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ConditionModel } from './condition-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { PercentageOptionModel } from './percentage-option-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ValueModel } from './value-model';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * 
+ * @export
+ * @interface TargetingRuleModel
+ */
+export interface TargetingRuleModel {
+    /**
+     * The list of conditions that are combined with logical AND operators.  It can be one of the following:  - User condition  - Segment condition  - Prerequisite flag condition
+     * @type {Array<ConditionModel>}
+     * @memberof TargetingRuleModel
+     */
+    'conditions'?: Array<ConditionModel> | null;
+    /**
+     * The percentage options from where the evaluation process will choose a value based on the flag\'s percentage evaluation attribute.
+     * @type {Array<PercentageOptionModel>}
+     * @memberof TargetingRuleModel
+     */
+    'percentageOptions'?: Array<PercentageOptionModel> | null;
+    /**
+     * 
+     * @type {ValueModel}
+     * @memberof TargetingRuleModel
+     */
+    'value'?: ValueModel;
+}
 

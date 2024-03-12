@@ -13,23 +13,89 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { AuditLogType } from './audit-log-type';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * 
+ * @export
+ * @interface AuditLogItemModel
+ */
+export interface AuditLogItemModel {
+    /**
+     * 
+     * @type {number}
+     * @memberof AuditLogItemModel
+     */
+    'auditLogId'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuditLogItemModel
+     */
+    'auditLogDateTime'?: string;
+    /**
+     * 
+     * @type {AuditLogType}
+     * @memberof AuditLogItemModel
+     */
+    'auditLogTypeEnum'?: AuditLogType;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuditLogItemModel
+     */
+    'changeSetId'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AuditLogItemModel
+     */
+    'truncated'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuditLogItemModel
+     */
+    'auditLogType'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuditLogItemModel
+     */
+    'userEmail'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuditLogItemModel
+     */
+    'userName'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuditLogItemModel
+     */
+    'where'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuditLogItemModel
+     */
+    'why'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuditLogItemModel
+     */
+    'actionTarget'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuditLogItemModel
+     */
+    'details'?: string | null;
+}
+
+
 

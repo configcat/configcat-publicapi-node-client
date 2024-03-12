@@ -14,22 +14,35 @@
 
 
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * 
+ * @export
+ * @interface UpdateEnvironmentModel
+ */
+export interface UpdateEnvironmentModel {
+    /**
+     * The name of the Environment.
+     * @type {string}
+     * @memberof UpdateEnvironmentModel
+     */
+    'name'?: string | null;
+    /**
+     * The color of the Environment. RGB or HTML color codes are allowed.
+     * @type {string}
+     * @memberof UpdateEnvironmentModel
+     */
+    'color'?: string | null;
+    /**
+     * The description of the Environment.
+     * @type {string}
+     * @memberof UpdateEnvironmentModel
+     */
+    'description'?: string | null;
+    /**
+     * The order of the Environment represented on the ConfigCat Dashboard.  Determined from an ascending sequence of integers.
+     * @type {number}
+     * @memberof UpdateEnvironmentModel
+     */
+    'order'?: number | null;
+}
 
