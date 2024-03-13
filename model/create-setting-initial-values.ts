@@ -13,23 +13,62 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { InitialValue } from './initial-value';
+// May contain unused imports in some cases
+// @ts-ignore
+import { SettingType } from './setting-type';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * 
+ * @export
+ * @interface CreateSettingInitialValues
+ */
+export interface CreateSettingInitialValues {
+    /**
+     * A short description for the setting, shown on the Dashboard UI.
+     * @type {string}
+     * @memberof CreateSettingInitialValues
+     */
+    'hint'?: string | null;
+    /**
+     * The IDs of the tags which are attached to the setting.
+     * @type {Array<number>}
+     * @memberof CreateSettingInitialValues
+     */
+    'tags'?: Array<number> | null;
+    /**
+     * The order of the Setting represented on the ConfigCat Dashboard.  Determined from an ascending sequence of integers.
+     * @type {number}
+     * @memberof CreateSettingInitialValues
+     */
+    'order'?: number | null;
+    /**
+     * The key of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof CreateSettingInitialValues
+     */
+    'key': string;
+    /**
+     * The name of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof CreateSettingInitialValues
+     */
+    'name': string;
+    /**
+     * 
+     * @type {SettingType}
+     * @memberof CreateSettingInitialValues
+     */
+    'settingType': SettingType;
+    /**
+     * Optional, initial value of the Feature Flag or Setting in the given Environments.
+     * @type {Array<InitialValue>}
+     * @memberof CreateSettingInitialValues
+     */
+    'initialValues'?: Array<InitialValue> | null;
+}
+
+
 

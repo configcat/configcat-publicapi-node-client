@@ -13,23 +13,45 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { OrganizationPermissionModel } from './organization-permission-model';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * Describes an Organization Member.
+ * @export
+ * @interface OrganizationMemberModel
+ */
+export interface OrganizationMemberModel {
+    /**
+     * Identifier of the Organization Admin.
+     * @type {string}
+     * @memberof OrganizationMemberModel
+     */
+    'userId'?: string | null;
+    /**
+     * Name of the Organization Admin.
+     * @type {string}
+     * @memberof OrganizationMemberModel
+     */
+    'fullName'?: string | null;
+    /**
+     * Email of the OrganizationAdmin.
+     * @type {string}
+     * @memberof OrganizationMemberModel
+     */
+    'email'?: string | null;
+    /**
+     * Determines whether 2FA is enabled for the Organization Admin.
+     * @type {boolean}
+     * @memberof OrganizationMemberModel
+     */
+    'twoFactorEnabled'?: boolean;
+    /**
+     * The permissions of the Member.
+     * @type {Array<OrganizationPermissionModel>}
+     * @memberof OrganizationMemberModel
+     */
+    'permissions'?: Array<OrganizationPermissionModel> | null;
+}
 

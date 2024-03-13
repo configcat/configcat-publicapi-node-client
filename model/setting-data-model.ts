@@ -13,23 +13,77 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { SettingType } from './setting-type';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * Metadata of a Feature Flag or Setting.
+ * @export
+ * @interface SettingDataModel
+ */
+export interface SettingDataModel {
+    /**
+     * Identifier of the Feature Flag or Setting.
+     * @type {number}
+     * @memberof SettingDataModel
+     */
+    'settingId'?: number;
+    /**
+     * Key of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingDataModel
+     */
+    'key'?: string | null;
+    /**
+     * Name of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingDataModel
+     */
+    'name'?: string | null;
+    /**
+     * Description of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingDataModel
+     */
+    'hint'?: string | null;
+    /**
+     * 
+     * @type {SettingType}
+     * @memberof SettingDataModel
+     */
+    'settingType'?: SettingType;
+    /**
+     * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
+     * @type {number}
+     * @memberof SettingDataModel
+     */
+    'order'?: number;
+    /**
+     * The creation time of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingDataModel
+     */
+    'createdAt'?: string | null;
+    /**
+     * The user\'s email address who created the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingDataModel
+     */
+    'creatorEmail'?: string | null;
+    /**
+     * The user\'s name who created the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingDataModel
+     */
+    'creatorFullName'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SettingDataModel
+     */
+    'isWatching'?: boolean;
+}
+
+
 

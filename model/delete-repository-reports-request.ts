@@ -14,22 +14,35 @@
 
 
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * 
+ * @export
+ * @interface DeleteRepositoryReportsRequest
+ */
+export interface DeleteRepositoryReportsRequest {
+    /**
+     * The Config\'s identifier from where the reports should be deleted.
+     * @type {string}
+     * @memberof DeleteRepositoryReportsRequest
+     */
+    'configId': string;
+    /**
+     * The source control repository which\'s reports should be deleted.
+     * @type {string}
+     * @memberof DeleteRepositoryReportsRequest
+     */
+    'repository': string;
+    /**
+     * If it\'s set, only this branch\'s reports belonging to the given repository will be deleted.
+     * @type {string}
+     * @memberof DeleteRepositoryReportsRequest
+     */
+    'branch'?: string | null;
+    /**
+     * If it\'s set, only this setting\'s reports belonging to the given repository will be deleted.
+     * @type {number}
+     * @memberof DeleteRepositoryReportsRequest
+     */
+    'settingId'?: number | null;
+}
 

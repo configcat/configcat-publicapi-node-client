@@ -14,22 +14,18 @@
 
 
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * Determines the evaluation version of a Config.  Using `v2` enables the new features of Config V2 (https://configcat.com/docs/advanced/config-v2).
+ * @export
+ * @enum {string}
+ */
+
+export const EvaluationVersion = {
+    V1: 'v1',
+    V2: 'v2'
+} as const;
+
+export type EvaluationVersion = typeof EvaluationVersion[keyof typeof EvaluationVersion];
+
+
 

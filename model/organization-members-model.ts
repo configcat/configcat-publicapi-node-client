@@ -13,23 +13,30 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { OrganizationAdminModel } from './organization-admin-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { OrganizationMemberModel } from './organization-member-model';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * 
+ * @export
+ * @interface OrganizationMembersModel
+ */
+export interface OrganizationMembersModel {
+    /**
+     * List of Organization Admins.
+     * @type {Array<OrganizationAdminModel>}
+     * @memberof OrganizationMembersModel
+     */
+    'admins'?: Array<OrganizationAdminModel> | null;
+    /**
+     * List of Organization Members.
+     * @type {Array<OrganizationMemberModel>}
+     * @memberof OrganizationMembersModel
+     */
+    'members'?: Array<OrganizationMemberModel> | null;
+}
 

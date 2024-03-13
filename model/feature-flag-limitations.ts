@@ -14,22 +14,53 @@
 
 
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
+/**
+ * Subscription limitations regarding Feature flag or Setting values and targeting.
+ * @export
+ * @interface FeatureFlagLimitations
+ */
+export interface FeatureFlagLimitations {
+    /**
+     * Maximum number of percentage options a Feature Flag or Setting can have within a targeting rule.
+     * @type {number}
+     * @memberof FeatureFlagLimitations
+     */
+    'maxPercentageOptionCount'?: number;
+    /**
+     * Maximum number of targeting rules a Feature Flag or Setting can have.
+     * @type {number}
+     * @memberof FeatureFlagLimitations
+     */
+    'maxTargetingRuleCount'?: number;
+    /**
+     * Maximum length of a text comparison value.
+     * @type {number}
+     * @memberof FeatureFlagLimitations
+     */
+    'maxComparisonValueLength'?: number;
+    /**
+     * Maximum item count of a list comparison value.
+     * @type {number}
+     * @memberof FeatureFlagLimitations
+     */
+    'maxComparisonValueListLength'?: number;
+    /**
+     * Maximum length of a list comparison value\'s item.
+     * @type {number}
+     * @memberof FeatureFlagLimitations
+     */
+    'maxComparisonValueListItemLength'?: number;
+    /**
+     * Maximum length of a text Setting\'s value.
+     * @type {number}
+     * @memberof FeatureFlagLimitations
+     */
+    'maxStringFlagValueLength'?: number;
+    /**
+     * Maximum number of `AND` conditions a Feature Flag or Setting can have within a targeting rule.
+     * @type {number}
+     * @memberof FeatureFlagLimitations
+     */
+    'maxConditionPerTargetingRuleCount'?: number;
+}
 
