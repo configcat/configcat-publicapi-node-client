@@ -15,13 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { AccessType } from './access-type';
-// May contain unused imports in some cases
-// @ts-ignore
 import { EnvironmentAccessModel } from './environment-access-model';
-// May contain unused imports in some cases
-// @ts-ignore
-import { EnvironmentAccessType } from './environment-access-type';
 // May contain unused imports in some cases
 // @ts-ignore
 import { ProductModel } from './product-model';
@@ -165,17 +159,17 @@ export interface PermissionGroupModel {
      */
     'canViewProductStatistics'?: boolean;
     /**
-     * 
-     * @type {AccessType}
+     * Represent the Feature Management permission.
+     * @type {string}
      * @memberof PermissionGroupModel
      */
-    'accessType'?: AccessType;
+    'accessType'?: PermissionGroupModelAccessTypeEnum;
     /**
-     * 
-     * @type {EnvironmentAccessType}
+     * Represent the environment specific Feature Management permission.
+     * @type {string}
      * @memberof PermissionGroupModel
      */
-    'newEnvironmentAccessType'?: EnvironmentAccessType;
+    'newEnvironmentAccessType'?: PermissionGroupModelNewEnvironmentAccessTypeEnum;
     /**
      * List of environment specific permissions.
      * @type {Array<EnvironmentAccessModel>}
@@ -190,5 +184,19 @@ export interface PermissionGroupModel {
     'product'?: ProductModel;
 }
 
+export const PermissionGroupModelAccessTypeEnum = {
+    ReadOnly: 'readOnly',
+    Full: 'full',
+    Custom: 'custom'
+} as const;
+
+export type PermissionGroupModelAccessTypeEnum = typeof PermissionGroupModelAccessTypeEnum[keyof typeof PermissionGroupModelAccessTypeEnum];
+export const PermissionGroupModelNewEnvironmentAccessTypeEnum = {
+    Full: 'full',
+    ReadOnly: 'readOnly',
+    None: 'none'
+} as const;
+
+export type PermissionGroupModelNewEnvironmentAccessTypeEnum = typeof PermissionGroupModelNewEnvironmentAccessTypeEnum[keyof typeof PermissionGroupModelNewEnvironmentAccessTypeEnum];
 
 

@@ -13,9 +13,6 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { SettingType } from './setting-type';
 
 /**
  * Metadata of a Feature Flag or Setting.
@@ -48,11 +45,11 @@ export interface SettingDataModel {
      */
     'hint'?: string | null;
     /**
-     * 
-     * @type {SettingType}
+     * The type of the Feature Flag or Setting.
+     * @type {string}
      * @memberof SettingDataModel
      */
-    'settingType'?: SettingType;
+    'settingType'?: SettingDataModelSettingTypeEnum;
     /**
      * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
      * @type {number}
@@ -85,5 +82,13 @@ export interface SettingDataModel {
     'isWatching'?: boolean;
 }
 
+export const SettingDataModelSettingTypeEnum = {
+    Boolean: 'boolean',
+    String: 'string',
+    Int: 'int',
+    Double: 'double'
+} as const;
+
+export type SettingDataModelSettingTypeEnum = typeof SettingDataModelSettingTypeEnum[keyof typeof SettingDataModelSettingTypeEnum];
 
 

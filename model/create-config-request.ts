@@ -13,9 +13,6 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { EvaluationVersion } from './evaluation-version';
 
 /**
  * 
@@ -42,12 +39,18 @@ export interface CreateConfigRequest {
      */
     'order'?: number | null;
     /**
-     * 
-     * @type {EvaluationVersion}
+     * Determines the evaluation version of a Config.  Using `v2` enables the new features of Config V2 (https://configcat.com/docs/advanced/config-v2).
+     * @type {string}
      * @memberof CreateConfigRequest
      */
-    'evaluationVersion'?: EvaluationVersion;
+    'evaluationVersion'?: CreateConfigRequestEvaluationVersionEnum;
 }
 
+export const CreateConfigRequestEvaluationVersionEnum = {
+    V1: 'v1',
+    V2: 'v2'
+} as const;
+
+export type CreateConfigRequestEvaluationVersionEnum = typeof CreateConfigRequestEvaluationVersionEnum[keyof typeof CreateConfigRequestEvaluationVersionEnum];
 
 

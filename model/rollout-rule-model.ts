@@ -13,12 +13,6 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { RolloutRuleComparator } from './rollout-rule-comparator';
-// May contain unused imports in some cases
-// @ts-ignore
-import { SegmentComparator } from './segment-comparator';
 
 /**
  * 
@@ -34,10 +28,10 @@ export interface RolloutRuleModel {
     'comparisonAttribute'?: string | null;
     /**
      * 
-     * @type {RolloutRuleComparator}
+     * @type {string}
      * @memberof RolloutRuleModel
      */
-    'comparator'?: RolloutRuleComparator;
+    'comparator'?: RolloutRuleModelComparatorEnum | null;
     /**
      * The value to compare against.
      * @type {string}
@@ -51,11 +45,11 @@ export interface RolloutRuleModel {
      */
     'value'?: any | null;
     /**
-     * 
-     * @type {SegmentComparator}
+     * The segment comparison operator.
+     * @type {string}
      * @memberof RolloutRuleModel
      */
-    'segmentComparator'?: SegmentComparator;
+    'segmentComparator'?: RolloutRuleModelSegmentComparatorEnum | null;
     /**
      * The segment to compare against.
      * @type {string}
@@ -64,5 +58,33 @@ export interface RolloutRuleModel {
     'segmentId'?: string | null;
 }
 
+export const RolloutRuleModelComparatorEnum = {
+    IsOneOf: 'isOneOf',
+    IsNotOneOf: 'isNotOneOf',
+    Contains: 'contains',
+    DoesNotContain: 'doesNotContain',
+    SemVerIsOneOf: 'semVerIsOneOf',
+    SemVerIsNotOneOf: 'semVerIsNotOneOf',
+    SemVerLess: 'semVerLess',
+    SemVerLessOrEquals: 'semVerLessOrEquals',
+    SemVerGreater: 'semVerGreater',
+    SemVerGreaterOrEquals: 'semVerGreaterOrEquals',
+    NumberEquals: 'numberEquals',
+    NumberDoesNotEqual: 'numberDoesNotEqual',
+    NumberLess: 'numberLess',
+    NumberLessOrEquals: 'numberLessOrEquals',
+    NumberGreater: 'numberGreater',
+    NumberGreaterOrEquals: 'numberGreaterOrEquals',
+    SensitiveIsOneOf: 'sensitiveIsOneOf',
+    SensitiveIsNotOneOf: 'sensitiveIsNotOneOf'
+} as const;
+
+export type RolloutRuleModelComparatorEnum = typeof RolloutRuleModelComparatorEnum[keyof typeof RolloutRuleModelComparatorEnum];
+export const RolloutRuleModelSegmentComparatorEnum = {
+    IsIn: 'isIn',
+    IsNotIn: 'isNotIn'
+} as const;
+
+export type RolloutRuleModelSegmentComparatorEnum = typeof RolloutRuleModelSegmentComparatorEnum[keyof typeof RolloutRuleModelSegmentComparatorEnum];
 
 

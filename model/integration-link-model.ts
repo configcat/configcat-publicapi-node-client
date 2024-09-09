@@ -13,9 +13,6 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { IntegrationLinkType } from './integration-link-type';
 
 /**
  * 
@@ -37,10 +34,10 @@ export interface IntegrationLinkModel {
     'description'?: string | null;
     /**
      * 
-     * @type {IntegrationLinkType}
+     * @type {string}
      * @memberof IntegrationLinkModel
      */
-    'integrationLinkType'?: IntegrationLinkType;
+    'integrationLinkType'?: IntegrationLinkModelIntegrationLinkTypeEnum;
     /**
      * 
      * @type {string}
@@ -49,5 +46,12 @@ export interface IntegrationLinkModel {
     'url'?: string | null;
 }
 
+export const IntegrationLinkModelIntegrationLinkTypeEnum = {
+    Trello: 'trello',
+    Jira: 'jira',
+    Monday: 'monday'
+} as const;
+
+export type IntegrationLinkModelIntegrationLinkTypeEnum = typeof IntegrationLinkModelIntegrationLinkTypeEnum[keyof typeof IntegrationLinkModelIntegrationLinkTypeEnum];
 
 

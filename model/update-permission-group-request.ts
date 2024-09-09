@@ -15,13 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { AccessType } from './access-type';
-// May contain unused imports in some cases
-// @ts-ignore
 import { CreateOrUpdateEnvironmentAccessModel } from './create-or-update-environment-access-model';
-// May contain unused imports in some cases
-// @ts-ignore
-import { EnvironmentAccessType } from './environment-access-type';
 
 /**
  * 
@@ -157,16 +151,16 @@ export interface UpdatePermissionGroupRequest {
     'canViewProductStatistics'?: boolean | null;
     /**
      * 
-     * @type {AccessType}
+     * @type {string}
      * @memberof UpdatePermissionGroupRequest
      */
-    'accessType'?: AccessType;
+    'accessType'?: UpdatePermissionGroupRequestAccessTypeEnum | null;
     /**
      * 
-     * @type {EnvironmentAccessType}
+     * @type {string}
      * @memberof UpdatePermissionGroupRequest
      */
-    'newEnvironmentAccessType'?: EnvironmentAccessType;
+    'newEnvironmentAccessType'?: UpdatePermissionGroupRequestNewEnvironmentAccessTypeEnum | null;
     /**
      * List of environment specific permissions.
      * @type {Array<CreateOrUpdateEnvironmentAccessModel>}
@@ -175,5 +169,19 @@ export interface UpdatePermissionGroupRequest {
     'environmentAccesses'?: Array<CreateOrUpdateEnvironmentAccessModel> | null;
 }
 
+export const UpdatePermissionGroupRequestAccessTypeEnum = {
+    ReadOnly: 'readOnly',
+    Full: 'full',
+    Custom: 'custom'
+} as const;
+
+export type UpdatePermissionGroupRequestAccessTypeEnum = typeof UpdatePermissionGroupRequestAccessTypeEnum[keyof typeof UpdatePermissionGroupRequestAccessTypeEnum];
+export const UpdatePermissionGroupRequestNewEnvironmentAccessTypeEnum = {
+    Full: 'full',
+    ReadOnly: 'readOnly',
+    None: 'none'
+} as const;
+
+export type UpdatePermissionGroupRequestNewEnvironmentAccessTypeEnum = typeof UpdatePermissionGroupRequestNewEnvironmentAccessTypeEnum[keyof typeof UpdatePermissionGroupRequestNewEnvironmentAccessTypeEnum];
 
 

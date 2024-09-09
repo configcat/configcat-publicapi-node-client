@@ -15,13 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { AccessType } from './access-type';
-// May contain unused imports in some cases
-// @ts-ignore
 import { CreateOrUpdateEnvironmentAccessModel } from './create-or-update-environment-access-model';
-// May contain unused imports in some cases
-// @ts-ignore
-import { EnvironmentAccessType } from './environment-access-type';
 
 /**
  * 
@@ -156,17 +150,17 @@ export interface CreatePermissionGroupRequest {
      */
     'canViewProductStatistics'?: boolean;
     /**
-     * 
-     * @type {AccessType}
+     * Represent the Feature Management permission.
+     * @type {string}
      * @memberof CreatePermissionGroupRequest
      */
-    'accessType'?: AccessType;
+    'accessType'?: CreatePermissionGroupRequestAccessTypeEnum;
     /**
-     * 
-     * @type {EnvironmentAccessType}
+     * Represent the environment specific Feature Management permission.
+     * @type {string}
      * @memberof CreatePermissionGroupRequest
      */
-    'newEnvironmentAccessType'?: EnvironmentAccessType;
+    'newEnvironmentAccessType'?: CreatePermissionGroupRequestNewEnvironmentAccessTypeEnum;
     /**
      * List of environment specific permissions.
      * @type {Array<CreateOrUpdateEnvironmentAccessModel>}
@@ -175,5 +169,19 @@ export interface CreatePermissionGroupRequest {
     'environmentAccesses'?: Array<CreateOrUpdateEnvironmentAccessModel> | null;
 }
 
+export const CreatePermissionGroupRequestAccessTypeEnum = {
+    ReadOnly: 'readOnly',
+    Full: 'full',
+    Custom: 'custom'
+} as const;
+
+export type CreatePermissionGroupRequestAccessTypeEnum = typeof CreatePermissionGroupRequestAccessTypeEnum[keyof typeof CreatePermissionGroupRequestAccessTypeEnum];
+export const CreatePermissionGroupRequestNewEnvironmentAccessTypeEnum = {
+    Full: 'full',
+    ReadOnly: 'readOnly',
+    None: 'none'
+} as const;
+
+export type CreatePermissionGroupRequestNewEnvironmentAccessTypeEnum = typeof CreatePermissionGroupRequestNewEnvironmentAccessTypeEnum[keyof typeof CreatePermissionGroupRequestNewEnvironmentAccessTypeEnum];
 
 

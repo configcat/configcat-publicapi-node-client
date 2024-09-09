@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PrerequisiteComparator } from './prerequisite-comparator';
-// May contain unused imports in some cases
-// @ts-ignore
 import { ValueModel } from './value-model';
 
 /**
@@ -33,11 +30,11 @@ export interface PrerequisiteFlagConditionModel {
      */
     'prerequisiteSettingId': number;
     /**
-     * 
-     * @type {PrerequisiteComparator}
+     * Prerequisite flag comparison operator used during the evaluation process.
+     * @type {string}
      * @memberof PrerequisiteFlagConditionModel
      */
-    'comparator': PrerequisiteComparator;
+    'comparator': PrerequisiteFlagConditionModelComparatorEnum;
     /**
      * 
      * @type {ValueModel}
@@ -46,5 +43,11 @@ export interface PrerequisiteFlagConditionModel {
     'prerequisiteComparisonValue': ValueModel;
 }
 
+export const PrerequisiteFlagConditionModelComparatorEnum = {
+    Equals: 'equals',
+    DoesNotEqual: 'doesNotEqual'
+} as const;
+
+export type PrerequisiteFlagConditionModelComparatorEnum = typeof PrerequisiteFlagConditionModelComparatorEnum[keyof typeof PrerequisiteFlagConditionModelComparatorEnum];
 
 

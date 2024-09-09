@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebHookHttpMethod } from './web-hook-http-method';
-// May contain unused imports in some cases
-// @ts-ignore
 import { WebhookHeaderModel } from './webhook-header-model';
 
 /**
@@ -39,11 +36,11 @@ export interface WebHookRequest {
      */
     'content'?: string | null;
     /**
-     * 
-     * @type {WebHookHttpMethod}
+     * The HTTP method of the remote endpoint.
+     * @type {string}
      * @memberof WebHookRequest
      */
-    'httpMethod'?: WebHookHttpMethod;
+    'httpMethod'?: WebHookRequestHttpMethodEnum;
     /**
      * List of HTTP headers.
      * @type {Array<WebhookHeaderModel>}
@@ -52,5 +49,11 @@ export interface WebHookRequest {
     'webHookHeaders'?: Array<WebhookHeaderModel> | null;
 }
 
+export const WebHookRequestHttpMethodEnum = {
+    Get: 'get',
+    Post: 'post'
+} as const;
+
+export type WebHookRequestHttpMethodEnum = typeof WebHookRequestHttpMethodEnum[keyof typeof WebHookRequestHttpMethodEnum];
 
 

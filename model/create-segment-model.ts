@@ -13,9 +13,6 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { RolloutRuleComparator } from './rollout-rule-comparator';
 
 /**
  * 
@@ -43,10 +40,10 @@ export interface CreateSegmentModel {
     'comparisonAttribute': string;
     /**
      * 
-     * @type {RolloutRuleComparator}
+     * @type {string}
      * @memberof CreateSegmentModel
      */
-    'comparator': RolloutRuleComparator;
+    'comparator': CreateSegmentModelComparatorEnum;
     /**
      * The value to compare with the given user attribute\'s value.
      * @type {string}
@@ -55,5 +52,27 @@ export interface CreateSegmentModel {
     'comparisonValue': string;
 }
 
+export const CreateSegmentModelComparatorEnum = {
+    IsOneOf: 'isOneOf',
+    IsNotOneOf: 'isNotOneOf',
+    Contains: 'contains',
+    DoesNotContain: 'doesNotContain',
+    SemVerIsOneOf: 'semVerIsOneOf',
+    SemVerIsNotOneOf: 'semVerIsNotOneOf',
+    SemVerLess: 'semVerLess',
+    SemVerLessOrEquals: 'semVerLessOrEquals',
+    SemVerGreater: 'semVerGreater',
+    SemVerGreaterOrEquals: 'semVerGreaterOrEquals',
+    NumberEquals: 'numberEquals',
+    NumberDoesNotEqual: 'numberDoesNotEqual',
+    NumberLess: 'numberLess',
+    NumberLessOrEquals: 'numberLessOrEquals',
+    NumberGreater: 'numberGreater',
+    NumberGreaterOrEquals: 'numberGreaterOrEquals',
+    SensitiveIsOneOf: 'sensitiveIsOneOf',
+    SensitiveIsNotOneOf: 'sensitiveIsNotOneOf'
+} as const;
+
+export type CreateSegmentModelComparatorEnum = typeof CreateSegmentModelComparatorEnum[keyof typeof CreateSegmentModelComparatorEnum];
 
 

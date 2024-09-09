@@ -13,9 +13,6 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { SegmentComparator } from './segment-comparator';
 
 /**
  * Describes a condition that is based on a segment.
@@ -30,12 +27,18 @@ export interface SegmentConditionModel {
      */
     'segmentId': string;
     /**
-     * 
-     * @type {SegmentComparator}
+     * The segment comparison operator used during the evaluation process.
+     * @type {string}
      * @memberof SegmentConditionModel
      */
-    'comparator': SegmentComparator;
+    'comparator': SegmentConditionModelComparatorEnum;
 }
 
+export const SegmentConditionModelComparatorEnum = {
+    IsIn: 'isIn',
+    IsNotIn: 'isNotIn'
+} as const;
+
+export type SegmentConditionModelComparatorEnum = typeof SegmentConditionModelComparatorEnum[keyof typeof SegmentConditionModelComparatorEnum];
 
 

@@ -15,9 +15,6 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingType } from './setting-type';
-// May contain unused imports in some cases
-// @ts-ignore
 import { TagModel } from './tag-model';
 
 /**
@@ -57,11 +54,11 @@ export interface SettingModel {
      */
     'order'?: number;
     /**
-     * 
-     * @type {SettingType}
+     * The type of the Feature Flag or Setting.
+     * @type {string}
      * @memberof SettingModel
      */
-    'settingType'?: SettingType;
+    'settingType'?: SettingModelSettingTypeEnum;
     /**
      * Identifier of the Feature Flag\'s Config.
      * @type {string}
@@ -82,5 +79,13 @@ export interface SettingModel {
     'tags'?: Array<TagModel> | null;
 }
 
+export const SettingModelSettingTypeEnum = {
+    Boolean: 'boolean',
+    String: 'string',
+    Int: 'int',
+    Double: 'double'
+} as const;
+
+export type SettingModelSettingTypeEnum = typeof SettingModelSettingTypeEnum[keyof typeof SettingModelSettingTypeEnum];
 
 
