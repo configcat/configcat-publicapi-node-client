@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * ConfigCat Public Management API
- * The purpose of this API is to access the ConfigCat platform programmatically. You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.  **Base API URL**: https://test-api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://test-api.configcat.com/swagger).  The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  format. Do not use this API for accessing and evaluating feature flag values. Use the [SDKs instead](https://configcat.com/docs/sdk-reference/overview).   # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://test-api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://test-api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
+ * The purpose of this API is to access the ConfigCat platform programmatically. You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.  **Base API URL**: https://api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://api.configcat.com/swagger).  The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  format.   **Important:** Do not use this API for accessing and evaluating feature flag values. Use the [SDKs](https://configcat.com/docs/sdk-reference/overview) or the [ConfigCat Proxy](https://configcat.com/docs/advanced/proxy/proxy-overview/) instead.  # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
  *
  * The version of the OpenAPI document: v1
  * Contact: support@configcat.com
@@ -22,13 +22,17 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { AddUserToGroupRequest } from '../model';
+import { InvitationModel } from '../model';
 // @ts-ignore
 import { InviteMembersRequest } from '../model';
 // @ts-ignore
 import { MemberModel } from '../model';
 // @ts-ignore
+import { OrganizationInvitationModel } from '../model';
+// @ts-ignore
 import { OrganizationMembersModel } from '../model';
+// @ts-ignore
+import { UpdateMemberPermissionsRequest } from '../model';
 // @ts-ignore
 import { UserModel } from '../model';
 /**
@@ -38,21 +42,21 @@ import { UserModel } from '../model';
 export const MembersApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * This endpoint adds a Member identified by the `userId` to one or more Permission Groups.  This endpoint can also be used to move a Member between Permission Groups within a Product. Only a single Permission Group can be set per Product.
+         * This endpoint updates the permissions of a Member identified by the `userId`.  This endpoint can also be used to move a Member between Permission Groups within a Product. Only a single Permission Group can be set per Product.
          * @summary Update Member Permissions
          * @param {string} organizationId The identifier of the Organization.
          * @param {string} userId The identifier of the Member.
-         * @param {AddUserToGroupRequest} addUserToGroupRequest 
+         * @param {UpdateMemberPermissionsRequest} updateMemberPermissionsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addMemberToGroup: async (organizationId: string, userId: string, addUserToGroupRequest: AddUserToGroupRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        addMemberToGroup: async (organizationId: string, userId: string, updateMemberPermissionsRequest: UpdateMemberPermissionsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'organizationId' is not null or undefined
             assertParamExists('addMemberToGroup', 'organizationId', organizationId)
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('addMemberToGroup', 'userId', userId)
-            // verify required parameter 'addUserToGroupRequest' is not null or undefined
-            assertParamExists('addMemberToGroup', 'addUserToGroupRequest', addUserToGroupRequest)
+            // verify required parameter 'updateMemberPermissionsRequest' is not null or undefined
+            assertParamExists('addMemberToGroup', 'updateMemberPermissionsRequest', updateMemberPermissionsRequest)
             const localVarPath = `/v1/organizations/{organizationId}/members/{userId}`
                 .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)))
                 .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
@@ -78,7 +82,45 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(addUserToGroupRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updateMemberPermissionsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * This endpoint removes an Invitation identified by the `invitationId` parameter.
+         * @summary Delete Invitation
+         * @param {string} invitationId The identifier of the Invitation.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteInvitation: async (invitationId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'invitationId' is not null or undefined
+            assertParamExists('deleteInvitation', 'invitationId', invitationId)
+            const localVarPath = `/v1/invitations/{invitationId}`
+                .replace(`{${"invitationId"}}`, encodeURIComponent(String(invitationId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -247,6 +289,82 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * This endpoint returns the list of pending invitations within the given Product identified by the `productId` parameter.
+         * @summary List Pending Invitations in Product
+         * @param {string} productId The identifier of the Product.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPendingInvitations: async (productId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'productId' is not null or undefined
+            assertParamExists('getPendingInvitations', 'productId', productId)
+            const localVarPath = `/v1/products/{productId}/invitations`
+                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * This endpoint returns the list of pending invitations within the given Organization identified by the `organizationId` parameter.
+         * @summary List Pending Invitations in Organization
+         * @param {string} organizationId The identifier of the Organization.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPendingInvitationsOrg: async (organizationId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'organizationId' is not null or undefined
+            assertParamExists('getPendingInvitationsOrg', 'organizationId', organizationId)
+            const localVarPath = `/v1/organizations/{organizationId}/invitations`
+                .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * This endpoint returns the list of Members that belongs  to the given Product, identified by the `productId` parameter.
          * @summary List Product Members
          * @param {string} productId The identifier of the Product.
@@ -339,18 +457,31 @@ export const MembersApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = MembersApiAxiosParamCreator(configuration)
     return {
         /**
-         * This endpoint adds a Member identified by the `userId` to one or more Permission Groups.  This endpoint can also be used to move a Member between Permission Groups within a Product. Only a single Permission Group can be set per Product.
+         * This endpoint updates the permissions of a Member identified by the `userId`.  This endpoint can also be used to move a Member between Permission Groups within a Product. Only a single Permission Group can be set per Product.
          * @summary Update Member Permissions
          * @param {string} organizationId The identifier of the Organization.
          * @param {string} userId The identifier of the Member.
-         * @param {AddUserToGroupRequest} addUserToGroupRequest 
+         * @param {UpdateMemberPermissionsRequest} updateMemberPermissionsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addMemberToGroup(organizationId: string, userId: string, addUserToGroupRequest: AddUserToGroupRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.addMemberToGroup(organizationId, userId, addUserToGroupRequest, options);
+        async addMemberToGroup(organizationId: string, userId: string, updateMemberPermissionsRequest: UpdateMemberPermissionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.addMemberToGroup(organizationId, userId, updateMemberPermissionsRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['MembersApi.addMemberToGroup']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * This endpoint removes an Invitation identified by the `invitationId` parameter.
+         * @summary Delete Invitation
+         * @param {string} invitationId The identifier of the Invitation.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteInvitation(invitationId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteInvitation(invitationId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MembersApi.deleteInvitation']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -409,6 +540,32 @@ export const MembersApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * This endpoint returns the list of pending invitations within the given Product identified by the `productId` parameter.
+         * @summary List Pending Invitations in Product
+         * @param {string} productId The identifier of the Product.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPendingInvitations(productId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InvitationModel>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPendingInvitations(productId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MembersApi.getPendingInvitations']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * This endpoint returns the list of pending invitations within the given Organization identified by the `organizationId` parameter.
+         * @summary List Pending Invitations in Organization
+         * @param {string} organizationId The identifier of the Organization.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPendingInvitationsOrg(organizationId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OrganizationInvitationModel>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPendingInvitationsOrg(organizationId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MembersApi.getPendingInvitationsOrg']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * This endpoint returns the list of Members that belongs  to the given Product, identified by the `productId` parameter.
          * @summary List Product Members
          * @param {string} productId The identifier of the Product.
@@ -446,16 +603,26 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = MembersApiFp(configuration)
     return {
         /**
-         * This endpoint adds a Member identified by the `userId` to one or more Permission Groups.  This endpoint can also be used to move a Member between Permission Groups within a Product. Only a single Permission Group can be set per Product.
+         * This endpoint updates the permissions of a Member identified by the `userId`.  This endpoint can also be used to move a Member between Permission Groups within a Product. Only a single Permission Group can be set per Product.
          * @summary Update Member Permissions
          * @param {string} organizationId The identifier of the Organization.
          * @param {string} userId The identifier of the Member.
-         * @param {AddUserToGroupRequest} addUserToGroupRequest 
+         * @param {UpdateMemberPermissionsRequest} updateMemberPermissionsRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addMemberToGroup(organizationId: string, userId: string, addUserToGroupRequest: AddUserToGroupRequest, options?: any): AxiosPromise<void> {
-            return localVarFp.addMemberToGroup(organizationId, userId, addUserToGroupRequest, options).then((request) => request(axios, basePath));
+        addMemberToGroup(organizationId: string, userId: string, updateMemberPermissionsRequest: UpdateMemberPermissionsRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.addMemberToGroup(organizationId, userId, updateMemberPermissionsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint removes an Invitation identified by the `invitationId` parameter.
+         * @summary Delete Invitation
+         * @param {string} invitationId The identifier of the Invitation.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteInvitation(invitationId: string, options?: any): AxiosPromise<void> {
+            return localVarFp.deleteInvitation(invitationId, options).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint removes a Member identified by the `userId` from the  given Organization identified by the `organizationId` parameter.
@@ -501,6 +668,26 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getOrganizationMembersV2(organizationId, options).then((request) => request(axios, basePath));
         },
         /**
+         * This endpoint returns the list of pending invitations within the given Product identified by the `productId` parameter.
+         * @summary List Pending Invitations in Product
+         * @param {string} productId The identifier of the Product.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPendingInvitations(productId: string, options?: any): AxiosPromise<Array<InvitationModel>> {
+            return localVarFp.getPendingInvitations(productId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint returns the list of pending invitations within the given Organization identified by the `organizationId` parameter.
+         * @summary List Pending Invitations in Organization
+         * @param {string} organizationId The identifier of the Organization.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPendingInvitationsOrg(organizationId: string, options?: any): AxiosPromise<Array<OrganizationInvitationModel>> {
+            return localVarFp.getPendingInvitationsOrg(organizationId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * This endpoint returns the list of Members that belongs  to the given Product, identified by the `productId` parameter.
          * @summary List Product Members
          * @param {string} productId The identifier of the Product.
@@ -532,17 +719,29 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
  */
 export class MembersApi extends BaseAPI {
     /**
-     * This endpoint adds a Member identified by the `userId` to one or more Permission Groups.  This endpoint can also be used to move a Member between Permission Groups within a Product. Only a single Permission Group can be set per Product.
+     * This endpoint updates the permissions of a Member identified by the `userId`.  This endpoint can also be used to move a Member between Permission Groups within a Product. Only a single Permission Group can be set per Product.
      * @summary Update Member Permissions
      * @param {string} organizationId The identifier of the Organization.
      * @param {string} userId The identifier of the Member.
-     * @param {AddUserToGroupRequest} addUserToGroupRequest 
+     * @param {UpdateMemberPermissionsRequest} updateMemberPermissionsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MembersApi
      */
-    public addMemberToGroup(organizationId: string, userId: string, addUserToGroupRequest: AddUserToGroupRequest, options?: RawAxiosRequestConfig) {
-        return MembersApiFp(this.configuration).addMemberToGroup(organizationId, userId, addUserToGroupRequest, options).then((request) => request(this.axios, this.basePath));
+    public addMemberToGroup(organizationId: string, userId: string, updateMemberPermissionsRequest: UpdateMemberPermissionsRequest, options?: RawAxiosRequestConfig) {
+        return MembersApiFp(this.configuration).addMemberToGroup(organizationId, userId, updateMemberPermissionsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint removes an Invitation identified by the `invitationId` parameter.
+     * @summary Delete Invitation
+     * @param {string} invitationId The identifier of the Invitation.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MembersApi
+     */
+    public deleteInvitation(invitationId: string, options?: RawAxiosRequestConfig) {
+        return MembersApiFp(this.configuration).deleteInvitation(invitationId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -594,6 +793,30 @@ export class MembersApi extends BaseAPI {
      */
     public getOrganizationMembersV2(organizationId: string, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).getOrganizationMembersV2(organizationId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint returns the list of pending invitations within the given Product identified by the `productId` parameter.
+     * @summary List Pending Invitations in Product
+     * @param {string} productId The identifier of the Product.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MembersApi
+     */
+    public getPendingInvitations(productId: string, options?: RawAxiosRequestConfig) {
+        return MembersApiFp(this.configuration).getPendingInvitations(productId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint returns the list of pending invitations within the given Organization identified by the `organizationId` parameter.
+     * @summary List Pending Invitations in Organization
+     * @param {string} organizationId The identifier of the Organization.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MembersApi
+     */
+    public getPendingInvitationsOrg(organizationId: string, options?: RawAxiosRequestConfig) {
+        return MembersApiFp(this.configuration).getPendingInvitationsOrg(organizationId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

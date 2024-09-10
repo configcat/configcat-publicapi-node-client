@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * ConfigCat Public Management API
- * The purpose of this API is to access the ConfigCat platform programmatically. You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.  **Base API URL**: https://test-api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://test-api.configcat.com/swagger).  The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  format. Do not use this API for accessing and evaluating feature flag values. Use the [SDKs instead](https://configcat.com/docs/sdk-reference/overview).   # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://test-api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://test-api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
+ * The purpose of this API is to access the ConfigCat platform programmatically. You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.  **Base API URL**: https://api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://api.configcat.com/swagger).  The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  format.   **Important:** Do not use this API for accessing and evaluating feature flag values. Use the [SDKs](https://configcat.com/docs/sdk-reference/overview) or the [ConfigCat Proxy](https://configcat.com/docs/advanced/proxy/proxy-overview/) instead.  # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
  *
  * The version of the OpenAPI document: v1
  * Contact: support@configcat.com
@@ -13,9 +13,6 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { AuditLogType } from './audit-log-type';
 
 /**
  * 
@@ -37,10 +34,10 @@ export interface AuditLogItemModel {
     'auditLogDateTime'?: string;
     /**
      * 
-     * @type {AuditLogType}
+     * @type {string}
      * @memberof AuditLogItemModel
      */
-    'auditLogTypeEnum'?: AuditLogType;
+    'auditLogTypeEnum'?: AuditLogItemModelAuditLogTypeEnumEnum;
     /**
      * 
      * @type {string}
@@ -97,5 +94,86 @@ export interface AuditLogItemModel {
     'details'?: string | null;
 }
 
+export const AuditLogItemModelAuditLogTypeEnumEnum = {
+    ProductCreated: 'productCreated',
+    ProductChanged: 'productChanged',
+    ProductOwnershipTransferred: 'productOwnershipTransferred',
+    ProductDeleted: 'productDeleted',
+    ProductsReordered: 'productsReordered',
+    TeamMemberInvited: 'teamMemberInvited',
+    TeamMemberInvitationRevoked: 'teamMemberInvitationRevoked',
+    TeamMemberJoined: 'teamMemberJoined',
+    TeamMemberPermissionGroupChanged: 'teamMemberPermissionGroupChanged',
+    TeamMemberRemoved: 'teamMemberRemoved',
+    TeamMemberLeft: 'teamMemberLeft',
+    TeamMemberInvitationChanged: 'teamMemberInvitationChanged',
+    TeamMemberInvitationResent: 'teamMemberInvitationResent',
+    TeamMemberInvitationRejected: 'teamMemberInvitationRejected',
+    ConfigCreated: 'configCreated',
+    ConfigChanged: 'configChanged',
+    ConfigDeleted: 'configDeleted',
+    ConfigsReordered: 'configsReordered',
+    EnvironmentCreated: 'environmentCreated',
+    EnvironmentChanged: 'environmentChanged',
+    EnvironmentDeleted: 'environmentDeleted',
+    EnvironmentsReordered: 'environmentsReordered',
+    SettingCreated: 'settingCreated',
+    SettingChanged: 'settingChanged',
+    SettingDeleted: 'settingDeleted',
+    SettingsReordered: 'settingsReordered',
+    SettingValueChanged: 'settingValueChanged',
+    WebHookCreated: 'webHookCreated',
+    WebHookChanged: 'webHookChanged',
+    WebHookDeleted: 'webHookDeleted',
+    PermissionGroupCreated: 'permissionGroupCreated',
+    PermissionGroupChanged: 'permissionGroupChanged',
+    PermissionGroupDeleted: 'permissionGroupDeleted',
+    PermissionGroupDefault: 'permissionGroupDefault',
+    ApiKeyAdded: 'apiKeyAdded',
+    ApiKeyRemoved: 'apiKeyRemoved',
+    IntegrationAdded: 'integrationAdded',
+    IntegrationChanged: 'integrationChanged',
+    IntegrationRemoved: 'integrationRemoved',
+    ApiKeyConnected: 'apiKeyConnected',
+    IntegrationLinkAdded: 'integrationLinkAdded',
+    IntegrationLinkRemoved: 'integrationLinkRemoved',
+    OrganizationAdded: 'organizationAdded',
+    OrganizationRemoved: 'organizationRemoved',
+    OrganizationChanged: 'organizationChanged',
+    OrganizationSubscriptionTypeChanged: 'organizationSubscriptionTypeChanged',
+    OrganizationAdminChanged: 'organizationAdminChanged',
+    OrganizationAdminLeft: 'organizationAdminLeft',
+    OrganizationAdminDisabled2Fa: 'organizationAdminDisabled2FA',
+    TagAdded: 'tagAdded',
+    TagChanged: 'tagChanged',
+    TagRemoved: 'tagRemoved',
+    SettingTagAdded: 'settingTagAdded',
+    SettingTagRemoved: 'settingTagRemoved',
+    PublicApiAccessTokenAdded: 'publicApiAccessTokenAdded',
+    PublicApiAccessTokenRemoved: 'publicApiAccessTokenRemoved',
+    DomainAdded: 'domainAdded',
+    DomainVerified: 'domainVerified',
+    DomainRemoved: 'domainRemoved',
+    DomainSamlConfigured: 'domainSamlConfigured',
+    DomainSamlDeleted: 'domainSamlDeleted',
+    AutoProvisioningConfigurationChanged: 'autoProvisioningConfigurationChanged',
+    SamlIdpConfigurationAdded: 'samlIdpConfigurationAdded',
+    SamlIdpConfigurationRemoved: 'samlIdpConfigurationRemoved',
+    SamlIdpConfigurationUpdated: 'samlIdpConfigurationUpdated',
+    OrganizationMemberJoined: 'organizationMemberJoined',
+    OrganizationMemberProductJoinRequested: 'organizationMemberProductJoinRequested',
+    OrganizationMemberProductJoinRequestRejected: 'organizationMemberProductJoinRequestRejected',
+    OrganizationMemberProductJoinRequestApproved: 'organizationMemberProductJoinRequestApproved',
+    CodeReferencesUploaded: 'codeReferencesUploaded',
+    CodeReferenceDeleted: 'codeReferenceDeleted',
+    CodeReferenceStaleBranchDeleted: 'codeReferenceStaleBranchDeleted',
+    SegmentCreated: 'segmentCreated',
+    SegmentChanged: 'segmentChanged',
+    SegmentDeleted: 'segmentDeleted',
+    WebhookSigningKeyDeleted: 'webhookSigningKeyDeleted',
+    WebhookSigningKeyCreated: 'webhookSigningKeyCreated'
+} as const;
+
+export type AuditLogItemModelAuditLogTypeEnumEnum = typeof AuditLogItemModelAuditLogTypeEnumEnum[keyof typeof AuditLogItemModelAuditLogTypeEnumEnum];
 
 

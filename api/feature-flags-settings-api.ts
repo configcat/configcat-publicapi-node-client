@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * ConfigCat Public Management API
- * The purpose of this API is to access the ConfigCat platform programmatically. You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.  **Base API URL**: https://test-api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://test-api.configcat.com/swagger).  The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  format. Do not use this API for accessing and evaluating feature flag values. Use the [SDKs instead](https://configcat.com/docs/sdk-reference/overview).   # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://test-api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://test-api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
+ * The purpose of this API is to access the ConfigCat platform programmatically. You can **Create**, **Read**, **Update** and **Delete** any entities like **Feature Flags, Configs, Environments** or **Products** within ConfigCat.  **Base API URL**: https://api.configcat.com  If you prefer the swagger documentation, you can find it here: [Swagger UI](https://api.configcat.com/swagger).  The API is based on HTTP REST, uses resource-oriented URLs, status codes and supports JSON  format.   **Important:** Do not use this API for accessing and evaluating feature flag values. Use the [SDKs](https://configcat.com/docs/sdk-reference/overview) or the [ConfigCat Proxy](https://configcat.com/docs/advanced/proxy/proxy-overview/) instead.  # OpenAPI Specification  The complete specification is publicly available in the following formats:  - [OpenAPI v3](https://api.configcat.com/docs/v1/swagger.json) - [Swagger v2](https://api.configcat.com/docs/v1/swagger.v2.json)  You can use it to generate client libraries in various languages with [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) or [Swagger Codegen](https://swagger.io/tools/swagger-codegen/) to interact with this API.  # Authentication This API uses the [Basic HTTP Authentication Scheme](https://en.wikipedia.org/wiki/Basic_access_authentication).   <!-- ReDoc-Inject: <security-definitions> -->  # Throttling and rate limits All the rate limited API calls are returning information about the current rate limit period in the following HTTP headers:  | Header | Description | | :- | :- | | X-Rate-Limit-Remaining | The maximum number of requests remaining in the current rate limit period. | | X-Rate-Limit-Reset     | The time when the current rate limit period resets.        |  When the rate limit is exceeded by a request, the API returns with a `HTTP 429 - Too many requests` status along with a `Retry-After` HTTP header. 
  *
  * The version of the OpenAPI document: v1
  * Contact: support@configcat.com
@@ -25,6 +25,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, ope
 import { CreateSettingInitialValues } from '../model';
 // @ts-ignore
 import { JsonPatchOperation } from '../model';
+// @ts-ignore
+import { ReplaceSettingModel } from '../model';
 // @ts-ignore
 import { SettingModel } from '../model';
 /**
@@ -192,7 +194,51 @@ export const FeatureFlagsSettingsApiAxiosParamCreator = function (configuration?
             };
         },
         /**
-         * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the `name`, `hint` and `tags` attributes are modifiable by this endpoint. The `tags` attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change.  For example: We have the following resource. ``` {  \"settingId\": 5345,  \"key\": \"myGrandFeature\",  \"name\": \"Tihs is a naem with soem typos.\",  \"hint\": \"This flag controls my grandioso feature.\",  \"settingType\": \"boolean\",  \"tags\": [   {    \"tagId\": 0,    \"name\": \"sample tag\",    \"color\": \"whale\"   }  ] } ``` If we send an update request body as below (it changes the name and adds the already existing tag with the id 2): ``` [  {   \"op\": \"replace\",   \"path\": \"/name\",   \"value\": \"This is the name without typos.\"  },  {   \"op\": \"add\",   \"path\": \"/tags/-\",   \"value\": 2  } ] ``` Only the `name` and `tags` are going to be updated and all the other attributes are remaining unchanged. So we get a response like this: ``` {  \"settingId\": 5345,  \"key\": \"myGrandFeature\",  \"name\": \"This is the name without typos.\",  \"hint\": \"This flag controls my grandioso feature.\",  \"settingType\": \"boolean\",  \"tags\": [   {    \"tagId\": 0,    \"name\": \"sample tag\",    \"color\": \"whale\"   },   {    \"tagId\": 2,    \"name\": \"another tag\",    \"color\": \"koala\"   }  ] } ```
+         * This endpoint replaces the whole value of a Feature Flag or Setting identified by the `settingId` parameter.  **Important:** As this endpoint is doing a complete replace, it\'s important to set every other attribute that you don\'t  want to change in its original state. Not listing one means it will reset.
+         * @summary Replace Flag
+         * @param {number} settingId The identifier of the Setting.
+         * @param {ReplaceSettingModel} replaceSettingModel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        replaceSetting: async (settingId: number, replaceSettingModel: ReplaceSettingModel, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'settingId' is not null or undefined
+            assertParamExists('replaceSetting', 'settingId', settingId)
+            // verify required parameter 'replaceSettingModel' is not null or undefined
+            assertParamExists('replaceSetting', 'replaceSettingModel', replaceSettingModel)
+            const localVarPath = `/v1/settings/{settingId}`
+                .replace(`{${"settingId"}}`, encodeURIComponent(String(settingId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(replaceSettingModel, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the `name`, `hint` and `tags` attributes are modifiable by this endpoint. The `tags` attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change.  For example: We have the following resource. ```json {   \"settingId\": 5345,   \"key\": \"myGrandFeature\",   \"name\": \"Tihs is a naem with soem typos.\",   \"hint\": \"This flag controls my grandioso feature.\",   \"settingType\": \"boolean\",   \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     }   ] } ``` If we send an update request body as below (it changes the `name` and adds the already existing tag with the id `2`): ```json [   {     \"op\": \"replace\",      \"path\": \"/name\",      \"value\": \"This is the name without typos.\"   },    {     \"op\": \"add\",      \"path\": \"/tags/-\",      \"value\": 2   } ] ``` Only the `name` and `tags` are updated and all the other attributes remain unchanged. So we get a response like this: ```json {   \"settingId\": 5345,    \"key\": \"myGrandFeature\",    \"name\": \"This is the name without typos.\",    \"hint\": \"This flag controls my grandioso feature.\",    \"settingType\": \"boolean\",    \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     },      {       \"tagId\": 2,        \"name\": \"another tag\",        \"color\": \"koala\"     }   ] } ```
          * @summary Update Flag
          * @param {number} settingId The identifier of the Setting.
          * @param {Array<JsonPatchOperation>} jsonPatchOperation 
@@ -299,7 +345,21 @@ export const FeatureFlagsSettingsApiFp = function(configuration?: Configuration)
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the `name`, `hint` and `tags` attributes are modifiable by this endpoint. The `tags` attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change.  For example: We have the following resource. ``` {  \"settingId\": 5345,  \"key\": \"myGrandFeature\",  \"name\": \"Tihs is a naem with soem typos.\",  \"hint\": \"This flag controls my grandioso feature.\",  \"settingType\": \"boolean\",  \"tags\": [   {    \"tagId\": 0,    \"name\": \"sample tag\",    \"color\": \"whale\"   }  ] } ``` If we send an update request body as below (it changes the name and adds the already existing tag with the id 2): ``` [  {   \"op\": \"replace\",   \"path\": \"/name\",   \"value\": \"This is the name without typos.\"  },  {   \"op\": \"add\",   \"path\": \"/tags/-\",   \"value\": 2  } ] ``` Only the `name` and `tags` are going to be updated and all the other attributes are remaining unchanged. So we get a response like this: ``` {  \"settingId\": 5345,  \"key\": \"myGrandFeature\",  \"name\": \"This is the name without typos.\",  \"hint\": \"This flag controls my grandioso feature.\",  \"settingType\": \"boolean\",  \"tags\": [   {    \"tagId\": 0,    \"name\": \"sample tag\",    \"color\": \"whale\"   },   {    \"tagId\": 2,    \"name\": \"another tag\",    \"color\": \"koala\"   }  ] } ```
+         * This endpoint replaces the whole value of a Feature Flag or Setting identified by the `settingId` parameter.  **Important:** As this endpoint is doing a complete replace, it\'s important to set every other attribute that you don\'t  want to change in its original state. Not listing one means it will reset.
+         * @summary Replace Flag
+         * @param {number} settingId The identifier of the Setting.
+         * @param {ReplaceSettingModel} replaceSettingModel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async replaceSetting(settingId: number, replaceSettingModel: ReplaceSettingModel, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SettingModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.replaceSetting(settingId, replaceSettingModel, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeatureFlagsSettingsApi.replaceSetting']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the `name`, `hint` and `tags` attributes are modifiable by this endpoint. The `tags` attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change.  For example: We have the following resource. ```json {   \"settingId\": 5345,   \"key\": \"myGrandFeature\",   \"name\": \"Tihs is a naem with soem typos.\",   \"hint\": \"This flag controls my grandioso feature.\",   \"settingType\": \"boolean\",   \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     }   ] } ``` If we send an update request body as below (it changes the `name` and adds the already existing tag with the id `2`): ```json [   {     \"op\": \"replace\",      \"path\": \"/name\",      \"value\": \"This is the name without typos.\"   },    {     \"op\": \"add\",      \"path\": \"/tags/-\",      \"value\": 2   } ] ``` Only the `name` and `tags` are updated and all the other attributes remain unchanged. So we get a response like this: ```json {   \"settingId\": 5345,    \"key\": \"myGrandFeature\",    \"name\": \"This is the name without typos.\",    \"hint\": \"This flag controls my grandioso feature.\",    \"settingType\": \"boolean\",    \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     },      {       \"tagId\": 2,        \"name\": \"another tag\",        \"color\": \"koala\"     }   ] } ```
          * @summary Update Flag
          * @param {number} settingId The identifier of the Setting.
          * @param {Array<JsonPatchOperation>} jsonPatchOperation 
@@ -364,7 +424,18 @@ export const FeatureFlagsSettingsApiFactory = function (configuration?: Configur
             return localVarFp.getSettings(configId, options).then((request) => request(axios, basePath));
         },
         /**
-         * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the `name`, `hint` and `tags` attributes are modifiable by this endpoint. The `tags` attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change.  For example: We have the following resource. ``` {  \"settingId\": 5345,  \"key\": \"myGrandFeature\",  \"name\": \"Tihs is a naem with soem typos.\",  \"hint\": \"This flag controls my grandioso feature.\",  \"settingType\": \"boolean\",  \"tags\": [   {    \"tagId\": 0,    \"name\": \"sample tag\",    \"color\": \"whale\"   }  ] } ``` If we send an update request body as below (it changes the name and adds the already existing tag with the id 2): ``` [  {   \"op\": \"replace\",   \"path\": \"/name\",   \"value\": \"This is the name without typos.\"  },  {   \"op\": \"add\",   \"path\": \"/tags/-\",   \"value\": 2  } ] ``` Only the `name` and `tags` are going to be updated and all the other attributes are remaining unchanged. So we get a response like this: ``` {  \"settingId\": 5345,  \"key\": \"myGrandFeature\",  \"name\": \"This is the name without typos.\",  \"hint\": \"This flag controls my grandioso feature.\",  \"settingType\": \"boolean\",  \"tags\": [   {    \"tagId\": 0,    \"name\": \"sample tag\",    \"color\": \"whale\"   },   {    \"tagId\": 2,    \"name\": \"another tag\",    \"color\": \"koala\"   }  ] } ```
+         * This endpoint replaces the whole value of a Feature Flag or Setting identified by the `settingId` parameter.  **Important:** As this endpoint is doing a complete replace, it\'s important to set every other attribute that you don\'t  want to change in its original state. Not listing one means it will reset.
+         * @summary Replace Flag
+         * @param {number} settingId The identifier of the Setting.
+         * @param {ReplaceSettingModel} replaceSettingModel 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        replaceSetting(settingId: number, replaceSettingModel: ReplaceSettingModel, options?: any): AxiosPromise<SettingModel> {
+            return localVarFp.replaceSetting(settingId, replaceSettingModel, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the `name`, `hint` and `tags` attributes are modifiable by this endpoint. The `tags` attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change.  For example: We have the following resource. ```json {   \"settingId\": 5345,   \"key\": \"myGrandFeature\",   \"name\": \"Tihs is a naem with soem typos.\",   \"hint\": \"This flag controls my grandioso feature.\",   \"settingType\": \"boolean\",   \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     }   ] } ``` If we send an update request body as below (it changes the `name` and adds the already existing tag with the id `2`): ```json [   {     \"op\": \"replace\",      \"path\": \"/name\",      \"value\": \"This is the name without typos.\"   },    {     \"op\": \"add\",      \"path\": \"/tags/-\",      \"value\": 2   } ] ``` Only the `name` and `tags` are updated and all the other attributes remain unchanged. So we get a response like this: ```json {   \"settingId\": 5345,    \"key\": \"myGrandFeature\",    \"name\": \"This is the name without typos.\",    \"hint\": \"This flag controls my grandioso feature.\",    \"settingType\": \"boolean\",    \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     },      {       \"tagId\": 2,        \"name\": \"another tag\",        \"color\": \"koala\"     }   ] } ```
          * @summary Update Flag
          * @param {number} settingId The identifier of the Setting.
          * @param {Array<JsonPatchOperation>} jsonPatchOperation 
@@ -434,7 +505,20 @@ export class FeatureFlagsSettingsApi extends BaseAPI {
     }
 
     /**
-     * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the `name`, `hint` and `tags` attributes are modifiable by this endpoint. The `tags` attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change.  For example: We have the following resource. ``` {  \"settingId\": 5345,  \"key\": \"myGrandFeature\",  \"name\": \"Tihs is a naem with soem typos.\",  \"hint\": \"This flag controls my grandioso feature.\",  \"settingType\": \"boolean\",  \"tags\": [   {    \"tagId\": 0,    \"name\": \"sample tag\",    \"color\": \"whale\"   }  ] } ``` If we send an update request body as below (it changes the name and adds the already existing tag with the id 2): ``` [  {   \"op\": \"replace\",   \"path\": \"/name\",   \"value\": \"This is the name without typos.\"  },  {   \"op\": \"add\",   \"path\": \"/tags/-\",   \"value\": 2  } ] ``` Only the `name` and `tags` are going to be updated and all the other attributes are remaining unchanged. So we get a response like this: ``` {  \"settingId\": 5345,  \"key\": \"myGrandFeature\",  \"name\": \"This is the name without typos.\",  \"hint\": \"This flag controls my grandioso feature.\",  \"settingType\": \"boolean\",  \"tags\": [   {    \"tagId\": 0,    \"name\": \"sample tag\",    \"color\": \"whale\"   },   {    \"tagId\": 2,    \"name\": \"another tag\",    \"color\": \"koala\"   }  ] } ```
+     * This endpoint replaces the whole value of a Feature Flag or Setting identified by the `settingId` parameter.  **Important:** As this endpoint is doing a complete replace, it\'s important to set every other attribute that you don\'t  want to change in its original state. Not listing one means it will reset.
+     * @summary Replace Flag
+     * @param {number} settingId The identifier of the Setting.
+     * @param {ReplaceSettingModel} replaceSettingModel 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeatureFlagsSettingsApi
+     */
+    public replaceSetting(settingId: number, replaceSettingModel: ReplaceSettingModel, options?: RawAxiosRequestConfig) {
+        return FeatureFlagsSettingsApiFp(this.configuration).replaceSetting(settingId, replaceSettingModel, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the `name`, `hint` and `tags` attributes are modifiable by this endpoint. The `tags` attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change.  For example: We have the following resource. ```json {   \"settingId\": 5345,   \"key\": \"myGrandFeature\",   \"name\": \"Tihs is a naem with soem typos.\",   \"hint\": \"This flag controls my grandioso feature.\",   \"settingType\": \"boolean\",   \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     }   ] } ``` If we send an update request body as below (it changes the `name` and adds the already existing tag with the id `2`): ```json [   {     \"op\": \"replace\",      \"path\": \"/name\",      \"value\": \"This is the name without typos.\"   },    {     \"op\": \"add\",      \"path\": \"/tags/-\",      \"value\": 2   } ] ``` Only the `name` and `tags` are updated and all the other attributes remain unchanged. So we get a response like this: ```json {   \"settingId\": 5345,    \"key\": \"myGrandFeature\",    \"name\": \"This is the name without typos.\",    \"hint\": \"This flag controls my grandioso feature.\",    \"settingType\": \"boolean\",    \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     },      {       \"tagId\": 2,        \"name\": \"another tag\",        \"color\": \"koala\"     }   ] } ```
      * @summary Update Flag
      * @param {number} settingId The identifier of the Setting.
      * @param {Array<JsonPatchOperation>} jsonPatchOperation 
