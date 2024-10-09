@@ -16,6 +16,9 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { InitialValue } from './initial-value';
+// May contain unused imports in some cases
+// @ts-ignore
+import { SettingType } from './setting-type';
 
 /**
  * 
@@ -54,11 +57,11 @@ export interface CreateSettingInitialValues {
      */
     'name': string;
     /**
-     * The type of the Feature Flag or Setting.
-     * @type {string}
+     * 
+     * @type {SettingType}
      * @memberof CreateSettingInitialValues
      */
-    'settingType': CreateSettingInitialValuesSettingTypeEnum;
+    'settingType': SettingType;
     /**
      * Optional, initial value of the Feature Flag or Setting in the given Environments.
      * @type {Array<InitialValue>}
@@ -67,13 +70,5 @@ export interface CreateSettingInitialValues {
     'initialValues'?: Array<InitialValue> | null;
 }
 
-export const CreateSettingInitialValuesSettingTypeEnum = {
-    Boolean: 'boolean',
-    String: 'string',
-    Int: 'int',
-    Double: 'double'
-} as const;
-
-export type CreateSettingInitialValuesSettingTypeEnum = typeof CreateSettingInitialValuesSettingTypeEnum[keyof typeof CreateSettingInitialValuesSettingTypeEnum];
 
 

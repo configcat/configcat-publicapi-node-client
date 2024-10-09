@@ -16,6 +16,9 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { ComparisonValueModel } from './comparison-value-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { UserComparator } from './user-comparator';
 
 /**
  * Describes a condition that is based on user attributes.
@@ -30,11 +33,11 @@ export interface UserConditionModel {
      */
     'comparisonAttribute': string;
     /**
-     * The comparison operator which defines the relation between the comparison attribute and the comparison value.
-     * @type {string}
+     * 
+     * @type {UserComparator}
      * @memberof UserConditionModel
      */
-    'comparator': UserConditionModelComparatorEnum;
+    'comparator': UserComparator;
     /**
      * 
      * @type {ComparisonValueModel}
@@ -43,45 +46,5 @@ export interface UserConditionModel {
     'comparisonValue': ComparisonValueModel;
 }
 
-export const UserConditionModelComparatorEnum = {
-    IsOneOf: 'isOneOf',
-    IsNotOneOf: 'isNotOneOf',
-    ContainsAnyOf: 'containsAnyOf',
-    DoesNotContainAnyOf: 'doesNotContainAnyOf',
-    SemVerIsOneOf: 'semVerIsOneOf',
-    SemVerIsNotOneOf: 'semVerIsNotOneOf',
-    SemVerLess: 'semVerLess',
-    SemVerLessOrEquals: 'semVerLessOrEquals',
-    SemVerGreater: 'semVerGreater',
-    SemVerGreaterOrEquals: 'semVerGreaterOrEquals',
-    NumberEquals: 'numberEquals',
-    NumberDoesNotEqual: 'numberDoesNotEqual',
-    NumberLess: 'numberLess',
-    NumberLessOrEquals: 'numberLessOrEquals',
-    NumberGreater: 'numberGreater',
-    NumberGreaterOrEquals: 'numberGreaterOrEquals',
-    SensitiveIsOneOf: 'sensitiveIsOneOf',
-    SensitiveIsNotOneOf: 'sensitiveIsNotOneOf',
-    DateTimeBefore: 'dateTimeBefore',
-    DateTimeAfter: 'dateTimeAfter',
-    SensitiveTextEquals: 'sensitiveTextEquals',
-    SensitiveTextDoesNotEqual: 'sensitiveTextDoesNotEqual',
-    SensitiveTextStartsWithAnyOf: 'sensitiveTextStartsWithAnyOf',
-    SensitiveTextNotStartsWithAnyOf: 'sensitiveTextNotStartsWithAnyOf',
-    SensitiveTextEndsWithAnyOf: 'sensitiveTextEndsWithAnyOf',
-    SensitiveTextNotEndsWithAnyOf: 'sensitiveTextNotEndsWithAnyOf',
-    SensitiveArrayContainsAnyOf: 'sensitiveArrayContainsAnyOf',
-    SensitiveArrayDoesNotContainAnyOf: 'sensitiveArrayDoesNotContainAnyOf',
-    TextEquals: 'textEquals',
-    TextDoesNotEqual: 'textDoesNotEqual',
-    TextStartsWithAnyOf: 'textStartsWithAnyOf',
-    TextNotStartsWithAnyOf: 'textNotStartsWithAnyOf',
-    TextEndsWithAnyOf: 'textEndsWithAnyOf',
-    TextNotEndsWithAnyOf: 'textNotEndsWithAnyOf',
-    ArrayContainsAnyOf: 'arrayContainsAnyOf',
-    ArrayDoesNotContainAnyOf: 'arrayDoesNotContainAnyOf'
-} as const;
-
-export type UserConditionModelComparatorEnum = typeof UserConditionModelComparatorEnum[keyof typeof UserConditionModelComparatorEnum];
 
 

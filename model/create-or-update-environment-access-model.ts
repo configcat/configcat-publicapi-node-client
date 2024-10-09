@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { EnvironmentAccessType } from './environment-access-type';
 
 /**
  * 
@@ -27,19 +30,12 @@ export interface CreateOrUpdateEnvironmentAccessModel {
      */
     'environmentId'?: string;
     /**
-     * Represent the environment specific Feature Management permission.
-     * @type {string}
+     * 
+     * @type {EnvironmentAccessType}
      * @memberof CreateOrUpdateEnvironmentAccessModel
      */
-    'environmentAccessType'?: CreateOrUpdateEnvironmentAccessModelEnvironmentAccessTypeEnum;
+    'environmentAccessType'?: EnvironmentAccessType;
 }
 
-export const CreateOrUpdateEnvironmentAccessModelEnvironmentAccessTypeEnum = {
-    Full: 'full',
-    ReadOnly: 'readOnly',
-    None: 'none'
-} as const;
-
-export type CreateOrUpdateEnvironmentAccessModelEnvironmentAccessTypeEnum = typeof CreateOrUpdateEnvironmentAccessModelEnvironmentAccessTypeEnum[keyof typeof CreateOrUpdateEnvironmentAccessModelEnvironmentAccessTypeEnum];
 
 

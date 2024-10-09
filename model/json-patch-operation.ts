@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { OperationType } from './operation-type';
 
 /**
  * 
@@ -21,11 +24,11 @@
  */
 export interface JsonPatchOperation {
     /**
-     * The JSON Patch operation. (https://jsonpatch.com)
-     * @type {string}
+     * 
+     * @type {OperationType}
      * @memberof JsonPatchOperation
      */
-    'op': JsonPatchOperationOpEnum;
+    'op': OperationType;
     /**
      * The source path.
      * @type {string}
@@ -46,16 +49,5 @@ export interface JsonPatchOperation {
     'value'?: any | null;
 }
 
-export const JsonPatchOperationOpEnum = {
-    Unknown: 'unknown',
-    Add: 'add',
-    Remove: 'remove',
-    Replace: 'replace',
-    Move: 'move',
-    Copy: 'copy',
-    Test: 'test'
-} as const;
-
-export type JsonPatchOperationOpEnum = typeof JsonPatchOperationOpEnum[keyof typeof JsonPatchOperationOpEnum];
 
 

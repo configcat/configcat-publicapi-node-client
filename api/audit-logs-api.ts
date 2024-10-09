@@ -24,6 +24,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, ope
 // @ts-ignore
 import { AuditLogItemModel } from '../model';
 // @ts-ignore
+import { AuditLogType } from '../model';
+// @ts-ignore
 import { SettingModel } from '../model';
 /**
  * AuditLogsApi - axios parameter creator
@@ -37,13 +39,13 @@ export const AuditLogsApiAxiosParamCreator = function (configuration?: Configura
          * @param {string} productId The identifier of the Product.
          * @param {string} [configId] The identifier of the Config.
          * @param {string} [environmentId] The identifier of the Environment.
-         * @param {GetAuditlogsAuditLogTypeEnum} [auditLogType] Filter Audit logs by Audit log type.
+         * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
          * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
          * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAuditlogs: async (productId: string, configId?: string, environmentId?: string, auditLogType?: GetAuditlogsAuditLogTypeEnum, fromUtcDateTime?: string, toUtcDateTime?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAuditlogs: async (productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getAuditlogs', 'productId', productId)
             const localVarPath = `/v1/products/{productId}/auditlogs`
@@ -143,13 +145,13 @@ export const AuditLogsApiAxiosParamCreator = function (configuration?: Configura
          * @param {string} [productId] The identifier of the Product.
          * @param {string} [configId] The identifier of the Config.
          * @param {string} [environmentId] The identifier of the Environment.
-         * @param {GetOrganizationAuditlogsAuditLogTypeEnum} [auditLogType] Filter Audit logs by Audit log type.
+         * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
          * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
          * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrganizationAuditlogs: async (organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: GetOrganizationAuditlogsAuditLogTypeEnum, fromUtcDateTime?: string, toUtcDateTime?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrganizationAuditlogs: async (organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'organizationId' is not null or undefined
             assertParamExists('getOrganizationAuditlogs', 'organizationId', organizationId)
             const localVarPath = `/v1/organizations/{organizationId}/auditlogs`
@@ -224,13 +226,13 @@ export const AuditLogsApiFp = function(configuration?: Configuration) {
          * @param {string} productId The identifier of the Product.
          * @param {string} [configId] The identifier of the Config.
          * @param {string} [environmentId] The identifier of the Environment.
-         * @param {GetAuditlogsAuditLogTypeEnum} [auditLogType] Filter Audit logs by Audit log type.
+         * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
          * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
          * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAuditlogs(productId: string, configId?: string, environmentId?: string, auditLogType?: GetAuditlogsAuditLogTypeEnum, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AuditLogItemModel>>> {
+        async getAuditlogs(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AuditLogItemModel>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAuditlogs(productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AuditLogsApi.getAuditlogs']?.[localVarOperationServerIndex]?.url;
@@ -256,13 +258,13 @@ export const AuditLogsApiFp = function(configuration?: Configuration) {
          * @param {string} [productId] The identifier of the Product.
          * @param {string} [configId] The identifier of the Config.
          * @param {string} [environmentId] The identifier of the Environment.
-         * @param {GetOrganizationAuditlogsAuditLogTypeEnum} [auditLogType] Filter Audit logs by Audit log type.
+         * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
          * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
          * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrganizationAuditlogs(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: GetOrganizationAuditlogsAuditLogTypeEnum, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AuditLogItemModel>>> {
+        async getOrganizationAuditlogs(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AuditLogItemModel>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getOrganizationAuditlogs(organizationId, productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AuditLogsApi.getOrganizationAuditlogs']?.[localVarOperationServerIndex]?.url;
@@ -284,13 +286,13 @@ export const AuditLogsApiFactory = function (configuration?: Configuration, base
          * @param {string} productId The identifier of the Product.
          * @param {string} [configId] The identifier of the Config.
          * @param {string} [environmentId] The identifier of the Environment.
-         * @param {GetAuditlogsAuditLogTypeEnum} [auditLogType] Filter Audit logs by Audit log type.
+         * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
          * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
          * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAuditlogs(productId: string, configId?: string, environmentId?: string, auditLogType?: GetAuditlogsAuditLogTypeEnum, fromUtcDateTime?: string, toUtcDateTime?: string, options?: any): AxiosPromise<Array<AuditLogItemModel>> {
+        getAuditlogs(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: any): AxiosPromise<Array<AuditLogItemModel>> {
             return localVarFp.getAuditlogs(productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, options).then((request) => request(axios, basePath));
         },
         /**
@@ -310,13 +312,13 @@ export const AuditLogsApiFactory = function (configuration?: Configuration, base
          * @param {string} [productId] The identifier of the Product.
          * @param {string} [configId] The identifier of the Config.
          * @param {string} [environmentId] The identifier of the Environment.
-         * @param {GetOrganizationAuditlogsAuditLogTypeEnum} [auditLogType] Filter Audit logs by Audit log type.
+         * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
          * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
          * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrganizationAuditlogs(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: GetOrganizationAuditlogsAuditLogTypeEnum, fromUtcDateTime?: string, toUtcDateTime?: string, options?: any): AxiosPromise<Array<AuditLogItemModel>> {
+        getOrganizationAuditlogs(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: any): AxiosPromise<Array<AuditLogItemModel>> {
             return localVarFp.getOrganizationAuditlogs(organizationId, productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, options).then((request) => request(axios, basePath));
         },
     };
@@ -335,14 +337,14 @@ export class AuditLogsApi extends BaseAPI {
      * @param {string} productId The identifier of the Product.
      * @param {string} [configId] The identifier of the Config.
      * @param {string} [environmentId] The identifier of the Environment.
-     * @param {GetAuditlogsAuditLogTypeEnum} [auditLogType] Filter Audit logs by Audit log type.
+     * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
      * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
      * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuditLogsApi
      */
-    public getAuditlogs(productId: string, configId?: string, environmentId?: string, auditLogType?: GetAuditlogsAuditLogTypeEnum, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig) {
+    public getAuditlogs(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig) {
         return AuditLogsApiFp(this.configuration).getAuditlogs(productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -365,181 +367,15 @@ export class AuditLogsApi extends BaseAPI {
      * @param {string} [productId] The identifier of the Product.
      * @param {string} [configId] The identifier of the Config.
      * @param {string} [environmentId] The identifier of the Environment.
-     * @param {GetOrganizationAuditlogsAuditLogTypeEnum} [auditLogType] Filter Audit logs by Audit log type.
+     * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
      * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
      * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuditLogsApi
      */
-    public getOrganizationAuditlogs(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: GetOrganizationAuditlogsAuditLogTypeEnum, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig) {
+    public getOrganizationAuditlogs(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig) {
         return AuditLogsApiFp(this.configuration).getOrganizationAuditlogs(organizationId, productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
-export const GetAuditlogsAuditLogTypeEnum = {
-    ProductCreated: 'productCreated',
-    ProductChanged: 'productChanged',
-    ProductOwnershipTransferred: 'productOwnershipTransferred',
-    ProductDeleted: 'productDeleted',
-    ProductsReordered: 'productsReordered',
-    TeamMemberInvited: 'teamMemberInvited',
-    TeamMemberInvitationRevoked: 'teamMemberInvitationRevoked',
-    TeamMemberJoined: 'teamMemberJoined',
-    TeamMemberPermissionGroupChanged: 'teamMemberPermissionGroupChanged',
-    TeamMemberRemoved: 'teamMemberRemoved',
-    TeamMemberLeft: 'teamMemberLeft',
-    TeamMemberInvitationChanged: 'teamMemberInvitationChanged',
-    TeamMemberInvitationResent: 'teamMemberInvitationResent',
-    TeamMemberInvitationRejected: 'teamMemberInvitationRejected',
-    ConfigCreated: 'configCreated',
-    ConfigChanged: 'configChanged',
-    ConfigDeleted: 'configDeleted',
-    ConfigsReordered: 'configsReordered',
-    EnvironmentCreated: 'environmentCreated',
-    EnvironmentChanged: 'environmentChanged',
-    EnvironmentDeleted: 'environmentDeleted',
-    EnvironmentsReordered: 'environmentsReordered',
-    SettingCreated: 'settingCreated',
-    SettingChanged: 'settingChanged',
-    SettingDeleted: 'settingDeleted',
-    SettingsReordered: 'settingsReordered',
-    SettingValueChanged: 'settingValueChanged',
-    WebHookCreated: 'webHookCreated',
-    WebHookChanged: 'webHookChanged',
-    WebHookDeleted: 'webHookDeleted',
-    PermissionGroupCreated: 'permissionGroupCreated',
-    PermissionGroupChanged: 'permissionGroupChanged',
-    PermissionGroupDeleted: 'permissionGroupDeleted',
-    PermissionGroupDefault: 'permissionGroupDefault',
-    ApiKeyAdded: 'apiKeyAdded',
-    ApiKeyRemoved: 'apiKeyRemoved',
-    IntegrationAdded: 'integrationAdded',
-    IntegrationChanged: 'integrationChanged',
-    IntegrationRemoved: 'integrationRemoved',
-    ApiKeyConnected: 'apiKeyConnected',
-    IntegrationLinkAdded: 'integrationLinkAdded',
-    IntegrationLinkRemoved: 'integrationLinkRemoved',
-    OrganizationAdded: 'organizationAdded',
-    OrganizationRemoved: 'organizationRemoved',
-    OrganizationChanged: 'organizationChanged',
-    OrganizationSubscriptionTypeChanged: 'organizationSubscriptionTypeChanged',
-    OrganizationAdminChanged: 'organizationAdminChanged',
-    OrganizationAdminLeft: 'organizationAdminLeft',
-    OrganizationAdminDisabled2Fa: 'organizationAdminDisabled2FA',
-    TagAdded: 'tagAdded',
-    TagChanged: 'tagChanged',
-    TagRemoved: 'tagRemoved',
-    SettingTagAdded: 'settingTagAdded',
-    SettingTagRemoved: 'settingTagRemoved',
-    PublicApiAccessTokenAdded: 'publicApiAccessTokenAdded',
-    PublicApiAccessTokenRemoved: 'publicApiAccessTokenRemoved',
-    DomainAdded: 'domainAdded',
-    DomainVerified: 'domainVerified',
-    DomainRemoved: 'domainRemoved',
-    DomainSamlConfigured: 'domainSamlConfigured',
-    DomainSamlDeleted: 'domainSamlDeleted',
-    AutoProvisioningConfigurationChanged: 'autoProvisioningConfigurationChanged',
-    SamlIdpConfigurationAdded: 'samlIdpConfigurationAdded',
-    SamlIdpConfigurationRemoved: 'samlIdpConfigurationRemoved',
-    SamlIdpConfigurationUpdated: 'samlIdpConfigurationUpdated',
-    OrganizationMemberJoined: 'organizationMemberJoined',
-    OrganizationMemberProductJoinRequested: 'organizationMemberProductJoinRequested',
-    OrganizationMemberProductJoinRequestRejected: 'organizationMemberProductJoinRequestRejected',
-    OrganizationMemberProductJoinRequestApproved: 'organizationMemberProductJoinRequestApproved',
-    CodeReferencesUploaded: 'codeReferencesUploaded',
-    CodeReferenceDeleted: 'codeReferenceDeleted',
-    CodeReferenceStaleBranchDeleted: 'codeReferenceStaleBranchDeleted',
-    SegmentCreated: 'segmentCreated',
-    SegmentChanged: 'segmentChanged',
-    SegmentDeleted: 'segmentDeleted',
-    WebhookSigningKeyDeleted: 'webhookSigningKeyDeleted',
-    WebhookSigningKeyCreated: 'webhookSigningKeyCreated'
-} as const;
-export type GetAuditlogsAuditLogTypeEnum = typeof GetAuditlogsAuditLogTypeEnum[keyof typeof GetAuditlogsAuditLogTypeEnum];
-/**
- * @export
- */
-export const GetOrganizationAuditlogsAuditLogTypeEnum = {
-    ProductCreated: 'productCreated',
-    ProductChanged: 'productChanged',
-    ProductOwnershipTransferred: 'productOwnershipTransferred',
-    ProductDeleted: 'productDeleted',
-    ProductsReordered: 'productsReordered',
-    TeamMemberInvited: 'teamMemberInvited',
-    TeamMemberInvitationRevoked: 'teamMemberInvitationRevoked',
-    TeamMemberJoined: 'teamMemberJoined',
-    TeamMemberPermissionGroupChanged: 'teamMemberPermissionGroupChanged',
-    TeamMemberRemoved: 'teamMemberRemoved',
-    TeamMemberLeft: 'teamMemberLeft',
-    TeamMemberInvitationChanged: 'teamMemberInvitationChanged',
-    TeamMemberInvitationResent: 'teamMemberInvitationResent',
-    TeamMemberInvitationRejected: 'teamMemberInvitationRejected',
-    ConfigCreated: 'configCreated',
-    ConfigChanged: 'configChanged',
-    ConfigDeleted: 'configDeleted',
-    ConfigsReordered: 'configsReordered',
-    EnvironmentCreated: 'environmentCreated',
-    EnvironmentChanged: 'environmentChanged',
-    EnvironmentDeleted: 'environmentDeleted',
-    EnvironmentsReordered: 'environmentsReordered',
-    SettingCreated: 'settingCreated',
-    SettingChanged: 'settingChanged',
-    SettingDeleted: 'settingDeleted',
-    SettingsReordered: 'settingsReordered',
-    SettingValueChanged: 'settingValueChanged',
-    WebHookCreated: 'webHookCreated',
-    WebHookChanged: 'webHookChanged',
-    WebHookDeleted: 'webHookDeleted',
-    PermissionGroupCreated: 'permissionGroupCreated',
-    PermissionGroupChanged: 'permissionGroupChanged',
-    PermissionGroupDeleted: 'permissionGroupDeleted',
-    PermissionGroupDefault: 'permissionGroupDefault',
-    ApiKeyAdded: 'apiKeyAdded',
-    ApiKeyRemoved: 'apiKeyRemoved',
-    IntegrationAdded: 'integrationAdded',
-    IntegrationChanged: 'integrationChanged',
-    IntegrationRemoved: 'integrationRemoved',
-    ApiKeyConnected: 'apiKeyConnected',
-    IntegrationLinkAdded: 'integrationLinkAdded',
-    IntegrationLinkRemoved: 'integrationLinkRemoved',
-    OrganizationAdded: 'organizationAdded',
-    OrganizationRemoved: 'organizationRemoved',
-    OrganizationChanged: 'organizationChanged',
-    OrganizationSubscriptionTypeChanged: 'organizationSubscriptionTypeChanged',
-    OrganizationAdminChanged: 'organizationAdminChanged',
-    OrganizationAdminLeft: 'organizationAdminLeft',
-    OrganizationAdminDisabled2Fa: 'organizationAdminDisabled2FA',
-    TagAdded: 'tagAdded',
-    TagChanged: 'tagChanged',
-    TagRemoved: 'tagRemoved',
-    SettingTagAdded: 'settingTagAdded',
-    SettingTagRemoved: 'settingTagRemoved',
-    PublicApiAccessTokenAdded: 'publicApiAccessTokenAdded',
-    PublicApiAccessTokenRemoved: 'publicApiAccessTokenRemoved',
-    DomainAdded: 'domainAdded',
-    DomainVerified: 'domainVerified',
-    DomainRemoved: 'domainRemoved',
-    DomainSamlConfigured: 'domainSamlConfigured',
-    DomainSamlDeleted: 'domainSamlDeleted',
-    AutoProvisioningConfigurationChanged: 'autoProvisioningConfigurationChanged',
-    SamlIdpConfigurationAdded: 'samlIdpConfigurationAdded',
-    SamlIdpConfigurationRemoved: 'samlIdpConfigurationRemoved',
-    SamlIdpConfigurationUpdated: 'samlIdpConfigurationUpdated',
-    OrganizationMemberJoined: 'organizationMemberJoined',
-    OrganizationMemberProductJoinRequested: 'organizationMemberProductJoinRequested',
-    OrganizationMemberProductJoinRequestRejected: 'organizationMemberProductJoinRequestRejected',
-    OrganizationMemberProductJoinRequestApproved: 'organizationMemberProductJoinRequestApproved',
-    CodeReferencesUploaded: 'codeReferencesUploaded',
-    CodeReferenceDeleted: 'codeReferenceDeleted',
-    CodeReferenceStaleBranchDeleted: 'codeReferenceStaleBranchDeleted',
-    SegmentCreated: 'segmentCreated',
-    SegmentChanged: 'segmentChanged',
-    SegmentDeleted: 'segmentDeleted',
-    WebhookSigningKeyDeleted: 'webhookSigningKeyDeleted',
-    WebhookSigningKeyCreated: 'webhookSigningKeyCreated'
-} as const;
-export type GetOrganizationAuditlogsAuditLogTypeEnum = typeof GetOrganizationAuditlogsAuditLogTypeEnum[keyof typeof GetOrganizationAuditlogsAuditLogTypeEnum];

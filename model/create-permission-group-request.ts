@@ -15,7 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { AccessType } from './access-type';
+// May contain unused imports in some cases
+// @ts-ignore
 import { CreateOrUpdateEnvironmentAccessModel } from './create-or-update-environment-access-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { EnvironmentAccessType } from './environment-access-type';
 
 /**
  * 
@@ -150,38 +156,30 @@ export interface CreatePermissionGroupRequest {
      */
     'canViewProductStatistics'?: boolean;
     /**
-     * Represent the Feature Management permission.
-     * @type {string}
+     * 
+     * @type {AccessType}
      * @memberof CreatePermissionGroupRequest
      */
-    'accessType'?: CreatePermissionGroupRequestAccessTypeEnum;
+    'accessType'?: AccessType;
     /**
-     * Represent the environment specific Feature Management permission.
-     * @type {string}
+     * 
+     * @type {EnvironmentAccessType}
      * @memberof CreatePermissionGroupRequest
      */
-    'newEnvironmentAccessType'?: CreatePermissionGroupRequestNewEnvironmentAccessTypeEnum;
+    'newEnvironmentAccessType'?: EnvironmentAccessType;
     /**
      * List of environment specific permissions.
      * @type {Array<CreateOrUpdateEnvironmentAccessModel>}
      * @memberof CreatePermissionGroupRequest
      */
     'environmentAccesses'?: Array<CreateOrUpdateEnvironmentAccessModel> | null;
+    /**
+     * Group members can disable two-factor authentication for other members.
+     * @type {boolean}
+     * @memberof CreatePermissionGroupRequest
+     */
+    'canDisable2FA'?: boolean;
 }
 
-export const CreatePermissionGroupRequestAccessTypeEnum = {
-    ReadOnly: 'readOnly',
-    Full: 'full',
-    Custom: 'custom'
-} as const;
-
-export type CreatePermissionGroupRequestAccessTypeEnum = typeof CreatePermissionGroupRequestAccessTypeEnum[keyof typeof CreatePermissionGroupRequestAccessTypeEnum];
-export const CreatePermissionGroupRequestNewEnvironmentAccessTypeEnum = {
-    Full: 'full',
-    ReadOnly: 'readOnly',
-    None: 'none'
-} as const;
-
-export type CreatePermissionGroupRequestNewEnvironmentAccessTypeEnum = typeof CreatePermissionGroupRequestNewEnvironmentAccessTypeEnum[keyof typeof CreatePermissionGroupRequestNewEnvironmentAccessTypeEnum];
 
 

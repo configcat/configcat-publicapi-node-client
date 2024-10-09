@@ -15,7 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { AccessType } from './access-type';
+// May contain unused imports in some cases
+// @ts-ignore
 import { EnvironmentAccessModel } from './environment-access-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { EnvironmentAccessType } from './environment-access-type';
 // May contain unused imports in some cases
 // @ts-ignore
 import { ProductModel } from './product-model';
@@ -159,17 +165,23 @@ export interface PermissionGroupModel {
      */
     'canViewProductStatistics'?: boolean;
     /**
-     * Represent the Feature Management permission.
-     * @type {string}
+     * Group members can disable two-factor authentication for other members.
+     * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'accessType'?: PermissionGroupModelAccessTypeEnum;
+    'canDisable2FA'?: boolean;
     /**
-     * Represent the environment specific Feature Management permission.
-     * @type {string}
+     * 
+     * @type {AccessType}
      * @memberof PermissionGroupModel
      */
-    'newEnvironmentAccessType'?: PermissionGroupModelNewEnvironmentAccessTypeEnum;
+    'accessType'?: AccessType;
+    /**
+     * 
+     * @type {EnvironmentAccessType}
+     * @memberof PermissionGroupModel
+     */
+    'newEnvironmentAccessType'?: EnvironmentAccessType;
     /**
      * List of environment specific permissions.
      * @type {Array<EnvironmentAccessModel>}
@@ -184,19 +196,5 @@ export interface PermissionGroupModel {
     'product'?: ProductModel;
 }
 
-export const PermissionGroupModelAccessTypeEnum = {
-    ReadOnly: 'readOnly',
-    Full: 'full',
-    Custom: 'custom'
-} as const;
-
-export type PermissionGroupModelAccessTypeEnum = typeof PermissionGroupModelAccessTypeEnum[keyof typeof PermissionGroupModelAccessTypeEnum];
-export const PermissionGroupModelNewEnvironmentAccessTypeEnum = {
-    Full: 'full',
-    ReadOnly: 'readOnly',
-    None: 'none'
-} as const;
-
-export type PermissionGroupModelNewEnvironmentAccessTypeEnum = typeof PermissionGroupModelNewEnvironmentAccessTypeEnum[keyof typeof PermissionGroupModelNewEnvironmentAccessTypeEnum];
 
 

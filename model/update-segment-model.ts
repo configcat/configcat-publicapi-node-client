@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { RolloutRuleComparator } from './rollout-rule-comparator';
 
 /**
  * 
@@ -40,10 +43,10 @@ export interface UpdateSegmentModel {
     'comparisonAttribute'?: string | null;
     /**
      * 
-     * @type {string}
+     * @type {RolloutRuleComparator}
      * @memberof UpdateSegmentModel
      */
-    'comparator'?: UpdateSegmentModelComparatorEnum | null;
+    'comparator'?: RolloutRuleComparator;
     /**
      * 
      * @type {string}
@@ -52,27 +55,5 @@ export interface UpdateSegmentModel {
     'comparisonValue'?: string | null;
 }
 
-export const UpdateSegmentModelComparatorEnum = {
-    IsOneOf: 'isOneOf',
-    IsNotOneOf: 'isNotOneOf',
-    Contains: 'contains',
-    DoesNotContain: 'doesNotContain',
-    SemVerIsOneOf: 'semVerIsOneOf',
-    SemVerIsNotOneOf: 'semVerIsNotOneOf',
-    SemVerLess: 'semVerLess',
-    SemVerLessOrEquals: 'semVerLessOrEquals',
-    SemVerGreater: 'semVerGreater',
-    SemVerGreaterOrEquals: 'semVerGreaterOrEquals',
-    NumberEquals: 'numberEquals',
-    NumberDoesNotEqual: 'numberDoesNotEqual',
-    NumberLess: 'numberLess',
-    NumberLessOrEquals: 'numberLessOrEquals',
-    NumberGreater: 'numberGreater',
-    NumberGreaterOrEquals: 'numberGreaterOrEquals',
-    SensitiveIsOneOf: 'sensitiveIsOneOf',
-    SensitiveIsNotOneOf: 'sensitiveIsNotOneOf'
-} as const;
-
-export type UpdateSegmentModelComparatorEnum = typeof UpdateSegmentModelComparatorEnum[keyof typeof UpdateSegmentModelComparatorEnum];
 
 
