@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { KeyGenerationMode } from './key-generation-mode';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ReasonRequiredEnvironmentModel } from './reason-required-environment-model';
 
 /**
@@ -30,11 +33,11 @@ export interface PreferencesModel {
      */
     'reasonRequired'?: boolean;
     /**
-     * Determines the Feature Flag key generation mode.
-     * @type {string}
+     * 
+     * @type {KeyGenerationMode}
      * @memberof PreferencesModel
      */
-    'keyGenerationMode'?: PreferencesModelKeyGenerationModeEnum;
+    'keyGenerationMode'?: KeyGenerationMode;
     /**
      * Indicates whether a variation ID\'s must be shown on the ConfigCat Dashboard.
      * @type {boolean}
@@ -55,14 +58,5 @@ export interface PreferencesModel {
     'mandatorySettingHint'?: boolean;
 }
 
-export const PreferencesModelKeyGenerationModeEnum = {
-    CamelCase: 'camelCase',
-    LowerCase: 'lowerCase',
-    UpperCase: 'upperCase',
-    PascalCase: 'pascalCase',
-    KebabCase: 'kebabCase'
-} as const;
-
-export type PreferencesModelKeyGenerationModeEnum = typeof PreferencesModelKeyGenerationModeEnum[keyof typeof PreferencesModelKeyGenerationModeEnum];
 
 

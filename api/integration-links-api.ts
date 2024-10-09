@@ -33,6 +33,8 @@ import { DeleteIntegrationLinkModel } from '../model';
 import { IntegrationLinkDetailsModel } from '../model';
 // @ts-ignore
 import { IntegrationLinkModel } from '../model';
+// @ts-ignore
+import { IntegrationLinkType } from '../model';
 /**
  * IntegrationLinksApi - axios parameter creator
  * @export
@@ -44,13 +46,13 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
          * @summary Add or update Integration link
          * @param {string} environmentId The identifier of the Environment.
          * @param {number} settingId The id of the Setting.
-         * @param {AddOrUpdateIntegrationLinkIntegrationLinkTypeEnum} integrationLinkType The integration link\&#39;s type.
+         * @param {IntegrationLinkType} integrationLinkType The integration link\&#39;s type.
          * @param {string} key The key of the integration link.
          * @param {AddOrUpdateIntegrationLinkModel} [addOrUpdateIntegrationLinkModel] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addOrUpdateIntegrationLink: async (environmentId: string, settingId: number, integrationLinkType: AddOrUpdateIntegrationLinkIntegrationLinkTypeEnum, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        addOrUpdateIntegrationLink: async (environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'environmentId' is not null or undefined
             assertParamExists('addOrUpdateIntegrationLink', 'environmentId', environmentId)
             // verify required parameter 'settingId' is not null or undefined
@@ -98,12 +100,12 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
          * @summary Delete Integration link
          * @param {string} environmentId The identifier of the Environment.
          * @param {number} settingId The id of the Setting.
-         * @param {DeleteIntegrationLinkIntegrationLinkTypeEnum} integrationLinkType The integration\&#39;s type.
+         * @param {IntegrationLinkType} integrationLinkType The integration\&#39;s type.
          * @param {string} key The key of the integration link.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteIntegrationLink: async (environmentId: string, settingId: number, integrationLinkType: DeleteIntegrationLinkIntegrationLinkTypeEnum, key: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteIntegrationLink: async (environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'environmentId' is not null or undefined
             assertParamExists('deleteIntegrationLink', 'environmentId', environmentId)
             // verify required parameter 'settingId' is not null or undefined
@@ -146,12 +148,12 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
         /**
          * 
          * @summary Get Integration link
-         * @param {GetIntegrationLinkDetailsIntegrationLinkTypeEnum} integrationLinkType The integration link\&#39;s type.
+         * @param {IntegrationLinkType} integrationLinkType The integration link\&#39;s type.
          * @param {string} key The key of the integration link.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getIntegrationLinkDetails: async (integrationLinkType: GetIntegrationLinkDetailsIntegrationLinkTypeEnum, key: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getIntegrationLinkDetails: async (integrationLinkType: IntegrationLinkType, key: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'integrationLinkType' is not null or undefined
             assertParamExists('getIntegrationLinkDetails', 'integrationLinkType', integrationLinkType)
             // verify required parameter 'key' is not null or undefined
@@ -286,13 +288,13 @@ export const IntegrationLinksApiFp = function(configuration?: Configuration) {
          * @summary Add or update Integration link
          * @param {string} environmentId The identifier of the Environment.
          * @param {number} settingId The id of the Setting.
-         * @param {AddOrUpdateIntegrationLinkIntegrationLinkTypeEnum} integrationLinkType The integration link\&#39;s type.
+         * @param {IntegrationLinkType} integrationLinkType The integration link\&#39;s type.
          * @param {string} key The key of the integration link.
          * @param {AddOrUpdateIntegrationLinkModel} [addOrUpdateIntegrationLinkModel] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: AddOrUpdateIntegrationLinkIntegrationLinkTypeEnum, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IntegrationLinkModel>> {
+        async addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IntegrationLinkModel>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.addOrUpdateIntegrationLink(environmentId, settingId, integrationLinkType, key, addOrUpdateIntegrationLinkModel, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['IntegrationLinksApi.addOrUpdateIntegrationLink']?.[localVarOperationServerIndex]?.url;
@@ -303,12 +305,12 @@ export const IntegrationLinksApiFp = function(configuration?: Configuration) {
          * @summary Delete Integration link
          * @param {string} environmentId The identifier of the Environment.
          * @param {number} settingId The id of the Setting.
-         * @param {DeleteIntegrationLinkIntegrationLinkTypeEnum} integrationLinkType The integration\&#39;s type.
+         * @param {IntegrationLinkType} integrationLinkType The integration\&#39;s type.
          * @param {string} key The key of the integration link.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: DeleteIntegrationLinkIntegrationLinkTypeEnum, key: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteIntegrationLinkModel>> {
+        async deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteIntegrationLinkModel>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteIntegrationLink(environmentId, settingId, integrationLinkType, key, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['IntegrationLinksApi.deleteIntegrationLink']?.[localVarOperationServerIndex]?.url;
@@ -317,12 +319,12 @@ export const IntegrationLinksApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Get Integration link
-         * @param {GetIntegrationLinkDetailsIntegrationLinkTypeEnum} integrationLinkType The integration link\&#39;s type.
+         * @param {IntegrationLinkType} integrationLinkType The integration link\&#39;s type.
          * @param {string} key The key of the integration link.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getIntegrationLinkDetails(integrationLinkType: GetIntegrationLinkDetailsIntegrationLinkTypeEnum, key: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IntegrationLinkDetailsModel>> {
+        async getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IntegrationLinkDetailsModel>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getIntegrationLinkDetails(integrationLinkType, key, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['IntegrationLinksApi.getIntegrationLinkDetails']?.[localVarOperationServerIndex]?.url;
@@ -370,13 +372,13 @@ export const IntegrationLinksApiFactory = function (configuration?: Configuratio
          * @summary Add or update Integration link
          * @param {string} environmentId The identifier of the Environment.
          * @param {number} settingId The id of the Setting.
-         * @param {AddOrUpdateIntegrationLinkIntegrationLinkTypeEnum} integrationLinkType The integration link\&#39;s type.
+         * @param {IntegrationLinkType} integrationLinkType The integration link\&#39;s type.
          * @param {string} key The key of the integration link.
          * @param {AddOrUpdateIntegrationLinkModel} [addOrUpdateIntegrationLinkModel] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: AddOrUpdateIntegrationLinkIntegrationLinkTypeEnum, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, options?: any): AxiosPromise<IntegrationLinkModel> {
+        addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, options?: any): AxiosPromise<IntegrationLinkModel> {
             return localVarFp.addOrUpdateIntegrationLink(environmentId, settingId, integrationLinkType, key, addOrUpdateIntegrationLinkModel, options).then((request) => request(axios, basePath));
         },
         /**
@@ -384,23 +386,23 @@ export const IntegrationLinksApiFactory = function (configuration?: Configuratio
          * @summary Delete Integration link
          * @param {string} environmentId The identifier of the Environment.
          * @param {number} settingId The id of the Setting.
-         * @param {DeleteIntegrationLinkIntegrationLinkTypeEnum} integrationLinkType The integration\&#39;s type.
+         * @param {IntegrationLinkType} integrationLinkType The integration\&#39;s type.
          * @param {string} key The key of the integration link.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: DeleteIntegrationLinkIntegrationLinkTypeEnum, key: string, options?: any): AxiosPromise<DeleteIntegrationLinkModel> {
+        deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, options?: any): AxiosPromise<DeleteIntegrationLinkModel> {
             return localVarFp.deleteIntegrationLink(environmentId, settingId, integrationLinkType, key, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Get Integration link
-         * @param {GetIntegrationLinkDetailsIntegrationLinkTypeEnum} integrationLinkType The integration link\&#39;s type.
+         * @param {IntegrationLinkType} integrationLinkType The integration link\&#39;s type.
          * @param {string} key The key of the integration link.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getIntegrationLinkDetails(integrationLinkType: GetIntegrationLinkDetailsIntegrationLinkTypeEnum, key: string, options?: any): AxiosPromise<IntegrationLinkDetailsModel> {
+        getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, options?: any): AxiosPromise<IntegrationLinkDetailsModel> {
             return localVarFp.getIntegrationLinkDetails(integrationLinkType, key, options).then((request) => request(axios, basePath));
         },
         /**
@@ -439,14 +441,14 @@ export class IntegrationLinksApi extends BaseAPI {
      * @summary Add or update Integration link
      * @param {string} environmentId The identifier of the Environment.
      * @param {number} settingId The id of the Setting.
-     * @param {AddOrUpdateIntegrationLinkIntegrationLinkTypeEnum} integrationLinkType The integration link\&#39;s type.
+     * @param {IntegrationLinkType} integrationLinkType The integration link\&#39;s type.
      * @param {string} key The key of the integration link.
      * @param {AddOrUpdateIntegrationLinkModel} [addOrUpdateIntegrationLinkModel] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof IntegrationLinksApi
      */
-    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: AddOrUpdateIntegrationLinkIntegrationLinkTypeEnum, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, options?: RawAxiosRequestConfig) {
+    public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, options?: RawAxiosRequestConfig) {
         return IntegrationLinksApiFp(this.configuration).addOrUpdateIntegrationLink(environmentId, settingId, integrationLinkType, key, addOrUpdateIntegrationLinkModel, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -455,26 +457,26 @@ export class IntegrationLinksApi extends BaseAPI {
      * @summary Delete Integration link
      * @param {string} environmentId The identifier of the Environment.
      * @param {number} settingId The id of the Setting.
-     * @param {DeleteIntegrationLinkIntegrationLinkTypeEnum} integrationLinkType The integration\&#39;s type.
+     * @param {IntegrationLinkType} integrationLinkType The integration\&#39;s type.
      * @param {string} key The key of the integration link.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof IntegrationLinksApi
      */
-    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: DeleteIntegrationLinkIntegrationLinkTypeEnum, key: string, options?: RawAxiosRequestConfig) {
+    public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, options?: RawAxiosRequestConfig) {
         return IntegrationLinksApiFp(this.configuration).deleteIntegrationLink(environmentId, settingId, integrationLinkType, key, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Get Integration link
-     * @param {GetIntegrationLinkDetailsIntegrationLinkTypeEnum} integrationLinkType The integration link\&#39;s type.
+     * @param {IntegrationLinkType} integrationLinkType The integration link\&#39;s type.
      * @param {string} key The key of the integration link.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof IntegrationLinksApi
      */
-    public getIntegrationLinkDetails(integrationLinkType: GetIntegrationLinkDetailsIntegrationLinkTypeEnum, key: string, options?: RawAxiosRequestConfig) {
+    public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, options?: RawAxiosRequestConfig) {
         return IntegrationLinksApiFp(this.configuration).getIntegrationLinkDetails(integrationLinkType, key, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -504,30 +506,3 @@ export class IntegrationLinksApi extends BaseAPI {
     }
 }
 
-/**
- * @export
- */
-export const AddOrUpdateIntegrationLinkIntegrationLinkTypeEnum = {
-    Trello: 'trello',
-    Jira: 'jira',
-    Monday: 'monday'
-} as const;
-export type AddOrUpdateIntegrationLinkIntegrationLinkTypeEnum = typeof AddOrUpdateIntegrationLinkIntegrationLinkTypeEnum[keyof typeof AddOrUpdateIntegrationLinkIntegrationLinkTypeEnum];
-/**
- * @export
- */
-export const DeleteIntegrationLinkIntegrationLinkTypeEnum = {
-    Trello: 'trello',
-    Jira: 'jira',
-    Monday: 'monday'
-} as const;
-export type DeleteIntegrationLinkIntegrationLinkTypeEnum = typeof DeleteIntegrationLinkIntegrationLinkTypeEnum[keyof typeof DeleteIntegrationLinkIntegrationLinkTypeEnum];
-/**
- * @export
- */
-export const GetIntegrationLinkDetailsIntegrationLinkTypeEnum = {
-    Trello: 'trello',
-    Jira: 'jira',
-    Monday: 'monday'
-} as const;
-export type GetIntegrationLinkDetailsIntegrationLinkTypeEnum = typeof GetIntegrationLinkDetailsIntegrationLinkTypeEnum[keyof typeof GetIntegrationLinkDetailsIntegrationLinkTypeEnum];

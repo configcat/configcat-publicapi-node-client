@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { AuditLogType } from './audit-log-type';
 
 /**
  * 
@@ -34,10 +37,10 @@ export interface AuditLogItemModel {
     'auditLogDateTime'?: string;
     /**
      * 
-     * @type {string}
+     * @type {AuditLogType}
      * @memberof AuditLogItemModel
      */
-    'auditLogTypeEnum'?: AuditLogItemModelAuditLogTypeEnumEnum;
+    'auditLogTypeEnum'?: AuditLogType;
     /**
      * 
      * @type {string}
@@ -94,86 +97,5 @@ export interface AuditLogItemModel {
     'details'?: string | null;
 }
 
-export const AuditLogItemModelAuditLogTypeEnumEnum = {
-    ProductCreated: 'productCreated',
-    ProductChanged: 'productChanged',
-    ProductOwnershipTransferred: 'productOwnershipTransferred',
-    ProductDeleted: 'productDeleted',
-    ProductsReordered: 'productsReordered',
-    TeamMemberInvited: 'teamMemberInvited',
-    TeamMemberInvitationRevoked: 'teamMemberInvitationRevoked',
-    TeamMemberJoined: 'teamMemberJoined',
-    TeamMemberPermissionGroupChanged: 'teamMemberPermissionGroupChanged',
-    TeamMemberRemoved: 'teamMemberRemoved',
-    TeamMemberLeft: 'teamMemberLeft',
-    TeamMemberInvitationChanged: 'teamMemberInvitationChanged',
-    TeamMemberInvitationResent: 'teamMemberInvitationResent',
-    TeamMemberInvitationRejected: 'teamMemberInvitationRejected',
-    ConfigCreated: 'configCreated',
-    ConfigChanged: 'configChanged',
-    ConfigDeleted: 'configDeleted',
-    ConfigsReordered: 'configsReordered',
-    EnvironmentCreated: 'environmentCreated',
-    EnvironmentChanged: 'environmentChanged',
-    EnvironmentDeleted: 'environmentDeleted',
-    EnvironmentsReordered: 'environmentsReordered',
-    SettingCreated: 'settingCreated',
-    SettingChanged: 'settingChanged',
-    SettingDeleted: 'settingDeleted',
-    SettingsReordered: 'settingsReordered',
-    SettingValueChanged: 'settingValueChanged',
-    WebHookCreated: 'webHookCreated',
-    WebHookChanged: 'webHookChanged',
-    WebHookDeleted: 'webHookDeleted',
-    PermissionGroupCreated: 'permissionGroupCreated',
-    PermissionGroupChanged: 'permissionGroupChanged',
-    PermissionGroupDeleted: 'permissionGroupDeleted',
-    PermissionGroupDefault: 'permissionGroupDefault',
-    ApiKeyAdded: 'apiKeyAdded',
-    ApiKeyRemoved: 'apiKeyRemoved',
-    IntegrationAdded: 'integrationAdded',
-    IntegrationChanged: 'integrationChanged',
-    IntegrationRemoved: 'integrationRemoved',
-    ApiKeyConnected: 'apiKeyConnected',
-    IntegrationLinkAdded: 'integrationLinkAdded',
-    IntegrationLinkRemoved: 'integrationLinkRemoved',
-    OrganizationAdded: 'organizationAdded',
-    OrganizationRemoved: 'organizationRemoved',
-    OrganizationChanged: 'organizationChanged',
-    OrganizationSubscriptionTypeChanged: 'organizationSubscriptionTypeChanged',
-    OrganizationAdminChanged: 'organizationAdminChanged',
-    OrganizationAdminLeft: 'organizationAdminLeft',
-    OrganizationAdminDisabled2Fa: 'organizationAdminDisabled2FA',
-    TagAdded: 'tagAdded',
-    TagChanged: 'tagChanged',
-    TagRemoved: 'tagRemoved',
-    SettingTagAdded: 'settingTagAdded',
-    SettingTagRemoved: 'settingTagRemoved',
-    PublicApiAccessTokenAdded: 'publicApiAccessTokenAdded',
-    PublicApiAccessTokenRemoved: 'publicApiAccessTokenRemoved',
-    DomainAdded: 'domainAdded',
-    DomainVerified: 'domainVerified',
-    DomainRemoved: 'domainRemoved',
-    DomainSamlConfigured: 'domainSamlConfigured',
-    DomainSamlDeleted: 'domainSamlDeleted',
-    AutoProvisioningConfigurationChanged: 'autoProvisioningConfigurationChanged',
-    SamlIdpConfigurationAdded: 'samlIdpConfigurationAdded',
-    SamlIdpConfigurationRemoved: 'samlIdpConfigurationRemoved',
-    SamlIdpConfigurationUpdated: 'samlIdpConfigurationUpdated',
-    OrganizationMemberJoined: 'organizationMemberJoined',
-    OrganizationMemberProductJoinRequested: 'organizationMemberProductJoinRequested',
-    OrganizationMemberProductJoinRequestRejected: 'organizationMemberProductJoinRequestRejected',
-    OrganizationMemberProductJoinRequestApproved: 'organizationMemberProductJoinRequestApproved',
-    CodeReferencesUploaded: 'codeReferencesUploaded',
-    CodeReferenceDeleted: 'codeReferenceDeleted',
-    CodeReferenceStaleBranchDeleted: 'codeReferenceStaleBranchDeleted',
-    SegmentCreated: 'segmentCreated',
-    SegmentChanged: 'segmentChanged',
-    SegmentDeleted: 'segmentDeleted',
-    WebhookSigningKeyDeleted: 'webhookSigningKeyDeleted',
-    WebhookSigningKeyCreated: 'webhookSigningKeyCreated'
-} as const;
-
-export type AuditLogItemModelAuditLogTypeEnumEnum = typeof AuditLogItemModelAuditLogTypeEnumEnum[keyof typeof AuditLogItemModelAuditLogTypeEnumEnum];
 
 

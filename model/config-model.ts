@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { EvaluationVersion } from './evaluation-version';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ProductModel } from './product-model';
 
 /**
@@ -60,18 +63,12 @@ export interface ConfigModel {
      */
     'migratedConfigId'?: string | null;
     /**
-     * Determines the evaluation version of a Config.  Using `v2` enables the new features of Config V2 (https://configcat.com/docs/advanced/config-v2).
-     * @type {string}
+     * 
+     * @type {EvaluationVersion}
      * @memberof ConfigModel
      */
-    'evaluationVersion'?: ConfigModelEvaluationVersionEnum;
+    'evaluationVersion'?: EvaluationVersion;
 }
 
-export const ConfigModelEvaluationVersionEnum = {
-    V1: 'v1',
-    V2: 'v2'
-} as const;
-
-export type ConfigModelEvaluationVersionEnum = typeof ConfigModelEvaluationVersionEnum[keyof typeof ConfigModelEvaluationVersionEnum];
 
 

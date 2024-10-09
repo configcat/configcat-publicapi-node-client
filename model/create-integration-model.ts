@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { IntegrationType } from './integration-type';
 
 /**
  * 
@@ -21,11 +24,11 @@
  */
 export interface CreateIntegrationModel {
     /**
-     * Type of the Integration.
-     * @type {string}
+     * 
+     * @type {IntegrationType}
      * @memberof CreateIntegrationModel
      */
-    'integrationType': CreateIntegrationModelIntegrationTypeEnum;
+    'integrationType': IntegrationType;
     /**
      * Name of the Integration.
      * @type {string}
@@ -52,15 +55,5 @@ export interface CreateIntegrationModel {
     'configIds': Array<string>;
 }
 
-export const CreateIntegrationModelIntegrationTypeEnum = {
-    DataDog: 'dataDog',
-    Slack: 'slack',
-    Amplitude: 'amplitude',
-    MixPanel: 'mixPanel',
-    Segment: 'segment',
-    PubNub: 'pubNub'
-} as const;
-
-export type CreateIntegrationModelIntegrationTypeEnum = typeof CreateIntegrationModelIntegrationTypeEnum[keyof typeof CreateIntegrationModelIntegrationTypeEnum];
 
 

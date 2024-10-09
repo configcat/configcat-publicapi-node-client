@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { WebHookHttpMethod } from './web-hook-http-method';
+// May contain unused imports in some cases
+// @ts-ignore
 import { WebhookConfig } from './webhook-config';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -42,11 +45,11 @@ export interface WebhookModel {
      */
     'url'?: string | null;
     /**
-     * The HTTP method.
-     * @type {string}
+     * 
+     * @type {WebHookHttpMethod}
      * @memberof WebhookModel
      */
-    'httpMethod'?: WebhookModelHttpMethodEnum;
+    'httpMethod'?: WebHookHttpMethod;
     /**
      * The HTTP body content.
      * @type {string}
@@ -73,11 +76,5 @@ export interface WebhookModel {
     'environment'?: WebhookEnvironment;
 }
 
-export const WebhookModelHttpMethodEnum = {
-    Get: 'get',
-    Post: 'post'
-} as const;
-
-export type WebhookModelHttpMethodEnum = typeof WebhookModelHttpMethodEnum[keyof typeof WebhookModelHttpMethodEnum];
 
 

@@ -16,6 +16,9 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { ProductModel } from './product-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { RolloutRuleComparator } from './rollout-rule-comparator';
 
 /**
  * 
@@ -90,11 +93,11 @@ export interface SegmentModel {
      */
     'comparisonAttribute'?: string | null;
     /**
-     * The comparison operator the evaluation process must use when it compares the given user attribute\'s value with the comparison value.
-     * @type {string}
+     * 
+     * @type {RolloutRuleComparator}
      * @memberof SegmentModel
      */
-    'comparator'?: SegmentModelComparatorEnum;
+    'comparator'?: RolloutRuleComparator;
     /**
      * The value to compare with the given user attribute\'s value.
      * @type {string}
@@ -103,27 +106,5 @@ export interface SegmentModel {
     'comparisonValue'?: string | null;
 }
 
-export const SegmentModelComparatorEnum = {
-    IsOneOf: 'isOneOf',
-    IsNotOneOf: 'isNotOneOf',
-    Contains: 'contains',
-    DoesNotContain: 'doesNotContain',
-    SemVerIsOneOf: 'semVerIsOneOf',
-    SemVerIsNotOneOf: 'semVerIsNotOneOf',
-    SemVerLess: 'semVerLess',
-    SemVerLessOrEquals: 'semVerLessOrEquals',
-    SemVerGreater: 'semVerGreater',
-    SemVerGreaterOrEquals: 'semVerGreaterOrEquals',
-    NumberEquals: 'numberEquals',
-    NumberDoesNotEqual: 'numberDoesNotEqual',
-    NumberLess: 'numberLess',
-    NumberLessOrEquals: 'numberLessOrEquals',
-    NumberGreater: 'numberGreater',
-    NumberGreaterOrEquals: 'numberGreaterOrEquals',
-    SensitiveIsOneOf: 'sensitiveIsOneOf',
-    SensitiveIsNotOneOf: 'sensitiveIsNotOneOf'
-} as const;
-
-export type SegmentModelComparatorEnum = typeof SegmentModelComparatorEnum[keyof typeof SegmentModelComparatorEnum];
 
 
