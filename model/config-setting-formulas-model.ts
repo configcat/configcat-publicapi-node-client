@@ -37,30 +37,30 @@ export interface ConfigSettingFormulasModel {
      * @type {ConfigModel}
      * @memberof ConfigSettingFormulasModel
      */
-    'config'?: ConfigModel;
+    'config': ConfigModel;
     /**
      * 
      * @type {EnvironmentModel}
      * @memberof ConfigSettingFormulasModel
      */
-    'environment'?: EnvironmentModel;
+    'environment': EnvironmentModel;
     /**
      * 
      * @type {boolean}
      * @memberof ConfigSettingFormulasModel
      */
-    'readOnly'?: boolean;
+    'readOnly': boolean;
     /**
      * Evaluation descriptors of each updated Feature Flag and Setting.
      * @type {Array<ConfigSettingFormulaModel>}
      * @memberof ConfigSettingFormulasModel
      */
-    'settingFormulas'?: Array<ConfigSettingFormulaModel> | null;
+    'settingFormulas': Array<ConfigSettingFormulaModel>;
     /**
      * 
      * @type {FeatureFlagLimitations}
      * @memberof ConfigSettingFormulasModel
      */
-    'featureFlagLimitations'?: FeatureFlagLimitations;
+    'featureFlagLimitations': FeatureFlagLimitations;
 }
 

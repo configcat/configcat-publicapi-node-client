@@ -40,66 +40,66 @@ export interface ConfigSettingFormulaModel {
      * @type {string}
      * @memberof ConfigSettingFormulaModel
      */
-    'lastVersionId'?: string;
+    'lastVersionId': string;
     /**
      * 
      * @type {ValueModel}
      * @memberof ConfigSettingFormulaModel
      */
-    'defaultValue'?: ValueModel;
+    'defaultValue': ValueModel;
     /**
      * The targeting rules of the Feature Flag or Setting.
      * @type {Array<TargetingRuleModel>}
      * @memberof ConfigSettingFormulaModel
      */
-    'targetingRules'?: Array<TargetingRuleModel> | null;
+    'targetingRules': Array<TargetingRuleModel>;
     /**
      * 
      * @type {SettingDataModel}
      * @memberof ConfigSettingFormulaModel
      */
-    'setting'?: SettingDataModel;
+    'setting': SettingDataModel;
     /**
      * The last updated date and time when the Feature Flag or Setting.
      * @type {string}
      * @memberof ConfigSettingFormulaModel
      */
-    'updatedAt'?: string | null;
+    'updatedAt': string | null;
     /**
      * The user attribute used for percentage evaluation. If not set, it defaults to the `Identifier` user object attribute.
      * @type {string}
      * @memberof ConfigSettingFormulaModel
      */
-    'percentageEvaluationAttribute'?: string | null;
+    'percentageEvaluationAttribute': string | null;
     /**
      * The email of the user who last updated the Feature Flag or Setting.
      * @type {string}
      * @memberof ConfigSettingFormulaModel
      */
-    'lastUpdaterUserEmail'?: string | null;
+    'lastUpdaterUserEmail': string | null;
     /**
      * The name of the user who last updated the Feature Flag or Setting.
      * @type {string}
      * @memberof ConfigSettingFormulaModel
      */
-    'lastUpdaterUserFullName'?: string | null;
+    'lastUpdaterUserFullName': string | null;
     /**
      * The integration links attached to the Feature Flag or Setting.
      * @type {Array<IntegrationLinkModel>}
      * @memberof ConfigSettingFormulaModel
      */
-    'integrationLinks'?: Array<IntegrationLinkModel> | null;
+    'integrationLinks': Array<IntegrationLinkModel>;
     /**
      * The tags attached to the Feature Flag or Setting.
      * @type {Array<SettingTagModel>}
      * @memberof ConfigSettingFormulaModel
      */
-    'settingTags'?: Array<SettingTagModel> | null;
+    'settingTags': Array<SettingTagModel>;
     /**
      * List of Feature Flag and Setting IDs where the actual Feature Flag or Setting is prerequisite.
      * @type {Array<number>}
      * @memberof ConfigSettingFormulaModel
      */
-    'settingIdsWherePrerequisite'?: Array<number> | null;
+    'settingIdsWherePrerequisite': Array<number>;
 }
 

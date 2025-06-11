@@ -34,18 +34,18 @@ export interface ConditionModel {
      * @type {UserConditionModel}
      * @memberof ConditionModel
      */
-    'userCondition'?: UserConditionModel;
+    'userCondition': UserConditionModel | null;
     /**
      * 
      * @type {SegmentConditionModel}
      * @memberof ConditionModel
      */
-    'segmentCondition'?: SegmentConditionModel;
+    'segmentCondition': SegmentConditionModel | null;
     /**
      * 
      * @type {PrerequisiteFlagConditionModel}
      * @memberof ConditionModel
      */
-    'prerequisiteFlagCondition'?: PrerequisiteFlagConditionModel;
+    'prerequisiteFlagCondition': PrerequisiteFlagConditionModel | null;
 }
 

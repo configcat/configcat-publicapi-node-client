@@ -31,31 +31,31 @@ export interface PreferencesModel {
      * @type {boolean}
      * @memberof PreferencesModel
      */
-    'reasonRequired'?: boolean;
+    'reasonRequired': boolean;
     /**
      * 
      * @type {KeyGenerationMode}
      * @memberof PreferencesModel
      */
-    'keyGenerationMode'?: KeyGenerationMode;
+    'keyGenerationMode': KeyGenerationMode;
     /**
      * Indicates whether a variation ID\'s must be shown on the ConfigCat Dashboard.
      * @type {boolean}
      * @memberof PreferencesModel
      */
-    'showVariationId'?: boolean;
+    'showVariationId': boolean;
     /**
      * List of Environments where mandatory note must be set before saving and publishing.
      * @type {Array<ReasonRequiredEnvironmentModel>}
      * @memberof PreferencesModel
      */
-    'reasonRequiredEnvironments'?: Array<ReasonRequiredEnvironmentModel> | null;
+    'reasonRequiredEnvironments': Array<ReasonRequiredEnvironmentModel> | null;
     /**
      * Indicates whether Feature flags and Settings must have a hint.
      * @type {boolean}
      * @memberof PreferencesModel
      */
-    'mandatorySettingHint'?: boolean;
+    'mandatorySettingHint': boolean;
 }
 
 

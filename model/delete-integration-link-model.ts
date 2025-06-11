@@ -25,6 +25,6 @@ export interface DeleteIntegrationLinkModel {
      * @type {boolean}
      * @memberof DeleteIntegrationLinkModel
      */
-    'hasRemainingIntegrationLink'?: boolean;
+    'hasRemainingIntegrationLink': boolean;
 }
 

@@ -28,6 +28,6 @@ export interface UpdateEvaluationFormulasModel {
      * @type {Array<UpdateEvaluationFormulaWithIdModel>}
      * @memberof UpdateEvaluationFormulasModel
      */
-    'updateFormulas'?: Array<UpdateEvaluationFormulaWithIdModel> | null;
+    'updateFormulas'?: Array<UpdateEvaluationFormulaWithIdModel>;
 }
 

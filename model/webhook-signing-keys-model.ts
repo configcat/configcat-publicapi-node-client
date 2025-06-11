@@ -25,12 +25,12 @@ export interface WebhookSigningKeysModel {
      * @type {string}
      * @memberof WebhookSigningKeysModel
      */
-    'key1'?: string | null;
+    'key1': string | null;
     /**
      * The second signing key.
      * @type {string}
      * @memberof WebhookSigningKeysModel
      */
-    'key2'?: string | null;
+    'key2': string | null;
 }
 

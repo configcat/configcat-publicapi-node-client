@@ -34,4 +34,5 @@ export * from './api/sdkkeys-api';
 export * from './api/segments-api';
 export * from './api/tags-api';
 export * from './api/webhooks-api';
+export * from './api/zombie-stale-flags-api';
 

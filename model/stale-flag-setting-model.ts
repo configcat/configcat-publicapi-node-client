@@ -15,43 +15,58 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ReferenceLine } from './reference-line';
+import { StaleFlagSettingTagModel } from './stale-flag-setting-tag-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { StaleFlagSettingValueModel } from './stale-flag-setting-value-model';
 
 /**
  * 
  * @export
- * @interface ReferenceLines
+ * @interface StaleFlagSettingModel
  */
-export interface ReferenceLines {
+export interface StaleFlagSettingModel {
     /**
-     * The file\'s name in where the code reference has been found. (Appears on the ConfigCat Dashboard)
+     * Identifier of the Feature Flag or Setting.
+     * @type {number}
+     * @memberof StaleFlagSettingModel
+     */
+    'settingId': number;
+    /**
+     * Name of the Feature Flag or Setting.
      * @type {string}
-     * @memberof ReferenceLines
+     * @memberof StaleFlagSettingModel
      */
-    'file': string;
+    'name': string;
     /**
-     * The file\'s url. (Used to point to the file on the repository\'s website)
+     * Key of the Feature Flag or Setting.
      * @type {string}
-     * @memberof ReferenceLines
+     * @memberof StaleFlagSettingModel
      */
-    'fileUrl'?: string | null;
+    'key': string;
     /**
-     * The lines before the actual reference line.
-     * @type {Array<ReferenceLine>}
-     * @memberof ReferenceLines
+     * Description of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof StaleFlagSettingModel
      */
-    'preLines'?: Array<ReferenceLine> | null;
+    'hint': string | null;
     /**
-     * The lines after the actual reference line.
-     * @type {Array<ReferenceLine>}
-     * @memberof ReferenceLines
+     * Feature Flag or Setting has code references uploaded.
+     * @type {boolean}
+     * @memberof StaleFlagSettingModel
      */
-    'postLines'?: Array<ReferenceLine> | null;
+    'hasCodeReferences': boolean;
     /**
-     * 
-     * @type {ReferenceLine}
-     * @memberof ReferenceLines
+     * The tags\' identifiers attached to the Feature Flag or Setting.
+     * @type {Array<StaleFlagSettingTagModel>}
+     * @memberof StaleFlagSettingModel
      */
-    'referenceLine': ReferenceLine;
+    'tags': Array<StaleFlagSettingTagModel>;
+    /**
+     * Environment level feature flag stale data.
+     * @type {Array<StaleFlagSettingValueModel>}
+     * @memberof StaleFlagSettingModel
+     */
+    'settingValues': Array<StaleFlagSettingValueModel>;
 }
 

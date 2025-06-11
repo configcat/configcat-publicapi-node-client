@@ -25,12 +25,12 @@ export interface SdkKeysModel {
      * @type {string}
      * @memberof SdkKeysModel
      */
-    'primary'?: string | null;
+    'primary': string;
     /**
      * The secondary SDK key.
      * @type {string}
      * @memberof SdkKeysModel
      */
-    'secondary'?: string | null;
+    'secondary': string | null;
 }
 

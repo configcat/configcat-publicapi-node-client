@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ReferenceLines } from './reference-lines';
+import { ReferenceLinesModel } from './reference-lines-model';
 
 /**
  * 
@@ -28,48 +28,48 @@ export interface CodeReferenceModel {
      * @type {string}
      * @memberof CodeReferenceModel
      */
-    'branch'?: string | null;
+    'branch': string | null;
     /**
      * The actual references to the given Feature Flag or Setting.
-     * @type {Array<ReferenceLines>}
+     * @type {Array<ReferenceLinesModel>}
      * @memberof CodeReferenceModel
      */
-    'references'?: Array<ReferenceLines> | null;
+    'references': Array<ReferenceLinesModel> | null;
     /**
      * The related commit\'s URL.
      * @type {string}
      * @memberof CodeReferenceModel
      */
-    'commitUrl'?: string | null;
+    'commitUrl': string | null;
     /**
      * The related commit\'s hash.
      * @type {string}
      * @memberof CodeReferenceModel
      */
-    'commitHash'?: string | null;
+    'commitHash': string | null;
     /**
      * The date and time when the reference report was uploaded.
      * @type {string}
      * @memberof CodeReferenceModel
      */
-    'syncedAt'?: string;
+    'syncedAt': string;
     /**
      * The source control repository that contains the scanned code.
      * @type {string}
      * @memberof CodeReferenceModel
      */
-    'repository'?: string | null;
+    'repository': string | null;
     /**
      * The identifier of the reference report.
      * @type {string}
      * @memberof CodeReferenceModel
      */
-    'codeReferenceId'?: string;
+    'codeReferenceId': string;
     /**
      * The code reference scanning tool\'s name.
      * @type {string}
      * @memberof CodeReferenceModel
      */
-    'uploader'?: string | null;
+    'uploader': string | null;
 }
 

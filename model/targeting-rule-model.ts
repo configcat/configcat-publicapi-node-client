@@ -30,22 +30,22 @@ import { ValueModel } from './value-model';
  */
 export interface TargetingRuleModel {
     /**
-     * The list of conditions that are combined with logical AND operators.  It can be one of the following:  - User condition  - Segment condition  - Prerequisite flag condition
+     * The list of conditions that are combined with logical AND operators. It can be one of the following: - User condition - Segment condition - Prerequisite flag condition
      * @type {Array<ConditionModel>}
      * @memberof TargetingRuleModel
      */
-    'conditions'?: Array<ConditionModel> | null;
+    'conditions': Array<ConditionModel>;
     /**
      * The percentage options from where the evaluation process will choose a value based on the flag\'s percentage evaluation attribute.
      * @type {Array<PercentageOptionModel>}
      * @memberof TargetingRuleModel
      */
-    'percentageOptions'?: Array<PercentageOptionModel> | null;
+    'percentageOptions': Array<PercentageOptionModel>;
     /**
      * 
      * @type {ValueModel}
      * @memberof TargetingRuleModel
      */
-    'value'?: ValueModel;
+    'value': ValueModel | null;
 }
 

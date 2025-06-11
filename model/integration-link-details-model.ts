@@ -28,12 +28,12 @@ export interface IntegrationLinkDetailsModel {
      * @type {Array<IntegrationLinkDetail>}
      * @memberof IntegrationLinkDetailsModel
      */
-    'details'?: Array<IntegrationLinkDetail> | null;
+    'details': Array<IntegrationLinkDetail> | null;
     /**
      * 
      * @type {number}
      * @memberof IntegrationLinkDetailsModel
      */
-    'allIntegrationLinkCount'?: number;
+    'allIntegrationLinkCount': number;
 }
 

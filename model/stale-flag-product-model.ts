@@ -15,66 +15,40 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebHookHttpMethod } from './web-hook-http-method';
+import { StaleFlagConfigModel } from './stale-flag-config-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookConfig } from './webhook-config';
-// May contain unused imports in some cases
-// @ts-ignore
-import { WebhookEnvironment } from './webhook-environment';
-// May contain unused imports in some cases
-// @ts-ignore
-import { WebhookHeaderModel } from './webhook-header-model';
+import { StaleFlagEnvironmentModel } from './stale-flag-environment-model';
 
 /**
  * 
  * @export
- * @interface WebhookModel
+ * @interface StaleFlagProductModel
  */
-export interface WebhookModel {
+export interface StaleFlagProductModel {
     /**
-     * The identifier of the Webhook.
-     * @type {number}
-     * @memberof WebhookModel
-     */
-    'webhookId'?: number;
-    /**
-     * The URL of the Webhook.
+     * Identifier of the Product.
      * @type {string}
-     * @memberof WebhookModel
+     * @memberof StaleFlagProductModel
      */
-    'url'?: string | null;
+    'productId': string;
     /**
-     * 
-     * @type {WebHookHttpMethod}
-     * @memberof WebhookModel
-     */
-    'httpMethod'?: WebHookHttpMethod;
-    /**
-     * The HTTP body content.
+     * Name of the Product.
      * @type {string}
-     * @memberof WebhookModel
+     * @memberof StaleFlagProductModel
      */
-    'content'?: string | null;
+    'name': string;
     /**
-     * List of HTTP headers that the Webhook must send.
-     * @type {Array<WebhookHeaderModel>}
-     * @memberof WebhookModel
+     * Configs that contain stale feature flags.
+     * @type {Array<StaleFlagConfigModel>}
+     * @memberof StaleFlagProductModel
      */
-    'webHookHeaders'?: Array<WebhookHeaderModel> | null;
+    'configs': Array<StaleFlagConfigModel>;
     /**
-     * 
-     * @type {WebhookConfig}
-     * @memberof WebhookModel
+     * Environment list.
+     * @type {Array<StaleFlagEnvironmentModel>}
+     * @memberof StaleFlagProductModel
      */
-    'config'?: WebhookConfig;
-    /**
-     * 
-     * @type {WebhookEnvironment}
-     * @memberof WebhookModel
-     */
-    'environment'?: WebhookEnvironment;
+    'environments': Array<StaleFlagEnvironmentModel>;
 }
-
-
 

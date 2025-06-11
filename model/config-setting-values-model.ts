@@ -37,30 +37,30 @@ export interface ConfigSettingValuesModel {
      * @type {ConfigModel}
      * @memberof ConfigSettingValuesModel
      */
-    'config'?: ConfigModel;
+    'config': ConfigModel;
     /**
      * 
      * @type {EnvironmentModel}
      * @memberof ConfigSettingValuesModel
      */
-    'environment'?: EnvironmentModel;
+    'environment': EnvironmentModel;
     /**
      * 
      * @type {boolean}
      * @memberof ConfigSettingValuesModel
      */
-    'readOnly'?: boolean;
+    'readOnly': boolean;
     /**
      * 
      * @type {Array<ConfigSettingValueModel>}
      * @memberof ConfigSettingValuesModel
      */
-    'settingValues'?: Array<ConfigSettingValueModel> | null;
+    'settingValues': Array<ConfigSettingValueModel>;
     /**
      * 
      * @type {FeatureFlagLimitations}
      * @memberof ConfigSettingValuesModel
      */
-    'featureFlagLimitations'?: FeatureFlagLimitations;
+    'featureFlagLimitations': FeatureFlagLimitations;
 }
 

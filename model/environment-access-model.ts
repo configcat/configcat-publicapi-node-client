@@ -28,43 +28,43 @@ export interface EnvironmentAccessModel {
      * @type {string}
      * @memberof EnvironmentAccessModel
      */
-    'environmentId'?: string;
+    'environmentId': string;
     /**
      * Name of the Environment.
      * @type {string}
      * @memberof EnvironmentAccessModel
      */
-    'name'?: string | null;
+    'name': string | null;
     /**
      * Color of the Environment.
      * @type {string}
      * @memberof EnvironmentAccessModel
      */
-    'color'?: string | null;
+    'color': string | null;
     /**
      * Description of the Environment.
      * @type {string}
      * @memberof EnvironmentAccessModel
      */
-    'description'?: string | null;
+    'description': string | null;
     /**
      * The order of the Environment represented on the ConfigCat Dashboard.
      * @type {number}
      * @memberof EnvironmentAccessModel
      */
-    'order'?: number;
+    'order': number;
     /**
      * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
      * @type {boolean}
      * @memberof EnvironmentAccessModel
      */
-    'reasonRequired'?: boolean;
+    'reasonRequired': boolean;
     /**
      * 
      * @type {EnvironmentAccessType}
      * @memberof EnvironmentAccessModel
      */
-    'environmentAccessType'?: EnvironmentAccessType;
+    'environmentAccessType': EnvironmentAccessType;
 }
 
 

@@ -28,73 +28,73 @@ export interface AuditLogItemModel {
      * @type {number}
      * @memberof AuditLogItemModel
      */
-    'auditLogId'?: number;
+    'auditLogId': number;
     /**
      * 
      * @type {string}
      * @memberof AuditLogItemModel
      */
-    'auditLogDateTime'?: string;
+    'auditLogDateTime': string;
     /**
      * 
      * @type {AuditLogType}
      * @memberof AuditLogItemModel
      */
-    'auditLogTypeEnum'?: AuditLogType;
+    'auditLogTypeEnum': AuditLogType;
     /**
      * 
      * @type {string}
      * @memberof AuditLogItemModel
      */
-    'changeSetId'?: string | null;
+    'changeSetId': string | null;
     /**
      * 
      * @type {boolean}
      * @memberof AuditLogItemModel
      */
-    'truncated'?: boolean;
+    'truncated': boolean;
     /**
      * 
      * @type {string}
      * @memberof AuditLogItemModel
      */
-    'auditLogType'?: string | null;
+    'auditLogType': string | null;
     /**
      * 
      * @type {string}
      * @memberof AuditLogItemModel
      */
-    'userEmail'?: string | null;
+    'userEmail': string | null;
     /**
      * 
      * @type {string}
      * @memberof AuditLogItemModel
      */
-    'userName'?: string | null;
+    'userName': string | null;
     /**
      * 
      * @type {string}
      * @memberof AuditLogItemModel
      */
-    'where'?: string | null;
+    'where': string | null;
     /**
      * 
      * @type {string}
      * @memberof AuditLogItemModel
      */
-    'why'?: string | null;
+    'why': string | null;
     /**
      * 
      * @type {string}
      * @memberof AuditLogItemModel
      */
-    'actionTarget'?: string | null;
+    'actionTarget': string | null;
     /**
      * 
      * @type {string}
      * @memberof AuditLogItemModel
      */
-    'details'?: string | null;
+    'details': string | null;
 }
 
 

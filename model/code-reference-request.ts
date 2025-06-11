@@ -64,12 +64,12 @@ export interface CodeReferenceRequest {
      * @type {Array<string>}
      * @memberof CodeReferenceRequest
      */
-    'activeBranches'?: Array<string> | null;
+    'activeBranches'?: Array<string>;
     /**
      * The actual code reference collection.
      * @type {Array<FlagReference>}
      * @memberof CodeReferenceRequest
      */
-    'flagReferences'?: Array<FlagReference> | null;
+    'flagReferences'?: Array<FlagReference>;
 }
 

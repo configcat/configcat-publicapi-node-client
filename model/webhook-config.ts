@@ -25,12 +25,12 @@ export interface WebhookConfig {
      * @type {string}
      * @memberof WebhookConfig
      */
-    'name'?: string | null;
+    'name': string;
     /**
      * The Config\'s identifier.
      * @type {string}
      * @memberof WebhookConfig
      */
-    'configId'?: string;
+    'configId': string;
 }
 

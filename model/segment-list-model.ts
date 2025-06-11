@@ -28,66 +28,66 @@ export interface SegmentListModel {
      * @type {ProductModel}
      * @memberof SegmentListModel
      */
-    'product'?: ProductModel;
+    'product': ProductModel;
     /**
      * Identifier of the Segment.
      * @type {string}
      * @memberof SegmentListModel
      */
-    'segmentId'?: string;
+    'segmentId': string;
     /**
      * Name of the Segment.
      * @type {string}
      * @memberof SegmentListModel
      */
-    'name'?: string | null;
+    'name': string;
     /**
      * Description of the Segment.
      * @type {string}
      * @memberof SegmentListModel
      */
-    'description'?: string | null;
+    'description': string | null;
     /**
      * The email of the user who created the Segment.
      * @type {string}
      * @memberof SegmentListModel
      */
-    'creatorEmail'?: string | null;
+    'creatorEmail': string | null;
     /**
      * The name of the user who created the Segment.
      * @type {string}
      * @memberof SegmentListModel
      */
-    'creatorFullName'?: string | null;
+    'creatorFullName': string | null;
     /**
      * The date and time when the Segment was created.
      * @type {string}
      * @memberof SegmentListModel
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * The email of the user who last updated the Segment.
      * @type {string}
      * @memberof SegmentListModel
      */
-    'lastUpdaterEmail'?: string | null;
+    'lastUpdaterEmail': string | null;
     /**
      * The name of the user who last updated the Segment.
      * @type {string}
      * @memberof SegmentListModel
      */
-    'lastUpdaterFullName'?: string | null;
+    'lastUpdaterFullName': string | null;
     /**
      * The date and time when the Segment was last updated.
      * @type {string}
      * @memberof SegmentListModel
      */
-    'updatedAt'?: string;
+    'updatedAt': string;
     /**
      * Determines how many Feature Flags and Settings are using the Segment.
      * @type {number}
      * @memberof SegmentListModel
      */
-    'usage'?: number;
+    'usage': number;
 }
 

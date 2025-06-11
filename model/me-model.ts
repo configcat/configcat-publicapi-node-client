@@ -25,12 +25,12 @@ export interface MeModel {
      * @type {string}
      * @memberof MeModel
      */
-    'email'?: string | null;
+    'email': string;
     /**
      * 
      * @type {string}
      * @memberof MeModel
      */
-    'fullName'?: string | null;
+    'fullName': string;
 }
 

@@ -26,7 +26,7 @@ import { AuditLogItemModel } from '../model';
 // @ts-ignore
 import { AuditLogType } from '../model';
 // @ts-ignore
-import { SettingModel } from '../model';
+import { DeletedSettingModel } from '../model';
 /**
  * AuditLogsApi - axios parameter creator
  * @export
@@ -34,7 +34,7 @@ import { SettingModel } from '../model';
 export const AuditLogsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.
+         * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
          * @summary List Audit log items for Product
          * @param {string} productId The identifier of the Product.
          * @param {string} [configId] The identifier of the Config.
@@ -139,7 +139,7 @@ export const AuditLogsApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.
+         * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
          * @summary List Audit log items for Organization
          * @param {string} organizationId The identifier of the Organization.
          * @param {string} [productId] The identifier of the Product.
@@ -221,7 +221,7 @@ export const AuditLogsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AuditLogsApiAxiosParamCreator(configuration)
     return {
         /**
-         * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.
+         * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
          * @summary List Audit log items for Product
          * @param {string} productId The identifier of the Product.
          * @param {string} [configId] The identifier of the Config.
@@ -245,14 +245,14 @@ export const AuditLogsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDeletedSettings(configId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SettingModel>>> {
+        async getDeletedSettings(configId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DeletedSettingModel>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getDeletedSettings(configId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AuditLogsApi.getDeletedSettings']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.
+         * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
          * @summary List Audit log items for Organization
          * @param {string} organizationId The identifier of the Organization.
          * @param {string} [productId] The identifier of the Product.
@@ -281,7 +281,7 @@ export const AuditLogsApiFactory = function (configuration?: Configuration, base
     const localVarFp = AuditLogsApiFp(configuration)
     return {
         /**
-         * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.
+         * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
          * @summary List Audit log items for Product
          * @param {string} productId The identifier of the Product.
          * @param {string} [configId] The identifier of the Config.
@@ -302,11 +302,11 @@ export const AuditLogsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDeletedSettings(configId: string, options?: any): AxiosPromise<Array<SettingModel>> {
+        getDeletedSettings(configId: string, options?: any): AxiosPromise<Array<DeletedSettingModel>> {
             return localVarFp.getDeletedSettings(configId, options).then((request) => request(axios, basePath));
         },
         /**
-         * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.
+         * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
          * @summary List Audit log items for Organization
          * @param {string} organizationId The identifier of the Organization.
          * @param {string} [productId] The identifier of the Product.
@@ -332,7 +332,7 @@ export const AuditLogsApiFactory = function (configuration?: Configuration, base
  */
 export class AuditLogsApi extends BaseAPI {
     /**
-     * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.
+     * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
      * @summary List Audit log items for Product
      * @param {string} productId The identifier of the Product.
      * @param {string} [configId] The identifier of the Config.
@@ -361,7 +361,7 @@ export class AuditLogsApi extends BaseAPI {
     }
 
     /**
-     * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.
+     * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
      * @summary List Audit log items for Organization
      * @param {string} organizationId The identifier of the Organization.
      * @param {string} [productId] The identifier of the Product.

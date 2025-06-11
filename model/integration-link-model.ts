@@ -28,25 +28,25 @@ export interface IntegrationLinkModel {
      * @type {string}
      * @memberof IntegrationLinkModel
      */
-    'key'?: string | null;
+    'key': string | null;
     /**
      * 
      * @type {string}
      * @memberof IntegrationLinkModel
      */
-    'description'?: string | null;
+    'description': string | null;
     /**
      * 
      * @type {IntegrationLinkType}
      * @memberof IntegrationLinkModel
      */
-    'integrationLinkType'?: IntegrationLinkType;
+    'integrationLinkType': IntegrationLinkType;
     /**
      * 
      * @type {string}
      * @memberof IntegrationLinkModel
      */
-    'url'?: string | null;
+    'url': string | null;
 }
 
 

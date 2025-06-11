@@ -28,61 +28,61 @@ export interface SettingDataModel {
      * @type {number}
      * @memberof SettingDataModel
      */
-    'settingId'?: number;
+    'settingId': number;
     /**
      * Key of the Feature Flag or Setting.
      * @type {string}
      * @memberof SettingDataModel
      */
-    'key'?: string | null;
+    'key': string;
     /**
      * Name of the Feature Flag or Setting.
      * @type {string}
      * @memberof SettingDataModel
      */
-    'name'?: string | null;
+    'name': string;
     /**
      * Description of the Feature Flag or Setting.
      * @type {string}
      * @memberof SettingDataModel
      */
-    'hint'?: string | null;
+    'hint': string | null;
     /**
      * 
      * @type {SettingType}
      * @memberof SettingDataModel
      */
-    'settingType'?: SettingType;
+    'settingType': SettingType;
     /**
      * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
      * @type {number}
      * @memberof SettingDataModel
      */
-    'order'?: number;
+    'order': number;
     /**
      * The creation time of the Feature Flag or Setting.
      * @type {string}
      * @memberof SettingDataModel
      */
-    'createdAt'?: string | null;
+    'createdAt': string | null;
     /**
      * The user\'s email address who created the Feature Flag or Setting.
      * @type {string}
      * @memberof SettingDataModel
      */
-    'creatorEmail'?: string | null;
+    'creatorEmail': string | null;
     /**
      * The user\'s name who created the Feature Flag or Setting.
      * @type {string}
      * @memberof SettingDataModel
      */
-    'creatorFullName'?: string | null;
+    'creatorFullName': string | null;
     /**
      * 
      * @type {boolean}
      * @memberof SettingDataModel
      */
-    'isWatching'?: boolean;
+    'isWatching': boolean;
 }
 
 

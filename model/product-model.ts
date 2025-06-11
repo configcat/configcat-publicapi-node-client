@@ -28,36 +28,36 @@ export interface ProductModel {
      * @type {OrganizationModel}
      * @memberof ProductModel
      */
-    'organization'?: OrganizationModel;
+    'organization': OrganizationModel;
     /**
      * Identifier of the Product.
      * @type {string}
      * @memberof ProductModel
      */
-    'productId'?: string;
+    'productId': string;
     /**
      * Name of the Product.
      * @type {string}
      * @memberof ProductModel
      */
-    'name'?: string | null;
+    'name': string;
     /**
      * Description of the Product.
      * @type {string}
      * @memberof ProductModel
      */
-    'description'?: string | null;
+    'description': string | null;
     /**
-     * The order of the Product represented on the ConfigCat Dashboard.  Determined from an ascending sequence of integers.
+     * The order of the Product represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
      * @type {number}
      * @memberof ProductModel
      */
-    'order'?: number;
+    'order': number;
     /**
      * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings within a Product are saved.
      * @type {boolean}
      * @memberof ProductModel
      */
-    'reasonRequired'?: boolean;
+    'reasonRequired': boolean;
 }
 

@@ -25,12 +25,12 @@ export interface OrganizationModel {
      * @type {string}
      * @memberof OrganizationModel
      */
-    'organizationId'?: string;
+    'organizationId': string;
     /**
      * Name of the Organization.
      * @type {string}
      * @memberof OrganizationModel
      */
-    'name'?: string | null;
+    'name': string;
 }
 

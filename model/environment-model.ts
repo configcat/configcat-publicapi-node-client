@@ -28,42 +28,42 @@ export interface EnvironmentModel {
      * @type {ProductModel}
      * @memberof EnvironmentModel
      */
-    'product'?: ProductModel;
+    'product': ProductModel;
     /**
      * Identifier of the Environment.
      * @type {string}
      * @memberof EnvironmentModel
      */
-    'environmentId'?: string;
+    'environmentId': string;
     /**
      * Name of the Environment.
      * @type {string}
      * @memberof EnvironmentModel
      */
-    'name'?: string | null;
+    'name': string;
     /**
      * The configured color of the Environment.
      * @type {string}
      * @memberof EnvironmentModel
      */
-    'color'?: string | null;
+    'color': string | null;
     /**
      * Description of the Environment.
      * @type {string}
      * @memberof EnvironmentModel
      */
-    'description'?: string | null;
+    'description': string | null;
     /**
      * The order of the Environment represented on the ConfigCat Dashboard.
      * @type {number}
      * @memberof EnvironmentModel
      */
-    'order'?: number;
+    'order': number;
     /**
      * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
      * @type {boolean}
      * @memberof EnvironmentModel
      */
-    'reasonRequired'?: boolean;
+    'reasonRequired': boolean;
 }
 

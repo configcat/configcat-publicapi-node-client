@@ -46,7 +46,7 @@ export interface UpdateSegmentModel {
      * @type {RolloutRuleComparator}
      * @memberof UpdateSegmentModel
      */
-    'comparator'?: RolloutRuleComparator;
+    'comparator'?: RolloutRuleComparator | null;
     /**
      * 
      * @type {string}

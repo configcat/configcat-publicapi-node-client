@@ -166,13 +166,13 @@ export interface UpdatePermissionGroupRequest {
      * @type {AccessType}
      * @memberof UpdatePermissionGroupRequest
      */
-    'accessType'?: AccessType;
+    'accessType'?: AccessType | null;
     /**
      * 
      * @type {EnvironmentAccessType}
      * @memberof UpdatePermissionGroupRequest
      */
-    'newEnvironmentAccessType'?: EnvironmentAccessType;
+    'newEnvironmentAccessType'?: EnvironmentAccessType | null;
     /**
      * List of environment specific permissions.
      * @type {Array<CreateOrUpdateEnvironmentAccessModel>}
