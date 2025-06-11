@@ -28,6 +28,6 @@ export interface IntegrationsModel {
      * @type {Array<IntegrationModel>}
      * @memberof IntegrationsModel
      */
-    'integrations'?: Array<IntegrationModel> | null;
+    'integrations': Array<IntegrationModel> | null;
 }
 

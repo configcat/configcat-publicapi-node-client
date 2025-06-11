@@ -28,24 +28,24 @@ export interface TagModel {
      * @type {ProductModel}
      * @memberof TagModel
      */
-    'product'?: ProductModel;
+    'product': ProductModel;
     /**
      * Identifier of the Tag.
      * @type {number}
      * @memberof TagModel
      */
-    'tagId'?: number;
+    'tagId': number;
     /**
      * Name of the Tag.
      * @type {string}
      * @memberof TagModel
      */
-    'name'?: string | null;
+    'name': string;
     /**
      * The configured color of the Tag.
      * @type {string}
      * @memberof TagModel
      */
-    'color'?: string | null;
+    'color': string | null;
 }
 

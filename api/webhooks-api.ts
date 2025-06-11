@@ -24,9 +24,9 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, ope
 // @ts-ignore
 import { JsonPatchOperation } from '../model';
 // @ts-ignore
-import { WebHookRequest } from '../model';
+import { WebHookRequestModel } from '../model';
 // @ts-ignore
-import { WebhookModel } from '../model';
+import { WebhookResponseModel } from '../model';
 // @ts-ignore
 import { WebhookSigningKeysModel } from '../model';
 /**
@@ -40,17 +40,17 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Create Webhook
          * @param {string} configId The identifier of the Config.
          * @param {string} environmentId The identifier of the Environment.
-         * @param {WebHookRequest} webHookRequest 
+         * @param {WebHookRequestModel} webHookRequestModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWebhook: async (configId: string, environmentId: string, webHookRequest: WebHookRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createWebhook: async (configId: string, environmentId: string, webHookRequestModel: WebHookRequestModel, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'configId' is not null or undefined
             assertParamExists('createWebhook', 'configId', configId)
             // verify required parameter 'environmentId' is not null or undefined
             assertParamExists('createWebhook', 'environmentId', environmentId)
-            // verify required parameter 'webHookRequest' is not null or undefined
-            assertParamExists('createWebhook', 'webHookRequest', webHookRequest)
+            // verify required parameter 'webHookRequestModel' is not null or undefined
+            assertParamExists('createWebhook', 'webHookRequestModel', webHookRequestModel)
             const localVarPath = `/v1/configs/{configId}/environments/{environmentId}/webhooks`
                 .replace(`{${"configId"}}`, encodeURIComponent(String(configId)))
                 .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)));
@@ -76,7 +76,7 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(webHookRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(webHookRequestModel, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -239,15 +239,15 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
          * This endpoint replaces the whole value of a Webhook identified by the `webhookId` parameter.  **Important:** As this endpoint is doing a complete replace, it\'s important to set every other attribute that you don\'t want to change in its original state. Not listing one means it will reset.
          * @summary Replace Webhook
          * @param {number} webhookId The identifier of the Webhook.
-         * @param {WebHookRequest} webHookRequest 
+         * @param {WebHookRequestModel} webHookRequestModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        replaceWebhook: async (webhookId: number, webHookRequest: WebHookRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        replaceWebhook: async (webhookId: number, webHookRequestModel: WebHookRequestModel, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'webhookId' is not null or undefined
             assertParamExists('replaceWebhook', 'webhookId', webhookId)
-            // verify required parameter 'webHookRequest' is not null or undefined
-            assertParamExists('replaceWebhook', 'webHookRequest', webHookRequest)
+            // verify required parameter 'webHookRequestModel' is not null or undefined
+            assertParamExists('replaceWebhook', 'webHookRequestModel', webHookRequestModel)
             const localVarPath = `/v1/webhooks/{webhookId}`
                 .replace(`{${"webhookId"}}`, encodeURIComponent(String(webhookId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -272,7 +272,7 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(webHookRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(webHookRequestModel, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -338,12 +338,12 @@ export const WebhooksApiFp = function(configuration?: Configuration) {
          * @summary Create Webhook
          * @param {string} configId The identifier of the Config.
          * @param {string} environmentId The identifier of the Environment.
-         * @param {WebHookRequest} webHookRequest 
+         * @param {WebHookRequestModel} webHookRequestModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createWebhook(configId: string, environmentId: string, webHookRequest: WebHookRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookModel>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createWebhook(configId, environmentId, webHookRequest, options);
+        async createWebhook(configId: string, environmentId: string, webHookRequestModel: WebHookRequestModel, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponseModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createWebhook(configId, environmentId, webHookRequestModel, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhooksApi.createWebhook']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -368,7 +368,7 @@ export const WebhooksApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getWebhook(webhookId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookModel>> {
+        async getWebhook(webhookId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponseModel>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWebhook(webhookId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhooksApi.getWebhook']?.[localVarOperationServerIndex]?.url;
@@ -394,7 +394,7 @@ export const WebhooksApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getWebhooks(productId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<WebhookModel>>> {
+        async getWebhooks(productId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<WebhookResponseModel>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWebhooks(productId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhooksApi.getWebhooks']?.[localVarOperationServerIndex]?.url;
@@ -404,12 +404,12 @@ export const WebhooksApiFp = function(configuration?: Configuration) {
          * This endpoint replaces the whole value of a Webhook identified by the `webhookId` parameter.  **Important:** As this endpoint is doing a complete replace, it\'s important to set every other attribute that you don\'t want to change in its original state. Not listing one means it will reset.
          * @summary Replace Webhook
          * @param {number} webhookId The identifier of the Webhook.
-         * @param {WebHookRequest} webHookRequest 
+         * @param {WebHookRequestModel} webHookRequestModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async replaceWebhook(webhookId: number, webHookRequest: WebHookRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookModel>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.replaceWebhook(webhookId, webHookRequest, options);
+        async replaceWebhook(webhookId: number, webHookRequestModel: WebHookRequestModel, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponseModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.replaceWebhook(webhookId, webHookRequestModel, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhooksApi.replaceWebhook']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -422,7 +422,7 @@ export const WebhooksApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateWebhook(webhookId: number, jsonPatchOperation: Array<JsonPatchOperation>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookModel>> {
+        async updateWebhook(webhookId: number, jsonPatchOperation: Array<JsonPatchOperation>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookResponseModel>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhook(webhookId, jsonPatchOperation, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhooksApi.updateWebhook']?.[localVarOperationServerIndex]?.url;
@@ -443,12 +443,12 @@ export const WebhooksApiFactory = function (configuration?: Configuration, baseP
          * @summary Create Webhook
          * @param {string} configId The identifier of the Config.
          * @param {string} environmentId The identifier of the Environment.
-         * @param {WebHookRequest} webHookRequest 
+         * @param {WebHookRequestModel} webHookRequestModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWebhook(configId: string, environmentId: string, webHookRequest: WebHookRequest, options?: any): AxiosPromise<WebhookModel> {
-            return localVarFp.createWebhook(configId, environmentId, webHookRequest, options).then((request) => request(axios, basePath));
+        createWebhook(configId: string, environmentId: string, webHookRequestModel: WebHookRequestModel, options?: any): AxiosPromise<WebhookResponseModel> {
+            return localVarFp.createWebhook(configId, environmentId, webHookRequestModel, options).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint removes a Webhook identified by the `webhookId` parameter.
@@ -467,7 +467,7 @@ export const WebhooksApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWebhook(webhookId: number, options?: any): AxiosPromise<WebhookModel> {
+        getWebhook(webhookId: number, options?: any): AxiosPromise<WebhookResponseModel> {
             return localVarFp.getWebhook(webhookId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -487,19 +487,19 @@ export const WebhooksApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWebhooks(productId: string, options?: any): AxiosPromise<Array<WebhookModel>> {
+        getWebhooks(productId: string, options?: any): AxiosPromise<Array<WebhookResponseModel>> {
             return localVarFp.getWebhooks(productId, options).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint replaces the whole value of a Webhook identified by the `webhookId` parameter.  **Important:** As this endpoint is doing a complete replace, it\'s important to set every other attribute that you don\'t want to change in its original state. Not listing one means it will reset.
          * @summary Replace Webhook
          * @param {number} webhookId The identifier of the Webhook.
-         * @param {WebHookRequest} webHookRequest 
+         * @param {WebHookRequestModel} webHookRequestModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        replaceWebhook(webhookId: number, webHookRequest: WebHookRequest, options?: any): AxiosPromise<WebhookModel> {
-            return localVarFp.replaceWebhook(webhookId, webHookRequest, options).then((request) => request(axios, basePath));
+        replaceWebhook(webhookId: number, webHookRequestModel: WebHookRequestModel, options?: any): AxiosPromise<WebhookResponseModel> {
+            return localVarFp.replaceWebhook(webhookId, webHookRequestModel, options).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint updates a Webhook identified by the `webhookId` parameter with a collection of [JSON Patch](https://jsonpatch.com) operations.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change.  For example: We have the following resource. ```json {   \"webhookId\": 6,   \"url\": \"https://example.com/hook\",   \"httpMethod\": \"post\",   \"content\": \"null\",   \"webHookHeaders\": [] } ``` If we send an update request body as below (it changes the `content` field and adds a new HTTP header): ```json [   {     \"op\": \"replace\",      \"path\": \"/content\",      \"value\": \"Some webhook content.\"   },    {     \"op\": \"add\",      \"path\": \"/webHookHeaders/-\",      \"value\": {       \"key\": \"X-Custom-Header\",        \"value\": \"Custom header value\"     }   } ] ``` Only the `content` and `webHookHeaders` are updated and all the other attributes remain unchanged. So we get a response like this: ```json {   \"webhookId\": 6,   \"url\": \"https://example.com/hook\",   \"httpMethod\": \"post\",    \"content\": \"Some webhook content.\",    \"webHookHeaders\": [     {       \"key\": \"X-Custom-Header\",        \"value\": \"Custom header value\",        \"isSecure\": false     }   ] } ```
@@ -509,7 +509,7 @@ export const WebhooksApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWebhook(webhookId: number, jsonPatchOperation: Array<JsonPatchOperation>, options?: any): AxiosPromise<WebhookModel> {
+        updateWebhook(webhookId: number, jsonPatchOperation: Array<JsonPatchOperation>, options?: any): AxiosPromise<WebhookResponseModel> {
             return localVarFp.updateWebhook(webhookId, jsonPatchOperation, options).then((request) => request(axios, basePath));
         },
     };
@@ -527,13 +527,13 @@ export class WebhooksApi extends BaseAPI {
      * @summary Create Webhook
      * @param {string} configId The identifier of the Config.
      * @param {string} environmentId The identifier of the Environment.
-     * @param {WebHookRequest} webHookRequest 
+     * @param {WebHookRequestModel} webHookRequestModel 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebhooksApi
      */
-    public createWebhook(configId: string, environmentId: string, webHookRequest: WebHookRequest, options?: RawAxiosRequestConfig) {
-        return WebhooksApiFp(this.configuration).createWebhook(configId, environmentId, webHookRequest, options).then((request) => request(this.axios, this.basePath));
+    public createWebhook(configId: string, environmentId: string, webHookRequestModel: WebHookRequestModel, options?: RawAxiosRequestConfig) {
+        return WebhooksApiFp(this.configuration).createWebhook(configId, environmentId, webHookRequestModel, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -588,13 +588,13 @@ export class WebhooksApi extends BaseAPI {
      * This endpoint replaces the whole value of a Webhook identified by the `webhookId` parameter.  **Important:** As this endpoint is doing a complete replace, it\'s important to set every other attribute that you don\'t want to change in its original state. Not listing one means it will reset.
      * @summary Replace Webhook
      * @param {number} webhookId The identifier of the Webhook.
-     * @param {WebHookRequest} webHookRequest 
+     * @param {WebHookRequestModel} webHookRequestModel 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebhooksApi
      */
-    public replaceWebhook(webhookId: number, webHookRequest: WebHookRequest, options?: RawAxiosRequestConfig) {
-        return WebhooksApiFp(this.configuration).replaceWebhook(webhookId, webHookRequest, options).then((request) => request(this.axios, this.basePath));
+    public replaceWebhook(webhookId: number, webHookRequestModel: WebHookRequestModel, options?: RawAxiosRequestConfig) {
+        return WebhooksApiFp(this.configuration).replaceWebhook(webhookId, webHookRequestModel, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -31,55 +31,61 @@ export interface SettingModel {
      * @type {number}
      * @memberof SettingModel
      */
-    'settingId'?: number;
+    'settingId': number;
     /**
      * Key of the Feature Flag or Setting.
      * @type {string}
      * @memberof SettingModel
      */
-    'key'?: string | null;
+    'key': string;
     /**
      * Name of the Feature Flag or Setting.
      * @type {string}
      * @memberof SettingModel
      */
-    'name'?: string | null;
+    'name': string;
     /**
      * Description of the Feature Flag or Setting.
      * @type {string}
      * @memberof SettingModel
      */
-    'hint'?: string | null;
+    'hint': string | null;
     /**
      * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
      * @type {number}
      * @memberof SettingModel
      */
-    'order'?: number;
+    'order': number;
     /**
      * 
      * @type {SettingType}
      * @memberof SettingModel
      */
-    'settingType'?: SettingType;
+    'settingType': SettingType;
     /**
      * Identifier of the Feature Flag\'s Config.
      * @type {string}
      * @memberof SettingModel
      */
-    'configId'?: string;
+    'configId': string;
     /**
      * Name of the Feature Flag\'s Config.
      * @type {string}
      * @memberof SettingModel
      */
-    'configName'?: string | null;
+    'configName': string;
+    /**
+     * The creation time of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingModel
+     */
+    'createdAt': string | null;
     /**
      * The tags attached to the Feature Flag or Setting.
      * @type {Array<TagModel>}
      * @memberof SettingModel
      */
-    'tags'?: Array<TagModel> | null;
+    'tags': Array<TagModel>;
 }
 
 

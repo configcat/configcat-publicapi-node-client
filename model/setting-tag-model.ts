@@ -25,24 +25,24 @@ export interface SettingTagModel {
      * @type {number}
      * @memberof SettingTagModel
      */
-    'settingTagId'?: number;
+    'settingTagId': number;
     /**
      * 
      * @type {number}
      * @memberof SettingTagModel
      */
-    'tagId'?: number;
+    'tagId': number;
     /**
      * 
      * @type {string}
      * @memberof SettingTagModel
      */
-    'name'?: string | null;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof SettingTagModel
      */
-    'color'?: string | null;
+    'color': string | null;
 }
 

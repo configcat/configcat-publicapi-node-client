@@ -25,24 +25,24 @@ export interface ValueModel {
      * @type {boolean}
      * @memberof ValueModel
      */
-    'boolValue'?: boolean | null;
+    'boolValue': boolean | null;
     /**
      * The served value in case of a text Setting.
      * @type {string}
      * @memberof ValueModel
      */
-    'stringValue'?: string | null;
+    'stringValue': string | null;
     /**
      * The served value in case of a whole number Setting.
      * @type {number}
      * @memberof ValueModel
      */
-    'intValue'?: number | null;
+    'intValue': number | null;
     /**
      * The served value in case of a decimal number Setting.
      * @type {number}
      * @memberof ValueModel
      */
-    'doubleValue'?: number | null;
+    'doubleValue': number | null;
 }
 

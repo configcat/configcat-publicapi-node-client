@@ -25,12 +25,12 @@ export interface OrganizationPermissionGroupModel {
      * @type {number}
      * @memberof OrganizationPermissionGroupModel
      */
-    'permissionGroupId'?: number;
+    'permissionGroupId': number;
     /**
      * Name of the Member\'s Permission Group.
      * @type {string}
      * @memberof OrganizationPermissionGroupModel
      */
-    'name'?: string | null;
+    'name': string;
 }
 

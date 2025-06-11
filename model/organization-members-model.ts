@@ -31,18 +31,18 @@ export interface OrganizationMembersModel {
      * @type {Array<OrganizationAdminModel>}
      * @memberof OrganizationMembersModel
      */
-    'admins'?: Array<OrganizationAdminModel> | null;
+    'admins': Array<OrganizationAdminModel>;
     /**
      * List of Billing Managers.
      * @type {Array<OrganizationAdminModel>}
      * @memberof OrganizationMembersModel
      */
-    'billingManagers'?: Array<OrganizationAdminModel> | null;
+    'billingManagers': Array<OrganizationAdminModel>;
     /**
      * List of Organization Members.
      * @type {Array<OrganizationMemberModel>}
      * @memberof OrganizationMembersModel
      */
-    'members'?: Array<OrganizationMemberModel> | null;
+    'members': Array<OrganizationMemberModel>;
 }
 

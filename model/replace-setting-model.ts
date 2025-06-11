@@ -33,7 +33,7 @@ export interface ReplaceSettingModel {
      */
     'tags'?: Array<number> | null;
     /**
-     * The order of the Setting represented on the ConfigCat Dashboard.  Determined from an ascending sequence of integers.
+     * The order of the Setting represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
      * @type {number}
      * @memberof ReplaceSettingModel
      */
@@ -43,6 +43,6 @@ export interface ReplaceSettingModel {
      * @type {string}
      * @memberof ReplaceSettingModel
      */
-    'name': string;
+    'name'?: string | null;
 }
 

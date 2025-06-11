@@ -86,6 +86,7 @@ export const AuditLogType = {
     SamlIdpConfigurationAdded: 'samlIdpConfigurationAdded',
     SamlIdpConfigurationRemoved: 'samlIdpConfigurationRemoved',
     SamlIdpConfigurationUpdated: 'samlIdpConfigurationUpdated',
+    AutoProvisioningEnabledChanged: 'autoProvisioningEnabledChanged',
     OrganizationMemberJoined: 'organizationMemberJoined',
     OrganizationMemberProductJoinRequested: 'organizationMemberProductJoinRequested',
     OrganizationMemberProductJoinRequestRejected: 'organizationMemberProductJoinRequestRejected',
@@ -98,7 +99,20 @@ export const AuditLogType = {
     SegmentChanged: 'segmentChanged',
     SegmentDeleted: 'segmentDeleted',
     WebhookSigningKeyDeleted: 'webhookSigningKeyDeleted',
-    WebhookSigningKeyCreated: 'webhookSigningKeyCreated'
+    WebhookSigningKeyCreated: 'webhookSigningKeyCreated',
+    UserProvisioningConfigurationChanged: 'userProvisioningConfigurationChanged',
+    SyncGroupProvisioningRuleChanged: 'syncGroupProvisioningRuleChanged',
+    SyncGroupsReordered: 'syncGroupsReordered',
+    SyncUserProvisioningEnabled: 'syncUserProvisioningEnabled',
+    SyncUserProvisioningDisabled: 'syncUserProvisioningDisabled',
+    UserEmailChanged: 'userEmailChanged',
+    UserFullNameChanged: 'userFullNameChanged',
+    UserDisabled: 'userDisabled',
+    AwsConnected: 'awsConnected',
+    AwsDisconnected: 'awsDisconnected',
+    UserEnabled: 'userEnabled',
+    SyncUserDeleted: 'syncUserDeleted',
+    SyncGroupDeleted: 'syncGroupDeleted'
 } as const;
 
 export type AuditLogType = typeof AuditLogType[keyof typeof AuditLogType];

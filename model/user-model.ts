@@ -25,24 +25,24 @@ export interface UserModel {
      * @type {string}
      * @memberof UserModel
      */
-    'userId'?: string | null;
+    'userId': string | null;
     /**
      * Name of the Member.
      * @type {string}
      * @memberof UserModel
      */
-    'fullName'?: string | null;
+    'fullName': string | null;
     /**
      * Email of the Member.
      * @type {string}
      * @memberof UserModel
      */
-    'email'?: string | null;
+    'email': string | null;
     /**
      * Determines whether 2FA is enabled for the Member.
      * @type {boolean}
      * @memberof UserModel
      */
-    'twoFactorEnabled'?: boolean;
+    'twoFactorEnabled': boolean;
 }
 

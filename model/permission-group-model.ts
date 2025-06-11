@@ -37,163 +37,163 @@ export interface PermissionGroupModel {
      * @type {number}
      * @memberof PermissionGroupModel
      */
-    'permissionGroupId'?: number;
+    'permissionGroupId': number;
     /**
      * Name of the Permission Group.
      * @type {string}
      * @memberof PermissionGroupModel
      */
-    'name'?: string | null;
+    'name': string;
     /**
      * Group members can manage team members.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canManageMembers'?: boolean;
+    'canManageMembers': boolean;
     /**
      * Group members can create/update Configs.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canCreateOrUpdateConfig'?: boolean;
+    'canCreateOrUpdateConfig': boolean;
     /**
      * Group members can delete Configs.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canDeleteConfig'?: boolean;
+    'canDeleteConfig': boolean;
     /**
      * Group members can create/update Environments.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canCreateOrUpdateEnvironment'?: boolean;
+    'canCreateOrUpdateEnvironment': boolean;
     /**
      * Group members can delete Environments.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canDeleteEnvironment'?: boolean;
+    'canDeleteEnvironment': boolean;
     /**
      * Group members can create/update Feature Flags and Settings.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canCreateOrUpdateSetting'?: boolean;
+    'canCreateOrUpdateSetting': boolean;
     /**
      * Group members can attach/detach Tags to Feature Flags and Settings.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canTagSetting'?: boolean;
+    'canTagSetting': boolean;
     /**
      * Group members can delete Feature Flags and Settings.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canDeleteSetting'?: boolean;
+    'canDeleteSetting': boolean;
     /**
      * Group members can create/update Tags.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canCreateOrUpdateTag'?: boolean;
+    'canCreateOrUpdateTag': boolean;
     /**
      * Group members can delete Tags.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canDeleteTag'?: boolean;
+    'canDeleteTag': boolean;
     /**
      * Group members can create/update/delete Webhooks.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canManageWebhook'?: boolean;
+    'canManageWebhook': boolean;
     /**
      * Group members can use the export/import feature.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canUseExportImport'?: boolean;
+    'canUseExportImport': boolean;
     /**
      * Group members can update Product preferences.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canManageProductPreferences'?: boolean;
+    'canManageProductPreferences': boolean;
     /**
      * Group members can add and configure integrations.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canManageIntegrations'?: boolean;
+    'canManageIntegrations': boolean;
     /**
      * Group members has access to SDK keys.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canViewSdkKey'?: boolean;
+    'canViewSdkKey': boolean;
     /**
      * Group members can rotate SDK keys.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canRotateSdkKey'?: boolean;
+    'canRotateSdkKey': boolean;
     /**
      * Group members can create/update Segments.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canCreateOrUpdateSegments'?: boolean;
+    'canCreateOrUpdateSegments': boolean;
     /**
      * Group members can delete Segments.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canDeleteSegments'?: boolean;
+    'canDeleteSegments': boolean;
     /**
      * Group members has access to audit logs.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canViewProductAuditLog'?: boolean;
+    'canViewProductAuditLog': boolean;
     /**
      * Group members has access to product statistics.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canViewProductStatistics'?: boolean;
+    'canViewProductStatistics': boolean;
     /**
      * Group members can disable two-factor authentication for other members.
      * @type {boolean}
      * @memberof PermissionGroupModel
      */
-    'canDisable2FA'?: boolean;
+    'canDisable2FA': boolean;
     /**
      * 
      * @type {AccessType}
      * @memberof PermissionGroupModel
      */
-    'accessType'?: AccessType;
+    'accessType': AccessType;
     /**
      * 
      * @type {EnvironmentAccessType}
      * @memberof PermissionGroupModel
      */
-    'newEnvironmentAccessType'?: EnvironmentAccessType;
+    'newEnvironmentAccessType': EnvironmentAccessType;
     /**
      * List of environment specific permissions.
      * @type {Array<EnvironmentAccessModel>}
      * @memberof PermissionGroupModel
      */
-    'environmentAccesses'?: Array<EnvironmentAccessModel> | null;
+    'environmentAccesses': Array<EnvironmentAccessModel>;
     /**
      * 
      * @type {ProductModel}
      * @memberof PermissionGroupModel
      */
-    'product'?: ProductModel;
+    'product': ProductModel;
 }
 
 

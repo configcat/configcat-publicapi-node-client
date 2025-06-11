@@ -25,24 +25,24 @@ export interface OrganizationAdminModel {
      * @type {string}
      * @memberof OrganizationAdminModel
      */
-    'userId'?: string | null;
+    'userId': string;
     /**
      * Name of the Organization Admin.
      * @type {string}
      * @memberof OrganizationAdminModel
      */
-    'fullName'?: string | null;
+    'fullName': string;
     /**
      * Email of the OrganizationAdmin.
      * @type {string}
      * @memberof OrganizationAdminModel
      */
-    'email'?: string | null;
+    'email': string;
     /**
      * Determines whether 2FA is enabled for the Organization Admin.
      * @type {boolean}
      * @memberof OrganizationAdminModel
      */
-    'twoFactorEnabled'?: boolean;
+    'twoFactorEnabled': boolean;
 }
 

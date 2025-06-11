@@ -31,43 +31,43 @@ export interface ConfigModel {
      * @type {ProductModel}
      * @memberof ConfigModel
      */
-    'product'?: ProductModel;
+    'product': ProductModel;
     /**
      * Identifier of the Config.
      * @type {string}
      * @memberof ConfigModel
      */
-    'configId'?: string;
+    'configId': string;
     /**
      * Name of the Config.
      * @type {string}
      * @memberof ConfigModel
      */
-    'name'?: string | null;
+    'name': string;
     /**
      * Description of the Config.
      * @type {string}
      * @memberof ConfigModel
      */
-    'description'?: string | null;
+    'description': string | null;
     /**
      * The order of the Config represented on the ConfigCat Dashboard.
      * @type {number}
      * @memberof ConfigModel
      */
-    'order'?: number;
+    'order': number;
     /**
      * 
      * @type {string}
      * @memberof ConfigModel
      */
-    'migratedConfigId'?: string | null;
+    'migratedConfigId': string | null;
     /**
      * 
      * @type {EvaluationVersion}
      * @memberof ConfigModel
      */
-    'evaluationVersion'?: EvaluationVersion;
+    'evaluationVersion': EvaluationVersion;
 }
 
 

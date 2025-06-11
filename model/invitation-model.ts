@@ -25,30 +25,30 @@ export interface InvitationModel {
      * @type {string}
      * @memberof InvitationModel
      */
-    'invitationId'?: string;
+    'invitationId': string;
     /**
      * The invited user\'s email address.
      * @type {string}
      * @memberof InvitationModel
      */
-    'email'?: string | null;
+    'email': string | null;
     /**
      * The identifier of the Permission Group the user was invited to.
      * @type {number}
      * @memberof InvitationModel
      */
-    'permissionGroupId'?: number;
+    'permissionGroupId': number;
     /**
      * Creation time of the Invitation.
      * @type {string}
      * @memberof InvitationModel
      */
-    'createdAt'?: string;
+    'createdAt': string;
     /**
      * Determines whether the Invitation is expired.
      * @type {boolean}
      * @memberof InvitationModel
      */
-    'expired'?: boolean;
+    'expired': boolean;
 }
 

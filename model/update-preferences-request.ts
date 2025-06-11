@@ -37,7 +37,7 @@ export interface UpdatePreferencesRequest {
      * @type {KeyGenerationMode}
      * @memberof UpdatePreferencesRequest
      */
-    'keyGenerationMode'?: KeyGenerationMode;
+    'keyGenerationMode'?: KeyGenerationMode | null;
     /**
      * Indicates whether a variation ID\'s must be shown on the ConfigCat Dashboard.
      * @type {boolean}

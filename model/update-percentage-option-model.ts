@@ -15,42 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebHookHttpMethod } from './web-hook-http-method';
-// May contain unused imports in some cases
-// @ts-ignore
-import { WebhookHeaderModel } from './webhook-header-model';
+import { UpdateValueModel } from './update-value-model';
 
 /**
  * 
  * @export
- * @interface WebHookRequest
+ * @interface UpdatePercentageOptionModel
  */
-export interface WebHookRequest {
+export interface UpdatePercentageOptionModel {
     /**
-     * The URL of the Webhook.
-     * @type {string}
-     * @memberof WebHookRequest
+     * A number between 0 and 100 that represents a randomly allocated fraction of the users.
+     * @type {number}
+     * @memberof UpdatePercentageOptionModel
      */
-    'url': string;
-    /**
-     * The HTTP body content.
-     * @type {string}
-     * @memberof WebHookRequest
-     */
-    'content'?: string | null;
+    'percentage': number;
     /**
      * 
-     * @type {WebHookHttpMethod}
-     * @memberof WebHookRequest
+     * @type {UpdateValueModel}
+     * @memberof UpdatePercentageOptionModel
      */
-    'httpMethod'?: WebHookHttpMethod;
-    /**
-     * List of HTTP headers.
-     * @type {Array<WebhookHeaderModel>}
-     * @memberof WebHookRequest
-     */
-    'webHookHeaders'?: Array<WebhookHeaderModel> | null;
+    'value': UpdateValueModel;
 }
-
-
 

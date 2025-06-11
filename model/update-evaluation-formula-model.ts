@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { TargetingRuleModel } from './targeting-rule-model';
+import { UpdateTargetingRuleModel } from './update-targeting-rule-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ValueModel } from './value-model';
+import { UpdateValueModel } from './update-value-model';
 
 /**
  * 
@@ -28,16 +28,16 @@ import { ValueModel } from './value-model';
 export interface UpdateEvaluationFormulaModel {
     /**
      * 
-     * @type {ValueModel}
+     * @type {UpdateValueModel}
      * @memberof UpdateEvaluationFormulaModel
      */
-    'defaultValue': ValueModel;
+    'defaultValue': UpdateValueModel;
     /**
      * The targeting rules of the Feature Flag or Setting.
-     * @type {Array<TargetingRuleModel>}
+     * @type {Array<UpdateTargetingRuleModel>}
      * @memberof UpdateEvaluationFormulaModel
      */
-    'targetingRules'?: Array<TargetingRuleModel> | null;
+    'targetingRules'?: Array<UpdateTargetingRuleModel> | null;
     /**
      * The user attribute used for percentage evaluation. If not set, it defaults to the `Identifier` user object attribute.
      * @type {string}

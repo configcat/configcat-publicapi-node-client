@@ -28,6 +28,9 @@ import { SettingDataModel } from './setting-data-model';
 // May contain unused imports in some cases
 // @ts-ignore
 import { SettingTagModel } from './setting-tag-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { SettingValueType } from './setting-value-type';
 
 /**
  * 
@@ -36,58 +39,58 @@ import { SettingTagModel } from './setting-tag-model';
  */
 export interface ConfigSettingValueModel {
     /**
-     * The targeting rule collection.
-     * @type {Array<RolloutRuleModel>}
-     * @memberof ConfigSettingValueModel
-     */
-    'rolloutRules'?: Array<RolloutRuleModel> | null;
-    /**
-     * The percentage rule collection.
-     * @type {Array<RolloutPercentageItemModel>}
-     * @memberof ConfigSettingValueModel
-     */
-    'rolloutPercentageItems'?: Array<RolloutPercentageItemModel> | null;
-    /**
-     * The value to serve. It must respect the setting type.
-     * @type {any}
-     * @memberof ConfigSettingValueModel
-     */
-    'value'?: any | null;
-    /**
      * 
      * @type {SettingDataModel}
      * @memberof ConfigSettingValueModel
      */
-    'setting'?: SettingDataModel;
+    'setting': SettingDataModel;
     /**
      * The last updated date and time when the Feature Flag or Setting.
      * @type {string}
      * @memberof ConfigSettingValueModel
      */
-    'updatedAt'?: string | null;
+    'updatedAt': string | null;
     /**
      * The email of the user who last updated the Feature Flag or Setting.
      * @type {string}
      * @memberof ConfigSettingValueModel
      */
-    'lastUpdaterUserEmail'?: string | null;
+    'lastUpdaterUserEmail': string | null;
     /**
      * The name of the user who last updated the Feature Flag or Setting.
      * @type {string}
      * @memberof ConfigSettingValueModel
      */
-    'lastUpdaterUserFullName'?: string | null;
+    'lastUpdaterUserFullName': string | null;
     /**
      * The integration links attached to the Feature Flag or Setting.
      * @type {Array<IntegrationLinkModel>}
      * @memberof ConfigSettingValueModel
      */
-    'integrationLinks'?: Array<IntegrationLinkModel> | null;
+    'integrationLinks': Array<IntegrationLinkModel>;
     /**
      * The tags attached to the Feature Flag or Setting.
      * @type {Array<SettingTagModel>}
      * @memberof ConfigSettingValueModel
      */
-    'settingTags'?: Array<SettingTagModel> | null;
+    'settingTags': Array<SettingTagModel>;
+    /**
+     * The targeting rule collection.
+     * @type {Array<RolloutRuleModel>}
+     * @memberof ConfigSettingValueModel
+     */
+    'rolloutRules': Array<RolloutRuleModel>;
+    /**
+     * The percentage rule collection.
+     * @type {Array<RolloutPercentageItemModel>}
+     * @memberof ConfigSettingValueModel
+     */
+    'rolloutPercentageItems': Array<RolloutPercentageItemModel>;
+    /**
+     * The value to serve. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
+     * @type {SettingValueType}
+     * @memberof ConfigSettingValueModel
+     */
+    'value': SettingValueType;
 }
 

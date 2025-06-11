@@ -28,6 +28,6 @@ export interface UpdateSettingValuesWithIdModel {
      * @type {Array<UpdateSettingValueWithSettingIdModel>}
      * @memberof UpdateSettingValuesWithIdModel
      */
-    'settingValues'?: Array<UpdateSettingValueWithSettingIdModel> | null;
+    'settingValues'?: Array<UpdateSettingValueWithSettingIdModel>;
 }
 

@@ -31,12 +31,12 @@ export interface OrganizationPermissionModel {
      * @type {OrganizationProductModel}
      * @memberof OrganizationPermissionModel
      */
-    'product'?: OrganizationProductModel;
+    'product': OrganizationProductModel;
     /**
      * 
      * @type {OrganizationPermissionGroupModel}
      * @memberof OrganizationPermissionModel
      */
-    'permissionGroup'?: OrganizationPermissionGroupModel;
+    'permissionGroup': OrganizationPermissionGroupModel;
 }
 

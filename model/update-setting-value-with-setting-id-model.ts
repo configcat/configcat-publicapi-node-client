@@ -15,10 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { RolloutPercentageItemModel } from './rollout-percentage-item-model';
+import { SettingValueType } from './setting-value-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { RolloutRuleModel } from './rollout-rule-model';
+import { UpdateRolloutPercentageItemModel } from './update-rollout-percentage-item-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { UpdateRolloutRuleModel } from './update-rollout-rule-model';
 
 /**
  * 
@@ -28,22 +31,22 @@ import { RolloutRuleModel } from './rollout-rule-model';
 export interface UpdateSettingValueWithSettingIdModel {
     /**
      * The targeting rule collection.
-     * @type {Array<RolloutRuleModel>}
+     * @type {Array<UpdateRolloutRuleModel>}
      * @memberof UpdateSettingValueWithSettingIdModel
      */
-    'rolloutRules'?: Array<RolloutRuleModel> | null;
+    'rolloutRules'?: Array<UpdateRolloutRuleModel>;
     /**
      * The percentage rule collection.
-     * @type {Array<RolloutPercentageItemModel>}
+     * @type {Array<UpdateRolloutPercentageItemModel>}
      * @memberof UpdateSettingValueWithSettingIdModel
      */
-    'rolloutPercentageItems'?: Array<RolloutPercentageItemModel> | null;
+    'rolloutPercentageItems'?: Array<UpdateRolloutPercentageItemModel>;
     /**
-     * The value to serve. It must respect the setting type.
-     * @type {any}
+     * The value to serve. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
+     * @type {SettingValueType}
      * @memberof UpdateSettingValueWithSettingIdModel
      */
-    'value'?: any | null;
+    'value': SettingValueType;
     /**
      * The id of the Setting.
      * @type {number}

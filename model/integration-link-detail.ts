@@ -37,36 +37,36 @@ export interface IntegrationLinkDetail {
      * @type {ProductModel}
      * @memberof IntegrationLinkDetail
      */
-    'product'?: ProductModel;
+    'product': ProductModel;
     /**
      * 
      * @type {ConfigModel}
      * @memberof IntegrationLinkDetail
      */
-    'config'?: ConfigModel;
+    'config': ConfigModel;
     /**
      * 
      * @type {EnvironmentModel}
      * @memberof IntegrationLinkDetail
      */
-    'environment'?: EnvironmentModel;
+    'environment': EnvironmentModel;
     /**
      * 
      * @type {SettingDataModel}
      * @memberof IntegrationLinkDetail
      */
-    'setting'?: SettingDataModel;
+    'setting': SettingDataModel;
     /**
      * 
      * @type {boolean}
      * @memberof IntegrationLinkDetail
      */
-    'readOnly'?: boolean;
+    'readOnly': boolean;
     /**
      * 
      * @type {string}
      * @memberof IntegrationLinkDetail
      */
-    'status'?: string | null;
+    'status': string;
 }
 

@@ -25,12 +25,12 @@ export interface WebhookEnvironment {
      * @type {string}
      * @memberof WebhookEnvironment
      */
-    'name'?: string | null;
+    'name': string;
     /**
      * The Environment\'s identifier.
      * @type {string}
      * @memberof WebhookEnvironment
      */
-    'environmentId'?: string;
+    'environmentId': string;
 }
 
