@@ -1,6 +1,6 @@
 {
     "name": "configcat-publicapi-node-client",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "NodeJS client for configcat-publicapi-node-client",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "bluebird": "^3.5.0",
-        "axios": "^1.6.7"
+        "axios": "^1.12.2"
     },
     "devDependencies": {
         "@types/bluebird": "^3.5.33",
