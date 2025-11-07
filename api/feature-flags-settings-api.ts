@@ -29,6 +29,8 @@ import { JsonPatchOperation } from '../model';
 import { ReplaceSettingModel } from '../model';
 // @ts-ignore
 import { SettingModel } from '../model';
+// @ts-ignore
+import { UpdatePredefinedVariationsRequest } from '../model';
 /**
  * FeatureFlagsSettingsApi - axios parameter creator
  * @export
@@ -238,6 +240,50 @@ export const FeatureFlagsSettingsApiAxiosParamCreator = function (configuration?
             };
         },
         /**
+         * This endpoint updates the predefined variations for a Feature Flag or Setting identified by the `settingId` parameter.  **Important:** You can only update a predefined variation\'s value if it is not used anywhere in your feature flags.  **Beta feature:** The feature is currently in closed beta state and cannot be used.
+         * @summary Update predefined variations (Beta)
+         * @param {number} settingId The identifier of the Setting.
+         * @param {UpdatePredefinedVariationsRequest} updatePredefinedVariationsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePredefinedVariations: async (settingId: number, updatePredefinedVariationsRequest: UpdatePredefinedVariationsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'settingId' is not null or undefined
+            assertParamExists('updatePredefinedVariations', 'settingId', settingId)
+            // verify required parameter 'updatePredefinedVariationsRequest' is not null or undefined
+            assertParamExists('updatePredefinedVariations', 'updatePredefinedVariationsRequest', updatePredefinedVariationsRequest)
+            const localVarPath = `/v1/settings/{settingId}/predefined-variations`
+                .replace(`{${"settingId"}}`, encodeURIComponent(String(settingId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updatePredefinedVariationsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the `name`, `hint` and `tags` attributes are modifiable by this endpoint. The `tags` attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change.  For example: We have the following resource. ```json {   \"settingId\": 5345,   \"key\": \"myGrandFeature\",   \"name\": \"Tihs is a naem with soem typos.\",   \"hint\": \"This flag controls my grandioso feature.\",   \"settingType\": \"boolean\",   \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     }   ] } ``` If we send an update request body as below (it changes the `name` and adds the already existing tag with the id `2`): ```json [   {     \"op\": \"replace\",      \"path\": \"/name\",      \"value\": \"This is the name without typos.\"   },    {     \"op\": \"add\",      \"path\": \"/tags/-\",      \"value\": 2   } ] ``` Only the `name` and `tags` are updated and all the other attributes remain unchanged. So we get a response like this: ```json {   \"settingId\": 5345,    \"key\": \"myGrandFeature\",    \"name\": \"This is the name without typos.\",    \"hint\": \"This flag controls my grandioso feature.\",    \"settingType\": \"boolean\",    \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     },      {       \"tagId\": 2,        \"name\": \"another tag\",        \"color\": \"koala\"     }   ] } ```
          * @summary Update Flag
          * @param {number} settingId The identifier of the Setting.
@@ -359,6 +405,20 @@ export const FeatureFlagsSettingsApiFp = function(configuration?: Configuration)
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * This endpoint updates the predefined variations for a Feature Flag or Setting identified by the `settingId` parameter.  **Important:** You can only update a predefined variation\'s value if it is not used anywhere in your feature flags.  **Beta feature:** The feature is currently in closed beta state and cannot be used.
+         * @summary Update predefined variations (Beta)
+         * @param {number} settingId The identifier of the Setting.
+         * @param {UpdatePredefinedVariationsRequest} updatePredefinedVariationsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updatePredefinedVariations(settingId: number, updatePredefinedVariationsRequest: UpdatePredefinedVariationsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SettingModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePredefinedVariations(settingId, updatePredefinedVariationsRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeatureFlagsSettingsApi.updatePredefinedVariations']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the `name`, `hint` and `tags` attributes are modifiable by this endpoint. The `tags` attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change.  For example: We have the following resource. ```json {   \"settingId\": 5345,   \"key\": \"myGrandFeature\",   \"name\": \"Tihs is a naem with soem typos.\",   \"hint\": \"This flag controls my grandioso feature.\",   \"settingType\": \"boolean\",   \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     }   ] } ``` If we send an update request body as below (it changes the `name` and adds the already existing tag with the id `2`): ```json [   {     \"op\": \"replace\",      \"path\": \"/name\",      \"value\": \"This is the name without typos.\"   },    {     \"op\": \"add\",      \"path\": \"/tags/-\",      \"value\": 2   } ] ``` Only the `name` and `tags` are updated and all the other attributes remain unchanged. So we get a response like this: ```json {   \"settingId\": 5345,    \"key\": \"myGrandFeature\",    \"name\": \"This is the name without typos.\",    \"hint\": \"This flag controls my grandioso feature.\",    \"settingType\": \"boolean\",    \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     },      {       \"tagId\": 2,        \"name\": \"another tag\",        \"color\": \"koala\"     }   ] } ```
          * @summary Update Flag
          * @param {number} settingId The identifier of the Setting.
@@ -433,6 +493,17 @@ export const FeatureFlagsSettingsApiFactory = function (configuration?: Configur
          */
         replaceSetting(settingId: number, replaceSettingModel: ReplaceSettingModel, options?: any): AxiosPromise<SettingModel> {
             return localVarFp.replaceSetting(settingId, replaceSettingModel, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint updates the predefined variations for a Feature Flag or Setting identified by the `settingId` parameter.  **Important:** You can only update a predefined variation\'s value if it is not used anywhere in your feature flags.  **Beta feature:** The feature is currently in closed beta state and cannot be used.
+         * @summary Update predefined variations (Beta)
+         * @param {number} settingId The identifier of the Setting.
+         * @param {UpdatePredefinedVariationsRequest} updatePredefinedVariationsRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePredefinedVariations(settingId: number, updatePredefinedVariationsRequest: UpdatePredefinedVariationsRequest, options?: any): AxiosPromise<SettingModel> {
+            return localVarFp.updatePredefinedVariations(settingId, updatePredefinedVariationsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint updates the metadata of a Feature Flag or Setting  with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Config.  Only the `name`, `hint` and `tags` attributes are modifiable by this endpoint. The `tags` attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change.  For example: We have the following resource. ```json {   \"settingId\": 5345,   \"key\": \"myGrandFeature\",   \"name\": \"Tihs is a naem with soem typos.\",   \"hint\": \"This flag controls my grandioso feature.\",   \"settingType\": \"boolean\",   \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     }   ] } ``` If we send an update request body as below (it changes the `name` and adds the already existing tag with the id `2`): ```json [   {     \"op\": \"replace\",      \"path\": \"/name\",      \"value\": \"This is the name without typos.\"   },    {     \"op\": \"add\",      \"path\": \"/tags/-\",      \"value\": 2   } ] ``` Only the `name` and `tags` are updated and all the other attributes remain unchanged. So we get a response like this: ```json {   \"settingId\": 5345,    \"key\": \"myGrandFeature\",    \"name\": \"This is the name without typos.\",    \"hint\": \"This flag controls my grandioso feature.\",    \"settingType\": \"boolean\",    \"tags\": [     {       \"tagId\": 0,        \"name\": \"sample tag\",        \"color\": \"whale\"     },      {       \"tagId\": 2,        \"name\": \"another tag\",        \"color\": \"koala\"     }   ] } ```
@@ -515,6 +586,19 @@ export class FeatureFlagsSettingsApi extends BaseAPI {
      */
     public replaceSetting(settingId: number, replaceSettingModel: ReplaceSettingModel, options?: RawAxiosRequestConfig) {
         return FeatureFlagsSettingsApiFp(this.configuration).replaceSetting(settingId, replaceSettingModel, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint updates the predefined variations for a Feature Flag or Setting identified by the `settingId` parameter.  **Important:** You can only update a predefined variation\'s value if it is not used anywhere in your feature flags.  **Beta feature:** The feature is currently in closed beta state and cannot be used.
+     * @summary Update predefined variations (Beta)
+     * @param {number} settingId The identifier of the Setting.
+     * @param {UpdatePredefinedVariationsRequest} updatePredefinedVariationsRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeatureFlagsSettingsApi
+     */
+    public updatePredefinedVariations(settingId: number, updatePredefinedVariationsRequest: UpdatePredefinedVariationsRequest, options?: RawAxiosRequestConfig) {
+        return FeatureFlagsSettingsApiFp(this.configuration).updatePredefinedVariations(settingId, updatePredefinedVariationsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

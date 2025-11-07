@@ -44,5 +44,11 @@ export interface ValueModel {
      * @memberof ValueModel
      */
     'doubleValue': number | null;
+    /**
+     * The served Variation\'s identifier.
+     * @type {string}
+     * @memberof ValueModel
+     */
+    'predefinedVariationId': string | null;
 }
 

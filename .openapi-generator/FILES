@@ -48,6 +48,8 @@ model/create-environment-model.ts
 model/create-integration-model.ts
 model/create-or-update-environment-access-model.ts
 model/create-permission-group-request.ts
+model/create-predefined-variation-model.ts
+model/create-predefined-variation-value-model.ts
 model/create-product-request.ts
 model/create-segment-model.ts
 model/create-setting-initial-values.ts
@@ -88,6 +90,8 @@ model/organization-permission-model.ts
 model/organization-product-model.ts
 model/percentage-option-model.ts
 model/permission-group-model.ts
+model/predefined-variation-model.ts
+model/predefined-variation-value-model.ts
 model/preferences-model.ts
 model/prerequisite-comparator.ts
 model/prerequisite-flag-condition-model.ts
@@ -107,6 +111,7 @@ model/segment-condition-model.ts
 model/segment-list-model.ts
 model/segment-model.ts
 model/setting-data-model.ts
+model/setting-data-v2-model.ts
 model/setting-formula-model.ts
 model/setting-model.ts
 model/setting-tag-model.ts
@@ -134,6 +139,9 @@ model/update-evaluation-formulas-model.ts
 model/update-member-permissions-request.ts
 model/update-percentage-option-model.ts
 model/update-permission-group-request.ts
+model/update-predefined-variation-model.ts
+model/update-predefined-variation-value-model.ts
+model/update-predefined-variations-request.ts
 model/update-preferences-request.ts
 model/update-prerequisite-flag-condition-model.ts
 model/update-product-request.ts

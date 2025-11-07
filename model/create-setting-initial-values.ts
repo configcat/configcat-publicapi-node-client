@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { CreatePredefinedVariationModel } from './create-predefined-variation-model';
+// May contain unused imports in some cases
+// @ts-ignore
 import { InitialValue } from './initial-value';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -26,6 +29,12 @@ import { SettingType } from './setting-type';
  * @interface CreateSettingInitialValues
  */
 export interface CreateSettingInitialValues {
+    /**
+     * The name of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof CreateSettingInitialValues
+     */
+    'name': string;
     /**
      * A short description for the setting, shown on the Dashboard UI.
      * @type {string}
@@ -51,17 +60,17 @@ export interface CreateSettingInitialValues {
      */
     'key': string;
     /**
-     * The name of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof CreateSettingInitialValues
-     */
-    'name': string;
-    /**
      * 
      * @type {SettingType}
      * @memberof CreateSettingInitialValues
      */
     'settingType': SettingType;
+    /**
+     * The Feature Flag or Setting\'s Variations.
+     * @type {Array<CreatePredefinedVariationModel>}
+     * @memberof CreateSettingInitialValues
+     */
+    'predefinedVariations'?: Array<CreatePredefinedVariationModel> | null;
     /**
      * Optional, initial value of the Feature Flag or Setting in the given Environments. Only one of the SettingIdToInitFrom or the InitialValues properties can be set.
      * @type {Array<InitialValue>}

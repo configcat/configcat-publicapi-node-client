@@ -27,7 +27,7 @@ import { FeatureFlagLimitations } from './feature-flag-limitations';
 import { IntegrationLinkModel } from './integration-link-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingDataModel } from './setting-data-model';
+import { SettingDataV2Model } from './setting-data-v2-model';
 // May contain unused imports in some cases
 // @ts-ignore
 import { SettingTagModel } from './setting-tag-model';
@@ -64,10 +64,10 @@ export interface SettingFormulaModel {
     'targetingRules': Array<TargetingRuleModel>;
     /**
      * 
-     * @type {SettingDataModel}
+     * @type {SettingDataV2Model}
      * @memberof SettingFormulaModel
      */
-    'setting': SettingDataModel;
+    'setting': SettingDataV2Model;
     /**
      * The last updated date and time when the Feature Flag or Setting.
      * @type {string}

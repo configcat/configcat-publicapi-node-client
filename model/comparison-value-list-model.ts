@@ -31,6 +31,6 @@ export interface ComparisonValueListModel {
      * @type {string}
      * @memberof ComparisonValueListModel
      */
-    'hint'?: string | null;
+    'hint': string | null;
 }
 

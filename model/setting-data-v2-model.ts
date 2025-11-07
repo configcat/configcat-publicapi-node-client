@@ -15,91 +15,84 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { IntegrationLinkModel } from './integration-link-model';
+import { PredefinedVariationModel } from './predefined-variation-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingDataV2Model } from './setting-data-v2-model';
-// May contain unused imports in some cases
-// @ts-ignore
-import { SettingTagModel } from './setting-tag-model';
-// May contain unused imports in some cases
-// @ts-ignore
-import { TargetingRuleModel } from './targeting-rule-model';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ValueModel } from './value-model';
+import { SettingType } from './setting-type';
 
 /**
- * 
+ * Metadata of a Feature Flag or Setting.
  * @export
- * @interface ConfigSettingFormulaModel
+ * @interface SettingDataV2Model
  */
-export interface ConfigSettingFormulaModel {
+export interface SettingDataV2Model {
+    /**
+     * Identifier of the Feature Flag or Setting.
+     * @type {number}
+     * @memberof SettingDataV2Model
+     */
+    'settingId': number;
+    /**
+     * Key of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingDataV2Model
+     */
+    'key': string;
+    /**
+     * Name of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingDataV2Model
+     */
+    'name': string;
+    /**
+     * Description of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingDataV2Model
+     */
+    'hint': string | null;
     /**
      * 
-     * @type {string}
-     * @memberof ConfigSettingFormulaModel
+     * @type {SettingType}
+     * @memberof SettingDataV2Model
      */
-    'lastVersionId': string;
+    'settingType': SettingType;
+    /**
+     * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
+     * @type {number}
+     * @memberof SettingDataV2Model
+     */
+    'order': number;
+    /**
+     * The creation time of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingDataV2Model
+     */
+    'createdAt': string | null;
+    /**
+     * The user\'s email address who created the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingDataV2Model
+     */
+    'creatorEmail': string | null;
+    /**
+     * The user\'s name who created the Feature Flag or Setting.
+     * @type {string}
+     * @memberof SettingDataV2Model
+     */
+    'creatorFullName': string | null;
+    /**
+     * A collection of Variations for a Feature Flag or Setting.
+     * @type {Array<PredefinedVariationModel>}
+     * @memberof SettingDataV2Model
+     */
+    'predefinedVariations': Array<PredefinedVariationModel>;
     /**
      * 
-     * @type {ValueModel}
-     * @memberof ConfigSettingFormulaModel
+     * @type {boolean}
+     * @memberof SettingDataV2Model
      */
-    'defaultValue': ValueModel;
-    /**
-     * The targeting rules of the Feature Flag or Setting.
-     * @type {Array<TargetingRuleModel>}
-     * @memberof ConfigSettingFormulaModel
-     */
-    'targetingRules': Array<TargetingRuleModel>;
-    /**
-     * 
-     * @type {SettingDataV2Model}
-     * @memberof ConfigSettingFormulaModel
-     */
-    'setting': SettingDataV2Model;
-    /**
-     * The last updated date and time when the Feature Flag or Setting.
-     * @type {string}
-     * @memberof ConfigSettingFormulaModel
-     */
-    'updatedAt': string | null;
-    /**
-     * The user attribute used for percentage evaluation. If not set, it defaults to the `Identifier` user object attribute.
-     * @type {string}
-     * @memberof ConfigSettingFormulaModel
-     */
-    'percentageEvaluationAttribute': string | null;
-    /**
-     * The email of the user who last updated the Feature Flag or Setting.
-     * @type {string}
-     * @memberof ConfigSettingFormulaModel
-     */
-    'lastUpdaterUserEmail': string | null;
-    /**
-     * The name of the user who last updated the Feature Flag or Setting.
-     * @type {string}
-     * @memberof ConfigSettingFormulaModel
-     */
-    'lastUpdaterUserFullName': string | null;
-    /**
-     * The integration links attached to the Feature Flag or Setting.
-     * @type {Array<IntegrationLinkModel>}
-     * @memberof ConfigSettingFormulaModel
-     */
-    'integrationLinks': Array<IntegrationLinkModel>;
-    /**
-     * The tags attached to the Feature Flag or Setting.
-     * @type {Array<SettingTagModel>}
-     * @memberof ConfigSettingFormulaModel
-     */
-    'settingTags': Array<SettingTagModel>;
-    /**
-     * List of Feature Flag and Setting IDs where the actual Feature Flag or Setting is prerequisite.
-     * @type {Array<number>}
-     * @memberof ConfigSettingFormulaModel
-     */
-    'settingIdsWherePrerequisite': Array<number>;
+    'isWatching': boolean;
 }
+
+
 

@@ -47,6 +47,9 @@ export const AuditLogType = {
     SettingChanged: 'settingChanged',
     SettingDeleted: 'settingDeleted',
     SettingsReordered: 'settingsReordered',
+    PredefinedVariationsChanged: 'predefinedVariationsChanged',
+    SettingConvertedToPredefinedVariations: 'settingConvertedToPredefinedVariations',
+    SettingConvertedToCustomValues: 'settingConvertedToCustomValues',
     SettingValueChanged: 'settingValueChanged',
     WebHookCreated: 'webHookCreated',
     WebHookChanged: 'webHookChanged',
@@ -112,7 +115,15 @@ export const AuditLogType = {
     AwsDisconnected: 'awsDisconnected',
     UserEnabled: 'userEnabled',
     SyncUserDeleted: 'syncUserDeleted',
-    SyncGroupDeleted: 'syncGroupDeleted'
+    SyncGroupDeleted: 'syncGroupDeleted',
+    ProxyConfigurationCreated: 'proxyConfigurationCreated',
+    ProxyConfigurationChanged: 'proxyConfigurationChanged',
+    ProxyConfigurationDeleted: 'proxyConfigurationDeleted',
+    ProxyConfigurationSecretRegenerated: 'proxyConfigurationSecretRegenerated',
+    ProxyNotificationSettingsUpdated: 'proxyNotificationSettingsUpdated',
+    ProxyNotificationSettingsDeleted: 'proxyNotificationSettingsDeleted',
+    ProxyNotificationSigningKeyAdded: 'proxyNotificationSigningKeyAdded',
+    ProxyNotificationSigningKeyDeleted: 'proxyNotificationSigningKeyDeleted'
 } as const;
 
 export type AuditLogType = typeof AuditLogType[keyof typeof AuditLogType];
