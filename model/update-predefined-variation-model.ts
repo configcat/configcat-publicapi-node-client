@@ -15,31 +15,37 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ComparisonValueListModel } from './comparison-value-list-model';
+import { UpdatePredefinedVariationValueModel } from './update-predefined-variation-value-model';
 
 /**
- * The value that the user object\'s attribute is compared to.
+ * A Feature Flag or Predefined Variation.
  * @export
- * @interface ComparisonValueModel
+ * @interface UpdatePredefinedVariationModel
  */
-export interface ComparisonValueModel {
+export interface UpdatePredefinedVariationModel {
     /**
-     * The string representation of the comparison value.
+     * 
+     * @type {UpdatePredefinedVariationValueModel}
+     * @memberof UpdatePredefinedVariationModel
+     */
+    'value': UpdatePredefinedVariationValueModel;
+    /**
+     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      * @type {string}
-     * @memberof ComparisonValueModel
+     * @memberof UpdatePredefinedVariationModel
      */
-    'stringValue': string | null;
+    'name'?: string | null;
     /**
-     * The number representation of the comparison value.
-     * @type {number}
-     * @memberof ComparisonValueModel
+     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
+     * @type {string}
+     * @memberof UpdatePredefinedVariationModel
      */
-    'doubleValue': number | null;
+    'hint'?: string | null;
     /**
-     * The list representation of the comparison value.
-     * @type {Array<ComparisonValueListModel>}
-     * @memberof ComparisonValueModel
+     * The Feature Flag or Predefined Variation\'s identifier to update. Omit the value if you want to add a new predefined variation.
+     * @type {string}
+     * @memberof UpdatePredefinedVariationModel
      */
-    'listValue': Array<ComparisonValueListModel> | null;
+    'predefinedVariationId'?: string | null;
 }
 

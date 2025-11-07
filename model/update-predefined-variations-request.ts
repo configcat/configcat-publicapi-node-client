@@ -15,31 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ComparisonValueListModel } from './comparison-value-list-model';
+import { UpdatePredefinedVariationModel } from './update-predefined-variation-model';
 
 /**
- * The value that the user object\'s attribute is compared to.
+ * 
  * @export
- * @interface ComparisonValueModel
+ * @interface UpdatePredefinedVariationsRequest
  */
-export interface ComparisonValueModel {
+export interface UpdatePredefinedVariationsRequest {
     /**
-     * The string representation of the comparison value.
-     * @type {string}
-     * @memberof ComparisonValueModel
+     * A collection of Feature Flag or Predefined Variations.
+     * @type {Array<UpdatePredefinedVariationModel>}
+     * @memberof UpdatePredefinedVariationsRequest
      */
-    'stringValue': string | null;
-    /**
-     * The number representation of the comparison value.
-     * @type {number}
-     * @memberof ComparisonValueModel
-     */
-    'doubleValue': number | null;
-    /**
-     * The list representation of the comparison value.
-     * @type {Array<ComparisonValueListModel>}
-     * @memberof ComparisonValueModel
-     */
-    'listValue': Array<ComparisonValueListModel> | null;
+    'predefinedVariations': Array<UpdatePredefinedVariationModel>;
 }
 

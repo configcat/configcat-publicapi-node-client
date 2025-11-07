@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { PredefinedVariationModel } from './predefined-variation-model';
+// May contain unused imports in some cases
+// @ts-ignore
 import { SettingType } from './setting-type';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -86,6 +89,12 @@ export interface SettingModel {
      * @memberof SettingModel
      */
     'tags': Array<TagModel>;
+    /**
+     * The Feature Flag or Setting\'s Variations.
+     * @type {Array<PredefinedVariationModel>}
+     * @memberof SettingModel
+     */
+    'predefinedVariations': Array<PredefinedVariationModel>;
 }
 
 

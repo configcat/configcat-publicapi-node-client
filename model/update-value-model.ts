@@ -44,5 +44,11 @@ export interface UpdateValueModel {
      * @memberof UpdateValueModel
      */
     'doubleValue'?: number | null;
+    /**
+     * The served Variation\'s identifier.
+     * @type {string}
+     * @memberof UpdateValueModel
+     */
+    'predefinedVariationId'?: string | null;
 }
 

@@ -15,31 +15,37 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ComparisonValueListModel } from './comparison-value-list-model';
+import { PredefinedVariationValueModel } from './predefined-variation-value-model';
 
 /**
- * The value that the user object\'s attribute is compared to.
+ * A Feature Flag or Predefined Variation.
  * @export
- * @interface ComparisonValueModel
+ * @interface PredefinedVariationModel
  */
-export interface ComparisonValueModel {
+export interface PredefinedVariationModel {
     /**
-     * The string representation of the comparison value.
+     * 
+     * @type {PredefinedVariationValueModel}
+     * @memberof PredefinedVariationModel
+     */
+    'value': PredefinedVariationValueModel;
+    /**
+     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      * @type {string}
-     * @memberof ComparisonValueModel
+     * @memberof PredefinedVariationModel
      */
-    'stringValue': string | null;
+    'name': string | null;
     /**
-     * The number representation of the comparison value.
-     * @type {number}
-     * @memberof ComparisonValueModel
+     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
+     * @type {string}
+     * @memberof PredefinedVariationModel
      */
-    'doubleValue': number | null;
+    'hint': string | null;
     /**
-     * The list representation of the comparison value.
-     * @type {Array<ComparisonValueListModel>}
-     * @memberof ComparisonValueModel
+     * The Feature Flag or Predefined Variation\'s identifier.
+     * @type {string}
+     * @memberof PredefinedVariationModel
      */
-    'listValue': Array<ComparisonValueListModel> | null;
+    'predefinedVariationId': string;
 }
 

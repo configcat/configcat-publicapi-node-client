@@ -21,6 +21,12 @@
  */
 export interface ReplaceSettingModel {
     /**
+     * The name of the Feature Flag or Setting.
+     * @type {string}
+     * @memberof ReplaceSettingModel
+     */
+    'name': string;
+    /**
      * A short description for the setting, shown on the Dashboard UI.
      * @type {string}
      * @memberof ReplaceSettingModel
@@ -38,11 +44,5 @@ export interface ReplaceSettingModel {
      * @memberof ReplaceSettingModel
      */
     'order'?: number | null;
-    /**
-     * The name of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof ReplaceSettingModel
-     */
-    'name'?: string | null;
 }
 

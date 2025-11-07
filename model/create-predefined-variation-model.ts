@@ -15,31 +15,31 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ComparisonValueListModel } from './comparison-value-list-model';
+import { CreatePredefinedVariationValueModel } from './create-predefined-variation-value-model';
 
 /**
- * The value that the user object\'s attribute is compared to.
+ * A Feature Flag or Predefined Variation.
  * @export
- * @interface ComparisonValueModel
+ * @interface CreatePredefinedVariationModel
  */
-export interface ComparisonValueModel {
+export interface CreatePredefinedVariationModel {
     /**
-     * The string representation of the comparison value.
+     * 
+     * @type {CreatePredefinedVariationValueModel}
+     * @memberof CreatePredefinedVariationModel
+     */
+    'value': CreatePredefinedVariationValueModel;
+    /**
+     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      * @type {string}
-     * @memberof ComparisonValueModel
+     * @memberof CreatePredefinedVariationModel
      */
-    'stringValue': string | null;
+    'name'?: string | null;
     /**
-     * The number representation of the comparison value.
-     * @type {number}
-     * @memberof ComparisonValueModel
+     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
+     * @type {string}
+     * @memberof CreatePredefinedVariationModel
      */
-    'doubleValue': number | null;
-    /**
-     * The list representation of the comparison value.
-     * @type {Array<ComparisonValueListModel>}
-     * @memberof ComparisonValueModel
-     */
-    'listValue': Array<ComparisonValueListModel> | null;
+    'hint'?: string | null;
 }
 

@@ -13,33 +13,36 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { ComparisonValueListModel } from './comparison-value-list-model';
 
 /**
- * The value that the user object\'s attribute is compared to.
+ * Represents the value of a Feature Flag or Predefined Variation.
  * @export
- * @interface ComparisonValueModel
+ * @interface CreatePredefinedVariationValueModel
  */
-export interface ComparisonValueModel {
+export interface CreatePredefinedVariationValueModel {
     /**
-     * The string representation of the comparison value.
+     * The served value in case of a boolean Feature Flag.
+     * @type {boolean}
+     * @memberof CreatePredefinedVariationValueModel
+     */
+    'boolValue'?: boolean | null;
+    /**
+     * The served value in case of a text Setting.
      * @type {string}
-     * @memberof ComparisonValueModel
+     * @memberof CreatePredefinedVariationValueModel
      */
-    'stringValue': string | null;
+    'stringValue'?: string | null;
     /**
-     * The number representation of the comparison value.
+     * The served value in case of a whole number Setting.
      * @type {number}
-     * @memberof ComparisonValueModel
+     * @memberof CreatePredefinedVariationValueModel
      */
-    'doubleValue': number | null;
+    'intValue'?: number | null;
     /**
-     * The list representation of the comparison value.
-     * @type {Array<ComparisonValueListModel>}
-     * @memberof ComparisonValueModel
+     * The served value in case of a decimal number Setting.
+     * @type {number}
+     * @memberof CreatePredefinedVariationValueModel
      */
-    'listValue': Array<ComparisonValueListModel> | null;
+    'doubleValue'?: number | null;
 }
 
