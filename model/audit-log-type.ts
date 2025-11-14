@@ -49,7 +49,7 @@ export const AuditLogType = {
     SettingsReordered: 'settingsReordered',
     PredefinedVariationsChanged: 'predefinedVariationsChanged',
     SettingConvertedToPredefinedVariations: 'settingConvertedToPredefinedVariations',
-    SettingConvertedToCustomValues: 'settingConvertedToCustomValues',
+    SettingConvertedToFreeFormValues: 'settingConvertedToFreeFormValues',
     SettingValueChanged: 'settingValueChanged',
     WebHookCreated: 'webHookCreated',
     WebHookChanged: 'webHookChanged',

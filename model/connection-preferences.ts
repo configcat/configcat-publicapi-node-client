@@ -13,27 +13,27 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { WebhookNotification } from './webhook-notification';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/integrations-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/proxy-profiles-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
-export * from './api/webhooks-api';
-export * from './api/zombie-stale-flags-api';
+/**
+ * The connection preferences for the proxy profile, including SDK poll interval and webhook proxy URL.
+ * @export
+ * @interface ConnectionPreferences
+ */
+export interface ConnectionPreferences {
+    /**
+     * The SDK poll interval in seconds that determines how often SDKs should fetch config JSON updates.
+     * @type {number}
+     * @memberof ConnectionPreferences
+     */
+    'sdkPollInterval': number;
+    /**
+     * 
+     * @type {WebhookNotification}
+     * @memberof ConnectionPreferences
+     */
+    'webhookNotification': WebhookNotification | null;
+}
 

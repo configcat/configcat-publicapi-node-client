@@ -13,27 +13,59 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { SelectionRuleKind } from './selection-rule-kind';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/integrations-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/proxy-profiles-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
-export * from './api/webhooks-api';
-export * from './api/zombie-stale-flags-api';
+/**
+ * 
+ * @export
+ * @interface ProxyProfileSelectionRule
+ */
+export interface ProxyProfileSelectionRule {
+    /**
+     * 
+     * @type {SelectionRuleKind}
+     * @memberof ProxyProfileSelectionRule
+     */
+    'kind': SelectionRuleKind;
+    /**
+     * Defines the filter for matching Products by their unique identifier.
+     * @type {string}
+     * @memberof ProxyProfileSelectionRule
+     */
+    'productIdFilter': string | null;
+    /**
+     * Defines the filter for matching Configs by their unique identifier.
+     * @type {string}
+     * @memberof ProxyProfileSelectionRule
+     */
+    'configIdFilter': string | null;
+    /**
+     * Defines the filter for matching Environments by their unique identifier.
+     * @type {string}
+     * @memberof ProxyProfileSelectionRule
+     */
+    'environmentIdFilter': string | null;
+    /**
+     * Specifies a filter to match Product names in the proxy profile selection rule. It accepts wildcards (*).
+     * @type {string}
+     * @memberof ProxyProfileSelectionRule
+     */
+    'productNameMatchFilter': string | null;
+    /**
+     * Specifies a filter to match Config names in the proxy profile selection rule. It accepts wildcards (*).
+     * @type {string}
+     * @memberof ProxyProfileSelectionRule
+     */
+    'configNameMatchFilter': string | null;
+    /**
+     * Specifies a filter to match Environment names in the proxy profile selection rule. It accepts wildcards (*).
+     * @type {string}
+     * @memberof ProxyProfileSelectionRule
+     */
+    'environmentNameMatchFilter': string | null;
+}
+
+
 

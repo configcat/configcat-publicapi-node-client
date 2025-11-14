@@ -13,27 +13,42 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { CreateOrUpdateConnectionPreferences } from './create-or-update-connection-preferences';
+// May contain unused imports in some cases
+// @ts-ignore
+import { UpdateProxyProfileSelectionRule } from './update-proxy-profile-selection-rule';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/integrations-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/proxy-profiles-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
-export * from './api/webhooks-api';
-export * from './api/zombie-stale-flags-api';
+/**
+ * 
+ * @export
+ * @interface CreateOrUpdateProxyProfileRequest
+ */
+export interface CreateOrUpdateProxyProfileRequest {
+    /**
+     * The name of the proxy profile.
+     * @type {string}
+     * @memberof CreateOrUpdateProxyProfileRequest
+     */
+    'name': string;
+    /**
+     * The description of the proxy profile.
+     * @type {string}
+     * @memberof CreateOrUpdateProxyProfileRequest
+     */
+    'description'?: string | null;
+    /**
+     * 
+     * @type {CreateOrUpdateConnectionPreferences}
+     * @memberof CreateOrUpdateProxyProfileRequest
+     */
+    'connectionPreferences'?: CreateOrUpdateConnectionPreferences | null;
+    /**
+     * A collection of selection rules that determine the SDK keys applicable for a proxy profile.
+     * @type {Array<UpdateProxyProfileSelectionRule>}
+     * @memberof CreateOrUpdateProxyProfileRequest
+     */
+    'sdkKeySelectionRules'?: Array<UpdateProxyProfileSelectionRule> | null;
+}
 
