@@ -13,27 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ProxyProfileSdkKeyRequestItem } from './proxy-profile-sdk-key-request-item';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/integrations-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/proxy-profiles-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
-export * from './api/webhooks-api';
-export * from './api/zombie-stale-flags-api';
+/**
+ * 
+ * @export
+ * @interface ProxyProfileSdkKeysRequest
+ */
+export interface ProxyProfileSdkKeysRequest {
+    /**
+     * The list of Config / Environment pairs. By only setting a `configId` means all Environments of that Config will be included. Similarly, by only setting an `environmentId` means all Configs with that Environment will be included.
+     * @type {Array<ProxyProfileSdkKeyRequestItem>}
+     * @memberof ProxyProfileSdkKeysRequest
+     */
+    'items': Array<ProxyProfileSdkKeyRequestItem>;
+}
 

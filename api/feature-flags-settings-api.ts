@@ -26,6 +26,8 @@ import { CreateSettingInitialValues } from '../model';
 // @ts-ignore
 import { JsonPatchOperation } from '../model';
 // @ts-ignore
+import { PredefinedVariationsModel } from '../model';
+// @ts-ignore
 import { ReplaceSettingModel } from '../model';
 // @ts-ignore
 import { SettingModel } from '../model';
@@ -412,7 +414,7 @@ export const FeatureFlagsSettingsApiFp = function(configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updatePredefinedVariations(settingId: number, updatePredefinedVariationsRequest: UpdatePredefinedVariationsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SettingModel>> {
+        async updatePredefinedVariations(settingId: number, updatePredefinedVariationsRequest: UpdatePredefinedVariationsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PredefinedVariationsModel>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updatePredefinedVariations(settingId, updatePredefinedVariationsRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeatureFlagsSettingsApi.updatePredefinedVariations']?.[localVarOperationServerIndex]?.url;
@@ -502,7 +504,7 @@ export const FeatureFlagsSettingsApiFactory = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePredefinedVariations(settingId: number, updatePredefinedVariationsRequest: UpdatePredefinedVariationsRequest, options?: any): AxiosPromise<SettingModel> {
+        updatePredefinedVariations(settingId: number, updatePredefinedVariationsRequest: UpdatePredefinedVariationsRequest, options?: any): AxiosPromise<PredefinedVariationsModel> {
             return localVarFp.updatePredefinedVariations(settingId, updatePredefinedVariationsRequest, options).then((request) => request(axios, basePath));
         },
         /**

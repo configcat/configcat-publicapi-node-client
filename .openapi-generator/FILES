@@ -17,6 +17,7 @@ api/members-api.ts
 api/organizations-api.ts
 api/permission-groups-api.ts
 api/products-api.ts
+api/proxy-profiles-api.ts
 api/sdkkeys-api.ts
 api/segments-api.ts
 api/tags-api.ts
@@ -43,10 +44,14 @@ model/config-setting-formulas-model.ts
 model/config-setting-value-model.ts
 model/config-setting-values-model.ts
 model/connect-request.ts
+model/connection-preferences.ts
 model/create-config-request.ts
 model/create-environment-model.ts
 model/create-integration-model.ts
+model/create-or-update-connection-preferences.ts
 model/create-or-update-environment-access-model.ts
+model/create-or-update-proxy-profile-request.ts
+model/create-or-update-webhook-notification.ts
 model/create-permission-group-request.ts
 model/create-predefined-variation-model.ts
 model/create-predefined-variation-value-model.ts
@@ -92,10 +97,19 @@ model/percentage-option-model.ts
 model/permission-group-model.ts
 model/predefined-variation-model.ts
 model/predefined-variation-value-model.ts
+model/predefined-variations-model.ts
 model/preferences-model.ts
 model/prerequisite-comparator.ts
 model/prerequisite-flag-condition-model.ts
 model/product-model.ts
+model/proxy-profile-list-model.ts
+model/proxy-profile-model.ts
+model/proxy-profile-sdk-key-item.ts
+model/proxy-profile-sdk-key-request-item.ts
+model/proxy-profile-sdk-keys-list-model.ts
+model/proxy-profile-sdk-keys-request.ts
+model/proxy-profile-secret-model.ts
+model/proxy-profile-selection-rule.ts
 model/reason-required-environment-model.ts
 model/reference-line-model.ts
 model/reference-line-request.ts
@@ -110,6 +124,7 @@ model/segment-comparator.ts
 model/segment-condition-model.ts
 model/segment-list-model.ts
 model/segment-model.ts
+model/selection-rule-kind.ts
 model/setting-data-model.ts
 model/setting-data-v2-model.ts
 model/setting-formula-model.ts
@@ -145,6 +160,7 @@ model/update-predefined-variations-request.ts
 model/update-preferences-request.ts
 model/update-prerequisite-flag-condition-model.ts
 model/update-product-request.ts
+model/update-proxy-profile-selection-rule.ts
 model/update-reason-required-environment-model.ts
 model/update-rollout-percentage-item-model.ts
 model/update-rollout-rule-model.ts
@@ -167,5 +183,6 @@ model/webhook-config.ts
 model/webhook-environment.ts
 model/webhook-header-model.ts
 model/webhook-header-response-model.ts
+model/webhook-notification.ts
 model/webhook-response-model.ts
 model/webhook-signing-keys-model.ts

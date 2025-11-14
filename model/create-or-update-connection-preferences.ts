@@ -13,27 +13,27 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { CreateOrUpdateWebhookNotification } from './create-or-update-webhook-notification';
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/integrations-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/proxy-profiles-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
-export * from './api/webhooks-api';
-export * from './api/zombie-stale-flags-api';
+/**
+ * The preferences related to a connection, including polling intervals and webhook proxy configurations.
+ * @export
+ * @interface CreateOrUpdateConnectionPreferences
+ */
+export interface CreateOrUpdateConnectionPreferences {
+    /**
+     * The SDK poll interval in seconds. If not specified, a default value (60) will be used.
+     * @type {number}
+     * @memberof CreateOrUpdateConnectionPreferences
+     */
+    'sdkPollInterval'?: number | null;
+    /**
+     * 
+     * @type {CreateOrUpdateWebhookNotification}
+     * @memberof CreateOrUpdateConnectionPreferences
+     */
+    'webhookNotification'?: CreateOrUpdateWebhookNotification | null;
+}
 

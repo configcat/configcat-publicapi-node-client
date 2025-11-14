@@ -14,26 +14,29 @@
 
 
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/integrations-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/proxy-profiles-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
-export * from './api/webhooks-api';
-export * from './api/zombie-stale-flags-api';
+/**
+ * The webhook notification settings, including the proxy URL and signing keys.
+ * @export
+ * @interface WebhookNotification
+ */
+export interface WebhookNotification {
+    /**
+     * The webhook proxy URL for receiving config JSON change notifications.
+     * @type {string}
+     * @memberof WebhookNotification
+     */
+    'webhookProxyUrl': string;
+    /**
+     * The primary signing key used for verifying the authenticity of webhook requests.
+     * @type {string}
+     * @memberof WebhookNotification
+     */
+    'signingKey1': string;
+    /**
+     * The secondary signing key used for verifying the authenticity of webhook requests.
+     * @type {string}
+     * @memberof WebhookNotification
+     */
+    'signingKey2': string | null;
+}
 

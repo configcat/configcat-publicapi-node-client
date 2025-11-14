@@ -14,26 +14,41 @@
 
 
 
-export * from './api/audit-logs-api';
-export * from './api/code-references-api';
-export * from './api/configs-api';
-export * from './api/environments-api';
-export * from './api/feature-flag-setting-values-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-api';
-export * from './api/feature-flag-setting-values-using-sdkkey-v2-api';
-export * from './api/feature-flag-setting-values-v2-api';
-export * from './api/feature-flags-settings-api';
-export * from './api/integration-links-api';
-export * from './api/integrations-api';
-export * from './api/me-api';
-export * from './api/members-api';
-export * from './api/organizations-api';
-export * from './api/permission-groups-api';
-export * from './api/products-api';
-export * from './api/proxy-profiles-api';
-export * from './api/sdkkeys-api';
-export * from './api/segments-api';
-export * from './api/tags-api';
-export * from './api/webhooks-api';
-export * from './api/zombie-stale-flags-api';
+/**
+ * 
+ * @export
+ * @interface ProxyProfileSdkKeyItem
+ */
+export interface ProxyProfileSdkKeyItem {
+    /**
+     * The primary SDK Key of the Config / Environment pair selected for the Proxy Profile.
+     * @type {string}
+     * @memberof ProxyProfileSdkKeyItem
+     */
+    'primarySdkKey': string;
+    /**
+     * The secondary SDK Key of the Config / Environment pair selected for the Proxy Profile.
+     * @type {string}
+     * @memberof ProxyProfileSdkKeyItem
+     */
+    'secondarySdkKey': string | null;
+    /**
+     * The SDK ID identifying the Config / Environment pair selected for the Proxy Profile.
+     * @type {string}
+     * @memberof ProxyProfileSdkKeyItem
+     */
+    'sdkId': string;
+    /**
+     * The identifier of the Config associated with the SDK key.
+     * @type {string}
+     * @memberof ProxyProfileSdkKeyItem
+     */
+    'configId': string;
+    /**
+     * The identifier of the Environment associated with the SDK key.
+     * @type {string}
+     * @memberof ProxyProfileSdkKeyItem
+     */
+    'environmentId': string;
+}
 
