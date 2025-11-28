@@ -28,6 +28,8 @@ import { JsonPatchOperation } from '../model';
 // @ts-ignore
 import { PredefinedVariationsModel } from '../model';
 // @ts-ignore
+import { PredefinedVariationsWithUsagesModel } from '../model';
+// @ts-ignore
 import { ReplaceSettingModel } from '../model';
 // @ts-ignore
 import { SettingModel } from '../model';
@@ -103,6 +105,44 @@ export const FeatureFlagsSettingsApiAxiosParamCreator = function (configuration?
             }
 
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * This endpoint returns the predefined variations along with their usages in the Environments for a Feature Flag or Setting identified by the `settingId` parameter.  **Beta feature:** The feature is currently in closed beta state and cannot be used.
+         * @summary Get predefined variations (Beta)
+         * @param {number} settingId The identifier of the Setting.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPredefinedVariations: async (settingId: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'settingId' is not null or undefined
+            assertParamExists('getPredefinedVariations', 'settingId', settingId)
+            const localVarPath = `/v1/settings/{settingId}/predefined-variations`
+                .replace(`{${"settingId"}}`, encodeURIComponent(String(settingId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -367,6 +407,19 @@ export const FeatureFlagsSettingsApiFp = function(configuration?: Configuration)
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * This endpoint returns the predefined variations along with their usages in the Environments for a Feature Flag or Setting identified by the `settingId` parameter.  **Beta feature:** The feature is currently in closed beta state and cannot be used.
+         * @summary Get predefined variations (Beta)
+         * @param {number} settingId The identifier of the Setting.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPredefinedVariations(settingId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PredefinedVariationsWithUsagesModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPredefinedVariations(settingId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FeatureFlagsSettingsApi.getPredefinedVariations']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * This endpoint returns the metadata attributes of a Feature Flag or Setting  identified by the `settingId` parameter.
          * @summary Get Flag
          * @param {number} settingId The identifier of the Setting.
@@ -466,6 +519,16 @@ export const FeatureFlagsSettingsApiFactory = function (configuration?: Configur
             return localVarFp.deleteSetting(settingId, options).then((request) => request(axios, basePath));
         },
         /**
+         * This endpoint returns the predefined variations along with their usages in the Environments for a Feature Flag or Setting identified by the `settingId` parameter.  **Beta feature:** The feature is currently in closed beta state and cannot be used.
+         * @summary Get predefined variations (Beta)
+         * @param {number} settingId The identifier of the Setting.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPredefinedVariations(settingId: number, options?: any): AxiosPromise<PredefinedVariationsWithUsagesModel> {
+            return localVarFp.getPredefinedVariations(settingId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * This endpoint returns the metadata attributes of a Feature Flag or Setting  identified by the `settingId` parameter.
          * @summary Get Flag
          * @param {number} settingId The identifier of the Setting.
@@ -551,6 +614,18 @@ export class FeatureFlagsSettingsApi extends BaseAPI {
      */
     public deleteSetting(settingId: number, options?: RawAxiosRequestConfig) {
         return FeatureFlagsSettingsApiFp(this.configuration).deleteSetting(settingId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint returns the predefined variations along with their usages in the Environments for a Feature Flag or Setting identified by the `settingId` parameter.  **Beta feature:** The feature is currently in closed beta state and cannot be used.
+     * @summary Get predefined variations (Beta)
+     * @param {number} settingId The identifier of the Setting.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FeatureFlagsSettingsApi
+     */
+    public getPredefinedVariations(settingId: number, options?: RawAxiosRequestConfig) {
+        return FeatureFlagsSettingsApiFp(this.configuration).getPredefinedVariations(settingId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

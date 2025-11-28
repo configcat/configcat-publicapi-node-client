@@ -13,59 +13,60 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { EnvironmentAccessType } from './environment-access-type';
 
 /**
  * 
  * @export
- * @interface EnvironmentAccessModel
+ * @interface OrganizationLimitations
  */
-export interface EnvironmentAccessModel {
+export interface OrganizationLimitations {
     /**
-     * Identifier of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'environmentId': string;
-    /**
-     * Name of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'name': string;
-    /**
-     * Color of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'color': string | null;
-    /**
-     * Description of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'description': string | null;
-    /**
-     * The order of the Environment represented on the ConfigCat Dashboard.
+     * Maximum number of percentage options a Feature Flag or Setting can have within a targeting rule.
      * @type {number}
-     * @memberof EnvironmentAccessModel
+     * @memberof OrganizationLimitations
      */
-    'order': number;
+    'maxPercentageOptionCount': number;
     /**
-     * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
-     * @type {boolean}
-     * @memberof EnvironmentAccessModel
+     * Maximum number of targeting rules a Feature Flag or Setting can have.
+     * @type {number}
+     * @memberof OrganizationLimitations
      */
-    'reasonRequired': boolean;
+    'maxTargetingRuleCount': number;
     /**
-     * 
-     * @type {EnvironmentAccessType}
-     * @memberof EnvironmentAccessModel
+     * Maximum length of a text comparison value.
+     * @type {number}
+     * @memberof OrganizationLimitations
      */
-    'environmentAccessType': EnvironmentAccessType;
+    'maxComparisonValueLength': number;
+    /**
+     * Maximum item count of a list comparison value.
+     * @type {number}
+     * @memberof OrganizationLimitations
+     */
+    'maxComparisonValueListLength': number;
+    /**
+     * Maximum length of a list comparison value\'s item.
+     * @type {number}
+     * @memberof OrganizationLimitations
+     */
+    'maxComparisonValueListItemLength': number;
+    /**
+     * Maximum length of a text Setting\'s value.
+     * @type {number}
+     * @memberof OrganizationLimitations
+     */
+    'maxStringFlagValueLength': number;
+    /**
+     * Maximum number of `AND` conditions a Feature Flag or Setting can have within a targeting rule.
+     * @type {number}
+     * @memberof OrganizationLimitations
+     */
+    'maxConditionPerTargetingRuleCount': number;
+    /**
+     * The maximum number of predefined variations allowed for a Feature Flag or Setting.
+     * @type {number}
+     * @memberof OrganizationLimitations
+     */
+    'maxPredefinedVariations': number;
 }
-
-
 

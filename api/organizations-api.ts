@@ -22,6 +22,8 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
+import { OrganizationLimitations } from '../model';
+// @ts-ignore
 import { OrganizationModel } from '../model';
 /**
  * OrganizationsApi - axios parameter creator
@@ -29,6 +31,44 @@ import { OrganizationModel } from '../model';
  */
 export const OrganizationsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * This endpoint returns the limitations of an Organization identified by the `organizationId`.
+         * @summary Get Organization limitations
+         * @param {string} organizationId The identifier of the Organization.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOrganizationLimitations: async (organizationId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'organizationId' is not null or undefined
+            assertParamExists('getOrganizationLimitations', 'organizationId', organizationId)
+            const localVarPath = `/v1/organizations/{organizationId}/organization-limitations`
+                .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * This endpoint returns the list of the Organizations that belongs to the user.
          * @summary List Organizations
@@ -74,6 +114,19 @@ export const OrganizationsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = OrganizationsApiAxiosParamCreator(configuration)
     return {
         /**
+         * This endpoint returns the limitations of an Organization identified by the `organizationId`.
+         * @summary Get Organization limitations
+         * @param {string} organizationId The identifier of the Organization.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getOrganizationLimitations(organizationId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrganizationLimitations>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrganizationLimitations(organizationId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['OrganizationsApi.getOrganizationLimitations']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * This endpoint returns the list of the Organizations that belongs to the user.
          * @summary List Organizations
          * @param {*} [options] Override http request option.
@@ -96,6 +149,16 @@ export const OrganizationsApiFactory = function (configuration?: Configuration, 
     const localVarFp = OrganizationsApiFp(configuration)
     return {
         /**
+         * This endpoint returns the limitations of an Organization identified by the `organizationId`.
+         * @summary Get Organization limitations
+         * @param {string} organizationId The identifier of the Organization.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOrganizationLimitations(organizationId: string, options?: any): AxiosPromise<OrganizationLimitations> {
+            return localVarFp.getOrganizationLimitations(organizationId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * This endpoint returns the list of the Organizations that belongs to the user.
          * @summary List Organizations
          * @param {*} [options] Override http request option.
@@ -114,6 +177,18 @@ export const OrganizationsApiFactory = function (configuration?: Configuration, 
  * @extends {BaseAPI}
  */
 export class OrganizationsApi extends BaseAPI {
+    /**
+     * This endpoint returns the limitations of an Organization identified by the `organizationId`.
+     * @summary Get Organization limitations
+     * @param {string} organizationId The identifier of the Organization.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrganizationsApi
+     */
+    public getOrganizationLimitations(organizationId: string, options?: RawAxiosRequestConfig) {
+        return OrganizationsApiFp(this.configuration).getOrganizationLimitations(organizationId, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * This endpoint returns the list of the Organizations that belongs to the user.
      * @summary List Organizations

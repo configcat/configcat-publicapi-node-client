@@ -20,51 +20,27 @@ import { EnvironmentAccessType } from './environment-access-type';
 /**
  * 
  * @export
- * @interface EnvironmentAccessModel
+ * @interface PredefinedVariationEnvironmentModel
  */
-export interface EnvironmentAccessModel {
+export interface PredefinedVariationEnvironmentModel {
     /**
-     * Identifier of the Environment.
+     * The identifier of the Environment.
      * @type {string}
-     * @memberof EnvironmentAccessModel
+     * @memberof PredefinedVariationEnvironmentModel
      */
     'environmentId': string;
     /**
-     * Name of the Environment.
+     * The name of the Environment.
      * @type {string}
-     * @memberof EnvironmentAccessModel
+     * @memberof PredefinedVariationEnvironmentModel
      */
     'name': string;
     /**
-     * Color of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'color': string | null;
-    /**
-     * Description of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'description': string | null;
-    /**
-     * The order of the Environment represented on the ConfigCat Dashboard.
-     * @type {number}
-     * @memberof EnvironmentAccessModel
-     */
-    'order': number;
-    /**
-     * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
-     * @type {boolean}
-     * @memberof EnvironmentAccessModel
-     */
-    'reasonRequired': boolean;
-    /**
      * 
      * @type {EnvironmentAccessType}
-     * @memberof EnvironmentAccessModel
+     * @memberof PredefinedVariationEnvironmentModel
      */
-    'environmentAccessType': EnvironmentAccessType;
+    'accessType': EnvironmentAccessType;
 }
 
 
