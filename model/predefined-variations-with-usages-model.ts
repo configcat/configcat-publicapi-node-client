@@ -15,56 +15,50 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentAccessType } from './environment-access-type';
+import { PredefinedVariationEnvironmentModel } from './predefined-variation-environment-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { PredefinedVariationWithUsagesModel } from './predefined-variation-with-usages-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { SettingType } from './setting-type';
 
 /**
  * 
  * @export
- * @interface EnvironmentAccessModel
+ * @interface PredefinedVariationsWithUsagesModel
  */
-export interface EnvironmentAccessModel {
+export interface PredefinedVariationsWithUsagesModel {
     /**
-     * Identifier of the Environment.
+     * Key of the Feature Flag or Setting.
      * @type {string}
-     * @memberof EnvironmentAccessModel
+     * @memberof PredefinedVariationsWithUsagesModel
      */
-    'environmentId': string;
-    /**
-     * Name of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'name': string;
-    /**
-     * Color of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'color': string | null;
-    /**
-     * Description of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'description': string | null;
-    /**
-     * The order of the Environment represented on the ConfigCat Dashboard.
-     * @type {number}
-     * @memberof EnvironmentAccessModel
-     */
-    'order': number;
-    /**
-     * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
-     * @type {boolean}
-     * @memberof EnvironmentAccessModel
-     */
-    'reasonRequired': boolean;
+    'settingKey': string;
     /**
      * 
-     * @type {EnvironmentAccessType}
-     * @memberof EnvironmentAccessModel
+     * @type {SettingType}
+     * @memberof PredefinedVariationsWithUsagesModel
      */
-    'environmentAccessType': EnvironmentAccessType;
+    'settingType': SettingType;
+    /**
+     * The Feature Flag or Setting\'s Variations.
+     * @type {Array<PredefinedVariationWithUsagesModel>}
+     * @memberof PredefinedVariationsWithUsagesModel
+     */
+    'predefinedVariations': Array<PredefinedVariationWithUsagesModel>;
+    /**
+     * The Environment descriptors for the Variations\' usages.
+     * @type {Array<PredefinedVariationEnvironmentModel>}
+     * @memberof PredefinedVariationsWithUsagesModel
+     */
+    'environments': Array<PredefinedVariationEnvironmentModel>;
+    /**
+     * The maximum number of predefined variations allowed for the Feature Flag or Setting.
+     * @type {number}
+     * @memberof PredefinedVariationsWithUsagesModel
+     */
+    'maxPredefinedVariations': number;
 }
 
 

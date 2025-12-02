@@ -15,57 +15,52 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentAccessType } from './environment-access-type';
+import { PredefinedVariationUsageModel } from './predefined-variation-usage-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import { PredefinedVariationValueModel } from './predefined-variation-value-model';
 
 /**
  * 
  * @export
- * @interface EnvironmentAccessModel
+ * @interface PredefinedVariationWithUsagesModel
  */
-export interface EnvironmentAccessModel {
-    /**
-     * Identifier of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'environmentId': string;
-    /**
-     * Name of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'name': string;
-    /**
-     * Color of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'color': string | null;
-    /**
-     * Description of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'description': string | null;
-    /**
-     * The order of the Environment represented on the ConfigCat Dashboard.
-     * @type {number}
-     * @memberof EnvironmentAccessModel
-     */
-    'order': number;
-    /**
-     * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
-     * @type {boolean}
-     * @memberof EnvironmentAccessModel
-     */
-    'reasonRequired': boolean;
+export interface PredefinedVariationWithUsagesModel {
     /**
      * 
-     * @type {EnvironmentAccessType}
-     * @memberof EnvironmentAccessModel
+     * @type {PredefinedVariationValueModel}
+     * @memberof PredefinedVariationWithUsagesModel
      */
-    'environmentAccessType': EnvironmentAccessType;
+    'value': PredefinedVariationValueModel;
+    /**
+     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
+     * @type {string}
+     * @memberof PredefinedVariationWithUsagesModel
+     */
+    'name': string | null;
+    /**
+     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
+     * @type {string}
+     * @memberof PredefinedVariationWithUsagesModel
+     */
+    'hint': string | null;
+    /**
+     * The Feature Flag or Predefined Variation\'s identifier.
+     * @type {string}
+     * @memberof PredefinedVariationWithUsagesModel
+     */
+    'predefinedVariationId': string;
+    /**
+     * The Feature Flag or Setting Variation\'s usages in the given Environments.
+     * @type {Array<PredefinedVariationUsageModel>}
+     * @memberof PredefinedVariationWithUsagesModel
+     */
+    'usages': Array<PredefinedVariationUsageModel>;
+    /**
+     * The Feature Flag or Setting Variation\'s usages in the Environments you don\'t have access to.
+     * @type {number}
+     * @memberof PredefinedVariationWithUsagesModel
+     */
+    'usagesInOtherEnvironments': number;
 }
-
-
 

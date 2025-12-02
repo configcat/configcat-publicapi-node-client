@@ -13,59 +13,24 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { EnvironmentAccessType } from './environment-access-type';
 
 /**
  * 
  * @export
- * @interface EnvironmentAccessModel
+ * @interface PredefinedVariationUsageModel
  */
-export interface EnvironmentAccessModel {
-    /**
-     * Identifier of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'environmentId': string;
-    /**
-     * Name of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'name': string;
-    /**
-     * Color of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'color': string | null;
-    /**
-     * Description of the Environment.
-     * @type {string}
-     * @memberof EnvironmentAccessModel
-     */
-    'description': string | null;
-    /**
-     * The order of the Environment represented on the ConfigCat Dashboard.
-     * @type {number}
-     * @memberof EnvironmentAccessModel
-     */
-    'order': number;
-    /**
-     * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
-     * @type {boolean}
-     * @memberof EnvironmentAccessModel
-     */
-    'reasonRequired': boolean;
+export interface PredefinedVariationUsageModel {
     /**
      * 
-     * @type {EnvironmentAccessType}
-     * @memberof EnvironmentAccessModel
+     * @type {number}
+     * @memberof PredefinedVariationUsageModel
      */
-    'environmentAccessType': EnvironmentAccessType;
+    'settingId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PredefinedVariationUsageModel
+     */
+    'environmentId': string;
 }
-
-
 
