@@ -2,7 +2,7 @@
     "name": "configcat-publicapi-node-client",
     "version": "3.2.2",
     "description": "NodeJS client for configcat-publicapi-node-client",
-        "license": "MIT",
+    "license": "MIT",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
