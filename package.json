@@ -1,24 +1,27 @@
 {
-    "name": "configcat-publicapi-node-client",
-    "version": "3.2.2",
-    "description": "NodeJS client for configcat-publicapi-node-client",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "clean": "rm -Rf node_modules/ *.js",
-        "build": "tsc"
-    },
-    "dependencies": {
-        "bluebird": "^3.5.0",
-        "axios": "^1.16.1"
-    },
-    "devDependencies": {
-        "@types/bluebird": "^3.5.33",
-        "@types/node": "^12",
-        "typescript": "^4.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/configcat/configcat-publicapi-node-client.git"
-    }
+  "name": "configcat-publicapi-node-client",
+  "version": "3.2.2",
+  "bugs": {
+    "url": "https://github.com/configcat/configcat-publicapi-node-client/issues"
+  },
+  "description": "NodeJS client for configcat-publicapi-node-client",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rm -Rf node_modules/ *.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "axios": "^1.16.1"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.33",
+    "@types/node": "^12",
+    "typescript": "^4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/configcat/configcat-publicapi-node-client.git"
+  }
 }
