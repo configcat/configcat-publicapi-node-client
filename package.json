@@ -1,7 +1,8 @@
 {
     "name": "configcat-publicapi-node-client",
-    "version": "3.2.2",
+    "version": "3.2.3",
     "description": "NodeJS client for configcat-publicapi-node-client",
+    "license": "MIT",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
@@ -20,5 +21,8 @@
     "repository": {
         "type": "git",
         "url": "git+https://github.com/configcat/configcat-publicapi-node-client.git"
+    },
+    "bugs": {
+        "url": "https://github.com/configcat/configcat-publicapi-node-client/issues"
     }
 }
