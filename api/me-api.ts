@@ -18,14 +18,13 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { MeModel } from '../model';
+import type { MeModel } from '../model';
 /**
  * MeApi - axios parameter creator
- * @export
  */
 export const MeApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -52,8 +51,8 @@ export const MeApiAxiosParamCreator = function (configuration?: Configuration) {
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -68,7 +67,6 @@ export const MeApiAxiosParamCreator = function (configuration?: Configuration) {
 
 /**
  * MeApi - functional programming interface
- * @export
  */
 export const MeApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = MeApiAxiosParamCreator(configuration)
@@ -90,7 +88,6 @@ export const MeApiFp = function(configuration?: Configuration) {
 
 /**
  * MeApi - factory interface
- * @export
  */
 export const MeApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = MeApiFp(configuration)
@@ -101,7 +98,7 @@ export const MeApiFactory = function (configuration?: Configuration, basePath?: 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMe(options?: any): AxiosPromise<MeModel> {
+        getMe(options?: RawAxiosRequestConfig): AxiosPromise<MeModel> {
             return localVarFp.getMe(options).then((request) => request(axios, basePath));
         },
     };
@@ -109,9 +106,6 @@ export const MeApiFactory = function (configuration?: Configuration, basePath?: 
 
 /**
  * MeApi - object-oriented interface
- * @export
- * @class MeApi
- * @extends {BaseAPI}
  */
 export class MeApi extends BaseAPI {
     /**
@@ -119,7 +113,6 @@ export class MeApi extends BaseAPI {
      * @summary Get authenticated user details
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MeApi
      */
     public getMe(options?: RawAxiosRequestConfig) {
         return MeApiFp(this.configuration).getMe(options).then((request) => request(this.axios, this.basePath));

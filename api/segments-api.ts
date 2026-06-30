@@ -18,20 +18,19 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { CreateSegmentModel } from '../model';
+import type { CreateSegmentModel } from '../model';
 // @ts-ignore
-import { SegmentListModel } from '../model';
+import type { SegmentListModel } from '../model';
 // @ts-ignore
-import { SegmentModel } from '../model';
+import type { SegmentModel } from '../model';
 // @ts-ignore
-import { UpdateSegmentModel } from '../model';
+import type { UpdateSegmentModel } from '../model';
 /**
  * SegmentsApi - axios parameter creator
- * @export
  */
 export const SegmentsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -49,7 +48,7 @@ export const SegmentsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'createSegmentModel' is not null or undefined
             assertParamExists('createSegment', 'createSegmentModel', createSegmentModel)
             const localVarPath = `/v1/products/{productId}/segments`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -65,9 +64,8 @@ export const SegmentsApiAxiosParamCreator = function (configuration?: Configurat
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -90,7 +88,7 @@ export const SegmentsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'segmentId' is not null or undefined
             assertParamExists('deleteSegment', 'segmentId', segmentId)
             const localVarPath = `/v1/segments/{segmentId}`
-                .replace(`{${"segmentId"}}`, encodeURIComponent(String(segmentId)));
+                .replace('{segmentId}', encodeURIComponent(String(segmentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -107,7 +105,6 @@ export const SegmentsApiAxiosParamCreator = function (configuration?: Configurat
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -128,7 +125,7 @@ export const SegmentsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'segmentId' is not null or undefined
             assertParamExists('getSegment', 'segmentId', segmentId)
             const localVarPath = `/v1/segments/{segmentId}`
-                .replace(`{${"segmentId"}}`, encodeURIComponent(String(segmentId)));
+                .replace('{segmentId}', encodeURIComponent(String(segmentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -144,8 +141,8 @@ export const SegmentsApiAxiosParamCreator = function (configuration?: Configurat
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -166,7 +163,7 @@ export const SegmentsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getSegments', 'productId', productId)
             const localVarPath = `/v1/products/{productId}/segments`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -182,8 +179,8 @@ export const SegmentsApiAxiosParamCreator = function (configuration?: Configurat
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -207,7 +204,7 @@ export const SegmentsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'updateSegmentModel' is not null or undefined
             assertParamExists('updateSegment', 'updateSegmentModel', updateSegmentModel)
             const localVarPath = `/v1/segments/{segmentId}`
-                .replace(`{${"segmentId"}}`, encodeURIComponent(String(segmentId)));
+                .replace('{segmentId}', encodeURIComponent(String(segmentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -223,9 +220,8 @@ export const SegmentsApiAxiosParamCreator = function (configuration?: Configurat
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -242,7 +238,6 @@ export const SegmentsApiAxiosParamCreator = function (configuration?: Configurat
 
 /**
  * SegmentsApi - functional programming interface
- * @export
  */
 export const SegmentsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = SegmentsApiAxiosParamCreator(configuration)
@@ -319,7 +314,6 @@ export const SegmentsApiFp = function(configuration?: Configuration) {
 
 /**
  * SegmentsApi - factory interface
- * @export
  */
 export const SegmentsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = SegmentsApiFp(configuration)
@@ -332,7 +326,7 @@ export const SegmentsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createSegment(productId: string, createSegmentModel: CreateSegmentModel, options?: any): AxiosPromise<SegmentModel> {
+        createSegment(productId: string, createSegmentModel: CreateSegmentModel, options?: RawAxiosRequestConfig): AxiosPromise<SegmentModel> {
             return localVarFp.createSegment(productId, createSegmentModel, options).then((request) => request(axios, basePath));
         },
         /**
@@ -342,7 +336,7 @@ export const SegmentsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteSegment(segmentId: string, options?: any): AxiosPromise<void> {
+        deleteSegment(segmentId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deleteSegment(segmentId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -352,7 +346,7 @@ export const SegmentsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSegment(segmentId: string, options?: any): AxiosPromise<SegmentModel> {
+        getSegment(segmentId: string, options?: RawAxiosRequestConfig): AxiosPromise<SegmentModel> {
             return localVarFp.getSegment(segmentId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -362,7 +356,7 @@ export const SegmentsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSegments(productId: string, options?: any): AxiosPromise<Array<SegmentListModel>> {
+        getSegments(productId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<SegmentListModel>> {
             return localVarFp.getSegments(productId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -373,7 +367,7 @@ export const SegmentsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateSegment(segmentId: string, updateSegmentModel: UpdateSegmentModel, options?: any): AxiosPromise<SegmentModel> {
+        updateSegment(segmentId: string, updateSegmentModel: UpdateSegmentModel, options?: RawAxiosRequestConfig): AxiosPromise<SegmentModel> {
             return localVarFp.updateSegment(segmentId, updateSegmentModel, options).then((request) => request(axios, basePath));
         },
     };
@@ -381,9 +375,6 @@ export const SegmentsApiFactory = function (configuration?: Configuration, baseP
 
 /**
  * SegmentsApi - object-oriented interface
- * @export
- * @class SegmentsApi
- * @extends {BaseAPI}
  */
 export class SegmentsApi extends BaseAPI {
     /**
@@ -393,7 +384,6 @@ export class SegmentsApi extends BaseAPI {
      * @param {CreateSegmentModel} createSegmentModel 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SegmentsApi
      */
     public createSegment(productId: string, createSegmentModel: CreateSegmentModel, options?: RawAxiosRequestConfig) {
         return SegmentsApiFp(this.configuration).createSegment(productId, createSegmentModel, options).then((request) => request(this.axios, this.basePath));
@@ -405,7 +395,6 @@ export class SegmentsApi extends BaseAPI {
      * @param {string} segmentId The identifier of the Segment.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SegmentsApi
      */
     public deleteSegment(segmentId: string, options?: RawAxiosRequestConfig) {
         return SegmentsApiFp(this.configuration).deleteSegment(segmentId, options).then((request) => request(this.axios, this.basePath));
@@ -417,7 +406,6 @@ export class SegmentsApi extends BaseAPI {
      * @param {string} segmentId The identifier of the Segment.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SegmentsApi
      */
     public getSegment(segmentId: string, options?: RawAxiosRequestConfig) {
         return SegmentsApiFp(this.configuration).getSegment(segmentId, options).then((request) => request(this.axios, this.basePath));
@@ -429,7 +417,6 @@ export class SegmentsApi extends BaseAPI {
      * @param {string} productId The identifier of the Product.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SegmentsApi
      */
     public getSegments(productId: string, options?: RawAxiosRequestConfig) {
         return SegmentsApiFp(this.configuration).getSegments(productId, options).then((request) => request(this.axios, this.basePath));
@@ -442,7 +429,6 @@ export class SegmentsApi extends BaseAPI {
      * @param {UpdateSegmentModel} updateSegmentModel 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SegmentsApi
      */
     public updateSegment(segmentId: string, updateSegmentModel: UpdateSegmentModel, options?: RawAxiosRequestConfig) {
         return SegmentsApiFp(this.configuration).updateSegment(segmentId, updateSegmentModel, options).then((request) => request(this.axios, this.basePath));

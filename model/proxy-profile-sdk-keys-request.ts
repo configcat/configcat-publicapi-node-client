@@ -15,18 +15,11 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProxyProfileSdkKeyRequestItem } from './proxy-profile-sdk-key-request-item';
+import type { ProxyProfileSdkKeyRequestItem } from './proxy-profile-sdk-key-request-item';
 
-/**
- * 
- * @export
- * @interface ProxyProfileSdkKeysRequest
- */
 export interface ProxyProfileSdkKeysRequest {
     /**
      * The list of Config / Environment pairs. By only setting a `configId` means all Environments of that Config will be included. Similarly, by only setting an `environmentId` means all Configs with that Environment will be included.
-     * @type {Array<ProxyProfileSdkKeyRequestItem>}
-     * @memberof ProxyProfileSdkKeysRequest
      */
     'items': Array<ProxyProfileSdkKeyRequestItem>;
 }

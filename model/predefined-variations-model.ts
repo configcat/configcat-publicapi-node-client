@@ -15,24 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PredefinedVariationModel } from './predefined-variation-model';
+import type { PredefinedVariationModel } from './predefined-variation-model';
 
-/**
- * 
- * @export
- * @interface PredefinedVariationsModel
- */
 export interface PredefinedVariationsModel {
     /**
      * The Feature Flag or Setting\'s Variations.
-     * @type {Array<PredefinedVariationModel>}
-     * @memberof PredefinedVariationsModel
      */
     'predefinedVariations': Array<PredefinedVariationModel>;
     /**
      * The maximum number of predefined variations allowed for the Feature Flag or Setting.
-     * @type {number}
-     * @memberof PredefinedVariationsModel
      */
     'maxPredefinedVariations': number;
 }

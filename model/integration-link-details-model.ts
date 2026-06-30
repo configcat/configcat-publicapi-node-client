@@ -15,25 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { IntegrationLinkDetail } from './integration-link-detail';
+import type { IntegrationLinkDetail } from './integration-link-detail';
 
-/**
- * 
- * @export
- * @interface IntegrationLinkDetailsModel
- */
 export interface IntegrationLinkDetailsModel {
-    /**
-     * 
-     * @type {Array<IntegrationLinkDetail>}
-     * @memberof IntegrationLinkDetailsModel
-     */
     'details': Array<IntegrationLinkDetail> | null;
-    /**
-     * 
-     * @type {number}
-     * @memberof IntegrationLinkDetailsModel
-     */
     'allIntegrationLinkCount': number;
 }
 

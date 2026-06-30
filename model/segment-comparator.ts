@@ -16,13 +16,11 @@
 
 /**
  * The segment comparison operator used during the evaluation process.
- * @export
- * @enum {string}
  */
 
 export const SegmentComparator = {
     IsIn: 'isIn',
-    IsNotIn: 'isNotIn'
+    IsNotIn: 'isNotIn',
 } as const;
 
 export type SegmentComparator = typeof SegmentComparator[keyof typeof SegmentComparator];

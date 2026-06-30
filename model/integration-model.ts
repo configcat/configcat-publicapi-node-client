@@ -15,57 +15,35 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { IntegrationType } from './integration-type';
+import type { IntegrationType } from './integration-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProductModel } from './product-model';
+import type { ProductModel } from './product-model';
 
 /**
  * Details of the Integration.
- * @export
- * @interface IntegrationModel
  */
 export interface IntegrationModel {
-    /**
-     * 
-     * @type {ProductModel}
-     * @memberof IntegrationModel
-     */
     'product': ProductModel;
     /**
      * Identifier of the Integration.
-     * @type {string}
-     * @memberof IntegrationModel
      */
     'integrationId': string;
     /**
      * Name of the Integration.
-     * @type {string}
-     * @memberof IntegrationModel
      */
     'name': string;
-    /**
-     * 
-     * @type {IntegrationType}
-     * @memberof IntegrationModel
-     */
     'integrationType': IntegrationType;
     /**
      * Parameters of the Integration.
-     * @type {{ [key: string]: string; }}
-     * @memberof IntegrationModel
      */
     'parameters': { [key: string]: string; } | null;
     /**
      * List of Environment IDs that are connected with this Integration. If the list is empty, all of the Environments are connected.
-     * @type {Array<string>}
-     * @memberof IntegrationModel
      */
     'environmentIds': Array<string>;
     /**
      * List of Config IDs that are connected with this Integration. If the list is empty, all of the Configs are connected.
-     * @type {Array<string>}
-     * @memberof IntegrationModel
      */
     'configIds': Array<string>;
 }

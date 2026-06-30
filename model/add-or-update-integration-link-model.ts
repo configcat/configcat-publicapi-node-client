@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface AddOrUpdateIntegrationLinkModel
- */
 export interface AddOrUpdateIntegrationLinkModel {
-    /**
-     * 
-     * @type {string}
-     * @memberof AddOrUpdateIntegrationLinkModel
-     */
     'description'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddOrUpdateIntegrationLinkModel
-     */
     'url'?: string | null;
 }
 

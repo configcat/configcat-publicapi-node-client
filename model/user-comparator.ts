@@ -16,8 +16,6 @@
 
 /**
  * The comparison operator which defines the relation between the comparison attribute and the comparison value.
- * @export
- * @enum {string}
  */
 
 export const UserComparator = {
@@ -56,7 +54,7 @@ export const UserComparator = {
     TextEndsWithAnyOf: 'textEndsWithAnyOf',
     TextNotEndsWithAnyOf: 'textNotEndsWithAnyOf',
     ArrayContainsAnyOf: 'arrayContainsAnyOf',
-    ArrayDoesNotContainAnyOf: 'arrayDoesNotContainAnyOf'
+    ArrayDoesNotContainAnyOf: 'arrayDoesNotContainAnyOf',
 } as const;
 
 export type UserComparator = typeof UserComparator[keyof typeof UserComparator];

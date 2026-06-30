@@ -15,54 +15,31 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { RolloutRuleComparator } from './rollout-rule-comparator';
+import type { RolloutRuleComparator } from './rollout-rule-comparator';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SegmentComparator } from './segment-comparator';
+import type { SegmentComparator } from './segment-comparator';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingValueType } from './setting-value-type';
+import type { SettingValueType } from './setting-value-type';
 
-/**
- * 
- * @export
- * @interface RolloutRuleModel
- */
 export interface RolloutRuleModel {
     /**
      * The user attribute to compare.
-     * @type {string}
-     * @memberof RolloutRuleModel
      */
     'comparisonAttribute': string | null;
-    /**
-     * 
-     * @type {RolloutRuleComparator}
-     * @memberof RolloutRuleModel
-     */
     'comparator': RolloutRuleComparator | null;
     /**
      * The value to compare against.
-     * @type {string}
-     * @memberof RolloutRuleModel
      */
     'comparisonValue': string | null;
     /**
      * The value to serve when the comparison matches. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
-     * @type {SettingValueType}
-     * @memberof RolloutRuleModel
      */
     'value': SettingValueType;
-    /**
-     * 
-     * @type {SegmentComparator}
-     * @memberof RolloutRuleModel
-     */
     'segmentComparator': SegmentComparator | null;
     /**
      * The segment to compare against.
-     * @type {string}
-     * @memberof RolloutRuleModel
      */
     'segmentId': string | null;
 }

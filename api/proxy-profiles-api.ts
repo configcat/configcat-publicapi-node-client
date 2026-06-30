@@ -18,26 +18,25 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { CreateOrUpdateProxyProfileRequest } from '../model';
+import type { CreateOrUpdateProxyProfileRequest } from '../model';
 // @ts-ignore
-import { JsonPatchOperation } from '../model';
+import type { JsonPatchOperation } from '../model';
 // @ts-ignore
-import { ProxyProfileListModel } from '../model';
+import type { ProxyProfileListModel } from '../model';
 // @ts-ignore
-import { ProxyProfileModel } from '../model';
+import type { ProxyProfileModel } from '../model';
 // @ts-ignore
-import { ProxyProfileSdkKeysListModel } from '../model';
+import type { ProxyProfileSdkKeysListModel } from '../model';
 // @ts-ignore
-import { ProxyProfileSdkKeysRequest } from '../model';
+import type { ProxyProfileSdkKeysRequest } from '../model';
 // @ts-ignore
-import { ProxyProfileSecretModel } from '../model';
+import type { ProxyProfileSecretModel } from '../model';
 /**
  * ProxyProfilesApi - axios parameter creator
- * @export
  */
 export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -55,7 +54,7 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'createOrUpdateProxyProfileRequest' is not null or undefined
             assertParamExists('createProxyProfile', 'createOrUpdateProxyProfileRequest', createOrUpdateProxyProfileRequest)
             const localVarPath = `/v1/organizations/{organizationId}/proxy-profiles`
-                .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)));
+                .replace('{organizationId}', encodeURIComponent(String(organizationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -71,9 +70,8 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -96,7 +94,7 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'proxyProfileId' is not null or undefined
             assertParamExists('deleteProxyProfile', 'proxyProfileId', proxyProfileId)
             const localVarPath = `/v1/proxy-profiles/{proxyProfileId}`
-                .replace(`{${"proxyProfileId"}}`, encodeURIComponent(String(proxyProfileId)));
+                .replace('{proxyProfileId}', encodeURIComponent(String(proxyProfileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -113,7 +111,6 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -137,7 +134,7 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'proxyProfileSdkKeysRequest' is not null or undefined
             assertParamExists('deselectProxyProfileSdkKeys', 'proxyProfileSdkKeysRequest', proxyProfileSdkKeysRequest)
             const localVarPath = `/v1/proxy-profiles/{proxyProfileId}/sdk-keys/deselect`
-                .replace(`{${"proxyProfileId"}}`, encodeURIComponent(String(proxyProfileId)));
+                .replace('{proxyProfileId}', encodeURIComponent(String(proxyProfileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -153,9 +150,8 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -178,7 +174,7 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'proxyProfileId' is not null or undefined
             assertParamExists('generateProxyProfileSecret', 'proxyProfileId', proxyProfileId)
             const localVarPath = `/v1/proxy-profiles/{proxyProfileId}/secret`
-                .replace(`{${"proxyProfileId"}}`, encodeURIComponent(String(proxyProfileId)));
+                .replace('{proxyProfileId}', encodeURIComponent(String(proxyProfileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -194,8 +190,8 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -216,7 +212,7 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'proxyProfileId' is not null or undefined
             assertParamExists('getProxyProfile', 'proxyProfileId', proxyProfileId)
             const localVarPath = `/v1/proxy-profiles/{proxyProfileId}`
-                .replace(`{${"proxyProfileId"}}`, encodeURIComponent(String(proxyProfileId)));
+                .replace('{proxyProfileId}', encodeURIComponent(String(proxyProfileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -232,8 +228,8 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -254,7 +250,7 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'proxyProfileId' is not null or undefined
             assertParamExists('getProxyProfileSdkKeys', 'proxyProfileId', proxyProfileId)
             const localVarPath = `/v1/proxy-profiles/{proxyProfileId}/sdk-keys`
-                .replace(`{${"proxyProfileId"}}`, encodeURIComponent(String(proxyProfileId)));
+                .replace('{proxyProfileId}', encodeURIComponent(String(proxyProfileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -270,8 +266,8 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -292,7 +288,7 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'organizationId' is not null or undefined
             assertParamExists('getProxyProfiles', 'organizationId', organizationId)
             const localVarPath = `/v1/organizations/{organizationId}/proxy-profiles`
-                .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)));
+                .replace('{organizationId}', encodeURIComponent(String(organizationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -308,8 +304,8 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -333,7 +329,7 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'createOrUpdateProxyProfileRequest' is not null or undefined
             assertParamExists('replaceProxyProfile', 'createOrUpdateProxyProfileRequest', createOrUpdateProxyProfileRequest)
             const localVarPath = `/v1/proxy-profiles/{proxyProfileId}`
-                .replace(`{${"proxyProfileId"}}`, encodeURIComponent(String(proxyProfileId)));
+                .replace('{proxyProfileId}', encodeURIComponent(String(proxyProfileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -349,9 +345,8 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -377,7 +372,7 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'proxyProfileSdkKeysRequest' is not null or undefined
             assertParamExists('selectProxyProfileSdkKeys', 'proxyProfileSdkKeysRequest', proxyProfileSdkKeysRequest)
             const localVarPath = `/v1/proxy-profiles/{proxyProfileId}/sdk-keys/select`
-                .replace(`{${"proxyProfileId"}}`, encodeURIComponent(String(proxyProfileId)));
+                .replace('{proxyProfileId}', encodeURIComponent(String(proxyProfileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -393,9 +388,8 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -421,7 +415,7 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'jsonPatchOperation' is not null or undefined
             assertParamExists('updateProxyProfile', 'jsonPatchOperation', jsonPatchOperation)
             const localVarPath = `/v1/proxy-profiles/{proxyProfileId}`
-                .replace(`{${"proxyProfileId"}}`, encodeURIComponent(String(proxyProfileId)));
+                .replace('{proxyProfileId}', encodeURIComponent(String(proxyProfileId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -437,9 +431,8 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -456,7 +449,6 @@ export const ProxyProfilesApiAxiosParamCreator = function (configuration?: Confi
 
 /**
  * ProxyProfilesApi - functional programming interface
- * @export
  */
 export const ProxyProfilesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ProxyProfilesApiAxiosParamCreator(configuration)
@@ -601,7 +593,6 @@ export const ProxyProfilesApiFp = function(configuration?: Configuration) {
 
 /**
  * ProxyProfilesApi - factory interface
- * @export
  */
 export const ProxyProfilesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ProxyProfilesApiFp(configuration)
@@ -614,7 +605,7 @@ export const ProxyProfilesApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createProxyProfile(organizationId: string, createOrUpdateProxyProfileRequest: CreateOrUpdateProxyProfileRequest, options?: any): AxiosPromise<ProxyProfileModel> {
+        createProxyProfile(organizationId: string, createOrUpdateProxyProfileRequest: CreateOrUpdateProxyProfileRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProxyProfileModel> {
             return localVarFp.createProxyProfile(organizationId, createOrUpdateProxyProfileRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -624,7 +615,7 @@ export const ProxyProfilesApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteProxyProfile(proxyProfileId: string, options?: any): AxiosPromise<void> {
+        deleteProxyProfile(proxyProfileId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deleteProxyProfile(proxyProfileId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -635,7 +626,7 @@ export const ProxyProfilesApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deselectProxyProfileSdkKeys(proxyProfileId: string, proxyProfileSdkKeysRequest: ProxyProfileSdkKeysRequest, options?: any): AxiosPromise<ProxyProfileSdkKeysListModel> {
+        deselectProxyProfileSdkKeys(proxyProfileId: string, proxyProfileSdkKeysRequest: ProxyProfileSdkKeysRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProxyProfileSdkKeysListModel> {
             return localVarFp.deselectProxyProfileSdkKeys(proxyProfileId, proxyProfileSdkKeysRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -645,7 +636,7 @@ export const ProxyProfilesApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        generateProxyProfileSecret(proxyProfileId: string, options?: any): AxiosPromise<ProxyProfileSecretModel> {
+        generateProxyProfileSecret(proxyProfileId: string, options?: RawAxiosRequestConfig): AxiosPromise<ProxyProfileSecretModel> {
             return localVarFp.generateProxyProfileSecret(proxyProfileId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -655,7 +646,7 @@ export const ProxyProfilesApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProxyProfile(proxyProfileId: string, options?: any): AxiosPromise<ProxyProfileModel> {
+        getProxyProfile(proxyProfileId: string, options?: RawAxiosRequestConfig): AxiosPromise<ProxyProfileModel> {
             return localVarFp.getProxyProfile(proxyProfileId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -665,7 +656,7 @@ export const ProxyProfilesApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProxyProfileSdkKeys(proxyProfileId: string, options?: any): AxiosPromise<ProxyProfileSdkKeysListModel> {
+        getProxyProfileSdkKeys(proxyProfileId: string, options?: RawAxiosRequestConfig): AxiosPromise<ProxyProfileSdkKeysListModel> {
             return localVarFp.getProxyProfileSdkKeys(proxyProfileId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -675,7 +666,7 @@ export const ProxyProfilesApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProxyProfiles(organizationId: string, options?: any): AxiosPromise<ProxyProfileListModel> {
+        getProxyProfiles(organizationId: string, options?: RawAxiosRequestConfig): AxiosPromise<ProxyProfileListModel> {
             return localVarFp.getProxyProfiles(organizationId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -686,7 +677,7 @@ export const ProxyProfilesApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        replaceProxyProfile(proxyProfileId: string, createOrUpdateProxyProfileRequest: CreateOrUpdateProxyProfileRequest, options?: any): AxiosPromise<ProxyProfileModel> {
+        replaceProxyProfile(proxyProfileId: string, createOrUpdateProxyProfileRequest: CreateOrUpdateProxyProfileRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProxyProfileModel> {
             return localVarFp.replaceProxyProfile(proxyProfileId, createOrUpdateProxyProfileRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -697,7 +688,7 @@ export const ProxyProfilesApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        selectProxyProfileSdkKeys(proxyProfileId: string, proxyProfileSdkKeysRequest: ProxyProfileSdkKeysRequest, options?: any): AxiosPromise<ProxyProfileSdkKeysListModel> {
+        selectProxyProfileSdkKeys(proxyProfileId: string, proxyProfileSdkKeysRequest: ProxyProfileSdkKeysRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProxyProfileSdkKeysListModel> {
             return localVarFp.selectProxyProfileSdkKeys(proxyProfileId, proxyProfileSdkKeysRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -708,7 +699,7 @@ export const ProxyProfilesApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateProxyProfile(proxyProfileId: string, jsonPatchOperation: Array<JsonPatchOperation>, options?: any): AxiosPromise<ProxyProfileModel> {
+        updateProxyProfile(proxyProfileId: string, jsonPatchOperation: Array<JsonPatchOperation>, options?: RawAxiosRequestConfig): AxiosPromise<ProxyProfileModel> {
             return localVarFp.updateProxyProfile(proxyProfileId, jsonPatchOperation, options).then((request) => request(axios, basePath));
         },
     };
@@ -716,9 +707,6 @@ export const ProxyProfilesApiFactory = function (configuration?: Configuration, 
 
 /**
  * ProxyProfilesApi - object-oriented interface
- * @export
- * @class ProxyProfilesApi
- * @extends {BaseAPI}
  */
 export class ProxyProfilesApi extends BaseAPI {
     /**
@@ -728,7 +716,6 @@ export class ProxyProfilesApi extends BaseAPI {
      * @param {CreateOrUpdateProxyProfileRequest} createOrUpdateProxyProfileRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProxyProfilesApi
      */
     public createProxyProfile(organizationId: string, createOrUpdateProxyProfileRequest: CreateOrUpdateProxyProfileRequest, options?: RawAxiosRequestConfig) {
         return ProxyProfilesApiFp(this.configuration).createProxyProfile(organizationId, createOrUpdateProxyProfileRequest, options).then((request) => request(this.axios, this.basePath));
@@ -740,7 +727,6 @@ export class ProxyProfilesApi extends BaseAPI {
      * @param {string} proxyProfileId The identifier of the Proxy Profile.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProxyProfilesApi
      */
     public deleteProxyProfile(proxyProfileId: string, options?: RawAxiosRequestConfig) {
         return ProxyProfilesApiFp(this.configuration).deleteProxyProfile(proxyProfileId, options).then((request) => request(this.axios, this.basePath));
@@ -753,7 +739,6 @@ export class ProxyProfilesApi extends BaseAPI {
      * @param {ProxyProfileSdkKeysRequest} proxyProfileSdkKeysRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProxyProfilesApi
      */
     public deselectProxyProfileSdkKeys(proxyProfileId: string, proxyProfileSdkKeysRequest: ProxyProfileSdkKeysRequest, options?: RawAxiosRequestConfig) {
         return ProxyProfilesApiFp(this.configuration).deselectProxyProfileSdkKeys(proxyProfileId, proxyProfileSdkKeysRequest, options).then((request) => request(this.axios, this.basePath));
@@ -765,7 +750,6 @@ export class ProxyProfilesApi extends BaseAPI {
      * @param {string} proxyProfileId The identifier of the Proxy Profile.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProxyProfilesApi
      */
     public generateProxyProfileSecret(proxyProfileId: string, options?: RawAxiosRequestConfig) {
         return ProxyProfilesApiFp(this.configuration).generateProxyProfileSecret(proxyProfileId, options).then((request) => request(this.axios, this.basePath));
@@ -777,7 +761,6 @@ export class ProxyProfilesApi extends BaseAPI {
      * @param {string} proxyProfileId The identifier of the Proxy Profile.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProxyProfilesApi
      */
     public getProxyProfile(proxyProfileId: string, options?: RawAxiosRequestConfig) {
         return ProxyProfilesApiFp(this.configuration).getProxyProfile(proxyProfileId, options).then((request) => request(this.axios, this.basePath));
@@ -789,7 +772,6 @@ export class ProxyProfilesApi extends BaseAPI {
      * @param {string} proxyProfileId The identifier of the Proxy Profile.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProxyProfilesApi
      */
     public getProxyProfileSdkKeys(proxyProfileId: string, options?: RawAxiosRequestConfig) {
         return ProxyProfilesApiFp(this.configuration).getProxyProfileSdkKeys(proxyProfileId, options).then((request) => request(this.axios, this.basePath));
@@ -801,7 +783,6 @@ export class ProxyProfilesApi extends BaseAPI {
      * @param {string} organizationId The identifier of the Organization.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProxyProfilesApi
      */
     public getProxyProfiles(organizationId: string, options?: RawAxiosRequestConfig) {
         return ProxyProfilesApiFp(this.configuration).getProxyProfiles(organizationId, options).then((request) => request(this.axios, this.basePath));
@@ -814,7 +795,6 @@ export class ProxyProfilesApi extends BaseAPI {
      * @param {CreateOrUpdateProxyProfileRequest} createOrUpdateProxyProfileRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProxyProfilesApi
      */
     public replaceProxyProfile(proxyProfileId: string, createOrUpdateProxyProfileRequest: CreateOrUpdateProxyProfileRequest, options?: RawAxiosRequestConfig) {
         return ProxyProfilesApiFp(this.configuration).replaceProxyProfile(proxyProfileId, createOrUpdateProxyProfileRequest, options).then((request) => request(this.axios, this.basePath));
@@ -827,7 +807,6 @@ export class ProxyProfilesApi extends BaseAPI {
      * @param {ProxyProfileSdkKeysRequest} proxyProfileSdkKeysRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProxyProfilesApi
      */
     public selectProxyProfileSdkKeys(proxyProfileId: string, proxyProfileSdkKeysRequest: ProxyProfileSdkKeysRequest, options?: RawAxiosRequestConfig) {
         return ProxyProfilesApiFp(this.configuration).selectProxyProfileSdkKeys(proxyProfileId, proxyProfileSdkKeysRequest, options).then((request) => request(this.axios, this.basePath));
@@ -840,7 +819,6 @@ export class ProxyProfilesApi extends BaseAPI {
      * @param {Array<JsonPatchOperation>} jsonPatchOperation 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProxyProfilesApi
      */
     public updateProxyProfile(proxyProfileId: string, jsonPatchOperation: Array<JsonPatchOperation>, options?: RawAxiosRequestConfig) {
         return ProxyProfilesApiFp(this.configuration).updateProxyProfile(proxyProfileId, jsonPatchOperation, options).then((request) => request(this.axios, this.basePath));

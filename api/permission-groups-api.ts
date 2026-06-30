@@ -18,18 +18,17 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { CreatePermissionGroupRequest } from '../model';
+import type { CreatePermissionGroupRequest } from '../model';
 // @ts-ignore
-import { PermissionGroupModel } from '../model';
+import type { PermissionGroupModel } from '../model';
 // @ts-ignore
-import { UpdatePermissionGroupRequest } from '../model';
+import type { UpdatePermissionGroupRequest } from '../model';
 /**
  * PermissionGroupsApi - axios parameter creator
- * @export
  */
 export const PermissionGroupsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -47,7 +46,7 @@ export const PermissionGroupsApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'createPermissionGroupRequest' is not null or undefined
             assertParamExists('createPermissionGroup', 'createPermissionGroupRequest', createPermissionGroupRequest)
             const localVarPath = `/v1/products/{productId}/permissions`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -63,9 +62,8 @@ export const PermissionGroupsApiAxiosParamCreator = function (configuration?: Co
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -88,7 +86,7 @@ export const PermissionGroupsApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'permissionGroupId' is not null or undefined
             assertParamExists('deletePermissionGroup', 'permissionGroupId', permissionGroupId)
             const localVarPath = `/v1/permissions/{permissionGroupId}`
-                .replace(`{${"permissionGroupId"}}`, encodeURIComponent(String(permissionGroupId)));
+                .replace('{permissionGroupId}', encodeURIComponent(String(permissionGroupId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -105,7 +103,6 @@ export const PermissionGroupsApiAxiosParamCreator = function (configuration?: Co
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -126,7 +123,7 @@ export const PermissionGroupsApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'permissionGroupId' is not null or undefined
             assertParamExists('getPermissionGroup', 'permissionGroupId', permissionGroupId)
             const localVarPath = `/v1/permissions/{permissionGroupId}`
-                .replace(`{${"permissionGroupId"}}`, encodeURIComponent(String(permissionGroupId)));
+                .replace('{permissionGroupId}', encodeURIComponent(String(permissionGroupId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -142,8 +139,8 @@ export const PermissionGroupsApiAxiosParamCreator = function (configuration?: Co
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -164,7 +161,7 @@ export const PermissionGroupsApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getPermissionGroups', 'productId', productId)
             const localVarPath = `/v1/products/{productId}/permissions`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -180,8 +177,8 @@ export const PermissionGroupsApiAxiosParamCreator = function (configuration?: Co
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -205,7 +202,7 @@ export const PermissionGroupsApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'updatePermissionGroupRequest' is not null or undefined
             assertParamExists('updatePermissionGroup', 'updatePermissionGroupRequest', updatePermissionGroupRequest)
             const localVarPath = `/v1/permissions/{permissionGroupId}`
-                .replace(`{${"permissionGroupId"}}`, encodeURIComponent(String(permissionGroupId)));
+                .replace('{permissionGroupId}', encodeURIComponent(String(permissionGroupId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -221,9 +218,8 @@ export const PermissionGroupsApiAxiosParamCreator = function (configuration?: Co
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -240,7 +236,6 @@ export const PermissionGroupsApiAxiosParamCreator = function (configuration?: Co
 
 /**
  * PermissionGroupsApi - functional programming interface
- * @export
  */
 export const PermissionGroupsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = PermissionGroupsApiAxiosParamCreator(configuration)
@@ -317,7 +312,6 @@ export const PermissionGroupsApiFp = function(configuration?: Configuration) {
 
 /**
  * PermissionGroupsApi - factory interface
- * @export
  */
 export const PermissionGroupsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = PermissionGroupsApiFp(configuration)
@@ -330,7 +324,7 @@ export const PermissionGroupsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createPermissionGroup(productId: string, createPermissionGroupRequest: CreatePermissionGroupRequest, options?: any): AxiosPromise<PermissionGroupModel> {
+        createPermissionGroup(productId: string, createPermissionGroupRequest: CreatePermissionGroupRequest, options?: RawAxiosRequestConfig): AxiosPromise<PermissionGroupModel> {
             return localVarFp.createPermissionGroup(productId, createPermissionGroupRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -340,7 +334,7 @@ export const PermissionGroupsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deletePermissionGroup(permissionGroupId: number, options?: any): AxiosPromise<void> {
+        deletePermissionGroup(permissionGroupId: number, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deletePermissionGroup(permissionGroupId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -350,7 +344,7 @@ export const PermissionGroupsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPermissionGroup(permissionGroupId: number, options?: any): AxiosPromise<PermissionGroupModel> {
+        getPermissionGroup(permissionGroupId: number, options?: RawAxiosRequestConfig): AxiosPromise<PermissionGroupModel> {
             return localVarFp.getPermissionGroup(permissionGroupId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -360,7 +354,7 @@ export const PermissionGroupsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPermissionGroups(productId: string, options?: any): AxiosPromise<Array<PermissionGroupModel>> {
+        getPermissionGroups(productId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<PermissionGroupModel>> {
             return localVarFp.getPermissionGroups(productId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -371,7 +365,7 @@ export const PermissionGroupsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePermissionGroup(permissionGroupId: number, updatePermissionGroupRequest: UpdatePermissionGroupRequest, options?: any): AxiosPromise<PermissionGroupModel> {
+        updatePermissionGroup(permissionGroupId: number, updatePermissionGroupRequest: UpdatePermissionGroupRequest, options?: RawAxiosRequestConfig): AxiosPromise<PermissionGroupModel> {
             return localVarFp.updatePermissionGroup(permissionGroupId, updatePermissionGroupRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -379,9 +373,6 @@ export const PermissionGroupsApiFactory = function (configuration?: Configuratio
 
 /**
  * PermissionGroupsApi - object-oriented interface
- * @export
- * @class PermissionGroupsApi
- * @extends {BaseAPI}
  */
 export class PermissionGroupsApi extends BaseAPI {
     /**
@@ -391,7 +382,6 @@ export class PermissionGroupsApi extends BaseAPI {
      * @param {CreatePermissionGroupRequest} createPermissionGroupRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PermissionGroupsApi
      */
     public createPermissionGroup(productId: string, createPermissionGroupRequest: CreatePermissionGroupRequest, options?: RawAxiosRequestConfig) {
         return PermissionGroupsApiFp(this.configuration).createPermissionGroup(productId, createPermissionGroupRequest, options).then((request) => request(this.axios, this.basePath));
@@ -403,7 +393,6 @@ export class PermissionGroupsApi extends BaseAPI {
      * @param {number} permissionGroupId The identifier of the Permission Group.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PermissionGroupsApi
      */
     public deletePermissionGroup(permissionGroupId: number, options?: RawAxiosRequestConfig) {
         return PermissionGroupsApiFp(this.configuration).deletePermissionGroup(permissionGroupId, options).then((request) => request(this.axios, this.basePath));
@@ -415,7 +404,6 @@ export class PermissionGroupsApi extends BaseAPI {
      * @param {number} permissionGroupId The identifier of the Permission Group.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PermissionGroupsApi
      */
     public getPermissionGroup(permissionGroupId: number, options?: RawAxiosRequestConfig) {
         return PermissionGroupsApiFp(this.configuration).getPermissionGroup(permissionGroupId, options).then((request) => request(this.axios, this.basePath));
@@ -427,7 +415,6 @@ export class PermissionGroupsApi extends BaseAPI {
      * @param {string} productId The identifier of the Product.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PermissionGroupsApi
      */
     public getPermissionGroups(productId: string, options?: RawAxiosRequestConfig) {
         return PermissionGroupsApiFp(this.configuration).getPermissionGroups(productId, options).then((request) => request(this.axios, this.basePath));
@@ -440,7 +427,6 @@ export class PermissionGroupsApi extends BaseAPI {
      * @param {UpdatePermissionGroupRequest} updatePermissionGroupRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof PermissionGroupsApi
      */
     public updatePermissionGroup(permissionGroupId: number, updatePermissionGroupRequest: UpdatePermissionGroupRequest, options?: RawAxiosRequestConfig) {
         return PermissionGroupsApiFp(this.configuration).updatePermissionGroup(permissionGroupId, updatePermissionGroupRequest, options).then((request) => request(this.axios, this.basePath));

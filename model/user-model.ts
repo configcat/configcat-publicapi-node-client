@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface UserModel
- */
 export interface UserModel {
     /**
      * Identifier of the Member.
-     * @type {string}
-     * @memberof UserModel
      */
     'userId': string | null;
     /**
      * Name of the Member.
-     * @type {string}
-     * @memberof UserModel
      */
     'fullName': string | null;
     /**
      * Email of the Member.
-     * @type {string}
-     * @memberof UserModel
      */
     'email': string | null;
     /**
      * Determines whether 2FA is enabled for the Member.
-     * @type {boolean}
-     * @memberof UserModel
      */
     'twoFactorEnabled': boolean;
 }

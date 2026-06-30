@@ -15,37 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { IntegrationLinkType } from './integration-link-type';
+import type { IntegrationLinkType } from './integration-link-type';
 
-/**
- * 
- * @export
- * @interface IntegrationLinkModel
- */
 export interface IntegrationLinkModel {
-    /**
-     * 
-     * @type {string}
-     * @memberof IntegrationLinkModel
-     */
     'key': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof IntegrationLinkModel
-     */
     'description': string | null;
-    /**
-     * 
-     * @type {IntegrationLinkType}
-     * @memberof IntegrationLinkModel
-     */
     'integrationLinkType': IntegrationLinkType;
-    /**
-     * 
-     * @type {string}
-     * @memberof IntegrationLinkModel
-     */
     'url': string | null;
 }
 

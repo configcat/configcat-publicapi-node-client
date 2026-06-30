@@ -18,22 +18,21 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ConfigSettingValuesModel } from '../model';
+import type { ConfigSettingValuesModel } from '../model';
 // @ts-ignore
-import { JsonPatchOperation } from '../model';
+import type { JsonPatchOperation } from '../model';
 // @ts-ignore
-import { SettingValueModel } from '../model';
+import type { SettingValueModel } from '../model';
 // @ts-ignore
-import { UpdateSettingValueModel } from '../model';
+import type { UpdateSettingValueModel } from '../model';
 // @ts-ignore
-import { UpdateSettingValuesWithIdModel } from '../model';
+import type { UpdateSettingValuesWithIdModel } from '../model';
 /**
  * FeatureFlagSettingValuesApi - axios parameter creator
- * @export
  */
 export const FeatureFlagSettingValuesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -51,8 +50,8 @@ export const FeatureFlagSettingValuesApiAxiosParamCreator = function (configurat
             // verify required parameter 'settingId' is not null or undefined
             assertParamExists('getSettingValue', 'settingId', settingId)
             const localVarPath = `/v1/environments/{environmentId}/settings/{settingId}/value`
-                .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)))
-                .replace(`{${"settingId"}}`, encodeURIComponent(String(settingId)));
+                .replace('{environmentId}', encodeURIComponent(String(environmentId)))
+                .replace('{settingId}', encodeURIComponent(String(settingId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -68,8 +67,8 @@ export const FeatureFlagSettingValuesApiAxiosParamCreator = function (configurat
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -93,8 +92,8 @@ export const FeatureFlagSettingValuesApiAxiosParamCreator = function (configurat
             // verify required parameter 'environmentId' is not null or undefined
             assertParamExists('getSettingValues', 'environmentId', environmentId)
             const localVarPath = `/v1/configs/{configId}/environments/{environmentId}/values`
-                .replace(`{${"configId"}}`, encodeURIComponent(String(configId)))
-                .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)));
+                .replace('{configId}', encodeURIComponent(String(configId)))
+                .replace('{environmentId}', encodeURIComponent(String(environmentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -110,8 +109,8 @@ export const FeatureFlagSettingValuesApiAxiosParamCreator = function (configurat
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -139,8 +138,8 @@ export const FeatureFlagSettingValuesApiAxiosParamCreator = function (configurat
             // verify required parameter 'updateSettingValuesWithIdModel' is not null or undefined
             assertParamExists('postSettingValues', 'updateSettingValuesWithIdModel', updateSettingValuesWithIdModel)
             const localVarPath = `/v1/configs/{configId}/environments/{environmentId}/values`
-                .replace(`{${"configId"}}`, encodeURIComponent(String(configId)))
-                .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)));
+                .replace('{configId}', encodeURIComponent(String(configId)))
+                .replace('{environmentId}', encodeURIComponent(String(environmentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -160,9 +159,8 @@ export const FeatureFlagSettingValuesApiAxiosParamCreator = function (configurat
                 localVarQueryParameter['reason'] = reason;
             }
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -192,8 +190,8 @@ export const FeatureFlagSettingValuesApiAxiosParamCreator = function (configurat
             // verify required parameter 'updateSettingValueModel' is not null or undefined
             assertParamExists('replaceSettingValue', 'updateSettingValueModel', updateSettingValueModel)
             const localVarPath = `/v1/environments/{environmentId}/settings/{settingId}/value`
-                .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)))
-                .replace(`{${"settingId"}}`, encodeURIComponent(String(settingId)));
+                .replace('{environmentId}', encodeURIComponent(String(environmentId)))
+                .replace('{settingId}', encodeURIComponent(String(settingId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -213,9 +211,8 @@ export const FeatureFlagSettingValuesApiAxiosParamCreator = function (configurat
                 localVarQueryParameter['reason'] = reason;
             }
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -245,8 +242,8 @@ export const FeatureFlagSettingValuesApiAxiosParamCreator = function (configurat
             // verify required parameter 'jsonPatchOperation' is not null or undefined
             assertParamExists('updateSettingValue', 'jsonPatchOperation', jsonPatchOperation)
             const localVarPath = `/v1/environments/{environmentId}/settings/{settingId}/value`
-                .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)))
-                .replace(`{${"settingId"}}`, encodeURIComponent(String(settingId)));
+                .replace('{environmentId}', encodeURIComponent(String(environmentId)))
+                .replace('{settingId}', encodeURIComponent(String(settingId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -266,9 +263,8 @@ export const FeatureFlagSettingValuesApiAxiosParamCreator = function (configurat
                 localVarQueryParameter['reason'] = reason;
             }
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -285,7 +281,6 @@ export const FeatureFlagSettingValuesApiAxiosParamCreator = function (configurat
 
 /**
  * FeatureFlagSettingValuesApi - functional programming interface
- * @export
  */
 export const FeatureFlagSettingValuesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = FeatureFlagSettingValuesApiAxiosParamCreator(configuration)
@@ -371,7 +366,6 @@ export const FeatureFlagSettingValuesApiFp = function(configuration?: Configurat
 
 /**
  * FeatureFlagSettingValuesApi - factory interface
- * @export
  */
 export const FeatureFlagSettingValuesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = FeatureFlagSettingValuesApiFp(configuration)
@@ -384,7 +378,7 @@ export const FeatureFlagSettingValuesApiFactory = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSettingValue(environmentId: string, settingId: number, options?: any): AxiosPromise<SettingValueModel> {
+        getSettingValue(environmentId: string, settingId: number, options?: RawAxiosRequestConfig): AxiosPromise<SettingValueModel> {
             return localVarFp.getSettingValue(environmentId, settingId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -395,7 +389,7 @@ export const FeatureFlagSettingValuesApiFactory = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSettingValues(configId: string, environmentId: string, options?: any): AxiosPromise<ConfigSettingValuesModel> {
+        getSettingValues(configId: string, environmentId: string, options?: RawAxiosRequestConfig): AxiosPromise<ConfigSettingValuesModel> {
             return localVarFp.getSettingValues(configId, environmentId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -408,7 +402,7 @@ export const FeatureFlagSettingValuesApiFactory = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSettingValues(configId: string, environmentId: string, updateSettingValuesWithIdModel: UpdateSettingValuesWithIdModel, reason?: string, options?: any): AxiosPromise<ConfigSettingValuesModel> {
+        postSettingValues(configId: string, environmentId: string, updateSettingValuesWithIdModel: UpdateSettingValuesWithIdModel, reason?: string, options?: RawAxiosRequestConfig): AxiosPromise<ConfigSettingValuesModel> {
             return localVarFp.postSettingValues(configId, environmentId, updateSettingValuesWithIdModel, reason, options).then((request) => request(axios, basePath));
         },
         /**
@@ -421,7 +415,7 @@ export const FeatureFlagSettingValuesApiFactory = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        replaceSettingValue(environmentId: string, settingId: number, updateSettingValueModel: UpdateSettingValueModel, reason?: string, options?: any): AxiosPromise<SettingValueModel> {
+        replaceSettingValue(environmentId: string, settingId: number, updateSettingValueModel: UpdateSettingValueModel, reason?: string, options?: RawAxiosRequestConfig): AxiosPromise<SettingValueModel> {
             return localVarFp.replaceSettingValue(environmentId, settingId, updateSettingValueModel, reason, options).then((request) => request(axios, basePath));
         },
         /**
@@ -434,7 +428,7 @@ export const FeatureFlagSettingValuesApiFactory = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateSettingValue(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, options?: any): AxiosPromise<SettingValueModel> {
+        updateSettingValue(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, options?: RawAxiosRequestConfig): AxiosPromise<SettingValueModel> {
             return localVarFp.updateSettingValue(environmentId, settingId, jsonPatchOperation, reason, options).then((request) => request(axios, basePath));
         },
     };
@@ -442,9 +436,6 @@ export const FeatureFlagSettingValuesApiFactory = function (configuration?: Conf
 
 /**
  * FeatureFlagSettingValuesApi - object-oriented interface
- * @export
- * @class FeatureFlagSettingValuesApi
- * @extends {BaseAPI}
  */
 export class FeatureFlagSettingValuesApi extends BaseAPI {
     /**
@@ -454,7 +445,6 @@ export class FeatureFlagSettingValuesApi extends BaseAPI {
      * @param {number} settingId The id of the Setting.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeatureFlagSettingValuesApi
      */
     public getSettingValue(environmentId: string, settingId: number, options?: RawAxiosRequestConfig) {
         return FeatureFlagSettingValuesApiFp(this.configuration).getSettingValue(environmentId, settingId, options).then((request) => request(this.axios, this.basePath));
@@ -467,7 +457,6 @@ export class FeatureFlagSettingValuesApi extends BaseAPI {
      * @param {string} environmentId The identifier of the Environment.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeatureFlagSettingValuesApi
      */
     public getSettingValues(configId: string, environmentId: string, options?: RawAxiosRequestConfig) {
         return FeatureFlagSettingValuesApiFp(this.configuration).getSettingValues(configId, environmentId, options).then((request) => request(this.axios, this.basePath));
@@ -482,7 +471,6 @@ export class FeatureFlagSettingValuesApi extends BaseAPI {
      * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeatureFlagSettingValuesApi
      */
     public postSettingValues(configId: string, environmentId: string, updateSettingValuesWithIdModel: UpdateSettingValuesWithIdModel, reason?: string, options?: RawAxiosRequestConfig) {
         return FeatureFlagSettingValuesApiFp(this.configuration).postSettingValues(configId, environmentId, updateSettingValuesWithIdModel, reason, options).then((request) => request(this.axios, this.basePath));
@@ -497,7 +485,6 @@ export class FeatureFlagSettingValuesApi extends BaseAPI {
      * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeatureFlagSettingValuesApi
      */
     public replaceSettingValue(environmentId: string, settingId: number, updateSettingValueModel: UpdateSettingValueModel, reason?: string, options?: RawAxiosRequestConfig) {
         return FeatureFlagSettingValuesApiFp(this.configuration).replaceSettingValue(environmentId, settingId, updateSettingValueModel, reason, options).then((request) => request(this.axios, this.basePath));
@@ -512,7 +499,6 @@ export class FeatureFlagSettingValuesApi extends BaseAPI {
      * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeatureFlagSettingValuesApi
      */
     public updateSettingValue(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, options?: RawAxiosRequestConfig) {
         return FeatureFlagSettingValuesApiFp(this.configuration).updateSettingValue(environmentId, settingId, jsonPatchOperation, reason, options).then((request) => request(this.axios, this.basePath));

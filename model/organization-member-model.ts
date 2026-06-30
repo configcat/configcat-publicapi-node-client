@@ -15,42 +15,30 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrganizationPermissionModel } from './organization-permission-model';
+import type { OrganizationPermissionModel } from './organization-permission-model';
 
 /**
  * Describes an Organization Member.
- * @export
- * @interface OrganizationMemberModel
  */
 export interface OrganizationMemberModel {
     /**
      * Identifier of the Organization Admin.
-     * @type {string}
-     * @memberof OrganizationMemberModel
      */
     'userId': string;
     /**
      * Name of the Organization Admin.
-     * @type {string}
-     * @memberof OrganizationMemberModel
      */
     'fullName': string;
     /**
      * Email of the OrganizationAdmin.
-     * @type {string}
-     * @memberof OrganizationMemberModel
      */
     'email': string;
     /**
      * Determines whether 2FA is enabled for the Organization Admin.
-     * @type {boolean}
-     * @memberof OrganizationMemberModel
      */
     'twoFactorEnabled': boolean;
     /**
      * The permissions of the Member.
-     * @type {Array<OrganizationPermissionModel>}
-     * @memberof OrganizationMemberModel
      */
     'permissions': Array<OrganizationPermissionModel>;
 }

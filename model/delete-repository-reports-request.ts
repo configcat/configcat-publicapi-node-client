@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeleteRepositoryReportsRequest
- */
 export interface DeleteRepositoryReportsRequest {
     /**
      * The Config\'s identifier from where the reports should be deleted.
-     * @type {string}
-     * @memberof DeleteRepositoryReportsRequest
      */
     'configId': string;
     /**
      * The source control repository which\'s reports should be deleted.
-     * @type {string}
-     * @memberof DeleteRepositoryReportsRequest
      */
     'repository': string;
     /**
      * If it\'s set, only this branch\'s reports belonging to the given repository will be deleted.
-     * @type {string}
-     * @memberof DeleteRepositoryReportsRequest
      */
     'branch'?: string | null;
     /**
      * If it\'s set, only this setting\'s reports belonging to the given repository will be deleted.
-     * @type {number}
-     * @memberof DeleteRepositoryReportsRequest
      */
     'settingId'?: number | null;
 }

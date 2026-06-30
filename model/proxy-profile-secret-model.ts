@@ -14,16 +14,9 @@
 
 
 
-/**
- * 
- * @export
- * @interface ProxyProfileSecretModel
- */
 export interface ProxyProfileSecretModel {
     /**
      * The secret token associated with the proxy profile.
-     * @type {string}
-     * @memberof ProxyProfileSecretModel
      */
     'secretToken': string;
 }

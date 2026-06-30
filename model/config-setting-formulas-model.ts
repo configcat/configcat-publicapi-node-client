@@ -15,52 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ConfigModel } from './config-model';
+import type { ConfigModel } from './config-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ConfigSettingFormulaModel } from './config-setting-formula-model';
+import type { ConfigSettingFormulaModel } from './config-setting-formula-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentModel } from './environment-model';
+import type { EnvironmentModel } from './environment-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FeatureFlagLimitations } from './feature-flag-limitations';
+import type { FeatureFlagLimitations } from './feature-flag-limitations';
 
-/**
- * 
- * @export
- * @interface ConfigSettingFormulasModel
- */
 export interface ConfigSettingFormulasModel {
-    /**
-     * 
-     * @type {ConfigModel}
-     * @memberof ConfigSettingFormulasModel
-     */
     'config': ConfigModel;
-    /**
-     * 
-     * @type {EnvironmentModel}
-     * @memberof ConfigSettingFormulasModel
-     */
     'environment': EnvironmentModel;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ConfigSettingFormulasModel
-     */
     'readOnly': boolean;
     /**
      * Evaluation descriptors of each updated Feature Flag and Setting.
-     * @type {Array<ConfigSettingFormulaModel>}
-     * @memberof ConfigSettingFormulasModel
      */
     'settingFormulas': Array<ConfigSettingFormulaModel>;
-    /**
-     * 
-     * @type {FeatureFlagLimitations}
-     * @memberof ConfigSettingFormulasModel
-     */
     'featureFlagLimitations': FeatureFlagLimitations;
 }
 

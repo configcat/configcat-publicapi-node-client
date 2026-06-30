@@ -15,37 +15,21 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingType } from './setting-type';
+import type { SettingType } from './setting-type';
 
-/**
- * 
- * @export
- * @interface DeletedSettingModel
- */
 export interface DeletedSettingModel {
     /**
      * Key of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof DeletedSettingModel
      */
     'key': string;
     /**
      * Name of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof DeletedSettingModel
      */
     'name': string;
     /**
      * Description of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof DeletedSettingModel
      */
     'hint': string | null;
-    /**
-     * 
-     * @type {SettingType}
-     * @memberof DeletedSettingModel
-     */
     'settingType': SettingType;
 }
 

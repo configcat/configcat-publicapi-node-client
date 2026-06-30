@@ -15,43 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ReferenceLineModel } from './reference-line-model';
+import type { ReferenceLineModel } from './reference-line-model';
 
-/**
- * 
- * @export
- * @interface ReferenceLinesModel
- */
 export interface ReferenceLinesModel {
     /**
      * The file\'s name in where the code reference has been found. (Appears on the ConfigCat Dashboard)
-     * @type {string}
-     * @memberof ReferenceLinesModel
      */
     'file': string;
     /**
      * The file\'s url. (Used to point to the file on the repository\'s website)
-     * @type {string}
-     * @memberof ReferenceLinesModel
      */
     'fileUrl': string | null;
     /**
      * The lines before the actual reference line.
-     * @type {Array<ReferenceLineModel>}
-     * @memberof ReferenceLinesModel
      */
     'preLines': Array<ReferenceLineModel>;
     /**
      * The lines after the actual reference line.
-     * @type {Array<ReferenceLineModel>}
-     * @memberof ReferenceLinesModel
      */
     'postLines': Array<ReferenceLineModel>;
-    /**
-     * 
-     * @type {ReferenceLineModel}
-     * @memberof ReferenceLinesModel
-     */
     'referenceLine': ReferenceLineModel;
 }
 

@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface StaleFlagSettingValueModel
- */
 export interface StaleFlagSettingValueModel {
     /**
      * Identifier of the Environment.
-     * @type {string}
-     * @memberof StaleFlagSettingValueModel
      */
     'environmentId': string;
     /**
      * The last updated date and time when the Feature Flag or Setting.
-     * @type {string}
-     * @memberof StaleFlagSettingValueModel
      */
     'updatedAt': string | null;
     /**
      * Is the feature flag considered stale in the environment.
-     * @type {boolean}
-     * @memberof StaleFlagSettingValueModel
      */
     'isStale': boolean;
 }

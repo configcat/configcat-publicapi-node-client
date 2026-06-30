@@ -15,31 +15,17 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentAccessType } from './environment-access-type';
+import type { EnvironmentAccessType } from './environment-access-type';
 
-/**
- * 
- * @export
- * @interface PredefinedVariationEnvironmentModel
- */
 export interface PredefinedVariationEnvironmentModel {
     /**
      * The identifier of the Environment.
-     * @type {string}
-     * @memberof PredefinedVariationEnvironmentModel
      */
     'environmentId': string;
     /**
      * The name of the Environment.
-     * @type {string}
-     * @memberof PredefinedVariationEnvironmentModel
      */
     'name': string;
-    /**
-     * 
-     * @type {EnvironmentAccessType}
-     * @memberof PredefinedVariationEnvironmentModel
-     */
     'accessType': EnvironmentAccessType;
 }
 

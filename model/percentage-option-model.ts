@@ -15,25 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ValueModel } from './value-model';
+import type { ValueModel } from './value-model';
 
-/**
- * 
- * @export
- * @interface PercentageOptionModel
- */
 export interface PercentageOptionModel {
     /**
      * A number between 0 and 100 that represents a randomly allocated fraction of the users.
-     * @type {number}
-     * @memberof PercentageOptionModel
      */
     'percentage': number;
-    /**
-     * 
-     * @type {ValueModel}
-     * @memberof PercentageOptionModel
-     */
     'value': ValueModel;
 }
 

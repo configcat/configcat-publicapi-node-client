@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface CreateTagModel
- */
 export interface CreateTagModel {
     /**
      * Name of the Tag.
-     * @type {string}
-     * @memberof CreateTagModel
      */
     'name': string;
     /**
      * Color of the Tag. Possible values: `panther`, `whale`, `salmon`, `lizard`, `canary`, `koala`, or any HTML color code.
-     * @type {string}
-     * @memberof CreateTagModel
      */
     'color'?: string | null;
 }

@@ -15,60 +15,39 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { FlagReference } from './flag-reference';
+import type { FlagReference } from './flag-reference';
 
-/**
- * 
- * @export
- * @interface CodeReferenceRequest
- */
 export interface CodeReferenceRequest {
     /**
      * The Config\'s identifier the scanning was performed against.
-     * @type {string}
-     * @memberof CodeReferenceRequest
      */
     'configId': string;
     /**
      * The source control repository that contains the scanned code. (Source of the repository selector on the ConfigCat Dashboard)
-     * @type {string}
-     * @memberof CodeReferenceRequest
      */
     'repository': string;
     /**
      * The source control branch on where the scan was performed. (Source of the branch selector on the ConfigCat Dashboard)
-     * @type {string}
-     * @memberof CodeReferenceRequest
      */
     'branch': string;
     /**
      * The related commit\'s URL. (Appears on the ConfigCat Dashboard)
-     * @type {string}
-     * @memberof CodeReferenceRequest
      */
     'commitUrl'?: string | null;
     /**
      * The related commit\'s hash. (Appears on the ConfigCat Dashboard)
-     * @type {string}
-     * @memberof CodeReferenceRequest
      */
     'commitHash'?: string | null;
     /**
      * The scanning tool\'s name. (Appears on the ConfigCat Dashboard)
-     * @type {string}
-     * @memberof CodeReferenceRequest
      */
     'uploader'?: string | null;
     /**
      * The currently active branches of the repository. Each previously uploaded report that belongs to a non-reported active branch is being deleted.
-     * @type {Array<string>}
-     * @memberof CodeReferenceRequest
      */
     'activeBranches'?: Array<string>;
     /**
      * The actual code reference collection.
-     * @type {Array<FlagReference>}
-     * @memberof CodeReferenceRequest
      */
     'flagReferences'?: Array<FlagReference>;
 }

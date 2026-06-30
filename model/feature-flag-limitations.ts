@@ -16,50 +16,34 @@
 
 /**
  * Subscription limitations regarding Feature flag or Setting values and targeting.
- * @export
- * @interface FeatureFlagLimitations
  */
 export interface FeatureFlagLimitations {
     /**
      * Maximum number of percentage options a Feature Flag or Setting can have within a targeting rule.
-     * @type {number}
-     * @memberof FeatureFlagLimitations
      */
     'maxPercentageOptionCount': number;
     /**
      * Maximum number of targeting rules a Feature Flag or Setting can have.
-     * @type {number}
-     * @memberof FeatureFlagLimitations
      */
     'maxTargetingRuleCount': number;
     /**
      * Maximum length of a text comparison value.
-     * @type {number}
-     * @memberof FeatureFlagLimitations
      */
     'maxComparisonValueLength': number;
     /**
      * Maximum item count of a list comparison value.
-     * @type {number}
-     * @memberof FeatureFlagLimitations
      */
     'maxComparisonValueListLength': number;
     /**
      * Maximum length of a list comparison value\'s item.
-     * @type {number}
-     * @memberof FeatureFlagLimitations
      */
     'maxComparisonValueListItemLength': number;
     /**
      * Maximum length of a text Setting\'s value.
-     * @type {number}
-     * @memberof FeatureFlagLimitations
      */
     'maxStringFlagValueLength': number;
     /**
      * Maximum number of `AND` conditions a Feature Flag or Setting can have within a targeting rule.
-     * @type {number}
-     * @memberof FeatureFlagLimitations
      */
     'maxConditionPerTargetingRuleCount': number;
 }

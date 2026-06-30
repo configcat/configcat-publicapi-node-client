@@ -15,25 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentAccessType } from './environment-access-type';
+import type { EnvironmentAccessType } from './environment-access-type';
 
-/**
- * 
- * @export
- * @interface CreateOrUpdateEnvironmentAccessModel
- */
 export interface CreateOrUpdateEnvironmentAccessModel {
     /**
      * Identifier of the Environment.
-     * @type {string}
-     * @memberof CreateOrUpdateEnvironmentAccessModel
      */
     'environmentId'?: string;
-    /**
-     * 
-     * @type {EnvironmentAccessType}
-     * @memberof CreateOrUpdateEnvironmentAccessModel
-     */
     'environmentAccessType'?: EnvironmentAccessType;
 }
 

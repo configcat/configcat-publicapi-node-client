@@ -15,39 +15,23 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebHookHttpMethod } from './web-hook-http-method';
+import type { WebHookHttpMethod } from './web-hook-http-method';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookHeaderModel } from './webhook-header-model';
+import type { WebhookHeaderModel } from './webhook-header-model';
 
-/**
- * 
- * @export
- * @interface WebHookRequestModel
- */
 export interface WebHookRequestModel {
     /**
      * The URL of the Webhook.
-     * @type {string}
-     * @memberof WebHookRequestModel
      */
     'url': string;
     /**
      * The HTTP body content.
-     * @type {string}
-     * @memberof WebHookRequestModel
      */
     'content'?: string | null;
-    /**
-     * 
-     * @type {WebHookHttpMethod}
-     * @memberof WebHookRequestModel
-     */
     'httpMethod'?: WebHookHttpMethod | null;
     /**
      * List of HTTP headers.
-     * @type {Array<WebhookHeaderModel>}
-     * @memberof WebHookRequestModel
      */
     'webHookHeaders'?: Array<WebhookHeaderModel> | null;
 }

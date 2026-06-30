@@ -14,15 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @enum {string}
- */
 
 export const StaleFlagReminderScope = {
     All: 'all',
-    WatchedByMe: 'watchedByMe'
+    WatchedByMe: 'watchedByMe',
 } as const;
 
 export type StaleFlagReminderScope = typeof StaleFlagReminderScope[keyof typeof StaleFlagReminderScope];

@@ -15,33 +15,23 @@
 
 
 /**
- * Represents the value of a Feature Flag or Predefined Variation.
- * @export
- * @interface CreatePredefinedVariationValueModel
+ * Represents the value of a Predefined Variation.
  */
 export interface CreatePredefinedVariationValueModel {
     /**
      * The served value in case of a boolean Feature Flag.
-     * @type {boolean}
-     * @memberof CreatePredefinedVariationValueModel
      */
     'boolValue'?: boolean | null;
     /**
      * The served value in case of a text Setting.
-     * @type {string}
-     * @memberof CreatePredefinedVariationValueModel
      */
     'stringValue'?: string | null;
     /**
      * The served value in case of a whole number Setting.
-     * @type {number}
-     * @memberof CreatePredefinedVariationValueModel
      */
     'intValue'?: number | null;
     /**
      * The served value in case of a decimal number Setting.
-     * @type {number}
-     * @memberof CreatePredefinedVariationValueModel
      */
     'doubleValue'?: number | null;
 }

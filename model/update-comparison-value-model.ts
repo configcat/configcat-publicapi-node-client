@@ -15,30 +15,22 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateComparisonValueListModel } from './update-comparison-value-list-model';
+import type { UpdateComparisonValueListModel } from './update-comparison-value-list-model';
 
 /**
  * The value that the user object\'s attribute is compared to.
- * @export
- * @interface UpdateComparisonValueModel
  */
 export interface UpdateComparisonValueModel {
     /**
      * The string representation of the comparison value.
-     * @type {string}
-     * @memberof UpdateComparisonValueModel
      */
     'stringValue'?: string | null;
     /**
      * The number representation of the comparison value.
-     * @type {number}
-     * @memberof UpdateComparisonValueModel
      */
     'doubleValue'?: number | null;
     /**
      * The list representation of the comparison value.
-     * @type {Array<UpdateComparisonValueListModel>}
-     * @memberof UpdateComparisonValueModel
      */
     'listValue'?: Array<UpdateComparisonValueListModel> | null;
 }

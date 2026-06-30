@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpdateConfigRequest
- */
 export interface UpdateConfigRequest {
     /**
      * The name of the Config.
-     * @type {string}
-     * @memberof UpdateConfigRequest
      */
     'name'?: string | null;
     /**
      * The description of the Config.
-     * @type {string}
-     * @memberof UpdateConfigRequest
      */
     'description'?: string | null;
     /**
      * The order of the Config represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
-     * @type {number}
-     * @memberof UpdateConfigRequest
      */
     'order'?: number | null;
 }

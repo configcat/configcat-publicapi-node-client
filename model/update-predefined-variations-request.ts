@@ -15,18 +15,11 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdatePredefinedVariationModel } from './update-predefined-variation-model';
+import type { UpdatePredefinedVariationModel } from './update-predefined-variation-model';
 
-/**
- * 
- * @export
- * @interface UpdatePredefinedVariationsRequest
- */
 export interface UpdatePredefinedVariationsRequest {
     /**
-     * A collection of Feature Flag or Predefined Variations.
-     * @type {Array<UpdatePredefinedVariationModel>}
-     * @memberof UpdatePredefinedVariationsRequest
+     * A collection of Predefined Variations.
      */
     'predefinedVariations': Array<UpdatePredefinedVariationModel>;
 }

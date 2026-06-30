@@ -16,8 +16,6 @@
 
 /**
  * The comparison operator the evaluation process must use when it compares the given user attribute\'s value with the comparison value.
- * @export
- * @enum {string}
  */
 
 export const RolloutRuleComparator = {
@@ -38,7 +36,7 @@ export const RolloutRuleComparator = {
     NumberGreater: 'numberGreater',
     NumberGreaterOrEquals: 'numberGreaterOrEquals',
     SensitiveIsOneOf: 'sensitiveIsOneOf',
-    SensitiveIsNotOneOf: 'sensitiveIsNotOneOf'
+    SensitiveIsNotOneOf: 'sensitiveIsNotOneOf',
 } as const;
 
 export type RolloutRuleComparator = typeof RolloutRuleComparator[keyof typeof RolloutRuleComparator];

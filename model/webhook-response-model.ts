@@ -15,64 +15,36 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebHookHttpMethod } from './web-hook-http-method';
+import type { WebHookHttpMethod } from './web-hook-http-method';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookConfig } from './webhook-config';
+import type { WebhookConfig } from './webhook-config';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookEnvironment } from './webhook-environment';
+import type { WebhookEnvironment } from './webhook-environment';
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookHeaderResponseModel } from './webhook-header-response-model';
+import type { WebhookHeaderResponseModel } from './webhook-header-response-model';
 
-/**
- * 
- * @export
- * @interface WebhookResponseModel
- */
 export interface WebhookResponseModel {
     /**
      * The identifier of the Webhook.
-     * @type {number}
-     * @memberof WebhookResponseModel
      */
     'webhookId': number;
     /**
      * The URL of the Webhook.
-     * @type {string}
-     * @memberof WebhookResponseModel
      */
     'url': string;
-    /**
-     * 
-     * @type {WebHookHttpMethod}
-     * @memberof WebhookResponseModel
-     */
     'httpMethod': WebHookHttpMethod;
     /**
      * The HTTP body content.
-     * @type {string}
-     * @memberof WebhookResponseModel
      */
     'content': string | null;
     /**
      * List of HTTP headers that the Webhook must send.
-     * @type {Array<WebhookHeaderResponseModel>}
-     * @memberof WebhookResponseModel
      */
     'webHookHeaders': Array<WebhookHeaderResponseModel>;
-    /**
-     * 
-     * @type {WebhookConfig}
-     * @memberof WebhookResponseModel
-     */
     'config': WebhookConfig;
-    /**
-     * 
-     * @type {WebhookEnvironment}
-     * @memberof WebhookResponseModel
-     */
     'environment': WebhookEnvironment;
 }
 

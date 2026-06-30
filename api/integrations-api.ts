@@ -18,25 +18,24 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { CreateIntegrationModel } from '../model';
+import type { CreateIntegrationModel } from '../model';
 // @ts-ignore
-import { IntegrationModel } from '../model';
+import type { IntegrationModel } from '../model';
 // @ts-ignore
-import { IntegrationsModel } from '../model';
+import type { IntegrationsModel } from '../model';
 // @ts-ignore
-import { ModifyIntegrationRequest } from '../model';
+import type { ModifyIntegrationRequest } from '../model';
 /**
  * IntegrationsApi - axios parameter creator
- * @export
  */
 export const IntegrationsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * This endpoint creates a new Integration in a specified Product  identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
+         * This endpoint creates a new Integration in a specified Product  identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages.     - `includeSensitiveData`: Set to \"true\" to include [sensitive (hashed) comparison values](https://configcat.com/docs/targeting/targeting-rule/user-condition/#confidential-text-comparators). By default, the integration will mask these values in the posted messages. We recommend hiding sensitive comparison values for shared or public Slack channels. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
          * @summary Create Integration
          * @param {string} productId The identifier of the Product.
          * @param {CreateIntegrationModel} createIntegrationModel 
@@ -49,7 +48,7 @@ export const IntegrationsApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'createIntegrationModel' is not null or undefined
             assertParamExists('createIntegration', 'createIntegrationModel', createIntegrationModel)
             const localVarPath = `/v1/products/{productId}/integrations`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -65,9 +64,8 @@ export const IntegrationsApiAxiosParamCreator = function (configuration?: Config
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -90,7 +88,7 @@ export const IntegrationsApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'integrationId' is not null or undefined
             assertParamExists('deleteIntegration', 'integrationId', integrationId)
             const localVarPath = `/v1/integrations/{integrationId}`
-                .replace(`{${"integrationId"}}`, encodeURIComponent(String(integrationId)));
+                .replace('{integrationId}', encodeURIComponent(String(integrationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -107,7 +105,6 @@ export const IntegrationsApiAxiosParamCreator = function (configuration?: Config
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -128,7 +125,7 @@ export const IntegrationsApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'integrationId' is not null or undefined
             assertParamExists('getIntegration', 'integrationId', integrationId)
             const localVarPath = `/v1/integrations/{integrationId}`
-                .replace(`{${"integrationId"}}`, encodeURIComponent(String(integrationId)));
+                .replace('{integrationId}', encodeURIComponent(String(integrationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -144,8 +141,8 @@ export const IntegrationsApiAxiosParamCreator = function (configuration?: Config
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -166,7 +163,7 @@ export const IntegrationsApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getIntegrations', 'productId', productId)
             const localVarPath = `/v1/products/{productId}/integrations`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -182,8 +179,8 @@ export const IntegrationsApiAxiosParamCreator = function (configuration?: Config
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -194,7 +191,7 @@ export const IntegrationsApiAxiosParamCreator = function (configuration?: Config
             };
         },
         /**
-         * This endpoint updates a Config identified by the `integrationId` parameter.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
+         * This endpoint updates a Config identified by the `integrationId` parameter.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages.  - `includeSensitiveData`: Set to \"true\" to include [sensitive (hashed) comparison values](https://configcat.com/docs/targeting/targeting-rule/user-condition/#confidential-text-comparators). By default, the integration will mask these values in the posted messages. We recommend hiding sensitive comparison values for shared or public Slack channels. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
          * @summary Update Integration
          * @param {string} integrationId The identifier of the Integration.
          * @param {ModifyIntegrationRequest} modifyIntegrationRequest 
@@ -207,7 +204,7 @@ export const IntegrationsApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'modifyIntegrationRequest' is not null or undefined
             assertParamExists('updateIntegration', 'modifyIntegrationRequest', modifyIntegrationRequest)
             const localVarPath = `/v1/integrations/{integrationId}`
-                .replace(`{${"integrationId"}}`, encodeURIComponent(String(integrationId)));
+                .replace('{integrationId}', encodeURIComponent(String(integrationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -223,9 +220,8 @@ export const IntegrationsApiAxiosParamCreator = function (configuration?: Config
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -242,13 +238,12 @@ export const IntegrationsApiAxiosParamCreator = function (configuration?: Config
 
 /**
  * IntegrationsApi - functional programming interface
- * @export
  */
 export const IntegrationsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = IntegrationsApiAxiosParamCreator(configuration)
     return {
         /**
-         * This endpoint creates a new Integration in a specified Product  identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
+         * This endpoint creates a new Integration in a specified Product  identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages.     - `includeSensitiveData`: Set to \"true\" to include [sensitive (hashed) comparison values](https://configcat.com/docs/targeting/targeting-rule/user-condition/#confidential-text-comparators). By default, the integration will mask these values in the posted messages. We recommend hiding sensitive comparison values for shared or public Slack channels. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
          * @summary Create Integration
          * @param {string} productId The identifier of the Product.
          * @param {CreateIntegrationModel} createIntegrationModel 
@@ -301,7 +296,7 @@ export const IntegrationsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * This endpoint updates a Config identified by the `integrationId` parameter.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
+         * This endpoint updates a Config identified by the `integrationId` parameter.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages.  - `includeSensitiveData`: Set to \"true\" to include [sensitive (hashed) comparison values](https://configcat.com/docs/targeting/targeting-rule/user-condition/#confidential-text-comparators). By default, the integration will mask these values in the posted messages. We recommend hiding sensitive comparison values for shared or public Slack channels. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
          * @summary Update Integration
          * @param {string} integrationId The identifier of the Integration.
          * @param {ModifyIntegrationRequest} modifyIntegrationRequest 
@@ -319,20 +314,19 @@ export const IntegrationsApiFp = function(configuration?: Configuration) {
 
 /**
  * IntegrationsApi - factory interface
- * @export
  */
 export const IntegrationsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = IntegrationsApiFp(configuration)
     return {
         /**
-         * This endpoint creates a new Integration in a specified Product  identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
+         * This endpoint creates a new Integration in a specified Product  identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages.     - `includeSensitiveData`: Set to \"true\" to include [sensitive (hashed) comparison values](https://configcat.com/docs/targeting/targeting-rule/user-condition/#confidential-text-comparators). By default, the integration will mask these values in the posted messages. We recommend hiding sensitive comparison values for shared or public Slack channels. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
          * @summary Create Integration
          * @param {string} productId The identifier of the Product.
          * @param {CreateIntegrationModel} createIntegrationModel 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createIntegration(productId: string, createIntegrationModel: CreateIntegrationModel, options?: any): AxiosPromise<IntegrationModel> {
+        createIntegration(productId: string, createIntegrationModel: CreateIntegrationModel, options?: RawAxiosRequestConfig): AxiosPromise<IntegrationModel> {
             return localVarFp.createIntegration(productId, createIntegrationModel, options).then((request) => request(axios, basePath));
         },
         /**
@@ -342,7 +336,7 @@ export const IntegrationsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteIntegration(integrationId: string, options?: any): AxiosPromise<void> {
+        deleteIntegration(integrationId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deleteIntegration(integrationId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -352,7 +346,7 @@ export const IntegrationsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getIntegration(integrationId: string, options?: any): AxiosPromise<IntegrationModel> {
+        getIntegration(integrationId: string, options?: RawAxiosRequestConfig): AxiosPromise<IntegrationModel> {
             return localVarFp.getIntegration(integrationId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -362,18 +356,18 @@ export const IntegrationsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getIntegrations(productId: string, options?: any): AxiosPromise<IntegrationsModel> {
+        getIntegrations(productId: string, options?: RawAxiosRequestConfig): AxiosPromise<IntegrationsModel> {
             return localVarFp.getIntegrations(productId, options).then((request) => request(axios, basePath));
         },
         /**
-         * This endpoint updates a Config identified by the `integrationId` parameter.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
+         * This endpoint updates a Config identified by the `integrationId` parameter.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages.  - `includeSensitiveData`: Set to \"true\" to include [sensitive (hashed) comparison values](https://configcat.com/docs/targeting/targeting-rule/user-condition/#confidential-text-comparators). By default, the integration will mask these values in the posted messages. We recommend hiding sensitive comparison values for shared or public Slack channels. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
          * @summary Update Integration
          * @param {string} integrationId The identifier of the Integration.
          * @param {ModifyIntegrationRequest} modifyIntegrationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateIntegration(integrationId: string, modifyIntegrationRequest: ModifyIntegrationRequest, options?: any): AxiosPromise<IntegrationModel> {
+        updateIntegration(integrationId: string, modifyIntegrationRequest: ModifyIntegrationRequest, options?: RawAxiosRequestConfig): AxiosPromise<IntegrationModel> {
             return localVarFp.updateIntegration(integrationId, modifyIntegrationRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -381,19 +375,15 @@ export const IntegrationsApiFactory = function (configuration?: Configuration, b
 
 /**
  * IntegrationsApi - object-oriented interface
- * @export
- * @class IntegrationsApi
- * @extends {BaseAPI}
  */
 export class IntegrationsApi extends BaseAPI {
     /**
-     * This endpoint creates a new Integration in a specified Product  identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
+     * This endpoint creates a new Integration in a specified Product  identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages.     - `includeSensitiveData`: Set to \"true\" to include [sensitive (hashed) comparison values](https://configcat.com/docs/targeting/targeting-rule/user-condition/#confidential-text-comparators). By default, the integration will mask these values in the posted messages. We recommend hiding sensitive comparison values for shared or public Slack channels. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
      * @summary Create Integration
      * @param {string} productId The identifier of the Product.
      * @param {CreateIntegrationModel} createIntegrationModel 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof IntegrationsApi
      */
     public createIntegration(productId: string, createIntegrationModel: CreateIntegrationModel, options?: RawAxiosRequestConfig) {
         return IntegrationsApiFp(this.configuration).createIntegration(productId, createIntegrationModel, options).then((request) => request(this.axios, this.basePath));
@@ -405,7 +395,6 @@ export class IntegrationsApi extends BaseAPI {
      * @param {string} integrationId The identifier of the Integration.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof IntegrationsApi
      */
     public deleteIntegration(integrationId: string, options?: RawAxiosRequestConfig) {
         return IntegrationsApiFp(this.configuration).deleteIntegration(integrationId, options).then((request) => request(this.axios, this.basePath));
@@ -417,7 +406,6 @@ export class IntegrationsApi extends BaseAPI {
      * @param {string} integrationId The identifier of the Integration.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof IntegrationsApi
      */
     public getIntegration(integrationId: string, options?: RawAxiosRequestConfig) {
         return IntegrationsApiFp(this.configuration).getIntegration(integrationId, options).then((request) => request(this.axios, this.basePath));
@@ -429,20 +417,18 @@ export class IntegrationsApi extends BaseAPI {
      * @param {string} productId The identifier of the Product.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof IntegrationsApi
      */
     public getIntegrations(productId: string, options?: RawAxiosRequestConfig) {
         return IntegrationsApiFp(this.configuration).getIntegrations(productId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * This endpoint updates a Config identified by the `integrationId` parameter.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
+     * This endpoint updates a Config identified by the `integrationId` parameter.  The Parameters dictionary differs for each IntegrationType: - Datadog  - `apikey`: Required. Datadog API key.  - `site`: Datadog site. Available values: `Us`, `Eu`, `Us1Fed`, `Us3`, `Us5`. Default: `Us`. - Slack    Connecting the Slack integration through the Public Management API will not post messages with the ConfigCat Feature Flags Slack app but with an incoming webhook.  - `incoming_webhook.url`: Required. The [incoming webhook URL](https://api.slack.com/messaging/webhooks) where the integration should post messages.  - `includeSensitiveData`: Set to \"true\" to include [sensitive (hashed) comparison values](https://configcat.com/docs/targeting/targeting-rule/user-condition/#confidential-text-comparators). By default, the integration will mask these values in the posted messages. We recommend hiding sensitive comparison values for shared or public Slack channels. - Amplitude  - `apiKey`: Required. Amplitude API Key.  - `secretKey`: Required. Amplitude Secret Key. - Mixpanel  - `serviceAccountUserName`: Required. Mixpanel Service Account Username.  - `serviceAccountSecret`: Required. Mixpanel Service Account Secret.  - `projectId`: Required. Mixpanel Project ID.  - `server`: Mixpanel Server. Available values: `StandardServer`, `EUResidencyServer`. Default: `StandardServer`. - Twilio Segment  - `writeKey`: Required. Twilio Segment Write Key.  - `server`: Twilio Segment Server. Available values: `Us`, `Eu`. Default: `Us`. - PubNub (work in progress)
      * @summary Update Integration
      * @param {string} integrationId The identifier of the Integration.
      * @param {ModifyIntegrationRequest} modifyIntegrationRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof IntegrationsApi
      */
     public updateIntegration(integrationId: string, modifyIntegrationRequest: ModifyIntegrationRequest, options?: RawAxiosRequestConfig) {
         return IntegrationsApiFp(this.configuration).updateIntegration(integrationId, modifyIntegrationRequest, options).then((request) => request(this.axios, this.basePath));

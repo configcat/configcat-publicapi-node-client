@@ -15,43 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ReferenceLineRequest } from './reference-line-request';
+import type { ReferenceLineRequest } from './reference-line-request';
 
-/**
- * 
- * @export
- * @interface ReferenceLinesRequest
- */
 export interface ReferenceLinesRequest {
     /**
      * The file\'s name in where the code reference has been found. (Appears on the ConfigCat Dashboard)
-     * @type {string}
-     * @memberof ReferenceLinesRequest
      */
     'file': string;
     /**
      * The file\'s url. (Used to point to the file on the repository\'s website)
-     * @type {string}
-     * @memberof ReferenceLinesRequest
      */
     'fileUrl'?: string | null;
     /**
      * The lines before the actual reference line.
-     * @type {Array<ReferenceLineRequest>}
-     * @memberof ReferenceLinesRequest
      */
     'preLines'?: Array<ReferenceLineRequest>;
     /**
      * The lines after the actual reference line.
-     * @type {Array<ReferenceLineRequest>}
-     * @memberof ReferenceLinesRequest
      */
     'postLines'?: Array<ReferenceLineRequest>;
-    /**
-     * 
-     * @type {ReferenceLineRequest}
-     * @memberof ReferenceLinesRequest
-     */
     'referenceLine': ReferenceLineRequest;
 }
 

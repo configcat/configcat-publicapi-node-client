@@ -14,40 +14,25 @@
 
 
 
-/**
- * 
- * @export
- * @interface ProxyProfileSdkKeyItem
- */
 export interface ProxyProfileSdkKeyItem {
     /**
      * The primary SDK Key of the Config / Environment pair selected for the Proxy Profile.
-     * @type {string}
-     * @memberof ProxyProfileSdkKeyItem
      */
     'primarySdkKey': string;
     /**
      * The secondary SDK Key of the Config / Environment pair selected for the Proxy Profile.
-     * @type {string}
-     * @memberof ProxyProfileSdkKeyItem
      */
     'secondarySdkKey': string | null;
     /**
      * The SDK ID identifying the Config / Environment pair selected for the Proxy Profile.
-     * @type {string}
-     * @memberof ProxyProfileSdkKeyItem
      */
     'sdkId': string;
     /**
      * The identifier of the Config associated with the SDK key.
-     * @type {string}
-     * @memberof ProxyProfileSdkKeyItem
      */
     'configId': string;
     /**
      * The identifier of the Environment associated with the SDK key.
-     * @type {string}
-     * @memberof ProxyProfileSdkKeyItem
      */
     'environmentId': string;
 }

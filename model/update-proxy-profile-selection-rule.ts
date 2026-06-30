@@ -15,54 +15,32 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SelectionRuleKind } from './selection-rule-kind';
+import type { SelectionRuleKind } from './selection-rule-kind';
 
-/**
- * 
- * @export
- * @interface UpdateProxyProfileSelectionRule
- */
 export interface UpdateProxyProfileSelectionRule {
-    /**
-     * 
-     * @type {SelectionRuleKind}
-     * @memberof UpdateProxyProfileSelectionRule
-     */
     'kind'?: SelectionRuleKind;
     /**
      * Defines the filter for matching Products by their unique identifier.
-     * @type {string}
-     * @memberof UpdateProxyProfileSelectionRule
      */
     'productIdFilter'?: string | null;
     /**
      * Defines the filter for matching Configs by their unique identifier.
-     * @type {string}
-     * @memberof UpdateProxyProfileSelectionRule
      */
     'configIdFilter'?: string | null;
     /**
      * Defines the filter for matching Environments by their unique identifier.
-     * @type {string}
-     * @memberof UpdateProxyProfileSelectionRule
      */
     'environmentIdFilter'?: string | null;
     /**
      * Specifies a filter to match Product names in the proxy profile selection rule. It accepts wildcards (*).
-     * @type {string}
-     * @memberof UpdateProxyProfileSelectionRule
      */
     'productNameMatchFilter'?: string | null;
     /**
      * Specifies a filter to match Config names in the proxy profile selection rule. It accepts wildcards (*).
-     * @type {string}
-     * @memberof UpdateProxyProfileSelectionRule
      */
     'configNameMatchFilter'?: string | null;
     /**
      * Specifies a filter to match Environment names in the proxy profile selection rule. It accepts wildcards (*).
-     * @type {string}
-     * @memberof UpdateProxyProfileSelectionRule
      */
     'environmentNameMatchFilter'?: string | null;
 }

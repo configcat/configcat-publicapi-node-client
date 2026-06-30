@@ -15,36 +15,23 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PredefinedVariationValueModel } from './predefined-variation-value-model';
+import type { PredefinedVariationValueModel } from './predefined-variation-value-model';
 
 /**
- * A Feature Flag or Predefined Variation.
- * @export
- * @interface PredefinedVariationModel
+ * A Predefined Variation.
  */
 export interface PredefinedVariationModel {
-    /**
-     * 
-     * @type {PredefinedVariationValueModel}
-     * @memberof PredefinedVariationModel
-     */
     'value': PredefinedVariationValueModel;
     /**
-     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
-     * @type {string}
-     * @memberof PredefinedVariationModel
+     * The name of the Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      */
     'name': string | null;
     /**
-     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
-     * @type {string}
-     * @memberof PredefinedVariationModel
+     * The name of the Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      */
     'hint': string | null;
     /**
-     * The Feature Flag or Predefined Variation\'s identifier.
-     * @type {string}
-     * @memberof PredefinedVariationModel
+     * The Predefined Variation\'s identifier.
      */
     'predefinedVariationId': string;
 }

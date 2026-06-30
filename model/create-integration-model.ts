@@ -15,42 +15,24 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { IntegrationType } from './integration-type';
+import type { IntegrationType } from './integration-type';
 
-/**
- * 
- * @export
- * @interface CreateIntegrationModel
- */
 export interface CreateIntegrationModel {
-    /**
-     * 
-     * @type {IntegrationType}
-     * @memberof CreateIntegrationModel
-     */
     'integrationType': IntegrationType;
     /**
      * Name of the Integration.
-     * @type {string}
-     * @memberof CreateIntegrationModel
      */
     'name': string;
     /**
      * Parameters of the Integration.
-     * @type {{ [key: string]: string | null; }}
-     * @memberof CreateIntegrationModel
      */
-    'parameters': { [key: string]: string | null; };
+    'parameters': { [key: string]: string; };
     /**
-     * List of Environment IDs that are connected with this Integration. If the list is empty, all of the Environments are connected.
-     * @type {Array<string>}
-     * @memberof CreateIntegrationModel
+     * List of Environment IDs that are connected with this Integration. If the list is empty, all the Environments are connected.
      */
     'environmentIds': Array<string>;
     /**
-     * List of Config IDs that are connected with this Integration. If the list is empty, all of the Configs are connected.
-     * @type {Array<string>}
-     * @memberof CreateIntegrationModel
+     * List of Config IDs that are connected with this Integration. If the list is empty, all the Configs are connected.
      */
     'configIds': Array<string>;
 }

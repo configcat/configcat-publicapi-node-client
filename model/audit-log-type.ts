@@ -14,18 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @enum {string}
- */
 
 export const AuditLogType = {
     ProductCreated: 'productCreated',
     ProductChanged: 'productChanged',
-    ProductOwnershipTransferred: 'productOwnershipTransferred',
     ProductDeleted: 'productDeleted',
     ProductsReordered: 'productsReordered',
+    ProductPreferencesUpdated: 'productPreferencesUpdated',
     TeamMemberInvited: 'teamMemberInvited',
     TeamMemberInvitationRevoked: 'teamMemberInvitationRevoked',
     TeamMemberJoined: 'teamMemberJoined',
@@ -35,6 +30,7 @@ export const AuditLogType = {
     TeamMemberInvitationChanged: 'teamMemberInvitationChanged',
     TeamMemberInvitationResent: 'teamMemberInvitationResent',
     TeamMemberInvitationRejected: 'teamMemberInvitationRejected',
+    TeamMemberAddedToProduct: 'teamMemberAddedToProduct',
     ConfigCreated: 'configCreated',
     ConfigChanged: 'configChanged',
     ConfigDeleted: 'configDeleted',
@@ -67,7 +63,6 @@ export const AuditLogType = {
     IntegrationLinkAdded: 'integrationLinkAdded',
     IntegrationLinkRemoved: 'integrationLinkRemoved',
     OrganizationAdded: 'organizationAdded',
-    OrganizationRemoved: 'organizationRemoved',
     OrganizationChanged: 'organizationChanged',
     OrganizationSubscriptionTypeChanged: 'organizationSubscriptionTypeChanged',
     OrganizationAdminChanged: 'organizationAdminChanged',
@@ -83,8 +78,6 @@ export const AuditLogType = {
     DomainAdded: 'domainAdded',
     DomainVerified: 'domainVerified',
     DomainRemoved: 'domainRemoved',
-    DomainSamlConfigured: 'domainSamlConfigured',
-    DomainSamlDeleted: 'domainSamlDeleted',
     AutoProvisioningConfigurationChanged: 'autoProvisioningConfigurationChanged',
     SamlIdpConfigurationAdded: 'samlIdpConfigurationAdded',
     SamlIdpConfigurationRemoved: 'samlIdpConfigurationRemoved',
@@ -123,7 +116,22 @@ export const AuditLogType = {
     ProxyNotificationSettingsUpdated: 'proxyNotificationSettingsUpdated',
     ProxyNotificationSettingsDeleted: 'proxyNotificationSettingsDeleted',
     ProxyNotificationSigningKeyAdded: 'proxyNotificationSigningKeyAdded',
-    ProxyNotificationSigningKeyDeleted: 'proxyNotificationSigningKeyDeleted'
+    ProxyNotificationSigningKeyDeleted: 'proxyNotificationSigningKeyDeleted',
+    ChangeRequestCreated: 'changeRequestCreated',
+    ChangeRequestUpdated: 'changeRequestUpdated',
+    ChangeRequestSettingValuesUpdated: 'changeRequestSettingValuesUpdated',
+    ChangeRequestSettingValueRebased: 'changeRequestSettingValueRebased',
+    ChangeRequestApproved: 'changeRequestApproved',
+    ChangeRequestApprovalDismissed: 'changeRequestApprovalDismissed',
+    ChangeRequestApplied: 'changeRequestApplied',
+    ChangeRequestAppliedOnSchedule: 'changeRequestAppliedOnSchedule',
+    ChangeRequestClosed: 'changeRequestClosed',
+    ChangeRequestNeedsAttention: 'changeRequestNeedsAttention',
+    ChangeRequestCommentAdded: 'changeRequestCommentAdded',
+    ChangeRequestCommentEdited: 'changeRequestCommentEdited',
+    ChangeRequestCommentDeleted: 'changeRequestCommentDeleted',
+    ChangeRequestSettingDeleted: 'changeRequestSettingDeleted',
+    ChangeRequestNeedsAttentionFixed: 'changeRequestNeedsAttentionFixed',
 } as const;
 
 export type AuditLogType = typeof AuditLogType[keyof typeof AuditLogType];

@@ -14,35 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface AddOrUpdateJiraIntegrationLinkModel
- */
 export interface AddOrUpdateJiraIntegrationLinkModel {
-    /**
-     * 
-     * @type {string}
-     * @memberof AddOrUpdateJiraIntegrationLinkModel
-     */
     'jiraJwtToken': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddOrUpdateJiraIntegrationLinkModel
-     */
     'clientKey': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddOrUpdateJiraIntegrationLinkModel
-     */
     'description'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddOrUpdateJiraIntegrationLinkModel
-     */
     'url'?: string | null;
 }
 

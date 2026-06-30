@@ -18,18 +18,17 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { StaleFlagProductModel } from '../model';
+import type { StaleFlagProductModel } from '../model';
 // @ts-ignore
-import { StaleFlagReminderScope } from '../model';
+import type { StaleFlagReminderScope } from '../model';
 // @ts-ignore
-import { StaleFlagStaleInEnvironmentsType } from '../model';
+import type { StaleFlagStaleInEnvironmentsType } from '../model';
 /**
  * ZombieStaleFlagsApi - axios parameter creator
- * @export
  */
 export const ZombieStaleFlagsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -49,7 +48,7 @@ export const ZombieStaleFlagsApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getStaleflags', 'productId', productId)
             const localVarPath = `/v1/products/{productId}/staleflags`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -85,8 +84,8 @@ export const ZombieStaleFlagsApiAxiosParamCreator = function (configuration?: Co
                 localVarQueryParameter['ignoredTagIds'] = ignoredTagIds;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -101,7 +100,6 @@ export const ZombieStaleFlagsApiAxiosParamCreator = function (configuration?: Co
 
 /**
  * ZombieStaleFlagsApi - functional programming interface
- * @export
  */
 export const ZombieStaleFlagsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ZombieStaleFlagsApiAxiosParamCreator(configuration)
@@ -129,7 +127,6 @@ export const ZombieStaleFlagsApiFp = function(configuration?: Configuration) {
 
 /**
  * ZombieStaleFlagsApi - factory interface
- * @export
  */
 export const ZombieStaleFlagsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ZombieStaleFlagsApiFp(configuration)
@@ -146,7 +143,7 @@ export const ZombieStaleFlagsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getStaleflags(productId: string, scope?: StaleFlagReminderScope, staleFlagAgeDays?: number, staleFlagStaleInEnvironmentsType?: StaleFlagStaleInEnvironmentsType, ignoredEnvironmentIds?: Array<string>, ignoredTagIds?: Array<number>, options?: any): AxiosPromise<StaleFlagProductModel> {
+        getStaleflags(productId: string, scope?: StaleFlagReminderScope, staleFlagAgeDays?: number, staleFlagStaleInEnvironmentsType?: StaleFlagStaleInEnvironmentsType, ignoredEnvironmentIds?: Array<string>, ignoredTagIds?: Array<number>, options?: RawAxiosRequestConfig): AxiosPromise<StaleFlagProductModel> {
             return localVarFp.getStaleflags(productId, scope, staleFlagAgeDays, staleFlagStaleInEnvironmentsType, ignoredEnvironmentIds, ignoredTagIds, options).then((request) => request(axios, basePath));
         },
     };
@@ -154,9 +151,6 @@ export const ZombieStaleFlagsApiFactory = function (configuration?: Configuratio
 
 /**
  * ZombieStaleFlagsApi - object-oriented interface
- * @export
- * @class ZombieStaleFlagsApi
- * @extends {BaseAPI}
  */
 export class ZombieStaleFlagsApi extends BaseAPI {
     /**
@@ -170,7 +164,6 @@ export class ZombieStaleFlagsApi extends BaseAPI {
      * @param {Array<number>} [ignoredTagIds] Ignore feature flags from the report based on their tag identifiers.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ZombieStaleFlagsApi
      */
     public getStaleflags(productId: string, scope?: StaleFlagReminderScope, staleFlagAgeDays?: number, staleFlagStaleInEnvironmentsType?: StaleFlagStaleInEnvironmentsType, ignoredEnvironmentIds?: Array<string>, ignoredTagIds?: Array<number>, options?: RawAxiosRequestConfig) {
         return ZombieStaleFlagsApiFp(this.configuration).getStaleflags(productId, scope, staleFlagAgeDays, staleFlagStaleInEnvironmentsType, ignoredEnvironmentIds, ignoredTagIds, options).then((request) => request(this.axios, this.basePath));

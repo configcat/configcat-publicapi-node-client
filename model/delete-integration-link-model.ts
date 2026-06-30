@@ -14,17 +14,7 @@
 
 
 
-/**
- * 
- * @export
- * @interface DeleteIntegrationLinkModel
- */
 export interface DeleteIntegrationLinkModel {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DeleteIntegrationLinkModel
-     */
     'hasRemainingIntegrationLink': boolean;
 }
 

@@ -18,16 +18,15 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { OrganizationLimitations } from '../model';
+import type { OrganizationLimitations } from '../model';
 // @ts-ignore
-import { OrganizationModel } from '../model';
+import type { OrganizationModel } from '../model';
 /**
  * OrganizationsApi - axios parameter creator
- * @export
  */
 export const OrganizationsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -42,7 +41,7 @@ export const OrganizationsApiAxiosParamCreator = function (configuration?: Confi
             // verify required parameter 'organizationId' is not null or undefined
             assertParamExists('getOrganizationLimitations', 'organizationId', organizationId)
             const localVarPath = `/v1/organizations/{organizationId}/organization-limitations`
-                .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)));
+                .replace('{organizationId}', encodeURIComponent(String(organizationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -58,8 +57,8 @@ export const OrganizationsApiAxiosParamCreator = function (configuration?: Confi
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -92,8 +91,8 @@ export const OrganizationsApiAxiosParamCreator = function (configuration?: Confi
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -108,7 +107,6 @@ export const OrganizationsApiAxiosParamCreator = function (configuration?: Confi
 
 /**
  * OrganizationsApi - functional programming interface
- * @export
  */
 export const OrganizationsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = OrganizationsApiAxiosParamCreator(configuration)
@@ -143,7 +141,6 @@ export const OrganizationsApiFp = function(configuration?: Configuration) {
 
 /**
  * OrganizationsApi - factory interface
- * @export
  */
 export const OrganizationsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = OrganizationsApiFp(configuration)
@@ -155,7 +152,7 @@ export const OrganizationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrganizationLimitations(organizationId: string, options?: any): AxiosPromise<OrganizationLimitations> {
+        getOrganizationLimitations(organizationId: string, options?: RawAxiosRequestConfig): AxiosPromise<OrganizationLimitations> {
             return localVarFp.getOrganizationLimitations(organizationId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -164,7 +161,7 @@ export const OrganizationsApiFactory = function (configuration?: Configuration, 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrganizations(options?: any): AxiosPromise<Array<OrganizationModel>> {
+        getOrganizations(options?: RawAxiosRequestConfig): AxiosPromise<Array<OrganizationModel>> {
             return localVarFp.getOrganizations(options).then((request) => request(axios, basePath));
         },
     };
@@ -172,9 +169,6 @@ export const OrganizationsApiFactory = function (configuration?: Configuration, 
 
 /**
  * OrganizationsApi - object-oriented interface
- * @export
- * @class OrganizationsApi
- * @extends {BaseAPI}
  */
 export class OrganizationsApi extends BaseAPI {
     /**
@@ -183,7 +177,6 @@ export class OrganizationsApi extends BaseAPI {
      * @param {string} organizationId The identifier of the Organization.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrganizationsApi
      */
     public getOrganizationLimitations(organizationId: string, options?: RawAxiosRequestConfig) {
         return OrganizationsApiFp(this.configuration).getOrganizationLimitations(organizationId, options).then((request) => request(this.axios, this.basePath));
@@ -194,7 +187,6 @@ export class OrganizationsApi extends BaseAPI {
      * @summary List Organizations
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof OrganizationsApi
      */
     public getOrganizations(options?: RawAxiosRequestConfig) {
         return OrganizationsApiFp(this.configuration).getOrganizations(options).then((request) => request(this.axios, this.basePath));

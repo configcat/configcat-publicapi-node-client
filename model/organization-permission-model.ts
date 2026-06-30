@@ -15,28 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrganizationPermissionGroupModel } from './organization-permission-group-model';
+import type { OrganizationPermissionGroupModel } from './organization-permission-group-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrganizationProductModel } from './organization-product-model';
+import type { OrganizationProductModel } from './organization-product-model';
 
 /**
  * Describes the Member\'s permission.
- * @export
- * @interface OrganizationPermissionModel
  */
 export interface OrganizationPermissionModel {
-    /**
-     * 
-     * @type {OrganizationProductModel}
-     * @memberof OrganizationPermissionModel
-     */
     'product': OrganizationProductModel;
-    /**
-     * 
-     * @type {OrganizationPermissionGroupModel}
-     * @memberof OrganizationPermissionModel
-     */
     'permissionGroup': OrganizationPermissionGroupModel;
 }
 

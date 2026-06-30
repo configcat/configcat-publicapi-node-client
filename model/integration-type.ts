@@ -14,11 +14,6 @@
 
 
 
-/**
- * 
- * @export
- * @enum {string}
- */
 
 export const IntegrationType = {
     DataDog: 'dataDog',
@@ -26,7 +21,7 @@ export const IntegrationType = {
     Amplitude: 'amplitude',
     MixPanel: 'mixPanel',
     Segment: 'segment',
-    PubNub: 'pubNub'
+    PubNub: 'pubNub',
 } as const;
 
 export type IntegrationType = typeof IntegrationType[keyof typeof IntegrationType];

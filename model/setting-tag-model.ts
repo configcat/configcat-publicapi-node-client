@@ -14,35 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @interface SettingTagModel
- */
 export interface SettingTagModel {
-    /**
-     * 
-     * @type {number}
-     * @memberof SettingTagModel
-     */
     'settingTagId': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof SettingTagModel
-     */
     'tagId': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof SettingTagModel
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SettingTagModel
-     */
     'color': string | null;
 }
 

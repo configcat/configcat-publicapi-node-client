@@ -16,7 +16,6 @@
 
 /**
  * @type SettingValueType
- * @export
  */
 export type SettingValueType = boolean | number | string;
 

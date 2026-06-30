@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface ConnectRequest
- */
 export interface ConnectRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ConnectRequest
-     */
     'clientKey': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ConnectRequest
-     */
     'jiraJwtToken': string;
 }
 

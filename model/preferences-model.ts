@@ -15,47 +15,40 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { KeyGenerationMode } from './key-generation-mode';
+import type { ApproveRequiredEnvironmentModel } from './approve-required-environment-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ReasonRequiredEnvironmentModel } from './reason-required-environment-model';
+import type { KeyGenerationMode } from './key-generation-mode';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ReasonRequiredEnvironmentModel } from './reason-required-environment-model';
 
-/**
- * 
- * @export
- * @interface PreferencesModel
- */
 export interface PreferencesModel {
     /**
      * Indicates that a mandatory note required for saving and publishing.
-     * @type {boolean}
-     * @memberof PreferencesModel
      */
     'reasonRequired': boolean;
-    /**
-     * 
-     * @type {KeyGenerationMode}
-     * @memberof PreferencesModel
-     */
     'keyGenerationMode': KeyGenerationMode;
     /**
      * Indicates whether a variation ID\'s must be shown on the ConfigCat Dashboard.
-     * @type {boolean}
-     * @memberof PreferencesModel
      */
     'showVariationId': boolean;
     /**
      * List of Environments where mandatory note must be set before saving and publishing.
-     * @type {Array<ReasonRequiredEnvironmentModel>}
-     * @memberof PreferencesModel
      */
     'reasonRequiredEnvironments': Array<ReasonRequiredEnvironmentModel> | null;
     /**
      * Indicates whether Feature flags and Settings must have a hint.
-     * @type {boolean}
-     * @memberof PreferencesModel
      */
     'mandatorySettingHint': boolean;
+    /**
+     * Indicates that a mandatory approval is required for saving and publishing.
+     */
+    'approveRequired': boolean;
+    /**
+     * List of Environments where mandatory approval must be given before changes are applied.
+     */
+    'approveRequiredEnvironments': Array<ApproveRequiredEnvironmentModel> | null;
 }
 
 

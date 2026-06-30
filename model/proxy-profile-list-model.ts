@@ -15,18 +15,11 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProxyProfileModel } from './proxy-profile-model';
+import type { ProxyProfileModel } from './proxy-profile-model';
 
-/**
- * 
- * @export
- * @interface ProxyProfileListModel
- */
 export interface ProxyProfileListModel {
     /**
      * The list of proxy profiles.
-     * @type {Array<ProxyProfileModel>}
-     * @memberof ProxyProfileListModel
      */
     'profiles': Array<ProxyProfileModel>;
 }

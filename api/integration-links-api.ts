@@ -18,26 +18,25 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { AddOrUpdateIntegrationLinkModel } from '../model';
+import type { AddOrUpdateIntegrationLinkModel } from '../model';
 // @ts-ignore
-import { AddOrUpdateJiraIntegrationLinkModel } from '../model';
+import type { AddOrUpdateJiraIntegrationLinkModel } from '../model';
 // @ts-ignore
-import { ConnectRequest } from '../model';
+import type { ConnectRequest } from '../model';
 // @ts-ignore
-import { DeleteIntegrationLinkModel } from '../model';
+import type { DeleteIntegrationLinkModel } from '../model';
 // @ts-ignore
-import { IntegrationLinkDetailsModel } from '../model';
+import type { IntegrationLinkDetailsModel } from '../model';
 // @ts-ignore
-import { IntegrationLinkModel } from '../model';
+import type { IntegrationLinkModel } from '../model';
 // @ts-ignore
-import { IntegrationLinkType } from '../model';
+import type { IntegrationLinkType } from '../model';
 /**
  * IntegrationLinksApi - axios parameter creator
- * @export
  */
 export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -62,10 +61,10 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'key' is not null or undefined
             assertParamExists('addOrUpdateIntegrationLink', 'key', key)
             const localVarPath = `/v1/environments/{environmentId}/settings/{settingId}/integrationLinks/{integrationLinkType}/{key}`
-                .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)))
-                .replace(`{${"settingId"}}`, encodeURIComponent(String(settingId)))
-                .replace(`{${"integrationLinkType"}}`, encodeURIComponent(String(integrationLinkType)))
-                .replace(`{${"key"}}`, encodeURIComponent(String(key)));
+                .replace('{environmentId}', encodeURIComponent(String(environmentId)))
+                .replace('{settingId}', encodeURIComponent(String(settingId)))
+                .replace('{integrationLinkType}', encodeURIComponent(String(integrationLinkType)))
+                .replace('{key}', encodeURIComponent(String(key)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -81,9 +80,8 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -115,10 +113,10 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'key' is not null or undefined
             assertParamExists('deleteIntegrationLink', 'key', key)
             const localVarPath = `/v1/environments/{environmentId}/settings/{settingId}/integrationLinks/{integrationLinkType}/{key}`
-                .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)))
-                .replace(`{${"settingId"}}`, encodeURIComponent(String(settingId)))
-                .replace(`{${"integrationLinkType"}}`, encodeURIComponent(String(integrationLinkType)))
-                .replace(`{${"key"}}`, encodeURIComponent(String(key)));
+                .replace('{environmentId}', encodeURIComponent(String(environmentId)))
+                .replace('{settingId}', encodeURIComponent(String(settingId)))
+                .replace('{integrationLinkType}', encodeURIComponent(String(integrationLinkType)))
+                .replace('{key}', encodeURIComponent(String(key)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -134,8 +132,8 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -159,8 +157,8 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'key' is not null or undefined
             assertParamExists('getIntegrationLinkDetails', 'key', key)
             const localVarPath = `/v1/integrationLink/{integrationLinkType}/{key}/details`
-                .replace(`{${"integrationLinkType"}}`, encodeURIComponent(String(integrationLinkType)))
-                .replace(`{${"key"}}`, encodeURIComponent(String(key)));
+                .replace('{integrationLinkType}', encodeURIComponent(String(integrationLinkType)))
+                .replace('{key}', encodeURIComponent(String(key)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -176,8 +174,8 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -204,9 +202,9 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'key' is not null or undefined
             assertParamExists('jiraAddOrUpdateIntegrationLink', 'key', key)
             const localVarPath = `/v1/jira/environments/{environmentId}/settings/{settingId}/integrationLinks/{key}`
-                .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)))
-                .replace(`{${"settingId"}}`, encodeURIComponent(String(settingId)))
-                .replace(`{${"key"}}`, encodeURIComponent(String(key)));
+                .replace('{environmentId}', encodeURIComponent(String(environmentId)))
+                .replace('{settingId}', encodeURIComponent(String(settingId)))
+                .replace('{key}', encodeURIComponent(String(key)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -222,9 +220,8 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -259,8 +256,6 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -278,7 +273,6 @@ export const IntegrationLinksApiAxiosParamCreator = function (configuration?: Co
 
 /**
  * IntegrationLinksApi - functional programming interface
- * @export
  */
 export const IntegrationLinksApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = IntegrationLinksApiAxiosParamCreator(configuration)
@@ -362,7 +356,6 @@ export const IntegrationLinksApiFp = function(configuration?: Configuration) {
 
 /**
  * IntegrationLinksApi - factory interface
- * @export
  */
 export const IntegrationLinksApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = IntegrationLinksApiFp(configuration)
@@ -378,7 +371,7 @@ export const IntegrationLinksApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, options?: any): AxiosPromise<IntegrationLinkModel> {
+        addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, options?: RawAxiosRequestConfig): AxiosPromise<IntegrationLinkModel> {
             return localVarFp.addOrUpdateIntegrationLink(environmentId, settingId, integrationLinkType, key, addOrUpdateIntegrationLinkModel, options).then((request) => request(axios, basePath));
         },
         /**
@@ -391,7 +384,7 @@ export const IntegrationLinksApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, options?: any): AxiosPromise<DeleteIntegrationLinkModel> {
+        deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, options?: RawAxiosRequestConfig): AxiosPromise<DeleteIntegrationLinkModel> {
             return localVarFp.deleteIntegrationLink(environmentId, settingId, integrationLinkType, key, options).then((request) => request(axios, basePath));
         },
         /**
@@ -402,7 +395,7 @@ export const IntegrationLinksApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, options?: any): AxiosPromise<IntegrationLinkDetailsModel> {
+        getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, options?: RawAxiosRequestConfig): AxiosPromise<IntegrationLinkDetailsModel> {
             return localVarFp.getIntegrationLinkDetails(integrationLinkType, key, options).then((request) => request(axios, basePath));
         },
         /**
@@ -414,7 +407,7 @@ export const IntegrationLinksApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, options?: any): AxiosPromise<IntegrationLinkModel> {
+        jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, options?: RawAxiosRequestConfig): AxiosPromise<IntegrationLinkModel> {
             return localVarFp.jiraAddOrUpdateIntegrationLink(environmentId, settingId, key, addOrUpdateJiraIntegrationLinkModel, options).then((request) => request(axios, basePath));
         },
         /**
@@ -423,7 +416,7 @@ export const IntegrationLinksApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        jiraConnect(connectRequest?: ConnectRequest, options?: any): AxiosPromise<void> {
+        jiraConnect(connectRequest?: ConnectRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.jiraConnect(connectRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -431,9 +424,6 @@ export const IntegrationLinksApiFactory = function (configuration?: Configuratio
 
 /**
  * IntegrationLinksApi - object-oriented interface
- * @export
- * @class IntegrationLinksApi
- * @extends {BaseAPI}
  */
 export class IntegrationLinksApi extends BaseAPI {
     /**
@@ -446,7 +436,6 @@ export class IntegrationLinksApi extends BaseAPI {
      * @param {AddOrUpdateIntegrationLinkModel} [addOrUpdateIntegrationLinkModel] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof IntegrationLinksApi
      */
     public addOrUpdateIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, addOrUpdateIntegrationLinkModel?: AddOrUpdateIntegrationLinkModel, options?: RawAxiosRequestConfig) {
         return IntegrationLinksApiFp(this.configuration).addOrUpdateIntegrationLink(environmentId, settingId, integrationLinkType, key, addOrUpdateIntegrationLinkModel, options).then((request) => request(this.axios, this.basePath));
@@ -461,7 +450,6 @@ export class IntegrationLinksApi extends BaseAPI {
      * @param {string} key The key of the integration link.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof IntegrationLinksApi
      */
     public deleteIntegrationLink(environmentId: string, settingId: number, integrationLinkType: IntegrationLinkType, key: string, options?: RawAxiosRequestConfig) {
         return IntegrationLinksApiFp(this.configuration).deleteIntegrationLink(environmentId, settingId, integrationLinkType, key, options).then((request) => request(this.axios, this.basePath));
@@ -474,7 +462,6 @@ export class IntegrationLinksApi extends BaseAPI {
      * @param {string} key The key of the integration link.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof IntegrationLinksApi
      */
     public getIntegrationLinkDetails(integrationLinkType: IntegrationLinkType, key: string, options?: RawAxiosRequestConfig) {
         return IntegrationLinksApiFp(this.configuration).getIntegrationLinkDetails(integrationLinkType, key, options).then((request) => request(this.axios, this.basePath));
@@ -488,7 +475,6 @@ export class IntegrationLinksApi extends BaseAPI {
      * @param {AddOrUpdateJiraIntegrationLinkModel} [addOrUpdateJiraIntegrationLinkModel] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof IntegrationLinksApi
      */
     public jiraAddOrUpdateIntegrationLink(environmentId: string, settingId: number, key: string, addOrUpdateJiraIntegrationLinkModel?: AddOrUpdateJiraIntegrationLinkModel, options?: RawAxiosRequestConfig) {
         return IntegrationLinksApiFp(this.configuration).jiraAddOrUpdateIntegrationLink(environmentId, settingId, key, addOrUpdateJiraIntegrationLinkModel, options).then((request) => request(this.axios, this.basePath));
@@ -499,7 +485,6 @@ export class IntegrationLinksApi extends BaseAPI {
      * @param {ConnectRequest} [connectRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof IntegrationLinksApi
      */
     public jiraConnect(connectRequest?: ConnectRequest, options?: RawAxiosRequestConfig) {
         return IntegrationLinksApiFp(this.configuration).jiraConnect(connectRequest, options).then((request) => request(this.axios, this.basePath));

@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface StaleFlagSettingTagModel
- */
 export interface StaleFlagSettingTagModel {
-    /**
-     * 
-     * @type {number}
-     * @memberof StaleFlagSettingTagModel
-     */
     'tagId': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StaleFlagSettingTagModel
-     */
     'settingTagId': number;
 }
 

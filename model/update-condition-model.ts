@@ -15,37 +15,17 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdatePrerequisiteFlagConditionModel } from './update-prerequisite-flag-condition-model';
+import type { UpdatePrerequisiteFlagConditionModel } from './update-prerequisite-flag-condition-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateSegmentConditionModel } from './update-segment-condition-model';
+import type { UpdateSegmentConditionModel } from './update-segment-condition-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateUserConditionModel } from './update-user-condition-model';
+import type { UpdateUserConditionModel } from './update-user-condition-model';
 
-/**
- * 
- * @export
- * @interface UpdateConditionModel
- */
 export interface UpdateConditionModel {
-    /**
-     * 
-     * @type {UpdateUserConditionModel}
-     * @memberof UpdateConditionModel
-     */
     'userCondition'?: UpdateUserConditionModel | null;
-    /**
-     * 
-     * @type {UpdateSegmentConditionModel}
-     * @memberof UpdateConditionModel
-     */
     'segmentCondition'?: UpdateSegmentConditionModel | null;
-    /**
-     * 
-     * @type {UpdatePrerequisiteFlagConditionModel}
-     * @memberof UpdateConditionModel
-     */
     'prerequisiteFlagCondition'?: UpdatePrerequisiteFlagConditionModel | null;
 }
 

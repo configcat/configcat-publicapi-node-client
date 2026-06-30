@@ -15,25 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { WebhookNotification } from './webhook-notification';
+import type { WebhookNotification } from './webhook-notification';
 
 /**
  * The connection preferences for the proxy profile, including SDK poll interval and webhook proxy URL.
- * @export
- * @interface ConnectionPreferences
  */
 export interface ConnectionPreferences {
     /**
      * The SDK poll interval in seconds that determines how often SDKs should fetch config JSON updates.
-     * @type {number}
-     * @memberof ConnectionPreferences
      */
     'sdkPollInterval': number;
-    /**
-     * 
-     * @type {WebhookNotification}
-     * @memberof ConnectionPreferences
-     */
     'webhookNotification': WebhookNotification | null;
 }
 

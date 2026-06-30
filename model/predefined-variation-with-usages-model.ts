@@ -15,52 +15,43 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PredefinedVariationUsageModel } from './predefined-variation-usage-model';
+import type { PredefinedVariationChangeRequestUsageModel } from './predefined-variation-change-request-usage-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PredefinedVariationValueModel } from './predefined-variation-value-model';
+import type { PredefinedVariationUsageModel } from './predefined-variation-usage-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { PredefinedVariationValueModel } from './predefined-variation-value-model';
 
-/**
- * 
- * @export
- * @interface PredefinedVariationWithUsagesModel
- */
 export interface PredefinedVariationWithUsagesModel {
-    /**
-     * 
-     * @type {PredefinedVariationValueModel}
-     * @memberof PredefinedVariationWithUsagesModel
-     */
     'value': PredefinedVariationValueModel;
     /**
-     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
-     * @type {string}
-     * @memberof PredefinedVariationWithUsagesModel
+     * The name of the Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      */
     'name': string | null;
     /**
-     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
-     * @type {string}
-     * @memberof PredefinedVariationWithUsagesModel
+     * The name of the Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      */
     'hint': string | null;
     /**
-     * The Feature Flag or Predefined Variation\'s identifier.
-     * @type {string}
-     * @memberof PredefinedVariationWithUsagesModel
+     * The Predefined Variation\'s identifier.
      */
     'predefinedVariationId': string;
     /**
      * The Feature Flag or Setting Variation\'s usages in the given Environments.
-     * @type {Array<PredefinedVariationUsageModel>}
-     * @memberof PredefinedVariationWithUsagesModel
      */
     'usages': Array<PredefinedVariationUsageModel>;
     /**
      * The Feature Flag or Setting Variation\'s usages in the Environments you don\'t have access to.
-     * @type {number}
-     * @memberof PredefinedVariationWithUsagesModel
      */
     'usagesInOtherEnvironments': number;
+    /**
+     * The Feature Flag or Setting Variation\'s usages in the given Change Requests.
+     */
+    'changeRequestUsages': Array<PredefinedVariationChangeRequestUsageModel>;
+    /**
+     * The Feature Flag or Setting Variation\'s usages in the Change Requests you don\'t have access to.
+     */
+    'changeRequestUsagesInOtherEnvironments': number;
 }
 

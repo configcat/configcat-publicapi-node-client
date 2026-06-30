@@ -16,14 +16,10 @@
 
 /**
  * The preferences related to a connection, including polling intervals and webhook proxy configurations.
- * @export
- * @interface CreateOrUpdateWebhookNotification
  */
 export interface CreateOrUpdateWebhookNotification {
     /**
      * The webhook proxy URL for receiving config JSON change notifications.
-     * @type {string}
-     * @memberof CreateOrUpdateWebhookNotification
      */
     'webhookProxyUrl': string;
 }

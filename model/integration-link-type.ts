@@ -14,16 +14,11 @@
 
 
 
-/**
- * 
- * @export
- * @enum {string}
- */
 
 export const IntegrationLinkType = {
     Trello: 'trello',
     Jira: 'jira',
-    Monday: 'monday'
+    Monday: 'monday',
 } as const;
 
 export type IntegrationLinkType = typeof IntegrationLinkType[keyof typeof IntegrationLinkType];

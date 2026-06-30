@@ -16,14 +16,12 @@
 
 /**
  * Represent the environment specific Feature Management permission.
- * @export
- * @enum {string}
  */
 
 export const EnvironmentAccessType = {
     Full: 'full',
     ReadOnly: 'readOnly',
-    None: 'none'
+    None: 'none',
 } as const;
 
 export type EnvironmentAccessType = typeof EnvironmentAccessType[keyof typeof EnvironmentAccessType];

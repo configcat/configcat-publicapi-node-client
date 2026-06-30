@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface CreateEnvironmentModel
- */
 export interface CreateEnvironmentModel {
     /**
      * The name of the Environment.
-     * @type {string}
-     * @memberof CreateEnvironmentModel
      */
     'name': string;
     /**
      * The color of the Environment. RGB or HTML color codes are allowed.
-     * @type {string}
-     * @memberof CreateEnvironmentModel
      */
     'color'?: string | null;
     /**
      * The description of the Environment.
-     * @type {string}
-     * @memberof CreateEnvironmentModel
      */
     'description'?: string | null;
     /**
      * The order of the Environment represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
-     * @type {number}
-     * @memberof CreateEnvironmentModel
      */
     'order'?: number | null;
 }

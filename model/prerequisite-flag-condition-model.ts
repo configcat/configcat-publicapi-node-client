@@ -15,34 +15,20 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PrerequisiteComparator } from './prerequisite-comparator';
+import type { PrerequisiteComparator } from './prerequisite-comparator';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ValueModel } from './value-model';
+import type { ValueModel } from './value-model';
 
 /**
  * Describes a condition that is based on a prerequisite flag.
- * @export
- * @interface PrerequisiteFlagConditionModel
  */
 export interface PrerequisiteFlagConditionModel {
     /**
      * The prerequisite flag\'s identifier.
-     * @type {number}
-     * @memberof PrerequisiteFlagConditionModel
      */
     'prerequisiteSettingId': number;
-    /**
-     * 
-     * @type {PrerequisiteComparator}
-     * @memberof PrerequisiteFlagConditionModel
-     */
     'comparator': PrerequisiteComparator;
-    /**
-     * 
-     * @type {ValueModel}
-     * @memberof PrerequisiteFlagConditionModel
-     */
     'prerequisiteComparisonValue': ValueModel;
 }
 

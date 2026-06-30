@@ -16,20 +16,14 @@
 
 /**
  * Describes the Member\'s Permission Group within a Product.
- * @export
- * @interface OrganizationPermissionGroupModel
  */
 export interface OrganizationPermissionGroupModel {
     /**
      * Identifier of the Member\'s Permission Group.
-     * @type {number}
-     * @memberof OrganizationPermissionGroupModel
      */
     'permissionGroupId': number;
     /**
      * Name of the Member\'s Permission Group.
-     * @type {string}
-     * @memberof OrganizationPermissionGroupModel
      */
     'name': string;
 }

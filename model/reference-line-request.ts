@@ -16,20 +16,14 @@
 
 /**
  * Determines a code reference line.
- * @export
- * @interface ReferenceLineRequest
  */
 export interface ReferenceLineRequest {
     /**
      * The content of the reference line.
-     * @type {string}
-     * @memberof ReferenceLineRequest
      */
     'lineText'?: string | null;
     /**
      * The line number.
-     * @type {number}
-     * @memberof ReferenceLineRequest
      */
     'lineNumber': number;
 }

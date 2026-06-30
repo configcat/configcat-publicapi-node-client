@@ -15,84 +15,58 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PredefinedVariationModel } from './predefined-variation-model';
+import type { PredefinedVariationModel } from './predefined-variation-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingType } from './setting-type';
+import type { SettingType } from './setting-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { TagModel } from './tag-model';
+import type { TagModel } from './tag-model';
 
 /**
  * Metadata of a Feature Flag or Setting.
- * @export
- * @interface SettingModel
  */
 export interface SettingModel {
     /**
      * Identifier of the Feature Flag or Setting.
-     * @type {number}
-     * @memberof SettingModel
      */
     'settingId': number;
     /**
      * Key of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingModel
      */
     'key': string;
     /**
      * Name of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingModel
      */
     'name': string;
     /**
      * Description of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingModel
      */
     'hint': string | null;
     /**
      * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
-     * @type {number}
-     * @memberof SettingModel
      */
     'order': number;
-    /**
-     * 
-     * @type {SettingType}
-     * @memberof SettingModel
-     */
     'settingType': SettingType;
+    'isJson': boolean;
     /**
      * Identifier of the Feature Flag\'s Config.
-     * @type {string}
-     * @memberof SettingModel
      */
     'configId': string;
     /**
      * Name of the Feature Flag\'s Config.
-     * @type {string}
-     * @memberof SettingModel
      */
     'configName': string;
     /**
      * The creation time of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingModel
      */
     'createdAt': string | null;
     /**
      * The tags attached to the Feature Flag or Setting.
-     * @type {Array<TagModel>}
-     * @memberof SettingModel
      */
     'tags': Array<TagModel>;
     /**
      * The Feature Flag or Setting\'s Variations.
-     * @type {Array<PredefinedVariationModel>}
-     * @memberof SettingModel
      */
     'predefinedVariations': Array<PredefinedVariationModel>;
 }

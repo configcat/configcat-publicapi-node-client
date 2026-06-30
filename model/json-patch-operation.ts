@@ -15,36 +15,20 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OperationType } from './operation-type';
+import type { OperationType } from './operation-type';
 
-/**
- * 
- * @export
- * @interface JsonPatchOperation
- */
 export interface JsonPatchOperation {
-    /**
-     * 
-     * @type {OperationType}
-     * @memberof JsonPatchOperation
-     */
     'op': OperationType;
     /**
      * The source path.
-     * @type {string}
-     * @memberof JsonPatchOperation
      */
     'path': string;
     /**
      * The target path.
-     * @type {string}
-     * @memberof JsonPatchOperation
      */
     'from'?: string | null;
     /**
      * The discrete value.
-     * @type {any}
-     * @memberof JsonPatchOperation
      */
     'value'?: any | null;
 }

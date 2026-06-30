@@ -15,73 +15,49 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingType } from './setting-type';
+import type { SettingType } from './setting-type';
 
 /**
  * Metadata of a Feature Flag or Setting.
- * @export
- * @interface SettingDataModel
  */
 export interface SettingDataModel {
     /**
      * Identifier of the Feature Flag or Setting.
-     * @type {number}
-     * @memberof SettingDataModel
      */
     'settingId': number;
     /**
      * Key of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingDataModel
      */
     'key': string;
     /**
      * Name of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingDataModel
      */
     'name': string;
     /**
      * Description of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingDataModel
      */
     'hint': string | null;
-    /**
-     * 
-     * @type {SettingType}
-     * @memberof SettingDataModel
-     */
     'settingType': SettingType;
     /**
+     * Indicates whether this setting should validate string values as JSON values.
+     */
+    'isJson': boolean;
+    /**
      * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
-     * @type {number}
-     * @memberof SettingDataModel
      */
     'order': number;
     /**
      * The creation time of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingDataModel
      */
     'createdAt': string | null;
     /**
      * The user\'s email address who created the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingDataModel
      */
     'creatorEmail': string | null;
     /**
      * The user\'s name who created the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingDataModel
      */
     'creatorFullName': string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SettingDataModel
-     */
     'isWatching': boolean;
 }
 

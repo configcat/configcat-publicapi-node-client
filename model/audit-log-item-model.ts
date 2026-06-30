@@ -15,86 +15,21 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { AuditLogType } from './audit-log-type';
+import type { AuditLogType } from './audit-log-type';
 
-/**
- * 
- * @export
- * @interface AuditLogItemModel
- */
 export interface AuditLogItemModel {
-    /**
-     * 
-     * @type {number}
-     * @memberof AuditLogItemModel
-     */
     'auditLogId': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditLogItemModel
-     */
     'auditLogDateTime': string;
-    /**
-     * 
-     * @type {AuditLogType}
-     * @memberof AuditLogItemModel
-     */
     'auditLogTypeEnum': AuditLogType;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditLogItemModel
-     */
-    'changeSetId': string | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof AuditLogItemModel
-     */
     'truncated': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditLogItemModel
-     */
-    'auditLogType': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditLogItemModel
-     */
+    'modelVersion': number;
+    'auditLogType': string;
     'userEmail': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditLogItemModel
-     */
-    'userName': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditLogItemModel
-     */
-    'where': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditLogItemModel
-     */
+    'userName': string;
+    'where': string;
     'why': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditLogItemModel
-     */
-    'actionTarget': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof AuditLogItemModel
-     */
-    'details': string | null;
+    'actionTarget': string;
+    'details': string;
 }
 
 

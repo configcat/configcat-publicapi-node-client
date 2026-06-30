@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface WebhookHeaderModel
- */
 export interface WebhookHeaderModel {
     /**
      * The HTTP header key.
-     * @type {string}
-     * @memberof WebhookHeaderModel
      */
     'key': string;
     /**
      * The HTTP header value.
-     * @type {string}
-     * @memberof WebhookHeaderModel
      */
     'value': string;
     /**
      * Indicates whether the header value is sensitive.
-     * @type {boolean}
-     * @memberof WebhookHeaderModel
      */
     'isSecure'?: boolean;
 }

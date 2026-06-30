@@ -15,25 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SegmentComparator } from './segment-comparator';
+import type { SegmentComparator } from './segment-comparator';
 
 /**
  * Describes a condition that is based on a segment.
- * @export
- * @interface SegmentConditionModel
  */
 export interface SegmentConditionModel {
     /**
      * The segment\'s identifier.
-     * @type {string}
-     * @memberof SegmentConditionModel
      */
     'segmentId': string;
-    /**
-     * 
-     * @type {SegmentComparator}
-     * @memberof SegmentConditionModel
-     */
     'comparator': SegmentComparator;
 }
 

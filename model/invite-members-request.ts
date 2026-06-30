@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface InviteMembersRequest
- */
 export interface InviteMembersRequest {
     /**
      * List of email addresses to invite.
-     * @type {Array<string>}
-     * @memberof InviteMembersRequest
      */
     'emails': Array<string>;
     /**
      * Identifier of the Permission Group to where the invited users should be added.
-     * @type {number}
-     * @memberof InviteMembersRequest
      */
     'permissionGroupId': number;
 }

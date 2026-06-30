@@ -15,18 +15,11 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateEvaluationFormulaWithIdModel } from './update-evaluation-formula-with-id-model';
+import type { UpdateEvaluationFormulaWithIdModel } from './update-evaluation-formula-with-id-model';
 
-/**
- * 
- * @export
- * @interface UpdateEvaluationFormulasModel
- */
 export interface UpdateEvaluationFormulasModel {
     /**
      * Evaluation descriptors of each updated Feature Flag and Setting.
-     * @type {Array<UpdateEvaluationFormulaWithIdModel>}
-     * @memberof UpdateEvaluationFormulasModel
      */
     'updateFormulas'?: Array<UpdateEvaluationFormulaWithIdModel>;
 }

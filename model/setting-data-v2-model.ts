@@ -15,82 +15,56 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PredefinedVariationModel } from './predefined-variation-model';
+import type { PredefinedVariationModel } from './predefined-variation-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingType } from './setting-type';
+import type { SettingType } from './setting-type';
 
 /**
  * Metadata of a Feature Flag or Setting.
- * @export
- * @interface SettingDataV2Model
  */
 export interface SettingDataV2Model {
     /**
      * Identifier of the Feature Flag or Setting.
-     * @type {number}
-     * @memberof SettingDataV2Model
      */
     'settingId': number;
     /**
      * Key of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingDataV2Model
      */
     'key': string;
     /**
      * Name of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingDataV2Model
      */
     'name': string;
     /**
      * Description of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingDataV2Model
      */
     'hint': string | null;
-    /**
-     * 
-     * @type {SettingType}
-     * @memberof SettingDataV2Model
-     */
     'settingType': SettingType;
     /**
+     * Indicates whether this setting should validate string values as JSON values.
+     */
+    'isJson': boolean;
+    /**
      * The order of the Feature Flag or Setting represented on the ConfigCat Dashboard.
-     * @type {number}
-     * @memberof SettingDataV2Model
      */
     'order': number;
     /**
      * The creation time of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingDataV2Model
      */
     'createdAt': string | null;
     /**
      * The user\'s email address who created the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingDataV2Model
      */
     'creatorEmail': string | null;
     /**
      * The user\'s name who created the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingDataV2Model
      */
     'creatorFullName': string | null;
     /**
      * A collection of Variations for a Feature Flag or Setting.
-     * @type {Array<PredefinedVariationModel>}
-     * @memberof SettingDataV2Model
      */
     'predefinedVariations': Array<PredefinedVariationModel>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SettingDataV2Model
-     */
     'isWatching': boolean;
 }
 

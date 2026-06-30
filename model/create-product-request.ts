@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface CreateProductRequest
- */
 export interface CreateProductRequest {
     /**
      * The name of the Product.
-     * @type {string}
-     * @memberof CreateProductRequest
      */
     'name': string;
     /**
      * The description of the Product.
-     * @type {string}
-     * @memberof CreateProductRequest
      */
     'description'?: string | null;
     /**
      * The order of the Product represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
-     * @type {number}
-     * @memberof CreateProductRequest
      */
     'order'?: number | null;
 }
