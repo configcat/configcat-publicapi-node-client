@@ -16,20 +16,14 @@
 
 /**
  * The Config where the applied changes will invoke the Webhook.
- * @export
- * @interface WebhookConfig
  */
 export interface WebhookConfig {
     /**
      * The Config\'s name.
-     * @type {string}
-     * @memberof WebhookConfig
      */
     'name': string;
     /**
      * The Config\'s identifier.
-     * @type {string}
-     * @memberof WebhookConfig
      */
     'configId': string;
 }

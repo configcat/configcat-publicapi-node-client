@@ -16,38 +16,26 @@
 
 /**
  * Represents the value of a Feature Flag or Setting.
- * @export
- * @interface UpdateValueModel
  */
 export interface UpdateValueModel {
     /**
      * The served value in case of a boolean Feature Flag.
-     * @type {boolean}
-     * @memberof UpdateValueModel
      */
     'boolValue'?: boolean | null;
     /**
      * The served value in case of a text Setting.
-     * @type {string}
-     * @memberof UpdateValueModel
      */
     'stringValue'?: string | null;
     /**
      * The served value in case of a whole number Setting.
-     * @type {number}
-     * @memberof UpdateValueModel
      */
     'intValue'?: number | null;
     /**
      * The served value in case of a decimal number Setting.
-     * @type {number}
-     * @memberof UpdateValueModel
      */
     'doubleValue'?: number | null;
     /**
      * The served Variation\'s identifier.
-     * @type {string}
-     * @memberof UpdateValueModel
      */
     'predefinedVariationId'?: string | null;
 }

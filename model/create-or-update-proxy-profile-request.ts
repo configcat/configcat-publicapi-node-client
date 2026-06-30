@@ -15,39 +15,23 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CreateOrUpdateConnectionPreferences } from './create-or-update-connection-preferences';
+import type { CreateOrUpdateConnectionPreferences } from './create-or-update-connection-preferences';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateProxyProfileSelectionRule } from './update-proxy-profile-selection-rule';
+import type { UpdateProxyProfileSelectionRule } from './update-proxy-profile-selection-rule';
 
-/**
- * 
- * @export
- * @interface CreateOrUpdateProxyProfileRequest
- */
 export interface CreateOrUpdateProxyProfileRequest {
     /**
      * The name of the proxy profile.
-     * @type {string}
-     * @memberof CreateOrUpdateProxyProfileRequest
      */
     'name': string;
     /**
      * The description of the proxy profile.
-     * @type {string}
-     * @memberof CreateOrUpdateProxyProfileRequest
      */
     'description'?: string | null;
-    /**
-     * 
-     * @type {CreateOrUpdateConnectionPreferences}
-     * @memberof CreateOrUpdateProxyProfileRequest
-     */
     'connectionPreferences'?: CreateOrUpdateConnectionPreferences | null;
     /**
      * A collection of selection rules that determine the SDK keys applicable for a proxy profile.
-     * @type {Array<UpdateProxyProfileSelectionRule>}
-     * @memberof CreateOrUpdateProxyProfileRequest
      */
     'sdkKeySelectionRules'?: Array<UpdateProxyProfileSelectionRule> | null;
 }

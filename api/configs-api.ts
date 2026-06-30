@@ -18,18 +18,17 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { ConfigModel } from '../model';
+import type { ConfigModel } from '../model';
 // @ts-ignore
-import { CreateConfigRequest } from '../model';
+import type { CreateConfigRequest } from '../model';
 // @ts-ignore
-import { UpdateConfigRequest } from '../model';
+import type { UpdateConfigRequest } from '../model';
 /**
  * ConfigsApi - axios parameter creator
- * @export
  */
 export const ConfigsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -47,7 +46,7 @@ export const ConfigsApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'createConfigRequest' is not null or undefined
             assertParamExists('createConfig', 'createConfigRequest', createConfigRequest)
             const localVarPath = `/v1/products/{productId}/configs`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -63,9 +62,8 @@ export const ConfigsApiAxiosParamCreator = function (configuration?: Configurati
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -88,7 +86,7 @@ export const ConfigsApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'configId' is not null or undefined
             assertParamExists('deleteConfig', 'configId', configId)
             const localVarPath = `/v1/configs/{configId}`
-                .replace(`{${"configId"}}`, encodeURIComponent(String(configId)));
+                .replace('{configId}', encodeURIComponent(String(configId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -105,7 +103,6 @@ export const ConfigsApiAxiosParamCreator = function (configuration?: Configurati
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -126,7 +123,7 @@ export const ConfigsApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'configId' is not null or undefined
             assertParamExists('getConfig', 'configId', configId)
             const localVarPath = `/v1/configs/{configId}`
-                .replace(`{${"configId"}}`, encodeURIComponent(String(configId)));
+                .replace('{configId}', encodeURIComponent(String(configId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -142,8 +139,8 @@ export const ConfigsApiAxiosParamCreator = function (configuration?: Configurati
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -164,7 +161,7 @@ export const ConfigsApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getConfigs', 'productId', productId)
             const localVarPath = `/v1/products/{productId}/configs`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -180,8 +177,8 @@ export const ConfigsApiAxiosParamCreator = function (configuration?: Configurati
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -205,7 +202,7 @@ export const ConfigsApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'updateConfigRequest' is not null or undefined
             assertParamExists('updateConfig', 'updateConfigRequest', updateConfigRequest)
             const localVarPath = `/v1/configs/{configId}`
-                .replace(`{${"configId"}}`, encodeURIComponent(String(configId)));
+                .replace('{configId}', encodeURIComponent(String(configId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -221,9 +218,8 @@ export const ConfigsApiAxiosParamCreator = function (configuration?: Configurati
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -240,7 +236,6 @@ export const ConfigsApiAxiosParamCreator = function (configuration?: Configurati
 
 /**
  * ConfigsApi - functional programming interface
- * @export
  */
 export const ConfigsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ConfigsApiAxiosParamCreator(configuration)
@@ -317,7 +312,6 @@ export const ConfigsApiFp = function(configuration?: Configuration) {
 
 /**
  * ConfigsApi - factory interface
- * @export
  */
 export const ConfigsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ConfigsApiFp(configuration)
@@ -330,7 +324,7 @@ export const ConfigsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createConfig(productId: string, createConfigRequest: CreateConfigRequest, options?: any): AxiosPromise<ConfigModel> {
+        createConfig(productId: string, createConfigRequest: CreateConfigRequest, options?: RawAxiosRequestConfig): AxiosPromise<ConfigModel> {
             return localVarFp.createConfig(productId, createConfigRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -340,7 +334,7 @@ export const ConfigsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteConfig(configId: string, options?: any): AxiosPromise<void> {
+        deleteConfig(configId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deleteConfig(configId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -350,7 +344,7 @@ export const ConfigsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConfig(configId: string, options?: any): AxiosPromise<ConfigModel> {
+        getConfig(configId: string, options?: RawAxiosRequestConfig): AxiosPromise<ConfigModel> {
             return localVarFp.getConfig(configId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -360,7 +354,7 @@ export const ConfigsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConfigs(productId: string, options?: any): AxiosPromise<Array<ConfigModel>> {
+        getConfigs(productId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<ConfigModel>> {
             return localVarFp.getConfigs(productId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -371,7 +365,7 @@ export const ConfigsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateConfig(configId: string, updateConfigRequest: UpdateConfigRequest, options?: any): AxiosPromise<ConfigModel> {
+        updateConfig(configId: string, updateConfigRequest: UpdateConfigRequest, options?: RawAxiosRequestConfig): AxiosPromise<ConfigModel> {
             return localVarFp.updateConfig(configId, updateConfigRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -379,9 +373,6 @@ export const ConfigsApiFactory = function (configuration?: Configuration, basePa
 
 /**
  * ConfigsApi - object-oriented interface
- * @export
- * @class ConfigsApi
- * @extends {BaseAPI}
  */
 export class ConfigsApi extends BaseAPI {
     /**
@@ -391,7 +382,6 @@ export class ConfigsApi extends BaseAPI {
      * @param {CreateConfigRequest} createConfigRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ConfigsApi
      */
     public createConfig(productId: string, createConfigRequest: CreateConfigRequest, options?: RawAxiosRequestConfig) {
         return ConfigsApiFp(this.configuration).createConfig(productId, createConfigRequest, options).then((request) => request(this.axios, this.basePath));
@@ -403,7 +393,6 @@ export class ConfigsApi extends BaseAPI {
      * @param {string} configId The identifier of the Config.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ConfigsApi
      */
     public deleteConfig(configId: string, options?: RawAxiosRequestConfig) {
         return ConfigsApiFp(this.configuration).deleteConfig(configId, options).then((request) => request(this.axios, this.basePath));
@@ -415,7 +404,6 @@ export class ConfigsApi extends BaseAPI {
      * @param {string} configId The identifier of the Config.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ConfigsApi
      */
     public getConfig(configId: string, options?: RawAxiosRequestConfig) {
         return ConfigsApiFp(this.configuration).getConfig(configId, options).then((request) => request(this.axios, this.basePath));
@@ -427,7 +415,6 @@ export class ConfigsApi extends BaseAPI {
      * @param {string} productId The identifier of the Product.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ConfigsApi
      */
     public getConfigs(productId: string, options?: RawAxiosRequestConfig) {
         return ConfigsApiFp(this.configuration).getConfigs(productId, options).then((request) => request(this.axios, this.basePath));
@@ -440,7 +427,6 @@ export class ConfigsApi extends BaseAPI {
      * @param {UpdateConfigRequest} updateConfigRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ConfigsApi
      */
     public updateConfig(configId: string, updateConfigRequest: UpdateConfigRequest, options?: RawAxiosRequestConfig) {
         return ConfigsApiFp(this.configuration).updateConfig(configId, updateConfigRequest, options).then((request) => request(this.axios, this.basePath));

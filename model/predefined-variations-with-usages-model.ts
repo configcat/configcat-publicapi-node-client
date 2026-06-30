@@ -15,48 +15,30 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PredefinedVariationEnvironmentModel } from './predefined-variation-environment-model';
+import type { PredefinedVariationEnvironmentModel } from './predefined-variation-environment-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { PredefinedVariationWithUsagesModel } from './predefined-variation-with-usages-model';
+import type { PredefinedVariationWithUsagesModel } from './predefined-variation-with-usages-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingType } from './setting-type';
+import type { SettingType } from './setting-type';
 
-/**
- * 
- * @export
- * @interface PredefinedVariationsWithUsagesModel
- */
 export interface PredefinedVariationsWithUsagesModel {
     /**
      * Key of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof PredefinedVariationsWithUsagesModel
      */
     'settingKey': string;
-    /**
-     * 
-     * @type {SettingType}
-     * @memberof PredefinedVariationsWithUsagesModel
-     */
     'settingType': SettingType;
     /**
      * The Feature Flag or Setting\'s Variations.
-     * @type {Array<PredefinedVariationWithUsagesModel>}
-     * @memberof PredefinedVariationsWithUsagesModel
      */
     'predefinedVariations': Array<PredefinedVariationWithUsagesModel>;
     /**
      * The Environment descriptors for the Variations\' usages.
-     * @type {Array<PredefinedVariationEnvironmentModel>}
-     * @memberof PredefinedVariationsWithUsagesModel
      */
     'environments': Array<PredefinedVariationEnvironmentModel>;
     /**
      * The maximum number of predefined variations allowed for the Feature Flag or Setting.
-     * @type {number}
-     * @memberof PredefinedVariationsWithUsagesModel
      */
     'maxPredefinedVariations': number;
 }

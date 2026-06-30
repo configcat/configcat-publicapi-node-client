@@ -16,14 +16,12 @@
 
 /**
  * Represent the Feature Management permission.
- * @export
- * @enum {string}
  */
 
 export const AccessType = {
     ReadOnly: 'readOnly',
     Full: 'full',
-    Custom: 'custom'
+    Custom: 'custom',
 } as const;
 
 export type AccessType = typeof AccessType[keyof typeof AccessType];

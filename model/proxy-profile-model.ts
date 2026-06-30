@@ -15,52 +15,29 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ConnectionPreferences } from './connection-preferences';
+import type { ConnectionPreferences } from './connection-preferences';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProxyProfileSelectionRule } from './proxy-profile-selection-rule';
+import type { ProxyProfileSelectionRule } from './proxy-profile-selection-rule';
 
-/**
- * 
- * @export
- * @interface ProxyProfileModel
- */
 export interface ProxyProfileModel {
     /**
      * The unique identifier of the proxy profile.
-     * @type {string}
-     * @memberof ProxyProfileModel
      */
     'proxyProfileId': string;
     /**
      * The name of the proxy profile.
-     * @type {string}
-     * @memberof ProxyProfileModel
      */
     'name': string;
     /**
      * The description of the proxy profile.
-     * @type {string}
-     * @memberof ProxyProfileModel
      */
     'description': string | null;
     /**
      * The date and time when the proxy profile was last accessed.
-     * @type {string}
-     * @memberof ProxyProfileModel
      */
     'lastAccessedAt': string | null;
-    /**
-     * 
-     * @type {ConnectionPreferences}
-     * @memberof ProxyProfileModel
-     */
     'connectionPreferences': ConnectionPreferences;
-    /**
-     * 
-     * @type {Array<ProxyProfileSelectionRule>}
-     * @memberof ProxyProfileModel
-     */
     'sdkKeySelectionRules': Array<ProxyProfileSelectionRule>;
 }
 

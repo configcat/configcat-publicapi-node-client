@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface PredefinedVariationUsageModel
- */
 export interface PredefinedVariationUsageModel {
-    /**
-     * 
-     * @type {number}
-     * @memberof PredefinedVariationUsageModel
-     */
     'settingId': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof PredefinedVariationUsageModel
-     */
     'environmentId': string;
 }
 

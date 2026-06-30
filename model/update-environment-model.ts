@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpdateEnvironmentModel
- */
 export interface UpdateEnvironmentModel {
     /**
      * The name of the Environment.
-     * @type {string}
-     * @memberof UpdateEnvironmentModel
      */
     'name'?: string | null;
     /**
      * The color of the Environment. RGB or HTML color codes are allowed.
-     * @type {string}
-     * @memberof UpdateEnvironmentModel
      */
     'color'?: string | null;
     /**
      * The description of the Environment.
-     * @type {string}
-     * @memberof UpdateEnvironmentModel
      */
     'description'?: string | null;
     /**
      * The order of the Environment represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
-     * @type {number}
-     * @memberof UpdateEnvironmentModel
      */
     'order'?: number | null;
 }

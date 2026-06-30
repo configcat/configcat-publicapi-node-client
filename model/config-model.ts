@@ -15,58 +15,33 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EvaluationVersion } from './evaluation-version';
+import type { EvaluationVersion } from './evaluation-version';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProductModel } from './product-model';
+import type { ProductModel } from './product-model';
 
 /**
  * Details of the Config.
- * @export
- * @interface ConfigModel
  */
 export interface ConfigModel {
-    /**
-     * 
-     * @type {ProductModel}
-     * @memberof ConfigModel
-     */
     'product': ProductModel;
     /**
      * Identifier of the Config.
-     * @type {string}
-     * @memberof ConfigModel
      */
     'configId': string;
     /**
      * Name of the Config.
-     * @type {string}
-     * @memberof ConfigModel
      */
     'name': string;
     /**
      * Description of the Config.
-     * @type {string}
-     * @memberof ConfigModel
      */
     'description': string | null;
     /**
      * The order of the Config represented on the ConfigCat Dashboard.
-     * @type {number}
-     * @memberof ConfigModel
      */
     'order': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ConfigModel
-     */
     'migratedConfigId': string | null;
-    /**
-     * 
-     * @type {EvaluationVersion}
-     * @memberof ConfigModel
-     */
     'evaluationVersion': EvaluationVersion;
 }
 

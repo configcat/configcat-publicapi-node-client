@@ -15,52 +15,22 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ConfigModel } from './config-model';
+import type { ConfigModel } from './config-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ConfigSettingValueModel } from './config-setting-value-model';
+import type { ConfigSettingValueModel } from './config-setting-value-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentModel } from './environment-model';
+import type { EnvironmentModel } from './environment-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FeatureFlagLimitations } from './feature-flag-limitations';
+import type { FeatureFlagLimitations } from './feature-flag-limitations';
 
-/**
- * 
- * @export
- * @interface ConfigSettingValuesModel
- */
 export interface ConfigSettingValuesModel {
-    /**
-     * 
-     * @type {ConfigModel}
-     * @memberof ConfigSettingValuesModel
-     */
     'config': ConfigModel;
-    /**
-     * 
-     * @type {EnvironmentModel}
-     * @memberof ConfigSettingValuesModel
-     */
     'environment': EnvironmentModel;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ConfigSettingValuesModel
-     */
     'readOnly': boolean;
-    /**
-     * 
-     * @type {Array<ConfigSettingValueModel>}
-     * @memberof ConfigSettingValuesModel
-     */
     'settingValues': Array<ConfigSettingValueModel>;
-    /**
-     * 
-     * @type {FeatureFlagLimitations}
-     * @memberof ConfigSettingValuesModel
-     */
     'featureFlagLimitations': FeatureFlagLimitations;
 }
 

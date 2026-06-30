@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface ProxyProfileSdkKeyRequestItem
- */
 export interface ProxyProfileSdkKeyRequestItem {
     /**
      * The identifier of the Config.
-     * @type {string}
-     * @memberof ProxyProfileSdkKeyRequestItem
      */
     'configId'?: string | null;
     /**
      * The identifier of the Environment.
-     * @type {string}
-     * @memberof ProxyProfileSdkKeyRequestItem
      */
     'environmentId'?: string | null;
 }

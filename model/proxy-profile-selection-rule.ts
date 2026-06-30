@@ -15,54 +15,32 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SelectionRuleKind } from './selection-rule-kind';
+import type { SelectionRuleKind } from './selection-rule-kind';
 
-/**
- * 
- * @export
- * @interface ProxyProfileSelectionRule
- */
 export interface ProxyProfileSelectionRule {
-    /**
-     * 
-     * @type {SelectionRuleKind}
-     * @memberof ProxyProfileSelectionRule
-     */
     'kind': SelectionRuleKind;
     /**
      * Defines the filter for matching Products by their unique identifier.
-     * @type {string}
-     * @memberof ProxyProfileSelectionRule
      */
     'productIdFilter': string | null;
     /**
      * Defines the filter for matching Configs by their unique identifier.
-     * @type {string}
-     * @memberof ProxyProfileSelectionRule
      */
     'configIdFilter': string | null;
     /**
      * Defines the filter for matching Environments by their unique identifier.
-     * @type {string}
-     * @memberof ProxyProfileSelectionRule
      */
     'environmentIdFilter': string | null;
     /**
      * Specifies a filter to match Product names in the proxy profile selection rule. It accepts wildcards (*).
-     * @type {string}
-     * @memberof ProxyProfileSelectionRule
      */
     'productNameMatchFilter': string | null;
     /**
      * Specifies a filter to match Config names in the proxy profile selection rule. It accepts wildcards (*).
-     * @type {string}
-     * @memberof ProxyProfileSelectionRule
      */
     'configNameMatchFilter': string | null;
     /**
      * Specifies a filter to match Environment names in the proxy profile selection rule. It accepts wildcards (*).
-     * @type {string}
-     * @memberof ProxyProfileSelectionRule
      */
     'environmentNameMatchFilter': string | null;
 }

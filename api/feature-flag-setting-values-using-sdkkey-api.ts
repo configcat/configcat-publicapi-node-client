@@ -18,18 +18,17 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { JsonPatchOperation } from '../model';
+import type { JsonPatchOperation } from '../model';
 // @ts-ignore
-import { SettingValueModel } from '../model';
+import type { SettingValueModel } from '../model';
 // @ts-ignore
-import { UpdateSettingValueModel } from '../model';
+import type { UpdateSettingValueModel } from '../model';
 /**
  * FeatureFlagSettingValuesUsingSDKKeyApi - axios parameter creator
- * @export
  */
 export const FeatureFlagSettingValuesUsingSDKKeyApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -45,7 +44,7 @@ export const FeatureFlagSettingValuesUsingSDKKeyApiAxiosParamCreator = function 
             // verify required parameter 'settingKeyOrId' is not null or undefined
             assertParamExists('getSettingValueBySdkkey', 'settingKeyOrId', settingKeyOrId)
             const localVarPath = `/v1/settings/{settingKeyOrId}/value`
-                .replace(`{${"settingKeyOrId"}}`, encodeURIComponent(String(settingKeyOrId)));
+                .replace('{settingKeyOrId}', encodeURIComponent(String(settingKeyOrId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -61,12 +60,11 @@ export const FeatureFlagSettingValuesUsingSDKKeyApiAxiosParamCreator = function 
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             if (xCONFIGCATSDKKEY != null) {
                 localVarHeaderParameter['X-CONFIGCAT-SDKKEY'] = String(xCONFIGCATSDKKEY);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -92,7 +90,7 @@ export const FeatureFlagSettingValuesUsingSDKKeyApiAxiosParamCreator = function 
             // verify required parameter 'updateSettingValueModel' is not null or undefined
             assertParamExists('replaceSettingValueBySdkkey', 'updateSettingValueModel', updateSettingValueModel)
             const localVarPath = `/v1/settings/{settingKeyOrId}/value`
-                .replace(`{${"settingKeyOrId"}}`, encodeURIComponent(String(settingKeyOrId)));
+                .replace('{settingKeyOrId}', encodeURIComponent(String(settingKeyOrId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -112,14 +110,12 @@ export const FeatureFlagSettingValuesUsingSDKKeyApiAxiosParamCreator = function 
                 localVarQueryParameter['reason'] = reason;
             }
 
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             if (xCONFIGCATSDKKEY != null) {
                 localVarHeaderParameter['X-CONFIGCAT-SDKKEY'] = String(xCONFIGCATSDKKEY);
             }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -146,7 +142,7 @@ export const FeatureFlagSettingValuesUsingSDKKeyApiAxiosParamCreator = function 
             // verify required parameter 'jsonPatchOperation' is not null or undefined
             assertParamExists('updateSettingValueBySdkkey', 'jsonPatchOperation', jsonPatchOperation)
             const localVarPath = `/v1/settings/{settingKeyOrId}/value`
-                .replace(`{${"settingKeyOrId"}}`, encodeURIComponent(String(settingKeyOrId)));
+                .replace('{settingKeyOrId}', encodeURIComponent(String(settingKeyOrId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -166,14 +162,12 @@ export const FeatureFlagSettingValuesUsingSDKKeyApiAxiosParamCreator = function 
                 localVarQueryParameter['reason'] = reason;
             }
 
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             if (xCONFIGCATSDKKEY != null) {
                 localVarHeaderParameter['X-CONFIGCAT-SDKKEY'] = String(xCONFIGCATSDKKEY);
             }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -189,7 +183,6 @@ export const FeatureFlagSettingValuesUsingSDKKeyApiAxiosParamCreator = function 
 
 /**
  * FeatureFlagSettingValuesUsingSDKKeyApi - functional programming interface
- * @export
  */
 export const FeatureFlagSettingValuesUsingSDKKeyApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = FeatureFlagSettingValuesUsingSDKKeyApiAxiosParamCreator(configuration)
@@ -245,7 +238,6 @@ export const FeatureFlagSettingValuesUsingSDKKeyApiFp = function(configuration?:
 
 /**
  * FeatureFlagSettingValuesUsingSDKKeyApi - factory interface
- * @export
  */
 export const FeatureFlagSettingValuesUsingSDKKeyApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = FeatureFlagSettingValuesUsingSDKKeyApiFp(configuration)
@@ -258,7 +250,7 @@ export const FeatureFlagSettingValuesUsingSDKKeyApiFactory = function (configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSettingValueBySdkkey(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, options?: any): AxiosPromise<SettingValueModel> {
+        getSettingValueBySdkkey(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig): AxiosPromise<SettingValueModel> {
             return localVarFp.getSettingValueBySdkkey(settingKeyOrId, xCONFIGCATSDKKEY, options).then((request) => request(axios, basePath));
         },
         /**
@@ -271,7 +263,7 @@ export const FeatureFlagSettingValuesUsingSDKKeyApiFactory = function (configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        replaceSettingValueBySdkkey(settingKeyOrId: string, updateSettingValueModel: UpdateSettingValueModel, reason?: string, xCONFIGCATSDKKEY?: string, options?: any): AxiosPromise<SettingValueModel> {
+        replaceSettingValueBySdkkey(settingKeyOrId: string, updateSettingValueModel: UpdateSettingValueModel, reason?: string, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig): AxiosPromise<SettingValueModel> {
             return localVarFp.replaceSettingValueBySdkkey(settingKeyOrId, updateSettingValueModel, reason, xCONFIGCATSDKKEY, options).then((request) => request(axios, basePath));
         },
         /**
@@ -284,7 +276,7 @@ export const FeatureFlagSettingValuesUsingSDKKeyApiFactory = function (configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateSettingValueBySdkkey(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, xCONFIGCATSDKKEY?: string, options?: any): AxiosPromise<SettingValueModel> {
+        updateSettingValueBySdkkey(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig): AxiosPromise<SettingValueModel> {
             return localVarFp.updateSettingValueBySdkkey(settingKeyOrId, jsonPatchOperation, reason, xCONFIGCATSDKKEY, options).then((request) => request(axios, basePath));
         },
     };
@@ -292,9 +284,6 @@ export const FeatureFlagSettingValuesUsingSDKKeyApiFactory = function (configura
 
 /**
  * FeatureFlagSettingValuesUsingSDKKeyApi - object-oriented interface
- * @export
- * @class FeatureFlagSettingValuesUsingSDKKeyApi
- * @extends {BaseAPI}
  */
 export class FeatureFlagSettingValuesUsingSDKKeyApi extends BaseAPI {
     /**
@@ -304,7 +293,6 @@ export class FeatureFlagSettingValuesUsingSDKKeyApi extends BaseAPI {
      * @param {string} [xCONFIGCATSDKKEY] The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeatureFlagSettingValuesUsingSDKKeyApi
      */
     public getSettingValueBySdkkey(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig) {
         return FeatureFlagSettingValuesUsingSDKKeyApiFp(this.configuration).getSettingValueBySdkkey(settingKeyOrId, xCONFIGCATSDKKEY, options).then((request) => request(this.axios, this.basePath));
@@ -319,7 +307,6 @@ export class FeatureFlagSettingValuesUsingSDKKeyApi extends BaseAPI {
      * @param {string} [xCONFIGCATSDKKEY] The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeatureFlagSettingValuesUsingSDKKeyApi
      */
     public replaceSettingValueBySdkkey(settingKeyOrId: string, updateSettingValueModel: UpdateSettingValueModel, reason?: string, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig) {
         return FeatureFlagSettingValuesUsingSDKKeyApiFp(this.configuration).replaceSettingValueBySdkkey(settingKeyOrId, updateSettingValueModel, reason, xCONFIGCATSDKKEY, options).then((request) => request(this.axios, this.basePath));
@@ -334,7 +321,6 @@ export class FeatureFlagSettingValuesUsingSDKKeyApi extends BaseAPI {
      * @param {string} [xCONFIGCATSDKKEY] The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeatureFlagSettingValuesUsingSDKKeyApi
      */
     public updateSettingValueBySdkkey(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig) {
         return FeatureFlagSettingValuesUsingSDKKeyApiFp(this.configuration).updateSettingValueBySdkkey(settingKeyOrId, jsonPatchOperation, reason, xCONFIGCATSDKKEY, options).then((request) => request(this.axios, this.basePath));

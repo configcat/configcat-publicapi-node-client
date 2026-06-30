@@ -18,20 +18,19 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { CreateTagModel } from '../model';
+import type { CreateTagModel } from '../model';
 // @ts-ignore
-import { SettingModel } from '../model';
+import type { SettingModel } from '../model';
 // @ts-ignore
-import { TagModel } from '../model';
+import type { TagModel } from '../model';
 // @ts-ignore
-import { UpdateTagModel } from '../model';
+import type { UpdateTagModel } from '../model';
 /**
  * TagsApi - axios parameter creator
- * @export
  */
 export const TagsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -49,7 +48,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             // verify required parameter 'createTagModel' is not null or undefined
             assertParamExists('createTag', 'createTagModel', createTagModel)
             const localVarPath = `/v1/products/{productId}/tags`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -65,9 +64,8 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -90,7 +88,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             // verify required parameter 'tagId' is not null or undefined
             assertParamExists('deleteTag', 'tagId', tagId)
             const localVarPath = `/v1/tags/{tagId}`
-                .replace(`{${"tagId"}}`, encodeURIComponent(String(tagId)));
+                .replace('{tagId}', encodeURIComponent(String(tagId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -107,7 +105,6 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -128,7 +125,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             // verify required parameter 'tagId' is not null or undefined
             assertParamExists('getSettingsByTag', 'tagId', tagId)
             const localVarPath = `/v1/tags/{tagId}/settings`
-                .replace(`{${"tagId"}}`, encodeURIComponent(String(tagId)));
+                .replace('{tagId}', encodeURIComponent(String(tagId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -144,8 +141,8 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -166,7 +163,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             // verify required parameter 'tagId' is not null or undefined
             assertParamExists('getTag', 'tagId', tagId)
             const localVarPath = `/v1/tags/{tagId}`
-                .replace(`{${"tagId"}}`, encodeURIComponent(String(tagId)));
+                .replace('{tagId}', encodeURIComponent(String(tagId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -182,8 +179,8 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -204,7 +201,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getTags', 'productId', productId)
             const localVarPath = `/v1/products/{productId}/tags`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -220,8 +217,8 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -245,7 +242,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             // verify required parameter 'updateTagModel' is not null or undefined
             assertParamExists('updateTag', 'updateTagModel', updateTagModel)
             const localVarPath = `/v1/tags/{tagId}`
-                .replace(`{${"tagId"}}`, encodeURIComponent(String(tagId)));
+                .replace('{tagId}', encodeURIComponent(String(tagId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -261,9 +258,8 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -280,7 +276,6 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
 
 /**
  * TagsApi - functional programming interface
- * @export
  */
 export const TagsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = TagsApiAxiosParamCreator(configuration)
@@ -370,7 +365,6 @@ export const TagsApiFp = function(configuration?: Configuration) {
 
 /**
  * TagsApi - factory interface
- * @export
  */
 export const TagsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = TagsApiFp(configuration)
@@ -383,7 +377,7 @@ export const TagsApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createTag(productId: string, createTagModel: CreateTagModel, options?: any): AxiosPromise<TagModel> {
+        createTag(productId: string, createTagModel: CreateTagModel, options?: RawAxiosRequestConfig): AxiosPromise<TagModel> {
             return localVarFp.createTag(productId, createTagModel, options).then((request) => request(axios, basePath));
         },
         /**
@@ -393,7 +387,7 @@ export const TagsApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteTag(tagId: number, options?: any): AxiosPromise<void> {
+        deleteTag(tagId: number, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deleteTag(tagId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -403,7 +397,7 @@ export const TagsApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSettingsByTag(tagId: number, options?: any): AxiosPromise<Array<SettingModel>> {
+        getSettingsByTag(tagId: number, options?: RawAxiosRequestConfig): AxiosPromise<Array<SettingModel>> {
             return localVarFp.getSettingsByTag(tagId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -413,7 +407,7 @@ export const TagsApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTag(tagId: number, options?: any): AxiosPromise<TagModel> {
+        getTag(tagId: number, options?: RawAxiosRequestConfig): AxiosPromise<TagModel> {
             return localVarFp.getTag(tagId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -423,7 +417,7 @@ export const TagsApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTags(productId: string, options?: any): AxiosPromise<Array<TagModel>> {
+        getTags(productId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<TagModel>> {
             return localVarFp.getTags(productId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -434,7 +428,7 @@ export const TagsApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateTag(tagId: number, updateTagModel: UpdateTagModel, options?: any): AxiosPromise<TagModel> {
+        updateTag(tagId: number, updateTagModel: UpdateTagModel, options?: RawAxiosRequestConfig): AxiosPromise<TagModel> {
             return localVarFp.updateTag(tagId, updateTagModel, options).then((request) => request(axios, basePath));
         },
     };
@@ -442,9 +436,6 @@ export const TagsApiFactory = function (configuration?: Configuration, basePath?
 
 /**
  * TagsApi - object-oriented interface
- * @export
- * @class TagsApi
- * @extends {BaseAPI}
  */
 export class TagsApi extends BaseAPI {
     /**
@@ -454,7 +445,6 @@ export class TagsApi extends BaseAPI {
      * @param {CreateTagModel} createTagModel 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TagsApi
      */
     public createTag(productId: string, createTagModel: CreateTagModel, options?: RawAxiosRequestConfig) {
         return TagsApiFp(this.configuration).createTag(productId, createTagModel, options).then((request) => request(this.axios, this.basePath));
@@ -466,7 +456,6 @@ export class TagsApi extends BaseAPI {
      * @param {number} tagId The identifier of the Tag.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TagsApi
      */
     public deleteTag(tagId: number, options?: RawAxiosRequestConfig) {
         return TagsApiFp(this.configuration).deleteTag(tagId, options).then((request) => request(this.axios, this.basePath));
@@ -478,7 +467,6 @@ export class TagsApi extends BaseAPI {
      * @param {number} tagId The identifier of the Tag.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TagsApi
      */
     public getSettingsByTag(tagId: number, options?: RawAxiosRequestConfig) {
         return TagsApiFp(this.configuration).getSettingsByTag(tagId, options).then((request) => request(this.axios, this.basePath));
@@ -490,7 +478,6 @@ export class TagsApi extends BaseAPI {
      * @param {number} tagId The identifier of the Tag.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TagsApi
      */
     public getTag(tagId: number, options?: RawAxiosRequestConfig) {
         return TagsApiFp(this.configuration).getTag(tagId, options).then((request) => request(this.axios, this.basePath));
@@ -502,7 +489,6 @@ export class TagsApi extends BaseAPI {
      * @param {string} productId The identifier of the Product.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TagsApi
      */
     public getTags(productId: string, options?: RawAxiosRequestConfig) {
         return TagsApiFp(this.configuration).getTags(productId, options).then((request) => request(this.axios, this.basePath));
@@ -515,7 +501,6 @@ export class TagsApi extends BaseAPI {
      * @param {UpdateTagModel} updateTagModel 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TagsApi
      */
     public updateTag(tagId: number, updateTagModel: UpdateTagModel, options?: RawAxiosRequestConfig) {
         return TagsApiFp(this.configuration).updateTag(tagId, updateTagModel, options).then((request) => request(this.axios, this.basePath));

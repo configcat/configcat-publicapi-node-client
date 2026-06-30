@@ -15,36 +15,20 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProductModel } from './product-model';
+import type { ProductModel } from './product-model';
 
-/**
- * 
- * @export
- * @interface TagModel
- */
 export interface TagModel {
-    /**
-     * 
-     * @type {ProductModel}
-     * @memberof TagModel
-     */
     'product': ProductModel;
     /**
      * Identifier of the Tag.
-     * @type {number}
-     * @memberof TagModel
      */
     'tagId': number;
     /**
      * Name of the Tag.
-     * @type {string}
-     * @memberof TagModel
      */
     'name': string;
     /**
      * The configured color of the Tag.
-     * @type {string}
-     * @memberof TagModel
      */
     'color': string | null;
 }

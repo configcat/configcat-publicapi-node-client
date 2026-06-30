@@ -16,20 +16,14 @@
 
 /**
  * Details of the Organization.
- * @export
- * @interface OrganizationModel
  */
 export interface OrganizationModel {
     /**
      * Identifier of the Organization.
-     * @type {string}
-     * @memberof OrganizationModel
      */
     'organizationId': string;
     /**
      * Name of the Organization.
-     * @type {string}
-     * @memberof OrganizationModel
      */
     'name': string;
 }

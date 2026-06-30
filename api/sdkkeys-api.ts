@@ -18,14 +18,13 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { SdkKeysModel } from '../model';
+import type { SdkKeysModel } from '../model';
 /**
  * SDKKeysApi - axios parameter creator
- * @export
  */
 export const SDKKeysApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -43,8 +42,8 @@ export const SDKKeysApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'environmentId' is not null or undefined
             assertParamExists('getSdkKeys', 'environmentId', environmentId)
             const localVarPath = `/v1/configs/{configId}/environments/{environmentId}`
-                .replace(`{${"configId"}}`, encodeURIComponent(String(configId)))
-                .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)));
+                .replace('{configId}', encodeURIComponent(String(configId)))
+                .replace('{environmentId}', encodeURIComponent(String(environmentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -60,8 +59,8 @@ export const SDKKeysApiAxiosParamCreator = function (configuration?: Configurati
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -76,7 +75,6 @@ export const SDKKeysApiAxiosParamCreator = function (configuration?: Configurati
 
 /**
  * SDKKeysApi - functional programming interface
- * @export
  */
 export const SDKKeysApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = SDKKeysApiAxiosParamCreator(configuration)
@@ -100,7 +98,6 @@ export const SDKKeysApiFp = function(configuration?: Configuration) {
 
 /**
  * SDKKeysApi - factory interface
- * @export
  */
 export const SDKKeysApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = SDKKeysApiFp(configuration)
@@ -113,7 +110,7 @@ export const SDKKeysApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSdkKeys(configId: string, environmentId: string, options?: any): AxiosPromise<SdkKeysModel> {
+        getSdkKeys(configId: string, environmentId: string, options?: RawAxiosRequestConfig): AxiosPromise<SdkKeysModel> {
             return localVarFp.getSdkKeys(configId, environmentId, options).then((request) => request(axios, basePath));
         },
     };
@@ -121,9 +118,6 @@ export const SDKKeysApiFactory = function (configuration?: Configuration, basePa
 
 /**
  * SDKKeysApi - object-oriented interface
- * @export
- * @class SDKKeysApi
- * @extends {BaseAPI}
  */
 export class SDKKeysApi extends BaseAPI {
     /**
@@ -133,7 +127,6 @@ export class SDKKeysApi extends BaseAPI {
      * @param {string} environmentId The identifier of the Environment.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SDKKeysApi
      */
     public getSdkKeys(configId: string, environmentId: string, options?: RawAxiosRequestConfig) {
         return SDKKeysApiFp(this.configuration).getSdkKeys(configId, environmentId, options).then((request) => request(this.axios, this.basePath));

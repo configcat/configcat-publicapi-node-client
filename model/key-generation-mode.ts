@@ -16,8 +16,6 @@
 
 /**
  * Determines the Feature Flag key generation mode.
- * @export
- * @enum {string}
  */
 
 export const KeyGenerationMode = {
@@ -25,7 +23,7 @@ export const KeyGenerationMode = {
     LowerCase: 'lowerCase',
     UpperCase: 'upperCase',
     PascalCase: 'pascalCase',
-    KebabCase: 'kebabCase'
+    KebabCase: 'kebabCase',
 } as const;
 
 export type KeyGenerationMode = typeof KeyGenerationMode[keyof typeof KeyGenerationMode];

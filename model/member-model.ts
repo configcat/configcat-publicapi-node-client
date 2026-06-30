@@ -14,40 +14,25 @@
 
 
 
-/**
- * 
- * @export
- * @interface MemberModel
- */
 export interface MemberModel {
     /**
      * Identifier of the Member.
-     * @type {string}
-     * @memberof MemberModel
      */
     'userId': string | null;
     /**
      * Identifier of the Product where the Member has access.
-     * @type {string}
-     * @memberof MemberModel
      */
     'productId': string;
     /**
      * Identifier of the Member\'s Permission Group.
-     * @type {number}
-     * @memberof MemberModel
      */
     'permissionGroupId': number;
     /**
      * Name of the Member.
-     * @type {string}
-     * @memberof MemberModel
      */
     'fullName': string | null;
     /**
      * Email of the Member.
-     * @type {string}
-     * @memberof MemberModel
      */
     'email': string | null;
 }

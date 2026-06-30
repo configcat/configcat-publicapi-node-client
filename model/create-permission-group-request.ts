@@ -15,168 +15,122 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { AccessType } from './access-type';
+import type { AccessType } from './access-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CreateOrUpdateEnvironmentAccessModel } from './create-or-update-environment-access-model';
+import type { ApprovalPermissionType } from './approval-permission-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentAccessType } from './environment-access-type';
+import type { CreateOrUpdateEnvironmentAccessModel } from './create-or-update-environment-access-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { CreateOrUpdateEnvironmentApprovalPermissionModel } from './create-or-update-environment-approval-permission-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { EnvironmentAccessType } from './environment-access-type';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { EnvironmentApprovalPermissionType } from './environment-approval-permission-type';
 
-/**
- * 
- * @export
- * @interface CreatePermissionGroupRequest
- */
 export interface CreatePermissionGroupRequest {
     /**
      * Name of the Permission Group.
-     * @type {string}
-     * @memberof CreatePermissionGroupRequest
      */
     'name': string;
     /**
      * Group members can manage team members.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canManageMembers'?: boolean;
     /**
      * Group members can create/update Configs.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canCreateOrUpdateConfig'?: boolean;
     /**
      * Group members can delete Configs.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canDeleteConfig'?: boolean;
     /**
      * Group members can create/update Environments.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canCreateOrUpdateEnvironment'?: boolean;
     /**
      * Group members can delete Environments.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canDeleteEnvironment'?: boolean;
     /**
      * Group members can create/update Feature Flags and Settings.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canCreateOrUpdateSetting'?: boolean;
     /**
      * Group members can attach/detach Tags to Feature Flags and Settings.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canTagSetting'?: boolean;
     /**
      * Group members can delete Feature Flags and Settings.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canDeleteSetting'?: boolean;
     /**
      * Group members can create/update Tags.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canCreateOrUpdateTag'?: boolean;
     /**
      * Group members can delete Tags.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canDeleteTag'?: boolean;
     /**
      * Group members can create/update/delete Webhooks.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canManageWebhook'?: boolean;
     /**
      * Group members can use the export/import feature.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canUseExportImport'?: boolean;
     /**
      * Group members can update Product preferences.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canManageProductPreferences'?: boolean;
     /**
      * Group members can add and configure integrations.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canManageIntegrations'?: boolean;
     /**
      * Group members has access to SDK keys.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canViewSdkKey'?: boolean;
     /**
      * Group members can rotate SDK keys.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canRotateSdkKey'?: boolean;
     /**
      * Group members can create/update Segments.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canCreateOrUpdateSegments'?: boolean;
     /**
      * Group members can delete Segments.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canDeleteSegments'?: boolean;
     /**
      * Group members has access to audit logs.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canViewProductAuditLog'?: boolean;
     /**
      * Group members has access to product statistics.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canViewProductStatistics'?: boolean;
-    /**
-     * 
-     * @type {AccessType}
-     * @memberof CreatePermissionGroupRequest
-     */
     'accessType'?: AccessType;
-    /**
-     * 
-     * @type {EnvironmentAccessType}
-     * @memberof CreatePermissionGroupRequest
-     */
     'newEnvironmentAccessType'?: EnvironmentAccessType;
     /**
      * List of environment specific permissions.
-     * @type {Array<CreateOrUpdateEnvironmentAccessModel>}
-     * @memberof CreatePermissionGroupRequest
      */
     'environmentAccesses'?: Array<CreateOrUpdateEnvironmentAccessModel> | null;
+    'approvalPermissionType'?: ApprovalPermissionType;
+    'newEnvironmentApprovalPermissionType'?: EnvironmentApprovalPermissionType;
+    /**
+     * List of environment specific change request approval permissions.
+     */
+    'environmentApprovalPermissions'?: Array<CreateOrUpdateEnvironmentApprovalPermissionModel> | null;
     /**
      * Group members can disable two-factor authentication for other members.
-     * @type {boolean}
-     * @memberof CreatePermissionGroupRequest
      */
     'canDisable2FA'?: boolean;
 }

@@ -18,18 +18,17 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { CreateEnvironmentModel } from '../model';
+import type { CreateEnvironmentModel } from '../model';
 // @ts-ignore
-import { EnvironmentModel } from '../model';
+import type { EnvironmentModel } from '../model';
 // @ts-ignore
-import { UpdateEnvironmentModel } from '../model';
+import type { UpdateEnvironmentModel } from '../model';
 /**
  * EnvironmentsApi - axios parameter creator
- * @export
  */
 export const EnvironmentsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -47,7 +46,7 @@ export const EnvironmentsApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'createEnvironmentModel' is not null or undefined
             assertParamExists('createEnvironment', 'createEnvironmentModel', createEnvironmentModel)
             const localVarPath = `/v1/products/{productId}/environments`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -63,9 +62,8 @@ export const EnvironmentsApiAxiosParamCreator = function (configuration?: Config
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -89,7 +87,7 @@ export const EnvironmentsApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'environmentId' is not null or undefined
             assertParamExists('deleteEnvironment', 'environmentId', environmentId)
             const localVarPath = `/v1/environments/{environmentId}`
-                .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)));
+                .replace('{environmentId}', encodeURIComponent(String(environmentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -110,7 +108,6 @@ export const EnvironmentsApiAxiosParamCreator = function (configuration?: Config
             }
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -131,7 +128,7 @@ export const EnvironmentsApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'environmentId' is not null or undefined
             assertParamExists('getEnvironment', 'environmentId', environmentId)
             const localVarPath = `/v1/environments/{environmentId}`
-                .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)));
+                .replace('{environmentId}', encodeURIComponent(String(environmentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -147,8 +144,8 @@ export const EnvironmentsApiAxiosParamCreator = function (configuration?: Config
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -169,7 +166,7 @@ export const EnvironmentsApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getEnvironments', 'productId', productId)
             const localVarPath = `/v1/products/{productId}/environments`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -185,8 +182,8 @@ export const EnvironmentsApiAxiosParamCreator = function (configuration?: Config
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -210,7 +207,7 @@ export const EnvironmentsApiAxiosParamCreator = function (configuration?: Config
             // verify required parameter 'updateEnvironmentModel' is not null or undefined
             assertParamExists('updateEnvironment', 'updateEnvironmentModel', updateEnvironmentModel)
             const localVarPath = `/v1/environments/{environmentId}`
-                .replace(`{${"environmentId"}}`, encodeURIComponent(String(environmentId)));
+                .replace('{environmentId}', encodeURIComponent(String(environmentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -226,9 +223,8 @@ export const EnvironmentsApiAxiosParamCreator = function (configuration?: Config
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -245,7 +241,6 @@ export const EnvironmentsApiAxiosParamCreator = function (configuration?: Config
 
 /**
  * EnvironmentsApi - functional programming interface
- * @export
  */
 export const EnvironmentsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = EnvironmentsApiAxiosParamCreator(configuration)
@@ -323,7 +318,6 @@ export const EnvironmentsApiFp = function(configuration?: Configuration) {
 
 /**
  * EnvironmentsApi - factory interface
- * @export
  */
 export const EnvironmentsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = EnvironmentsApiFp(configuration)
@@ -336,7 +330,7 @@ export const EnvironmentsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createEnvironment(productId: string, createEnvironmentModel: CreateEnvironmentModel, options?: any): AxiosPromise<EnvironmentModel> {
+        createEnvironment(productId: string, createEnvironmentModel: CreateEnvironmentModel, options?: RawAxiosRequestConfig): AxiosPromise<EnvironmentModel> {
             return localVarFp.createEnvironment(productId, createEnvironmentModel, options).then((request) => request(axios, basePath));
         },
         /**
@@ -347,7 +341,7 @@ export const EnvironmentsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteEnvironment(environmentId: string, cleanupAuditLogs?: boolean, options?: any): AxiosPromise<void> {
+        deleteEnvironment(environmentId: string, cleanupAuditLogs?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deleteEnvironment(environmentId, cleanupAuditLogs, options).then((request) => request(axios, basePath));
         },
         /**
@@ -357,7 +351,7 @@ export const EnvironmentsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getEnvironment(environmentId: string, options?: any): AxiosPromise<EnvironmentModel> {
+        getEnvironment(environmentId: string, options?: RawAxiosRequestConfig): AxiosPromise<EnvironmentModel> {
             return localVarFp.getEnvironment(environmentId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -367,7 +361,7 @@ export const EnvironmentsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getEnvironments(productId: string, options?: any): AxiosPromise<Array<EnvironmentModel>> {
+        getEnvironments(productId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<EnvironmentModel>> {
             return localVarFp.getEnvironments(productId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -378,7 +372,7 @@ export const EnvironmentsApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateEnvironment(environmentId: string, updateEnvironmentModel: UpdateEnvironmentModel, options?: any): AxiosPromise<EnvironmentModel> {
+        updateEnvironment(environmentId: string, updateEnvironmentModel: UpdateEnvironmentModel, options?: RawAxiosRequestConfig): AxiosPromise<EnvironmentModel> {
             return localVarFp.updateEnvironment(environmentId, updateEnvironmentModel, options).then((request) => request(axios, basePath));
         },
     };
@@ -386,9 +380,6 @@ export const EnvironmentsApiFactory = function (configuration?: Configuration, b
 
 /**
  * EnvironmentsApi - object-oriented interface
- * @export
- * @class EnvironmentsApi
- * @extends {BaseAPI}
  */
 export class EnvironmentsApi extends BaseAPI {
     /**
@@ -398,7 +389,6 @@ export class EnvironmentsApi extends BaseAPI {
      * @param {CreateEnvironmentModel} createEnvironmentModel 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EnvironmentsApi
      */
     public createEnvironment(productId: string, createEnvironmentModel: CreateEnvironmentModel, options?: RawAxiosRequestConfig) {
         return EnvironmentsApiFp(this.configuration).createEnvironment(productId, createEnvironmentModel, options).then((request) => request(this.axios, this.basePath));
@@ -411,7 +401,6 @@ export class EnvironmentsApi extends BaseAPI {
      * @param {boolean} [cleanupAuditLogs] An optional flag which indicates whether the audit log records related to the environment should be deleted or not.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EnvironmentsApi
      */
     public deleteEnvironment(environmentId: string, cleanupAuditLogs?: boolean, options?: RawAxiosRequestConfig) {
         return EnvironmentsApiFp(this.configuration).deleteEnvironment(environmentId, cleanupAuditLogs, options).then((request) => request(this.axios, this.basePath));
@@ -423,7 +412,6 @@ export class EnvironmentsApi extends BaseAPI {
      * @param {string} environmentId The identifier of the Environment.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EnvironmentsApi
      */
     public getEnvironment(environmentId: string, options?: RawAxiosRequestConfig) {
         return EnvironmentsApiFp(this.configuration).getEnvironment(environmentId, options).then((request) => request(this.axios, this.basePath));
@@ -435,7 +423,6 @@ export class EnvironmentsApi extends BaseAPI {
      * @param {string} productId The identifier of the Product.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EnvironmentsApi
      */
     public getEnvironments(productId: string, options?: RawAxiosRequestConfig) {
         return EnvironmentsApiFp(this.configuration).getEnvironments(productId, options).then((request) => request(this.axios, this.basePath));
@@ -448,7 +435,6 @@ export class EnvironmentsApi extends BaseAPI {
      * @param {UpdateEnvironmentModel} updateEnvironmentModel 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EnvironmentsApi
      */
     public updateEnvironment(environmentId: string, updateEnvironmentModel: UpdateEnvironmentModel, options?: RawAxiosRequestConfig) {
         return EnvironmentsApiFp(this.configuration).updateEnvironment(environmentId, updateEnvironmentModel, options).then((request) => request(this.axios, this.basePath));

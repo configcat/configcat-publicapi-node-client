@@ -15,58 +15,23 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ConfigModel } from './config-model';
+import type { ConfigModel } from './config-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentModel } from './environment-model';
+import type { EnvironmentModel } from './environment-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProductModel } from './product-model';
+import type { ProductModel } from './product-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingDataModel } from './setting-data-model';
+import type { SettingDataModel } from './setting-data-model';
 
-/**
- * 
- * @export
- * @interface IntegrationLinkDetail
- */
 export interface IntegrationLinkDetail {
-    /**
-     * 
-     * @type {ProductModel}
-     * @memberof IntegrationLinkDetail
-     */
     'product': ProductModel;
-    /**
-     * 
-     * @type {ConfigModel}
-     * @memberof IntegrationLinkDetail
-     */
     'config': ConfigModel;
-    /**
-     * 
-     * @type {EnvironmentModel}
-     * @memberof IntegrationLinkDetail
-     */
     'environment': EnvironmentModel;
-    /**
-     * 
-     * @type {SettingDataModel}
-     * @memberof IntegrationLinkDetail
-     */
     'setting': SettingDataModel;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IntegrationLinkDetail
-     */
     'readOnly': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof IntegrationLinkDetail
-     */
     'status': string;
 }
 

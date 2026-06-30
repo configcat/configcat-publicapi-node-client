@@ -14,58 +14,37 @@
 
 
 
-/**
- * 
- * @export
- * @interface OrganizationLimitations
- */
 export interface OrganizationLimitations {
     /**
      * Maximum number of percentage options a Feature Flag or Setting can have within a targeting rule.
-     * @type {number}
-     * @memberof OrganizationLimitations
      */
     'maxPercentageOptionCount': number;
     /**
      * Maximum number of targeting rules a Feature Flag or Setting can have.
-     * @type {number}
-     * @memberof OrganizationLimitations
      */
     'maxTargetingRuleCount': number;
     /**
      * Maximum length of a text comparison value.
-     * @type {number}
-     * @memberof OrganizationLimitations
      */
     'maxComparisonValueLength': number;
     /**
      * Maximum item count of a list comparison value.
-     * @type {number}
-     * @memberof OrganizationLimitations
      */
     'maxComparisonValueListLength': number;
     /**
      * Maximum length of a list comparison value\'s item.
-     * @type {number}
-     * @memberof OrganizationLimitations
      */
     'maxComparisonValueListItemLength': number;
     /**
      * Maximum length of a text Setting\'s value.
-     * @type {number}
-     * @memberof OrganizationLimitations
      */
     'maxStringFlagValueLength': number;
     /**
      * Maximum number of `AND` conditions a Feature Flag or Setting can have within a targeting rule.
-     * @type {number}
-     * @memberof OrganizationLimitations
      */
     'maxConditionPerTargetingRuleCount': number;
     /**
      * The maximum number of predefined variations allowed for a Feature Flag or Setting.
-     * @type {number}
-     * @memberof OrganizationLimitations
      */
     'maxPredefinedVariations': number;
 }

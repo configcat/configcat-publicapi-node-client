@@ -15,115 +15,69 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ConfigModel } from './config-model';
+import type { ConfigModel } from './config-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentModel } from './environment-model';
+import type { EnvironmentModel } from './environment-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FeatureFlagLimitations } from './feature-flag-limitations';
+import type { FeatureFlagLimitations } from './feature-flag-limitations';
 // May contain unused imports in some cases
 // @ts-ignore
-import { IntegrationLinkModel } from './integration-link-model';
+import type { IntegrationLinkModel } from './integration-link-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { RolloutPercentageItemModel } from './rollout-percentage-item-model';
+import type { RolloutPercentageItemModel } from './rollout-percentage-item-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { RolloutRuleModel } from './rollout-rule-model';
+import type { RolloutRuleModel } from './rollout-rule-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingDataModel } from './setting-data-model';
+import type { SettingDataModel } from './setting-data-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingTagModel } from './setting-tag-model';
+import type { SettingTagModel } from './setting-tag-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingValueType } from './setting-value-type';
+import type { SettingValueType } from './setting-value-type';
 
-/**
- * 
- * @export
- * @interface SettingValueModel
- */
 export interface SettingValueModel {
-    /**
-     * 
-     * @type {SettingDataModel}
-     * @memberof SettingValueModel
-     */
     'setting': SettingDataModel;
     /**
      * The last updated date and time when the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingValueModel
      */
     'updatedAt': string | null;
     /**
      * The email of the user who last updated the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingValueModel
      */
     'lastUpdaterUserEmail': string | null;
     /**
      * The name of the user who last updated the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingValueModel
      */
     'lastUpdaterUserFullName': string | null;
     /**
      * The integration links attached to the Feature Flag or Setting.
-     * @type {Array<IntegrationLinkModel>}
-     * @memberof SettingValueModel
      */
     'integrationLinks': Array<IntegrationLinkModel>;
     /**
      * The tags attached to the Feature Flag or Setting.
-     * @type {Array<SettingTagModel>}
-     * @memberof SettingValueModel
      */
     'settingTags': Array<SettingTagModel>;
     /**
      * The targeting rule collection.
-     * @type {Array<RolloutRuleModel>}
-     * @memberof SettingValueModel
      */
     'rolloutRules': Array<RolloutRuleModel>;
     /**
      * The percentage rule collection.
-     * @type {Array<RolloutPercentageItemModel>}
-     * @memberof SettingValueModel
      */
     'rolloutPercentageItems': Array<RolloutPercentageItemModel>;
     /**
      * The value to serve. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
-     * @type {SettingValueType}
-     * @memberof SettingValueModel
      */
     'value': SettingValueType;
-    /**
-     * 
-     * @type {ConfigModel}
-     * @memberof SettingValueModel
-     */
     'config': ConfigModel;
-    /**
-     * 
-     * @type {EnvironmentModel}
-     * @memberof SettingValueModel
-     */
     'environment': EnvironmentModel;
-    /**
-     * 
-     * @type {FeatureFlagLimitations}
-     * @memberof SettingValueModel
-     */
     'featureFlagLimitations': FeatureFlagLimitations;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SettingValueModel
-     */
     'readOnly': boolean;
 }
 

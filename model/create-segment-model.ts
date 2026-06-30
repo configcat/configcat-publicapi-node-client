@@ -15,42 +15,24 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { RolloutRuleComparator } from './rollout-rule-comparator';
+import type { RolloutRuleComparator } from './rollout-rule-comparator';
 
-/**
- * 
- * @export
- * @interface CreateSegmentModel
- */
 export interface CreateSegmentModel {
     /**
      * Name of the Segment.
-     * @type {string}
-     * @memberof CreateSegmentModel
      */
     'name': string;
     /**
      * Description of the Segment.
-     * @type {string}
-     * @memberof CreateSegmentModel
      */
     'description'?: string | null;
     /**
      * The user\'s attribute the evaluation process must take into account.
-     * @type {string}
-     * @memberof CreateSegmentModel
      */
     'comparisonAttribute': string;
-    /**
-     * 
-     * @type {RolloutRuleComparator}
-     * @memberof CreateSegmentModel
-     */
     'comparator': RolloutRuleComparator;
     /**
      * The value to compare with the given user attribute\'s value.
-     * @type {string}
-     * @memberof CreateSegmentModel
      */
     'comparisonValue': string;
 }

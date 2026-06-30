@@ -15,124 +15,72 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ConfigModel } from './config-model';
+import type { ConfigModel } from './config-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentModel } from './environment-model';
+import type { EnvironmentModel } from './environment-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { FeatureFlagLimitations } from './feature-flag-limitations';
+import type { FeatureFlagLimitations } from './feature-flag-limitations';
 // May contain unused imports in some cases
 // @ts-ignore
-import { IntegrationLinkModel } from './integration-link-model';
+import type { IntegrationLinkModel } from './integration-link-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingDataV2Model } from './setting-data-v2-model';
+import type { SettingDataV2Model } from './setting-data-v2-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingTagModel } from './setting-tag-model';
+import type { SettingTagModel } from './setting-tag-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { TargetingRuleModel } from './targeting-rule-model';
+import type { TargetingRuleModel } from './targeting-rule-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ValueModel } from './value-model';
+import type { ValueModel } from './value-model';
 
-/**
- * 
- * @export
- * @interface SettingFormulaModel
- */
 export interface SettingFormulaModel {
-    /**
-     * 
-     * @type {string}
-     * @memberof SettingFormulaModel
-     */
     'lastVersionId': string;
-    /**
-     * 
-     * @type {ValueModel}
-     * @memberof SettingFormulaModel
-     */
     'defaultValue': ValueModel;
     /**
      * The targeting rules of the Feature Flag or Setting.
-     * @type {Array<TargetingRuleModel>}
-     * @memberof SettingFormulaModel
      */
     'targetingRules': Array<TargetingRuleModel>;
-    /**
-     * 
-     * @type {SettingDataV2Model}
-     * @memberof SettingFormulaModel
-     */
     'setting': SettingDataV2Model;
     /**
      * The last updated date and time when the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingFormulaModel
      */
     'updatedAt': string | null;
     /**
      * The user attribute used for percentage evaluation. If not set, it defaults to the `Identifier` user object attribute.
-     * @type {string}
-     * @memberof SettingFormulaModel
      */
     'percentageEvaluationAttribute': string | null;
     /**
      * The email of the user who last updated the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingFormulaModel
      */
     'lastUpdaterUserEmail': string | null;
     /**
      * The name of the user who last updated the Feature Flag or Setting.
-     * @type {string}
-     * @memberof SettingFormulaModel
      */
     'lastUpdaterUserFullName': string | null;
     /**
      * The integration links attached to the Feature Flag or Setting.
-     * @type {Array<IntegrationLinkModel>}
-     * @memberof SettingFormulaModel
      */
     'integrationLinks': Array<IntegrationLinkModel>;
     /**
      * The tags attached to the Feature Flag or Setting.
-     * @type {Array<SettingTagModel>}
-     * @memberof SettingFormulaModel
      */
     'settingTags': Array<SettingTagModel>;
     /**
      * List of Feature Flag and Setting IDs where the actual Feature Flag or Setting is prerequisite.
-     * @type {Array<number>}
-     * @memberof SettingFormulaModel
      */
     'settingIdsWherePrerequisite': Array<number>;
     /**
-     * 
-     * @type {ConfigModel}
-     * @memberof SettingFormulaModel
+     * The number of change requests for the Feature Flag or Setting.
      */
+    'changeRequestCount': number;
     'config': ConfigModel;
-    /**
-     * 
-     * @type {EnvironmentModel}
-     * @memberof SettingFormulaModel
-     */
     'environment': EnvironmentModel;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SettingFormulaModel
-     */
     'readOnly': boolean;
-    /**
-     * 
-     * @type {FeatureFlagLimitations}
-     * @memberof SettingFormulaModel
-     */
     'featureFlagLimitations': FeatureFlagLimitations;
 }
 

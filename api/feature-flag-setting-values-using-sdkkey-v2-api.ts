@@ -18,18 +18,17 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { JsonPatchOperation } from '../model';
+import type { JsonPatchOperation } from '../model';
 // @ts-ignore
-import { SettingFormulaModel } from '../model';
+import type { SettingFormulaModel } from '../model';
 // @ts-ignore
-import { UpdateEvaluationFormulaModel } from '../model';
+import type { UpdateEvaluationFormulaModel } from '../model';
 /**
  * FeatureFlagSettingValuesUsingSDKKeyV2Api - axios parameter creator
- * @export
  */
 export const FeatureFlagSettingValuesUsingSDKKeyV2ApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -45,7 +44,7 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiAxiosParamCreator = functio
             // verify required parameter 'settingKeyOrId' is not null or undefined
             assertParamExists('getSettingValueBySdkkeyV2', 'settingKeyOrId', settingKeyOrId)
             const localVarPath = `/v2/settings/{settingKeyOrId}/value`
-                .replace(`{${"settingKeyOrId"}}`, encodeURIComponent(String(settingKeyOrId)));
+                .replace('{settingKeyOrId}', encodeURIComponent(String(settingKeyOrId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -61,12 +60,11 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiAxiosParamCreator = functio
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             if (xCONFIGCATSDKKEY != null) {
                 localVarHeaderParameter['X-CONFIGCAT-SDKKEY'] = String(xCONFIGCATSDKKEY);
             }
-
-
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -82,17 +80,18 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiAxiosParamCreator = functio
          * @param {string} settingKeyOrId The key or id of the Setting.
          * @param {UpdateEvaluationFormulaModel} updateEvaluationFormulaModel 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+         * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
          * @param {string} [xCONFIGCATSDKKEY] The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        replaceSettingValueBySdkkeyV2: async (settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, xCONFIGCATSDKKEY?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        replaceSettingValueBySdkkeyV2: async (settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'settingKeyOrId' is not null or undefined
             assertParamExists('replaceSettingValueBySdkkeyV2', 'settingKeyOrId', settingKeyOrId)
             // verify required parameter 'updateEvaluationFormulaModel' is not null or undefined
             assertParamExists('replaceSettingValueBySdkkeyV2', 'updateEvaluationFormulaModel', updateEvaluationFormulaModel)
             const localVarPath = `/v2/settings/{settingKeyOrId}/value`
-                .replace(`{${"settingKeyOrId"}}`, encodeURIComponent(String(settingKeyOrId)));
+                .replace('{settingKeyOrId}', encodeURIComponent(String(settingKeyOrId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -112,14 +111,16 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiAxiosParamCreator = functio
                 localVarQueryParameter['reason'] = reason;
             }
 
+            if (bypassApproval !== undefined) {
+                localVarQueryParameter['bypassApproval'] = bypassApproval;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             if (xCONFIGCATSDKKEY != null) {
                 localVarHeaderParameter['X-CONFIGCAT-SDKKEY'] = String(xCONFIGCATSDKKEY);
             }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -136,17 +137,18 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiAxiosParamCreator = functio
          * @param {string} settingKeyOrId The key or id of the Setting.
          * @param {Array<JsonPatchOperation>} jsonPatchOperation 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+         * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
          * @param {string} [xCONFIGCATSDKKEY] The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateSettingValueBySdkkeyV2: async (settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, xCONFIGCATSDKKEY?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateSettingValueBySdkkeyV2: async (settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'settingKeyOrId' is not null or undefined
             assertParamExists('updateSettingValueBySdkkeyV2', 'settingKeyOrId', settingKeyOrId)
             // verify required parameter 'jsonPatchOperation' is not null or undefined
             assertParamExists('updateSettingValueBySdkkeyV2', 'jsonPatchOperation', jsonPatchOperation)
             const localVarPath = `/v2/settings/{settingKeyOrId}/value`
-                .replace(`{${"settingKeyOrId"}}`, encodeURIComponent(String(settingKeyOrId)));
+                .replace('{settingKeyOrId}', encodeURIComponent(String(settingKeyOrId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -166,14 +168,16 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiAxiosParamCreator = functio
                 localVarQueryParameter['reason'] = reason;
             }
 
+            if (bypassApproval !== undefined) {
+                localVarQueryParameter['bypassApproval'] = bypassApproval;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             if (xCONFIGCATSDKKEY != null) {
                 localVarHeaderParameter['X-CONFIGCAT-SDKKEY'] = String(xCONFIGCATSDKKEY);
             }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -189,7 +193,6 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiAxiosParamCreator = functio
 
 /**
  * FeatureFlagSettingValuesUsingSDKKeyV2Api - functional programming interface
- * @export
  */
 export const FeatureFlagSettingValuesUsingSDKKeyV2ApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = FeatureFlagSettingValuesUsingSDKKeyV2ApiAxiosParamCreator(configuration)
@@ -214,12 +217,13 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiFp = function(configuration
          * @param {string} settingKeyOrId The key or id of the Setting.
          * @param {UpdateEvaluationFormulaModel} updateEvaluationFormulaModel 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+         * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
          * @param {string} [xCONFIGCATSDKKEY] The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SettingFormulaModel>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.replaceSettingValueBySdkkeyV2(settingKeyOrId, updateEvaluationFormulaModel, reason, xCONFIGCATSDKKEY, options);
+        async replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SettingFormulaModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.replaceSettingValueBySdkkeyV2(settingKeyOrId, updateEvaluationFormulaModel, reason, bypassApproval, xCONFIGCATSDKKEY, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeatureFlagSettingValuesUsingSDKKeyV2Api.replaceSettingValueBySdkkeyV2']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -230,12 +234,13 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiFp = function(configuration
          * @param {string} settingKeyOrId The key or id of the Setting.
          * @param {Array<JsonPatchOperation>} jsonPatchOperation 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+         * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
          * @param {string} [xCONFIGCATSDKKEY] The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SettingFormulaModel>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateSettingValueBySdkkeyV2(settingKeyOrId, jsonPatchOperation, reason, xCONFIGCATSDKKEY, options);
+        async updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SettingFormulaModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateSettingValueBySdkkeyV2(settingKeyOrId, jsonPatchOperation, reason, bypassApproval, xCONFIGCATSDKKEY, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeatureFlagSettingValuesUsingSDKKeyV2Api.updateSettingValueBySdkkeyV2']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -245,7 +250,6 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiFp = function(configuration
 
 /**
  * FeatureFlagSettingValuesUsingSDKKeyV2Api - factory interface
- * @export
  */
 export const FeatureFlagSettingValuesUsingSDKKeyV2ApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = FeatureFlagSettingValuesUsingSDKKeyV2ApiFp(configuration)
@@ -258,7 +262,7 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiFactory = function (configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSettingValueBySdkkeyV2(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, options?: any): AxiosPromise<SettingFormulaModel> {
+        getSettingValueBySdkkeyV2(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig): AxiosPromise<SettingFormulaModel> {
             return localVarFp.getSettingValueBySdkkeyV2(settingKeyOrId, xCONFIGCATSDKKEY, options).then((request) => request(axios, basePath));
         },
         /**
@@ -267,12 +271,13 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiFactory = function (configu
          * @param {string} settingKeyOrId The key or id of the Setting.
          * @param {UpdateEvaluationFormulaModel} updateEvaluationFormulaModel 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+         * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
          * @param {string} [xCONFIGCATSDKKEY] The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, xCONFIGCATSDKKEY?: string, options?: any): AxiosPromise<SettingFormulaModel> {
-            return localVarFp.replaceSettingValueBySdkkeyV2(settingKeyOrId, updateEvaluationFormulaModel, reason, xCONFIGCATSDKKEY, options).then((request) => request(axios, basePath));
+        replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig): AxiosPromise<SettingFormulaModel> {
+            return localVarFp.replaceSettingValueBySdkkeyV2(settingKeyOrId, updateEvaluationFormulaModel, reason, bypassApproval, xCONFIGCATSDKKEY, options).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint updates the value of a Feature Flag or Setting with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Environment.  Only the `defaultValue`, `targetingRules`, and `percentageEvaluationAttribute` fields are modifiable by this endpoint.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change. It supports collection reordering, so it also can be used for reordering the targeting rules of a Feature Flag or Setting.  For example: We have the following resource of a Feature Flag. ```json {   \"defaultValue\": {     \"boolValue\": false   },   \"targetingRules\": [     {       \"conditions\": [         {           \"userCondition\": {             \"comparisonAttribute\": \"Email\",             \"comparator\": \"sensitiveTextEquals\",             \"comparisonValue\": {               \"stringValue\": \"test@example.com\"             }           }         }       ],       \"percentageOptions\": [],       \"value\": {         \"boolValue\": true       }     }   ] } ``` If we send an update request body as below: ```json [   {     \"op\": \"replace\",     \"path\": \"/targetingRules/0/value/boolValue\",     \"value\": true   } ] ``` Only the first Targeting Rule\'s `value` is going to be set to `false` and all the other fields are remaining unchanged.  So we get a response like this: ```json {   \"defaultValue\": {     \"boolValue\": false   },   \"targetingRules\": [     {       \"conditions\": [         {           \"userCondition\": {             \"comparisonAttribute\": \"Email\",             \"comparator\": \"sensitiveTextEquals\",             \"comparisonValue\": {               \"stringValue\": \"test@example.com\"             }           }         }       ],       \"percentageOptions\": [],       \"value\": {         \"boolValue\": false       }     }   ] } ```
@@ -280,21 +285,19 @@ export const FeatureFlagSettingValuesUsingSDKKeyV2ApiFactory = function (configu
          * @param {string} settingKeyOrId The key or id of the Setting.
          * @param {Array<JsonPatchOperation>} jsonPatchOperation 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+         * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
          * @param {string} [xCONFIGCATSDKKEY] The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, xCONFIGCATSDKKEY?: string, options?: any): AxiosPromise<SettingFormulaModel> {
-            return localVarFp.updateSettingValueBySdkkeyV2(settingKeyOrId, jsonPatchOperation, reason, xCONFIGCATSDKKEY, options).then((request) => request(axios, basePath));
+        updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig): AxiosPromise<SettingFormulaModel> {
+            return localVarFp.updateSettingValueBySdkkeyV2(settingKeyOrId, jsonPatchOperation, reason, bypassApproval, xCONFIGCATSDKKEY, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
  * FeatureFlagSettingValuesUsingSDKKeyV2Api - object-oriented interface
- * @export
- * @class FeatureFlagSettingValuesUsingSDKKeyV2Api
- * @extends {BaseAPI}
  */
 export class FeatureFlagSettingValuesUsingSDKKeyV2Api extends BaseAPI {
     /**
@@ -304,7 +307,6 @@ export class FeatureFlagSettingValuesUsingSDKKeyV2Api extends BaseAPI {
      * @param {string} [xCONFIGCATSDKKEY] The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeatureFlagSettingValuesUsingSDKKeyV2Api
      */
     public getSettingValueBySdkkeyV2(settingKeyOrId: string, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig) {
         return FeatureFlagSettingValuesUsingSDKKeyV2ApiFp(this.configuration).getSettingValueBySdkkeyV2(settingKeyOrId, xCONFIGCATSDKKEY, options).then((request) => request(this.axios, this.basePath));
@@ -316,13 +318,13 @@ export class FeatureFlagSettingValuesUsingSDKKeyV2Api extends BaseAPI {
      * @param {string} settingKeyOrId The key or id of the Setting.
      * @param {UpdateEvaluationFormulaModel} updateEvaluationFormulaModel 
      * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+     * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
      * @param {string} [xCONFIGCATSDKKEY] The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeatureFlagSettingValuesUsingSDKKeyV2Api
      */
-    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig) {
-        return FeatureFlagSettingValuesUsingSDKKeyV2ApiFp(this.configuration).replaceSettingValueBySdkkeyV2(settingKeyOrId, updateEvaluationFormulaModel, reason, xCONFIGCATSDKKEY, options).then((request) => request(this.axios, this.basePath));
+    public replaceSettingValueBySdkkeyV2(settingKeyOrId: string, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig) {
+        return FeatureFlagSettingValuesUsingSDKKeyV2ApiFp(this.configuration).replaceSettingValueBySdkkeyV2(settingKeyOrId, updateEvaluationFormulaModel, reason, bypassApproval, xCONFIGCATSDKKEY, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -331,13 +333,13 @@ export class FeatureFlagSettingValuesUsingSDKKeyV2Api extends BaseAPI {
      * @param {string} settingKeyOrId The key or id of the Setting.
      * @param {Array<JsonPatchOperation>} jsonPatchOperation 
      * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
+     * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
      * @param {string} [xCONFIGCATSDKKEY] The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FeatureFlagSettingValuesUsingSDKKeyV2Api
      */
-    public updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig) {
-        return FeatureFlagSettingValuesUsingSDKKeyV2ApiFp(this.configuration).updateSettingValueBySdkkeyV2(settingKeyOrId, jsonPatchOperation, reason, xCONFIGCATSDKKEY, options).then((request) => request(this.axios, this.basePath));
+    public updateSettingValueBySdkkeyV2(settingKeyOrId: string, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, xCONFIGCATSDKKEY?: string, options?: RawAxiosRequestConfig) {
+        return FeatureFlagSettingValuesUsingSDKKeyV2ApiFp(this.configuration).updateSettingValueBySdkkeyV2(settingKeyOrId, jsonPatchOperation, reason, bypassApproval, xCONFIGCATSDKKEY, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -15,18 +15,11 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProxyProfileSdkKeyItem } from './proxy-profile-sdk-key-item';
+import type { ProxyProfileSdkKeyItem } from './proxy-profile-sdk-key-item';
 
-/**
- * 
- * @export
- * @interface ProxyProfileSdkKeysListModel
- */
 export interface ProxyProfileSdkKeysListModel {
     /**
      * The list of SDK keys (with additional metadata) selected for the Proxy Profile.
-     * @type {Array<ProxyProfileSdkKeyItem>}
-     * @memberof ProxyProfileSdkKeysListModel
      */
     'items': Array<ProxyProfileSdkKeyItem>;
 }

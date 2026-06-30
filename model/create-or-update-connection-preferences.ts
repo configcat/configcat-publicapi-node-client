@@ -15,25 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CreateOrUpdateWebhookNotification } from './create-or-update-webhook-notification';
+import type { CreateOrUpdateWebhookNotification } from './create-or-update-webhook-notification';
 
 /**
  * The preferences related to a connection, including polling intervals and webhook proxy configurations.
- * @export
- * @interface CreateOrUpdateConnectionPreferences
  */
 export interface CreateOrUpdateConnectionPreferences {
     /**
      * The SDK poll interval in seconds. If not specified, a default value (60) will be used.
-     * @type {number}
-     * @memberof CreateOrUpdateConnectionPreferences
      */
     'sdkPollInterval'?: number | null;
-    /**
-     * 
-     * @type {CreateOrUpdateWebhookNotification}
-     * @memberof CreateOrUpdateConnectionPreferences
-     */
     'webhookNotification'?: CreateOrUpdateWebhookNotification | null;
 }
 

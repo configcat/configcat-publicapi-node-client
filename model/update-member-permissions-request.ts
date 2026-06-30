@@ -14,34 +14,21 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpdateMemberPermissionsRequest
- */
 export interface UpdateMemberPermissionsRequest {
     /**
      * List of Permission Group identifiers to where the Member should be added.
-     * @type {Array<number>}
-     * @memberof UpdateMemberPermissionsRequest
      */
     'permissionGroupIds'?: Array<number> | null;
     /**
      * Indicates that the member must be Organization Admin.
-     * @type {boolean}
-     * @memberof UpdateMemberPermissionsRequest
      */
     'isAdmin'?: boolean | null;
     /**
      * Indicates that the member must be Billing Manager.
-     * @type {boolean}
-     * @memberof UpdateMemberPermissionsRequest
      */
     'isBillingManager'?: boolean | null;
     /**
      * When `true`, the member will be removed from those Permission Groups that are not listed in the `permissionGroupIds` field.
-     * @type {boolean}
-     * @memberof UpdateMemberPermissionsRequest
      */
     'removeFromPermissionGroupsWhereIdNotSet'?: boolean;
 }

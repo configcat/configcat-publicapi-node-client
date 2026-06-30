@@ -15,18 +15,11 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateSettingValueWithSettingIdModel } from './update-setting-value-with-setting-id-model';
+import type { UpdateSettingValueWithSettingIdModel } from './update-setting-value-with-setting-id-model';
 
-/**
- * 
- * @export
- * @interface UpdateSettingValuesWithIdModel
- */
 export interface UpdateSettingValuesWithIdModel {
     /**
      * The values to update.
-     * @type {Array<UpdateSettingValueWithSettingIdModel>}
-     * @memberof UpdateSettingValuesWithIdModel
      */
     'settingValues'?: Array<UpdateSettingValueWithSettingIdModel>;
 }

@@ -15,72 +15,50 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CreatePredefinedVariationModel } from './create-predefined-variation-model';
+import type { CreatePredefinedVariationModel } from './create-predefined-variation-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { InitialValue } from './initial-value';
+import type { InitialValue } from './initial-value';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingType } from './setting-type';
+import type { SettingType } from './setting-type';
 
-/**
- * 
- * @export
- * @interface CreateSettingInitialValues
- */
 export interface CreateSettingInitialValues {
     /**
      * The name of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof CreateSettingInitialValues
      */
     'name': string;
     /**
      * A short description for the setting, shown on the Dashboard UI.
-     * @type {string}
-     * @memberof CreateSettingInitialValues
      */
     'hint'?: string | null;
     /**
      * The IDs of the tags which are attached to the setting.
-     * @type {Array<number>}
-     * @memberof CreateSettingInitialValues
      */
     'tags'?: Array<number> | null;
     /**
      * The order of the Setting represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
-     * @type {number}
-     * @memberof CreateSettingInitialValues
      */
     'order'?: number | null;
     /**
+     * Indicates whether this setting should validate string values as JSON values.
+     */
+    'isJson'?: boolean | null;
+    /**
      * The key of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof CreateSettingInitialValues
      */
     'key': string;
-    /**
-     * 
-     * @type {SettingType}
-     * @memberof CreateSettingInitialValues
-     */
     'settingType': SettingType;
     /**
      * The Feature Flag or Setting\'s Variations.
-     * @type {Array<CreatePredefinedVariationModel>}
-     * @memberof CreateSettingInitialValues
      */
     'predefinedVariations'?: Array<CreatePredefinedVariationModel> | null;
     /**
      * Optional, initial value of the Feature Flag or Setting in the given Environments. Only one of the SettingIdToInitFrom or the InitialValues properties can be set.
-     * @type {Array<InitialValue>}
-     * @memberof CreateSettingInitialValues
      */
     'initialValues'?: Array<InitialValue> | null;
     /**
      * Optional, the SettingId to initialize the values and tags of the Feature Flag or Setting from. Only can be set if you have at least ReadOnly access in all the Environments. Only one of the SettingIdToInitFrom or the InitialValues properties can be set.
-     * @type {number}
-     * @memberof CreateSettingInitialValues
      */
     'settingIdToInitFrom'?: number | null;
 }

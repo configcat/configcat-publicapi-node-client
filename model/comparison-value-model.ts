@@ -15,30 +15,22 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ComparisonValueListModel } from './comparison-value-list-model';
+import type { ComparisonValueListModel } from './comparison-value-list-model';
 
 /**
  * The value that the user object\'s attribute is compared to.
- * @export
- * @interface ComparisonValueModel
  */
 export interface ComparisonValueModel {
     /**
      * The string representation of the comparison value.
-     * @type {string}
-     * @memberof ComparisonValueModel
      */
     'stringValue': string | null;
     /**
      * The number representation of the comparison value.
-     * @type {number}
-     * @memberof ComparisonValueModel
      */
     'doubleValue': number | null;
     /**
      * The list representation of the comparison value.
-     * @type {Array<ComparisonValueListModel>}
-     * @memberof ComparisonValueModel
      */
     'listValue': Array<ComparisonValueListModel> | null;
 }

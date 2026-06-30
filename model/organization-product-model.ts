@@ -16,20 +16,14 @@
 
 /**
  * Describes the Member\'s Product.
- * @export
- * @interface OrganizationProductModel
  */
 export interface OrganizationProductModel {
     /**
      * Identifier of the Member\'s Product.
-     * @type {string}
-     * @memberof OrganizationProductModel
      */
     'productId': string;
     /**
      * Name of the Member\'s Product.
-     * @type {string}
-     * @memberof OrganizationProductModel
      */
     'name': string;
 }

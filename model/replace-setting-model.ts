@@ -14,35 +14,26 @@
 
 
 
-/**
- * 
- * @export
- * @interface ReplaceSettingModel
- */
 export interface ReplaceSettingModel {
     /**
      * The name of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof ReplaceSettingModel
      */
     'name': string;
     /**
      * A short description for the setting, shown on the Dashboard UI.
-     * @type {string}
-     * @memberof ReplaceSettingModel
      */
     'hint'?: string | null;
     /**
      * The IDs of the tags which are attached to the setting.
-     * @type {Array<number>}
-     * @memberof ReplaceSettingModel
      */
     'tags'?: Array<number> | null;
     /**
      * The order of the Setting represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
-     * @type {number}
-     * @memberof ReplaceSettingModel
      */
     'order'?: number | null;
+    /**
+     * Indicates whether this setting should validate string values as JSON values.
+     */
+    'isJson'?: boolean | null;
 }
 

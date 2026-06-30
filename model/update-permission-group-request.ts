@@ -15,170 +15,124 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { AccessType } from './access-type';
+import type { AccessType } from './access-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { CreateOrUpdateEnvironmentAccessModel } from './create-or-update-environment-access-model';
+import type { ApprovalPermissionType } from './approval-permission-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentAccessType } from './environment-access-type';
+import type { CreateOrUpdateEnvironmentAccessModel } from './create-or-update-environment-access-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { CreateOrUpdateEnvironmentApprovalPermissionModel } from './create-or-update-environment-approval-permission-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { EnvironmentAccessType } from './environment-access-type';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { EnvironmentApprovalPermissionType } from './environment-approval-permission-type';
 
-/**
- * 
- * @export
- * @interface UpdatePermissionGroupRequest
- */
 export interface UpdatePermissionGroupRequest {
     /**
      * Name of the Permission Group.
-     * @type {string}
-     * @memberof UpdatePermissionGroupRequest
      */
     'name'?: string | null;
     /**
      * Group members can manage team members.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canManageMembers'?: boolean | null;
     /**
      * Group members can create/update Configs.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canCreateOrUpdateConfig'?: boolean | null;
     /**
      * Group members can delete Configs.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canDeleteConfig'?: boolean | null;
     /**
      * Group members can create/update Environments.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canCreateOrUpdateEnvironment'?: boolean | null;
     /**
      * Group members can delete Environments.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canDeleteEnvironment'?: boolean | null;
     /**
      * Group members can create/update Feature Flags and Settings.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canCreateOrUpdateSetting'?: boolean | null;
     /**
      * Group members can attach/detach Tags to Feature Flags and Settings.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canTagSetting'?: boolean | null;
     /**
      * Group members can delete Feature Flags and Settings.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canDeleteSetting'?: boolean | null;
     /**
      * Group members can create/update Tags.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canCreateOrUpdateTag'?: boolean | null;
     /**
      * Group members can delete Tags.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canDeleteTag'?: boolean | null;
     /**
      * Group members can create/update/delete Webhooks.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canManageWebhook'?: boolean | null;
     /**
      * Group members can use the export/import feature.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canUseExportImport'?: boolean | null;
     /**
      * Group members can update Product preferences.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canManageProductPreferences'?: boolean | null;
     /**
      * Group members can add and configure integrations.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canManageIntegrations'?: boolean | null;
     /**
      * Group members has access to SDK keys.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canViewSdkKey'?: boolean | null;
     /**
      * Group members can rotate SDK keys.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canRotateSdkKey'?: boolean | null;
     /**
      * Group members can create/update Segments.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canCreateOrUpdateSegments'?: boolean | null;
     /**
      * Group members can delete Segments.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canDeleteSegments'?: boolean | null;
     /**
      * Group members has access to audit logs.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canViewProductAuditLog'?: boolean | null;
     /**
      * Group members has access to product statistics.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canViewProductStatistics'?: boolean | null;
     /**
      * Group members can disable two-factor authentication for other members.
-     * @type {boolean}
-     * @memberof UpdatePermissionGroupRequest
      */
     'canDisable2FA'?: boolean | null;
-    /**
-     * 
-     * @type {AccessType}
-     * @memberof UpdatePermissionGroupRequest
-     */
     'accessType'?: AccessType | null;
-    /**
-     * 
-     * @type {EnvironmentAccessType}
-     * @memberof UpdatePermissionGroupRequest
-     */
     'newEnvironmentAccessType'?: EnvironmentAccessType | null;
     /**
      * List of environment specific permissions.
-     * @type {Array<CreateOrUpdateEnvironmentAccessModel>}
-     * @memberof UpdatePermissionGroupRequest
      */
     'environmentAccesses'?: Array<CreateOrUpdateEnvironmentAccessModel> | null;
+    'approvalPermissionType'?: ApprovalPermissionType | null;
+    'newEnvironmentApprovalPermissionType'?: EnvironmentApprovalPermissionType | null;
+    /**
+     * List of environment specific change request approval permissions.
+     */
+    'environmentApprovalPermissions'?: Array<CreateOrUpdateEnvironmentApprovalPermissionModel> | null;
 }
 
 

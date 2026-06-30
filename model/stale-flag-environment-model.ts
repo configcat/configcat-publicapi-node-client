@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface StaleFlagEnvironmentModel
- */
 export interface StaleFlagEnvironmentModel {
     /**
      * Identifier of the Environment.
-     * @type {string}
-     * @memberof StaleFlagEnvironmentModel
      */
     'environmentId': string;
     /**
      * Name of the Environment.
-     * @type {string}
-     * @memberof StaleFlagEnvironmentModel
      */
     'name': string;
 }

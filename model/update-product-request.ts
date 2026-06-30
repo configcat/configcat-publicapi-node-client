@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpdateProductRequest
- */
 export interface UpdateProductRequest {
     /**
      * The name of the Product.
-     * @type {string}
-     * @memberof UpdateProductRequest
      */
     'name'?: string | null;
     /**
      * The description of the Product.
-     * @type {string}
-     * @memberof UpdateProductRequest
      */
     'description'?: string | null;
     /**
      * The order of the Product represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
-     * @type {number}
-     * @memberof UpdateProductRequest
      */
     'order'?: number | null;
 }

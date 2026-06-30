@@ -15,36 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingValueType } from './setting-value-type';
+import type { SettingValueType } from './setting-value-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateRolloutPercentageItemModel } from './update-rollout-percentage-item-model';
+import type { UpdateRolloutPercentageItemModel } from './update-rollout-percentage-item-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateRolloutRuleModel } from './update-rollout-rule-model';
+import type { UpdateRolloutRuleModel } from './update-rollout-rule-model';
 
-/**
- * 
- * @export
- * @interface UpdateSettingValueModel
- */
 export interface UpdateSettingValueModel {
     /**
      * The targeting rule collection.
-     * @type {Array<UpdateRolloutRuleModel>}
-     * @memberof UpdateSettingValueModel
      */
     'rolloutRules'?: Array<UpdateRolloutRuleModel>;
     /**
      * The percentage rule collection.
-     * @type {Array<UpdateRolloutPercentageItemModel>}
-     * @memberof UpdateSettingValueModel
      */
     'rolloutPercentageItems'?: Array<UpdateRolloutPercentageItemModel>;
     /**
      * The value to serve. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
-     * @type {SettingValueType}
-     * @memberof UpdateSettingValueModel
      */
     'value': SettingValueType;
 }

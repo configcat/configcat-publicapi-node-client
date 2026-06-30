@@ -16,15 +16,13 @@
 
 /**
  * The type of the Feature Flag or Setting.
- * @export
- * @enum {string}
  */
 
 export const SettingType = {
     Boolean: 'boolean',
     String: 'string',
     Int: 'int',
-    Double: 'double'
+    Double: 'double',
 } as const;
 
 export type SettingType = typeof SettingType[keyof typeof SettingType];

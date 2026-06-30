@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface ComparisonValueListModel
- */
 export interface ComparisonValueListModel {
     /**
      * The actual comparison value.
-     * @type {string}
-     * @memberof ComparisonValueListModel
      */
     'value': string;
     /**
      * An optional hint for the comparison value.
-     * @type {string}
-     * @memberof ComparisonValueListModel
      */
     'hint': string | null;
 }

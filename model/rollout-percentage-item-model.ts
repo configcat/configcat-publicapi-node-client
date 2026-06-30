@@ -15,24 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingValueType } from './setting-value-type';
+import type { SettingValueType } from './setting-value-type';
 
-/**
- * 
- * @export
- * @interface RolloutPercentageItemModel
- */
 export interface RolloutPercentageItemModel {
     /**
      * The percentage value for the rule.
-     * @type {number}
-     * @memberof RolloutPercentageItemModel
      */
     'percentage': number;
     /**
      * The value to serve when the user falls in the percentage rule. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
-     * @type {SettingValueType}
-     * @memberof RolloutPercentageItemModel
      */
     'value': SettingValueType;
 }

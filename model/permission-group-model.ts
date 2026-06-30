@@ -15,185 +15,132 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { AccessType } from './access-type';
+import type { AccessType } from './access-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentAccessModel } from './environment-access-model';
+import type { ApprovalPermissionType } from './approval-permission-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { EnvironmentAccessType } from './environment-access-type';
+import type { EnvironmentAccessType } from './environment-access-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProductModel } from './product-model';
+import type { EnvironmentApprovalPermissionType } from './environment-approval-permission-type';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { PermissionGroupEnvironmentAccessModel } from './permission-group-environment-access-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { PermissionGroupEnvironmentApprovalPermissionModel } from './permission-group-environment-approval-permission-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ProductModel } from './product-model';
 
-/**
- * 
- * @export
- * @interface PermissionGroupModel
- */
 export interface PermissionGroupModel {
     /**
      * Identifier of the Permission Group.
-     * @type {number}
-     * @memberof PermissionGroupModel
      */
     'permissionGroupId': number;
     /**
      * Name of the Permission Group.
-     * @type {string}
-     * @memberof PermissionGroupModel
      */
     'name': string;
     /**
      * Group members can manage team members.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canManageMembers': boolean;
     /**
      * Group members can create/update Configs.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canCreateOrUpdateConfig': boolean;
     /**
      * Group members can delete Configs.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canDeleteConfig': boolean;
     /**
      * Group members can create/update Environments.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canCreateOrUpdateEnvironment': boolean;
     /**
      * Group members can delete Environments.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canDeleteEnvironment': boolean;
     /**
      * Group members can create/update Feature Flags and Settings.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canCreateOrUpdateSetting': boolean;
     /**
      * Group members can attach/detach Tags to Feature Flags and Settings.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canTagSetting': boolean;
     /**
      * Group members can delete Feature Flags and Settings.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canDeleteSetting': boolean;
     /**
      * Group members can create/update Tags.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canCreateOrUpdateTag': boolean;
     /**
      * Group members can delete Tags.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canDeleteTag': boolean;
     /**
      * Group members can create/update/delete Webhooks.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canManageWebhook': boolean;
     /**
      * Group members can use the export/import feature.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canUseExportImport': boolean;
     /**
      * Group members can update Product preferences.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canManageProductPreferences': boolean;
     /**
      * Group members can add and configure integrations.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canManageIntegrations': boolean;
     /**
      * Group members has access to SDK keys.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canViewSdkKey': boolean;
     /**
      * Group members can rotate SDK keys.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canRotateSdkKey': boolean;
     /**
      * Group members can create/update Segments.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canCreateOrUpdateSegments': boolean;
     /**
      * Group members can delete Segments.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canDeleteSegments': boolean;
     /**
      * Group members has access to audit logs.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canViewProductAuditLog': boolean;
     /**
      * Group members has access to product statistics.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canViewProductStatistics': boolean;
     /**
      * Group members can disable two-factor authentication for other members.
-     * @type {boolean}
-     * @memberof PermissionGroupModel
      */
     'canDisable2FA': boolean;
-    /**
-     * 
-     * @type {AccessType}
-     * @memberof PermissionGroupModel
-     */
     'accessType': AccessType;
-    /**
-     * 
-     * @type {EnvironmentAccessType}
-     * @memberof PermissionGroupModel
-     */
     'newEnvironmentAccessType': EnvironmentAccessType;
     /**
      * List of environment specific permissions.
-     * @type {Array<EnvironmentAccessModel>}
-     * @memberof PermissionGroupModel
      */
-    'environmentAccesses': Array<EnvironmentAccessModel>;
-    /**
-     * 
-     * @type {ProductModel}
-     * @memberof PermissionGroupModel
-     */
+    'environmentAccesses': Array<PermissionGroupEnvironmentAccessModel>;
     'product': ProductModel;
+    'approvalPermissionType': ApprovalPermissionType;
+    'newEnvironmentApprovalPermissionType': EnvironmentApprovalPermissionType;
+    /**
+     * List of environment specific approval permissions.
+     */
+    'environmentApprovalPermissions': Array<PermissionGroupEnvironmentApprovalPermissionModel>;
 }
 
 

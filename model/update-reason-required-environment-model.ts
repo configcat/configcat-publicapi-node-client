@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface UpdateReasonRequiredEnvironmentModel
- */
 export interface UpdateReasonRequiredEnvironmentModel {
     /**
      * Identifier of the Environment.
-     * @type {string}
-     * @memberof UpdateReasonRequiredEnvironmentModel
      */
     'environmentId'?: string;
     /**
      * Indicates that a mandatory note is required in this Environment for saving and publishing.
-     * @type {boolean}
-     * @memberof UpdateReasonRequiredEnvironmentModel
      */
     'reasonRequired'?: boolean;
 }

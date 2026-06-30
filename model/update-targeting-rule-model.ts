@@ -15,37 +15,23 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateConditionModel } from './update-condition-model';
+import type { UpdateConditionModel } from './update-condition-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdatePercentageOptionModel } from './update-percentage-option-model';
+import type { UpdatePercentageOptionModel } from './update-percentage-option-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateValueModel } from './update-value-model';
+import type { UpdateValueModel } from './update-value-model';
 
-/**
- * 
- * @export
- * @interface UpdateTargetingRuleModel
- */
 export interface UpdateTargetingRuleModel {
     /**
      * The list of conditions that are combined with logical AND operators. It can be one of the following: - User condition - Segment condition - Prerequisite flag condition
-     * @type {Array<UpdateConditionModel>}
-     * @memberof UpdateTargetingRuleModel
      */
     'conditions'?: Array<UpdateConditionModel> | null;
     /**
      * The percentage options from where the evaluation process will choose a value based on the flag\'s percentage evaluation attribute.
-     * @type {Array<UpdatePercentageOptionModel>}
-     * @memberof UpdateTargetingRuleModel
      */
     'percentageOptions'?: Array<UpdatePercentageOptionModel> | null;
-    /**
-     * 
-     * @type {UpdateValueModel}
-     * @memberof UpdateTargetingRuleModel
-     */
     'value'?: UpdateValueModel | null;
 }
 

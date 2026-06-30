@@ -14,15 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @enum {string}
- */
 
 export const StaleFlagStaleInEnvironmentsType = {
     StaleInAnyEnvironments: 'staleInAnyEnvironments',
-    StaleInAllEnvironments: 'staleInAllEnvironments'
+    StaleInAllEnvironments: 'staleInAllEnvironments',
 } as const;
 
 export type StaleFlagStaleInEnvironmentsType = typeof StaleFlagStaleInEnvironmentsType[keyof typeof StaleFlagStaleInEnvironmentsType];

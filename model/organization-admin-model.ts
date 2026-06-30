@@ -16,32 +16,22 @@
 
 /**
  * Describes an Organization Admin.
- * @export
- * @interface OrganizationAdminModel
  */
 export interface OrganizationAdminModel {
     /**
      * Identifier of the Organization Admin.
-     * @type {string}
-     * @memberof OrganizationAdminModel
      */
     'userId': string;
     /**
      * Name of the Organization Admin.
-     * @type {string}
-     * @memberof OrganizationAdminModel
      */
     'fullName': string;
     /**
      * Email of the OrganizationAdmin.
-     * @type {string}
-     * @memberof OrganizationAdminModel
      */
     'email': string;
     /**
      * Determines whether 2FA is enabled for the Organization Admin.
-     * @type {boolean}
-     * @memberof OrganizationAdminModel
      */
     'twoFactorEnabled': boolean;
 }

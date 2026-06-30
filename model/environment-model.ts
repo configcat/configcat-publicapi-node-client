@@ -15,55 +15,40 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProductModel } from './product-model';
+import type { ProductModel } from './product-model';
 
 /**
  * Details of the Environment.
- * @export
- * @interface EnvironmentModel
  */
 export interface EnvironmentModel {
-    /**
-     * 
-     * @type {ProductModel}
-     * @memberof EnvironmentModel
-     */
     'product': ProductModel;
     /**
      * Identifier of the Environment.
-     * @type {string}
-     * @memberof EnvironmentModel
      */
     'environmentId': string;
     /**
      * Name of the Environment.
-     * @type {string}
-     * @memberof EnvironmentModel
      */
     'name': string;
     /**
      * The configured color of the Environment.
-     * @type {string}
-     * @memberof EnvironmentModel
      */
     'color': string | null;
     /**
      * Description of the Environment.
-     * @type {string}
-     * @memberof EnvironmentModel
      */
     'description': string | null;
     /**
      * The order of the Environment represented on the ConfigCat Dashboard.
-     * @type {number}
-     * @memberof EnvironmentModel
      */
     'order': number;
     /**
      * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings in the given Environment are saved.
-     * @type {boolean}
-     * @memberof EnvironmentModel
      */
     'reasonRequired': boolean;
+    /**
+     * Determines whether changes must be approved before they are applied in the given Environment.
+     */
+    'approveRequired': boolean;
 }
 

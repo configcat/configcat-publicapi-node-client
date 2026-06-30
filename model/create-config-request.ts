@@ -15,37 +15,21 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EvaluationVersion } from './evaluation-version';
+import type { EvaluationVersion } from './evaluation-version';
 
-/**
- * 
- * @export
- * @interface CreateConfigRequest
- */
 export interface CreateConfigRequest {
     /**
      * The name of the Config.
-     * @type {string}
-     * @memberof CreateConfigRequest
      */
     'name': string;
     /**
      * The description of the Config.
-     * @type {string}
-     * @memberof CreateConfigRequest
      */
     'description'?: string | null;
     /**
      * The order of the Config represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
-     * @type {number}
-     * @memberof CreateConfigRequest
      */
     'order'?: number | null;
-    /**
-     * 
-     * @type {EvaluationVersion}
-     * @memberof CreateConfigRequest
-     */
     'evaluationVersion'?: EvaluationVersion;
 }
 

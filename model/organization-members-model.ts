@@ -15,33 +15,22 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrganizationAdminModel } from './organization-admin-model';
+import type { OrganizationAdminModel } from './organization-admin-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrganizationMemberModel } from './organization-member-model';
+import type { OrganizationMemberModel } from './organization-member-model';
 
-/**
- * 
- * @export
- * @interface OrganizationMembersModel
- */
 export interface OrganizationMembersModel {
     /**
      * List of Organization Admins.
-     * @type {Array<OrganizationAdminModel>}
-     * @memberof OrganizationMembersModel
      */
     'admins': Array<OrganizationAdminModel>;
     /**
      * List of Billing Managers.
-     * @type {Array<OrganizationAdminModel>}
-     * @memberof OrganizationMembersModel
      */
     'billingManagers': Array<OrganizationAdminModel>;
     /**
      * List of Organization Members.
-     * @type {Array<OrganizationMemberModel>}
-     * @memberof OrganizationMembersModel
      */
     'members': Array<OrganizationMemberModel>;
 }

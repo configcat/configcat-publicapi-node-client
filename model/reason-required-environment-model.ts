@@ -14,28 +14,17 @@
 
 
 
-/**
- * 
- * @export
- * @interface ReasonRequiredEnvironmentModel
- */
 export interface ReasonRequiredEnvironmentModel {
     /**
      * Identifier of the Environment.
-     * @type {string}
-     * @memberof ReasonRequiredEnvironmentModel
      */
     'environmentId': string;
     /**
      * Indicates that a mandatory note is required in this Environment for saving and publishing.
-     * @type {boolean}
-     * @memberof ReasonRequiredEnvironmentModel
      */
     'reasonRequired': boolean;
     /**
      * Name of the Environment.
-     * @type {string}
-     * @memberof ReasonRequiredEnvironmentModel
      */
     'environmentName': string | null;
 }

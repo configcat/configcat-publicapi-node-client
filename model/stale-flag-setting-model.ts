@@ -15,57 +15,38 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { StaleFlagSettingTagModel } from './stale-flag-setting-tag-model';
+import type { StaleFlagSettingTagModel } from './stale-flag-setting-tag-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { StaleFlagSettingValueModel } from './stale-flag-setting-value-model';
+import type { StaleFlagSettingValueModel } from './stale-flag-setting-value-model';
 
-/**
- * 
- * @export
- * @interface StaleFlagSettingModel
- */
 export interface StaleFlagSettingModel {
     /**
      * Identifier of the Feature Flag or Setting.
-     * @type {number}
-     * @memberof StaleFlagSettingModel
      */
     'settingId': number;
     /**
      * Name of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof StaleFlagSettingModel
      */
     'name': string;
     /**
      * Key of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof StaleFlagSettingModel
      */
     'key': string;
     /**
      * Description of the Feature Flag or Setting.
-     * @type {string}
-     * @memberof StaleFlagSettingModel
      */
     'hint': string | null;
     /**
      * Feature Flag or Setting has code references uploaded.
-     * @type {boolean}
-     * @memberof StaleFlagSettingModel
      */
     'hasCodeReferences': boolean;
     /**
      * The tags\' identifiers attached to the Feature Flag or Setting.
-     * @type {Array<StaleFlagSettingTagModel>}
-     * @memberof StaleFlagSettingModel
      */
     'tags': Array<StaleFlagSettingTagModel>;
     /**
      * Environment level feature flag stale data.
-     * @type {Array<StaleFlagSettingValueModel>}
-     * @memberof StaleFlagSettingModel
      */
     'settingValues': Array<StaleFlagSettingValueModel>;
 }

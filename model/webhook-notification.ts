@@ -16,26 +16,18 @@
 
 /**
  * The webhook notification settings, including the proxy URL and signing keys.
- * @export
- * @interface WebhookNotification
  */
 export interface WebhookNotification {
     /**
      * The webhook proxy URL for receiving config JSON change notifications.
-     * @type {string}
-     * @memberof WebhookNotification
      */
     'webhookProxyUrl': string;
     /**
      * The primary signing key used for verifying the authenticity of webhook requests.
-     * @type {string}
-     * @memberof WebhookNotification
      */
     'signingKey1': string;
     /**
      * The secondary signing key used for verifying the authenticity of webhook requests.
-     * @type {string}
-     * @memberof WebhookNotification
      */
     'signingKey2': string | null;
 }

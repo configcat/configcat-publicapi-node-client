@@ -15,39 +15,26 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { StaleFlagConfigModel } from './stale-flag-config-model';
+import type { StaleFlagConfigModel } from './stale-flag-config-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { StaleFlagEnvironmentModel } from './stale-flag-environment-model';
+import type { StaleFlagEnvironmentModel } from './stale-flag-environment-model';
 
-/**
- * 
- * @export
- * @interface StaleFlagProductModel
- */
 export interface StaleFlagProductModel {
     /**
      * Identifier of the Product.
-     * @type {string}
-     * @memberof StaleFlagProductModel
      */
     'productId': string;
     /**
      * Name of the Product.
-     * @type {string}
-     * @memberof StaleFlagProductModel
      */
     'name': string;
     /**
      * Configs that contain stale feature flags.
-     * @type {Array<StaleFlagConfigModel>}
-     * @memberof StaleFlagProductModel
      */
     'configs': Array<StaleFlagConfigModel>;
     /**
      * Environment list.
-     * @type {Array<StaleFlagEnvironmentModel>}
-     * @memberof StaleFlagProductModel
      */
     'environments': Array<StaleFlagEnvironmentModel>;
 }

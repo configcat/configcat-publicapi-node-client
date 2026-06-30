@@ -18,23 +18,24 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { AuditLogItemModel } from '../model';
+import type { AuditLogItemModel } from '../model';
 // @ts-ignore
-import { AuditLogType } from '../model';
+import type { AuditLogItemModelPagedList } from '../model';
 // @ts-ignore
-import { DeletedSettingModel } from '../model';
+import type { AuditLogType } from '../model';
+// @ts-ignore
+import type { DeletedSettingModel } from '../model';
 /**
  * AuditLogsApi - axios parameter creator
- * @export
  */
 export const AuditLogsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
+         * This endpoint returns the list of Audit log items for a given Product and the result can be optionally filtered by Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.  **Important:** This endpoint is deprecated. Use the **List Audit log items for Product (V2)** endpoint instead. In the future, this endpoint will be redirected to the V2 version with default pagination parameters.
          * @summary List Audit log items for Product
          * @param {string} productId The identifier of the Product.
          * @param {string} [configId] The identifier of the Config.
@@ -43,13 +44,14 @@ export const AuditLogsApiAxiosParamCreator = function (configuration?: Configura
          * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
          * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         getAuditlogs: async (productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getAuditlogs', 'productId', productId)
             const localVarPath = `/v1/products/{productId}/auditlogs`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -89,8 +91,85 @@ export const AuditLogsApiAxiosParamCreator = function (configuration?: Configura
                     toUtcDateTime;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * This endpoint returns the list of Audit log items for a given Product and the result can be optionally filtered by Config and/or Environment.
+         * @summary List Audit log items for Product (V2)
+         * @param {string} productId The identifier of the Product.
+         * @param {string} [configId] The identifier of the Config.
+         * @param {string} [environmentId] The identifier of the Environment.
+         * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
+         * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
+         * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
+         * @param {number} [pageNumber] Page number (min: 1).
+         * @param {number} [pageSize] Page size (min: 1, max: 100).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAuditlogsV2: async (productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'productId' is not null or undefined
+            assertParamExists('getAuditlogsV2', 'productId', productId)
+            const localVarPath = `/v2/products/{productId}/auditlogs`
+                .replace('{productId}', encodeURIComponent(String(productId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+            if (configId !== undefined) {
+                localVarQueryParameter['configId'] = configId;
+            }
+
+            if (environmentId !== undefined) {
+                localVarQueryParameter['environmentId'] = environmentId;
+            }
+
+            if (auditLogType !== undefined) {
+                localVarQueryParameter['auditLogType'] = auditLogType;
+            }
+
+            if (fromUtcDateTime !== undefined) {
+                localVarQueryParameter['fromUtcDateTime'] = (fromUtcDateTime as any instanceof Date) ?
+                    (fromUtcDateTime as any).toISOString() :
+                    fromUtcDateTime;
+            }
+
+            if (toUtcDateTime !== undefined) {
+                localVarQueryParameter['toUtcDateTime'] = (toUtcDateTime as any instanceof Date) ?
+                    (toUtcDateTime as any).toISOString() :
+                    toUtcDateTime;
+            }
+
+            if (pageNumber !== undefined) {
+                localVarQueryParameter['pageNumber'] = pageNumber;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -111,7 +190,7 @@ export const AuditLogsApiAxiosParamCreator = function (configuration?: Configura
             // verify required parameter 'configId' is not null or undefined
             assertParamExists('getDeletedSettings', 'configId', configId)
             const localVarPath = `/v1/configs/{configId}/deleted-settings`
-                .replace(`{${"configId"}}`, encodeURIComponent(String(configId)));
+                .replace('{configId}', encodeURIComponent(String(configId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -127,8 +206,8 @@ export const AuditLogsApiAxiosParamCreator = function (configuration?: Configura
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -139,7 +218,7 @@ export const AuditLogsApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
+         * This endpoint returns the list of Audit log items for a given Organization and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.  **Important:** This endpoint is deprecated. Use the **List Audit log items for Organization (V2)** endpoint instead. In the future, this endpoint will be redirected to the V2 version with default pagination parameters.
          * @summary List Audit log items for Organization
          * @param {string} organizationId The identifier of the Organization.
          * @param {string} [productId] The identifier of the Product.
@@ -149,13 +228,14 @@ export const AuditLogsApiAxiosParamCreator = function (configuration?: Configura
          * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
          * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         getOrganizationAuditlogs: async (organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'organizationId' is not null or undefined
             assertParamExists('getOrganizationAuditlogs', 'organizationId', organizationId)
             const localVarPath = `/v1/organizations/{organizationId}/auditlogs`
-                .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)));
+                .replace('{organizationId}', encodeURIComponent(String(organizationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -199,8 +279,90 @@ export const AuditLogsApiAxiosParamCreator = function (configuration?: Configura
                     toUtcDateTime;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * This endpoint returns the list of Audit log items for a given Organization and the result can be optionally filtered by Product and/or Config and/or Environment.
+         * @summary List Audit log items for Organization (V2)
+         * @param {string} organizationId The identifier of the Organization.
+         * @param {string} [productId] The identifier of the Product.
+         * @param {string} [configId] The identifier of the Config.
+         * @param {string} [environmentId] The identifier of the Environment.
+         * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
+         * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
+         * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
+         * @param {number} [pageNumber] Page number (min: 1).
+         * @param {number} [pageSize] Page size (min: 1, max: 100).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOrganizationAuditlogsV2: async (organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'organizationId' is not null or undefined
+            assertParamExists('getOrganizationAuditlogsV2', 'organizationId', organizationId)
+            const localVarPath = `/v2/organizations/{organizationId}/auditlogs`
+                .replace('{organizationId}', encodeURIComponent(String(organizationId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            setBasicAuthToObject(localVarRequestOptions, configuration)
+
+            if (productId !== undefined) {
+                localVarQueryParameter['productId'] = productId;
+            }
+
+            if (configId !== undefined) {
+                localVarQueryParameter['configId'] = configId;
+            }
+
+            if (environmentId !== undefined) {
+                localVarQueryParameter['environmentId'] = environmentId;
+            }
+
+            if (auditLogType !== undefined) {
+                localVarQueryParameter['auditLogType'] = auditLogType;
+            }
+
+            if (fromUtcDateTime !== undefined) {
+                localVarQueryParameter['fromUtcDateTime'] = (fromUtcDateTime as any instanceof Date) ?
+                    (fromUtcDateTime as any).toISOString() :
+                    fromUtcDateTime;
+            }
+
+            if (toUtcDateTime !== undefined) {
+                localVarQueryParameter['toUtcDateTime'] = (toUtcDateTime as any instanceof Date) ?
+                    (toUtcDateTime as any).toISOString() :
+                    toUtcDateTime;
+            }
+
+            if (pageNumber !== undefined) {
+                localVarQueryParameter['pageNumber'] = pageNumber;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -215,13 +377,12 @@ export const AuditLogsApiAxiosParamCreator = function (configuration?: Configura
 
 /**
  * AuditLogsApi - functional programming interface
- * @export
  */
 export const AuditLogsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AuditLogsApiAxiosParamCreator(configuration)
     return {
         /**
-         * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
+         * This endpoint returns the list of Audit log items for a given Product and the result can be optionally filtered by Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.  **Important:** This endpoint is deprecated. Use the **List Audit log items for Product (V2)** endpoint instead. In the future, this endpoint will be redirected to the V2 version with default pagination parameters.
          * @summary List Audit log items for Product
          * @param {string} productId The identifier of the Product.
          * @param {string} [configId] The identifier of the Config.
@@ -230,12 +391,33 @@ export const AuditLogsApiFp = function(configuration?: Configuration) {
          * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
          * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         async getAuditlogs(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AuditLogItemModel>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAuditlogs(productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AuditLogsApi.getAuditlogs']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * This endpoint returns the list of Audit log items for a given Product and the result can be optionally filtered by Config and/or Environment.
+         * @summary List Audit log items for Product (V2)
+         * @param {string} productId The identifier of the Product.
+         * @param {string} [configId] The identifier of the Config.
+         * @param {string} [environmentId] The identifier of the Environment.
+         * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
+         * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
+         * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
+         * @param {number} [pageNumber] Page number (min: 1).
+         * @param {number} [pageSize] Page size (min: 1, max: 100).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAuditlogsV2(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuditLogItemModelPagedList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAuditlogsV2(productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, pageNumber, pageSize, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AuditLogsApi.getAuditlogsV2']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -252,7 +434,7 @@ export const AuditLogsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
+         * This endpoint returns the list of Audit log items for a given Organization and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.  **Important:** This endpoint is deprecated. Use the **List Audit log items for Organization (V2)** endpoint instead. In the future, this endpoint will be redirected to the V2 version with default pagination parameters.
          * @summary List Audit log items for Organization
          * @param {string} organizationId The identifier of the Organization.
          * @param {string} [productId] The identifier of the Product.
@@ -262,6 +444,7 @@ export const AuditLogsApiFp = function(configuration?: Configuration) {
          * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
          * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
         async getOrganizationAuditlogs(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AuditLogItemModel>>> {
@@ -270,18 +453,38 @@ export const AuditLogsApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['AuditLogsApi.getOrganizationAuditlogs']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * This endpoint returns the list of Audit log items for a given Organization and the result can be optionally filtered by Product and/or Config and/or Environment.
+         * @summary List Audit log items for Organization (V2)
+         * @param {string} organizationId The identifier of the Organization.
+         * @param {string} [productId] The identifier of the Product.
+         * @param {string} [configId] The identifier of the Config.
+         * @param {string} [environmentId] The identifier of the Environment.
+         * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
+         * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
+         * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
+         * @param {number} [pageNumber] Page number (min: 1).
+         * @param {number} [pageSize] Page size (min: 1, max: 100).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getOrganizationAuditlogsV2(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuditLogItemModelPagedList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrganizationAuditlogsV2(organizationId, productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, pageNumber, pageSize, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AuditLogsApi.getOrganizationAuditlogsV2']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
 /**
  * AuditLogsApi - factory interface
- * @export
  */
 export const AuditLogsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = AuditLogsApiFp(configuration)
     return {
         /**
-         * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
+         * This endpoint returns the list of Audit log items for a given Product and the result can be optionally filtered by Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.  **Important:** This endpoint is deprecated. Use the **List Audit log items for Product (V2)** endpoint instead. In the future, this endpoint will be redirected to the V2 version with default pagination parameters.
          * @summary List Audit log items for Product
          * @param {string} productId The identifier of the Product.
          * @param {string} [configId] The identifier of the Config.
@@ -290,10 +493,28 @@ export const AuditLogsApiFactory = function (configuration?: Configuration, base
          * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
          * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
-        getAuditlogs(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: any): AxiosPromise<Array<AuditLogItemModel>> {
+        getAuditlogs(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<AuditLogItemModel>> {
             return localVarFp.getAuditlogs(productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint returns the list of Audit log items for a given Product and the result can be optionally filtered by Config and/or Environment.
+         * @summary List Audit log items for Product (V2)
+         * @param {string} productId The identifier of the Product.
+         * @param {string} [configId] The identifier of the Config.
+         * @param {string} [environmentId] The identifier of the Environment.
+         * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
+         * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
+         * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
+         * @param {number} [pageNumber] Page number (min: 1).
+         * @param {number} [pageSize] Page size (min: 1, max: 100).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAuditlogsV2(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, options?: RawAxiosRequestConfig): AxiosPromise<AuditLogItemModelPagedList> {
+            return localVarFp.getAuditlogsV2(productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, pageNumber, pageSize, options).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint returns the list of Feature Flags and Settings that were deleted from the given Config.
@@ -302,11 +523,11 @@ export const AuditLogsApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDeletedSettings(configId: string, options?: any): AxiosPromise<Array<DeletedSettingModel>> {
+        getDeletedSettings(configId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<DeletedSettingModel>> {
             return localVarFp.getDeletedSettings(configId, options).then((request) => request(axios, basePath));
         },
         /**
-         * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
+         * This endpoint returns the list of Audit log items for a given Organization and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.  **Important:** This endpoint is deprecated. Use the **List Audit log items for Organization (V2)** endpoint instead. In the future, this endpoint will be redirected to the V2 version with default pagination parameters.
          * @summary List Audit log items for Organization
          * @param {string} organizationId The identifier of the Organization.
          * @param {string} [productId] The identifier of the Product.
@@ -316,23 +537,39 @@ export const AuditLogsApiFactory = function (configuration?: Configuration, base
          * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
          * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
          * @param {*} [options] Override http request option.
+         * @deprecated
          * @throws {RequiredError}
          */
-        getOrganizationAuditlogs(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: any): AxiosPromise<Array<AuditLogItemModel>> {
+        getOrganizationAuditlogs(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<AuditLogItemModel>> {
             return localVarFp.getOrganizationAuditlogs(organizationId, productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This endpoint returns the list of Audit log items for a given Organization and the result can be optionally filtered by Product and/or Config and/or Environment.
+         * @summary List Audit log items for Organization (V2)
+         * @param {string} organizationId The identifier of the Organization.
+         * @param {string} [productId] The identifier of the Product.
+         * @param {string} [configId] The identifier of the Config.
+         * @param {string} [environmentId] The identifier of the Environment.
+         * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
+         * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
+         * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
+         * @param {number} [pageNumber] Page number (min: 1).
+         * @param {number} [pageSize] Page size (min: 1, max: 100).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOrganizationAuditlogsV2(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, options?: RawAxiosRequestConfig): AxiosPromise<AuditLogItemModelPagedList> {
+            return localVarFp.getOrganizationAuditlogsV2(organizationId, productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, pageNumber, pageSize, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
  * AuditLogsApi - object-oriented interface
- * @export
- * @class AuditLogsApi
- * @extends {BaseAPI}
  */
 export class AuditLogsApi extends BaseAPI {
     /**
-     * This endpoint returns the list of Audit log items for a given Product  and the result can be optionally filtered by Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
+     * This endpoint returns the list of Audit log items for a given Product and the result can be optionally filtered by Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.  **Important:** This endpoint is deprecated. Use the **List Audit log items for Product (V2)** endpoint instead. In the future, this endpoint will be redirected to the V2 version with default pagination parameters.
      * @summary List Audit log items for Product
      * @param {string} productId The identifier of the Product.
      * @param {string} [configId] The identifier of the Config.
@@ -341,11 +578,29 @@ export class AuditLogsApi extends BaseAPI {
      * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
      * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
-     * @memberof AuditLogsApi
      */
     public getAuditlogs(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig) {
         return AuditLogsApiFp(this.configuration).getAuditlogs(productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint returns the list of Audit log items for a given Product and the result can be optionally filtered by Config and/or Environment.
+     * @summary List Audit log items for Product (V2)
+     * @param {string} productId The identifier of the Product.
+     * @param {string} [configId] The identifier of the Config.
+     * @param {string} [environmentId] The identifier of the Environment.
+     * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
+     * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
+     * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
+     * @param {number} [pageNumber] Page number (min: 1).
+     * @param {number} [pageSize] Page size (min: 1, max: 100).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getAuditlogsV2(productId: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, options?: RawAxiosRequestConfig) {
+        return AuditLogsApiFp(this.configuration).getAuditlogsV2(productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, pageNumber, pageSize, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -354,14 +609,13 @@ export class AuditLogsApi extends BaseAPI {
      * @param {string} configId The identifier of the Config.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuditLogsApi
      */
     public getDeletedSettings(configId: string, options?: RawAxiosRequestConfig) {
         return AuditLogsApiFp(this.configuration).getDeletedSettings(configId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * This endpoint returns the list of Audit log items for a given Organization  and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.
+     * This endpoint returns the list of Audit log items for a given Organization and the result can be optionally filtered by Product and/or Config and/or Environment.  If neither `fromUtcDateTime` nor `toUtcDateTime` is set, the audit logs for the **last 7 days** will be returned.  The distance between `fromUtcDateTime` and `toUtcDateTime` cannot exceed **30 days**.  **Important:** This endpoint is deprecated. Use the **List Audit log items for Organization (V2)** endpoint instead. In the future, this endpoint will be redirected to the V2 version with default pagination parameters.
      * @summary List Audit log items for Organization
      * @param {string} organizationId The identifier of the Organization.
      * @param {string} [productId] The identifier of the Product.
@@ -371,11 +625,30 @@ export class AuditLogsApi extends BaseAPI {
      * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
      * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
-     * @memberof AuditLogsApi
      */
     public getOrganizationAuditlogs(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, options?: RawAxiosRequestConfig) {
         return AuditLogsApiFp(this.configuration).getOrganizationAuditlogs(organizationId, productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * This endpoint returns the list of Audit log items for a given Organization and the result can be optionally filtered by Product and/or Config and/or Environment.
+     * @summary List Audit log items for Organization (V2)
+     * @param {string} organizationId The identifier of the Organization.
+     * @param {string} [productId] The identifier of the Product.
+     * @param {string} [configId] The identifier of the Config.
+     * @param {string} [environmentId] The identifier of the Environment.
+     * @param {AuditLogType | null} [auditLogType] Filter Audit logs by Audit log type.
+     * @param {string} [fromUtcDateTime] Filter Audit logs by starting UTC date.
+     * @param {string} [toUtcDateTime] Filter Audit logs by ending UTC date.
+     * @param {number} [pageNumber] Page number (min: 1).
+     * @param {number} [pageSize] Page size (min: 1, max: 100).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getOrganizationAuditlogsV2(organizationId: string, productId?: string, configId?: string, environmentId?: string, auditLogType?: AuditLogType | null, fromUtcDateTime?: string, toUtcDateTime?: string, pageNumber?: number, pageSize?: number, options?: RawAxiosRequestConfig) {
+        return AuditLogsApiFp(this.configuration).getOrganizationAuditlogsV2(organizationId, productId, configId, environmentId, auditLogType, fromUtcDateTime, toUtcDateTime, pageNumber, pageSize, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

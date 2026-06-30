@@ -18,26 +18,25 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { InvitationModel } from '../model';
+import type { InvitationModel } from '../model';
 // @ts-ignore
-import { InviteMembersRequest } from '../model';
+import type { InviteMembersRequest } from '../model';
 // @ts-ignore
-import { MemberModel } from '../model';
+import type { MemberModel } from '../model';
 // @ts-ignore
-import { OrganizationInvitationModel } from '../model';
+import type { OrganizationInvitationModel } from '../model';
 // @ts-ignore
-import { OrganizationMembersModel } from '../model';
+import type { OrganizationMembersModel } from '../model';
 // @ts-ignore
-import { UpdateMemberPermissionsRequest } from '../model';
+import type { UpdateMemberPermissionsRequest } from '../model';
 // @ts-ignore
-import { UserModel } from '../model';
+import type { UserModel } from '../model';
 /**
  * MembersApi - axios parameter creator
- * @export
  */
 export const MembersApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -58,8 +57,8 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'updateMemberPermissionsRequest' is not null or undefined
             assertParamExists('addMemberToGroup', 'updateMemberPermissionsRequest', updateMemberPermissionsRequest)
             const localVarPath = `/v1/organizations/{organizationId}/members/{userId}`
-                .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)))
-                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+                .replace('{organizationId}', encodeURIComponent(String(organizationId)))
+                .replace('{userId}', encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -75,8 +74,6 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -100,7 +97,7 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'invitationId' is not null or undefined
             assertParamExists('deleteInvitation', 'invitationId', invitationId)
             const localVarPath = `/v1/invitations/{invitationId}`
-                .replace(`{${"invitationId"}}`, encodeURIComponent(String(invitationId)));
+                .replace('{invitationId}', encodeURIComponent(String(invitationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -117,7 +114,6 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -141,8 +137,8 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('deleteOrganizationMember', 'userId', userId)
             const localVarPath = `/v1/organizations/{organizationId}/members/{userId}`
-                .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)))
-                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+                .replace('{organizationId}', encodeURIComponent(String(organizationId)))
+                .replace('{userId}', encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -159,7 +155,6 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -183,8 +178,8 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('deleteProductMember', 'userId', userId)
             const localVarPath = `/v1/products/{productId}/members/{userId}`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)))
-                .replace(`{${"userId"}}`, encodeURIComponent(String(userId)));
+                .replace('{productId}', encodeURIComponent(String(productId)))
+                .replace('{userId}', encodeURIComponent(String(userId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -201,7 +196,6 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -223,7 +217,7 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'organizationId' is not null or undefined
             assertParamExists('getOrganizationMembers', 'organizationId', organizationId)
             const localVarPath = `/v1/organizations/{organizationId}/members`
-                .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)));
+                .replace('{organizationId}', encodeURIComponent(String(organizationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -239,8 +233,8 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -261,7 +255,7 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'organizationId' is not null or undefined
             assertParamExists('getOrganizationMembersV2', 'organizationId', organizationId)
             const localVarPath = `/v2/organizations/{organizationId}/members`
-                .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)));
+                .replace('{organizationId}', encodeURIComponent(String(organizationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -277,8 +271,8 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -299,7 +293,7 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getPendingInvitations', 'productId', productId)
             const localVarPath = `/v1/products/{productId}/invitations`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -315,8 +309,8 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -337,7 +331,7 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'organizationId' is not null or undefined
             assertParamExists('getPendingInvitationsOrg', 'organizationId', organizationId)
             const localVarPath = `/v1/organizations/{organizationId}/invitations`
-                .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)));
+                .replace('{organizationId}', encodeURIComponent(String(organizationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -353,8 +347,8 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -375,7 +369,7 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getProductMembers', 'productId', productId)
             const localVarPath = `/v1/products/{productId}/members`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -391,8 +385,8 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -416,7 +410,7 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'inviteMembersRequest' is not null or undefined
             assertParamExists('inviteMember', 'inviteMembersRequest', inviteMembersRequest)
             const localVarPath = `/v1/products/{productId}/members/invite`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -432,8 +426,6 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -451,7 +443,6 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
 
 /**
  * MembersApi - functional programming interface
- * @export
  */
 export const MembersApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = MembersApiAxiosParamCreator(configuration)
@@ -597,7 +588,6 @@ export const MembersApiFp = function(configuration?: Configuration) {
 
 /**
  * MembersApi - factory interface
- * @export
  */
 export const MembersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = MembersApiFp(configuration)
@@ -611,7 +601,7 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addMemberToGroup(organizationId: string, userId: string, updateMemberPermissionsRequest: UpdateMemberPermissionsRequest, options?: any): AxiosPromise<void> {
+        addMemberToGroup(organizationId: string, userId: string, updateMemberPermissionsRequest: UpdateMemberPermissionsRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.addMemberToGroup(organizationId, userId, updateMemberPermissionsRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -621,7 +611,7 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteInvitation(invitationId: string, options?: any): AxiosPromise<void> {
+        deleteInvitation(invitationId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deleteInvitation(invitationId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -632,7 +622,7 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteOrganizationMember(organizationId: string, userId: string, options?: any): AxiosPromise<void> {
+        deleteOrganizationMember(organizationId: string, userId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deleteOrganizationMember(organizationId, userId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -643,7 +633,7 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteProductMember(productId: string, userId: string, options?: any): AxiosPromise<void> {
+        deleteProductMember(productId: string, userId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deleteProductMember(productId, userId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -654,7 +644,7 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
          * @deprecated
          * @throws {RequiredError}
          */
-        getOrganizationMembers(organizationId: string, options?: any): AxiosPromise<Array<UserModel>> {
+        getOrganizationMembers(organizationId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<UserModel>> {
             return localVarFp.getOrganizationMembers(organizationId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -664,7 +654,7 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrganizationMembersV2(organizationId: string, options?: any): AxiosPromise<OrganizationMembersModel> {
+        getOrganizationMembersV2(organizationId: string, options?: RawAxiosRequestConfig): AxiosPromise<OrganizationMembersModel> {
             return localVarFp.getOrganizationMembersV2(organizationId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -674,7 +664,7 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPendingInvitations(productId: string, options?: any): AxiosPromise<Array<InvitationModel>> {
+        getPendingInvitations(productId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<InvitationModel>> {
             return localVarFp.getPendingInvitations(productId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -684,7 +674,7 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPendingInvitationsOrg(organizationId: string, options?: any): AxiosPromise<Array<OrganizationInvitationModel>> {
+        getPendingInvitationsOrg(organizationId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<OrganizationInvitationModel>> {
             return localVarFp.getPendingInvitationsOrg(organizationId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -694,7 +684,7 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductMembers(productId: string, options?: any): AxiosPromise<Array<MemberModel>> {
+        getProductMembers(productId: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<MemberModel>> {
             return localVarFp.getProductMembers(productId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -705,7 +695,7 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inviteMember(productId: string, inviteMembersRequest: InviteMembersRequest, options?: any): AxiosPromise<void> {
+        inviteMember(productId: string, inviteMembersRequest: InviteMembersRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.inviteMember(productId, inviteMembersRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -713,9 +703,6 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
 
 /**
  * MembersApi - object-oriented interface
- * @export
- * @class MembersApi
- * @extends {BaseAPI}
  */
 export class MembersApi extends BaseAPI {
     /**
@@ -726,7 +713,6 @@ export class MembersApi extends BaseAPI {
      * @param {UpdateMemberPermissionsRequest} updateMemberPermissionsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public addMemberToGroup(organizationId: string, userId: string, updateMemberPermissionsRequest: UpdateMemberPermissionsRequest, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).addMemberToGroup(organizationId, userId, updateMemberPermissionsRequest, options).then((request) => request(this.axios, this.basePath));
@@ -738,7 +724,6 @@ export class MembersApi extends BaseAPI {
      * @param {string} invitationId The identifier of the Invitation.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public deleteInvitation(invitationId: string, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).deleteInvitation(invitationId, options).then((request) => request(this.axios, this.basePath));
@@ -751,7 +736,6 @@ export class MembersApi extends BaseAPI {
      * @param {string} userId The identifier of the Member.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public deleteOrganizationMember(organizationId: string, userId: string, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).deleteOrganizationMember(organizationId, userId, options).then((request) => request(this.axios, this.basePath));
@@ -764,7 +748,6 @@ export class MembersApi extends BaseAPI {
      * @param {string} userId The identifier of the Member.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public deleteProductMember(productId: string, userId: string, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).deleteProductMember(productId, userId, options).then((request) => request(this.axios, this.basePath));
@@ -777,7 +760,6 @@ export class MembersApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public getOrganizationMembers(organizationId: string, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).getOrganizationMembers(organizationId, options).then((request) => request(this.axios, this.basePath));
@@ -789,7 +771,6 @@ export class MembersApi extends BaseAPI {
      * @param {string} organizationId The identifier of the Organization.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public getOrganizationMembersV2(organizationId: string, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).getOrganizationMembersV2(organizationId, options).then((request) => request(this.axios, this.basePath));
@@ -801,7 +782,6 @@ export class MembersApi extends BaseAPI {
      * @param {string} productId The identifier of the Product.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public getPendingInvitations(productId: string, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).getPendingInvitations(productId, options).then((request) => request(this.axios, this.basePath));
@@ -813,7 +793,6 @@ export class MembersApi extends BaseAPI {
      * @param {string} organizationId The identifier of the Organization.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public getPendingInvitationsOrg(organizationId: string, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).getPendingInvitationsOrg(organizationId, options).then((request) => request(this.axios, this.basePath));
@@ -825,7 +804,6 @@ export class MembersApi extends BaseAPI {
      * @param {string} productId The identifier of the Product.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public getProductMembers(productId: string, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).getProductMembers(productId, options).then((request) => request(this.axios, this.basePath));
@@ -838,7 +816,6 @@ export class MembersApi extends BaseAPI {
      * @param {InviteMembersRequest} inviteMembersRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public inviteMember(productId: string, inviteMembersRequest: InviteMembersRequest, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).inviteMember(productId, inviteMembersRequest, options).then((request) => request(this.axios, this.basePath));

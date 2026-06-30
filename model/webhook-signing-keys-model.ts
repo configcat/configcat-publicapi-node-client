@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface WebhookSigningKeysModel
- */
 export interface WebhookSigningKeysModel {
     /**
      * The first signing key.
-     * @type {string}
-     * @memberof WebhookSigningKeysModel
      */
     'key1': string | null;
     /**
      * The second signing key.
-     * @type {string}
-     * @memberof WebhookSigningKeysModel
      */
     'key2': string | null;
 }

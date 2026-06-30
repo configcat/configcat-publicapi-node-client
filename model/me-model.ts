@@ -14,23 +14,8 @@
 
 
 
-/**
- * 
- * @export
- * @interface MeModel
- */
 export interface MeModel {
-    /**
-     * 
-     * @type {string}
-     * @memberof MeModel
-     */
     'email': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MeModel
-     */
     'fullName': string;
 }
 

@@ -15,93 +15,56 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProductModel } from './product-model';
+import type { ProductModel } from './product-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { RolloutRuleComparator } from './rollout-rule-comparator';
+import type { RolloutRuleComparator } from './rollout-rule-comparator';
 
-/**
- * 
- * @export
- * @interface SegmentModel
- */
 export interface SegmentModel {
-    /**
-     * 
-     * @type {ProductModel}
-     * @memberof SegmentModel
-     */
     'product': ProductModel;
     /**
      * Identifier of the Segment.
-     * @type {string}
-     * @memberof SegmentModel
      */
     'segmentId': string;
     /**
      * Name of the Segment.
-     * @type {string}
-     * @memberof SegmentModel
      */
     'name': string;
     /**
      * Description of the Segment.
-     * @type {string}
-     * @memberof SegmentModel
      */
     'description': string | null;
     /**
      * The email of the user who created the Segment.
-     * @type {string}
-     * @memberof SegmentModel
      */
     'creatorEmail': string | null;
     /**
      * The name of the user who created the Segment.
-     * @type {string}
-     * @memberof SegmentModel
      */
     'creatorFullName': string | null;
     /**
      * The date and time when the Segment was created.
-     * @type {string}
-     * @memberof SegmentModel
      */
     'createdAt': string;
     /**
      * The email of the user who last updated the Segment.
-     * @type {string}
-     * @memberof SegmentModel
      */
     'lastUpdaterEmail': string | null;
     /**
      * The name of the user who last updated the Segment.
-     * @type {string}
-     * @memberof SegmentModel
      */
     'lastUpdaterFullName': string | null;
     /**
      * The date and time when the Segment was last updated.
-     * @type {string}
-     * @memberof SegmentModel
      */
     'updatedAt': string;
     /**
      * The user\'s attribute the evaluation process must take into account.
-     * @type {string}
-     * @memberof SegmentModel
      */
     'comparisonAttribute': string;
-    /**
-     * 
-     * @type {RolloutRuleComparator}
-     * @memberof SegmentModel
-     */
     'comparator': RolloutRuleComparator;
     /**
      * The value to compare with the given user attribute\'s value.
-     * @type {string}
-     * @memberof SegmentModel
      */
     'comparisonValue': string;
 }

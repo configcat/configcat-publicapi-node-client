@@ -15,34 +15,20 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ComparisonValueModel } from './comparison-value-model';
+import type { ComparisonValueModel } from './comparison-value-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UserComparator } from './user-comparator';
+import type { UserComparator } from './user-comparator';
 
 /**
  * Describes a condition that is based on user attributes.
- * @export
- * @interface UserConditionModel
  */
 export interface UserConditionModel {
     /**
      * The User Object attribute that the condition is based on. Can be \"User ID\", \"Email\", \"Country\" or any custom attribute.
-     * @type {string}
-     * @memberof UserConditionModel
      */
     'comparisonAttribute': string;
-    /**
-     * 
-     * @type {UserComparator}
-     * @memberof UserConditionModel
-     */
     'comparator': UserComparator;
-    /**
-     * 
-     * @type {ComparisonValueModel}
-     * @memberof UserConditionModel
-     */
     'comparisonValue': ComparisonValueModel;
 }
 

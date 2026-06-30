@@ -14,11 +14,6 @@
 
 
 
-/**
- * 
- * @export
- * @enum {string}
- */
 
 export const OperationType = {
     Unknown: 'unknown',
@@ -27,7 +22,7 @@ export const OperationType = {
     Replace: 'replace',
     Move: 'move',
     Copy: 'copy',
-    Test: 'test'
+    Test: 'test',
 } as const;
 
 export type OperationType = typeof OperationType[keyof typeof OperationType];

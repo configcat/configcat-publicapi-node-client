@@ -15,47 +15,40 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { KeyGenerationMode } from './key-generation-mode';
+import type { KeyGenerationMode } from './key-generation-mode';
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateReasonRequiredEnvironmentModel } from './update-reason-required-environment-model';
+import type { UpdateApproveRequiredEnvironmentModel } from './update-approve-required-environment-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { UpdateReasonRequiredEnvironmentModel } from './update-reason-required-environment-model';
 
-/**
- * 
- * @export
- * @interface UpdatePreferencesRequest
- */
 export interface UpdatePreferencesRequest {
     /**
      * Indicates that a mandatory note is required for saving and publishing.
-     * @type {boolean}
-     * @memberof UpdatePreferencesRequest
      */
     'reasonRequired'?: boolean | null;
-    /**
-     * 
-     * @type {KeyGenerationMode}
-     * @memberof UpdatePreferencesRequest
-     */
     'keyGenerationMode'?: KeyGenerationMode | null;
     /**
      * Indicates whether a variation ID\'s must be shown on the ConfigCat Dashboard.
-     * @type {boolean}
-     * @memberof UpdatePreferencesRequest
      */
     'showVariationId'?: boolean | null;
     /**
      * Indicates whether Feature flags and Settings must have a hint.
-     * @type {boolean}
-     * @memberof UpdatePreferencesRequest
      */
     'mandatorySettingHint'?: boolean | null;
     /**
      * List of Environments where mandatory note must be set before saving and publishing.
-     * @type {Array<UpdateReasonRequiredEnvironmentModel>}
-     * @memberof UpdatePreferencesRequest
      */
     'reasonRequiredEnvironments'?: Array<UpdateReasonRequiredEnvironmentModel> | null;
+    /**
+     * Indicates that a mandatory approval is required before changes are applied.
+     */
+    'approveRequired'?: boolean | null;
+    /**
+     * List of Environments where mandatory approval must be given before changes are applied.
+     */
+    'approveRequiredEnvironments'?: Array<UpdateApproveRequiredEnvironmentModel> | null;
 }
 
 

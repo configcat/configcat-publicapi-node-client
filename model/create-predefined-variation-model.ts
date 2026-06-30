@@ -15,30 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { CreatePredefinedVariationValueModel } from './create-predefined-variation-value-model';
+import type { CreatePredefinedVariationValueModel } from './create-predefined-variation-value-model';
 
 /**
- * A Feature Flag or Predefined Variation.
- * @export
- * @interface CreatePredefinedVariationModel
+ * A Predefined Variation.
  */
 export interface CreatePredefinedVariationModel {
-    /**
-     * 
-     * @type {CreatePredefinedVariationValueModel}
-     * @memberof CreatePredefinedVariationModel
-     */
     'value': CreatePredefinedVariationValueModel;
     /**
-     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
-     * @type {string}
-     * @memberof CreatePredefinedVariationModel
+     * The name of the Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      */
     'name'?: string | null;
     /**
-     * The name of the Feature Flag or Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
-     * @type {string}
-     * @memberof CreatePredefinedVariationModel
+     * The name of the Predefined Variation, shown on the Dashboard UI. If not set, the Value will be shown.
      */
     'hint'?: string | null;
 }

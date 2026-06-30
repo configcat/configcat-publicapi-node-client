@@ -15,25 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateValueModel } from './update-value-model';
+import type { UpdateValueModel } from './update-value-model';
 
-/**
- * 
- * @export
- * @interface UpdatePercentageOptionModel
- */
 export interface UpdatePercentageOptionModel {
     /**
      * A number between 0 and 100 that represents a randomly allocated fraction of the users.
-     * @type {number}
-     * @memberof UpdatePercentageOptionModel
      */
     'percentage': number;
-    /**
-     * 
-     * @type {UpdateValueModel}
-     * @memberof UpdatePercentageOptionModel
-     */
     'value': UpdateValueModel;
 }
 

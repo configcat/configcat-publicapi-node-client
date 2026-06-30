@@ -15,19 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { IntegrationModel } from './integration-model';
+import type { IntegrationModel } from './integration-model';
 
-/**
- * 
- * @export
- * @interface IntegrationsModel
- */
 export interface IntegrationsModel {
     /**
      * The Integrations of the Product.
-     * @type {Array<IntegrationModel>}
-     * @memberof IntegrationsModel
      */
-    'integrations': Array<IntegrationModel> | null;
+    'integrations': Array<IntegrationModel>;
 }
 

@@ -15,24 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingValueType } from './setting-value-type';
+import type { SettingValueType } from './setting-value-type';
 
-/**
- * 
- * @export
- * @interface InitialValue
- */
 export interface InitialValue {
     /**
      * The ID of the Environment where the initial value must be set.
-     * @type {string}
-     * @memberof InitialValue
      */
     'environmentId'?: string;
     /**
-     * The initial value in the given Environment. It must respect the setting type. In some generated clients for strictly typed languages, you may use double/float properties to handle integer values. In case of a Feature Flag with predefined variations, the value must match one of the predefined variations' value.
-     * @type {SettingValueType}
-     * @memberof InitialValue
+     * The initial value in the given Environment. It must respect the setting type. In some generated clients for strictly typed languages, you may use double/float properties to handle integer values. In case of a Feature Flag with predefined variations, the value must match one of the predefined variations\' value.
      */
     'value': SettingValueType;
 }

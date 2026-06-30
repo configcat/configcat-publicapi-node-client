@@ -15,24 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ReferenceLinesRequest } from './reference-lines-request';
+import type { ReferenceLinesRequest } from './reference-lines-request';
 
-/**
- * 
- * @export
- * @interface FlagReference
- */
 export interface FlagReference {
     /**
      * The identifier of the Feature Flag or Setting the code reference belongs to.
-     * @type {number}
-     * @memberof FlagReference
      */
     'settingId': number;
     /**
      * The actual references to the given Feature Flag or Setting.
-     * @type {Array<ReferenceLinesRequest>}
-     * @memberof FlagReference
      */
     'references': Array<ReferenceLinesRequest>;
 }

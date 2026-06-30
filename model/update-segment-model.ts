@@ -15,43 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { RolloutRuleComparator } from './rollout-rule-comparator';
+import type { RolloutRuleComparator } from './rollout-rule-comparator';
 
-/**
- * 
- * @export
- * @interface UpdateSegmentModel
- */
 export interface UpdateSegmentModel {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateSegmentModel
-     */
     'name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateSegmentModel
-     */
     'description'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateSegmentModel
-     */
     'comparisonAttribute'?: string | null;
-    /**
-     * 
-     * @type {RolloutRuleComparator}
-     * @memberof UpdateSegmentModel
-     */
     'comparator'?: RolloutRuleComparator | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateSegmentModel
-     */
     'comparisonValue'?: string | null;
 }
 

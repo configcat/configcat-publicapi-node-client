@@ -15,45 +15,27 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { EvaluationVersion } from './evaluation-version';
+import type { EvaluationVersion } from './evaluation-version';
 // May contain unused imports in some cases
 // @ts-ignore
-import { StaleFlagSettingModel } from './stale-flag-setting-model';
+import type { StaleFlagSettingModel } from './stale-flag-setting-model';
 
-/**
- * 
- * @export
- * @interface StaleFlagConfigModel
- */
 export interface StaleFlagConfigModel {
     /**
      * Identifier of the Config.
-     * @type {string}
-     * @memberof StaleFlagConfigModel
      */
     'configId': string;
     /**
      * Name of the Config.
-     * @type {string}
-     * @memberof StaleFlagConfigModel
      */
     'name': string;
-    /**
-     * 
-     * @type {EvaluationVersion}
-     * @memberof StaleFlagConfigModel
-     */
     'evaluationVersion': EvaluationVersion;
     /**
      * Config has code references uploaded.
-     * @type {boolean}
-     * @memberof StaleFlagConfigModel
      */
     'hasCodeReferences': boolean;
     /**
      * Stale feature flags.
-     * @type {Array<StaleFlagSettingModel>}
-     * @memberof StaleFlagConfigModel
      */
     'settings': Array<StaleFlagSettingModel>;
 }

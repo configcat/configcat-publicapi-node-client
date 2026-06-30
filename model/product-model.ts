@@ -15,49 +15,36 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrganizationModel } from './organization-model';
+import type { OrganizationModel } from './organization-model';
 
 /**
  * Details of the Product.
- * @export
- * @interface ProductModel
  */
 export interface ProductModel {
-    /**
-     * 
-     * @type {OrganizationModel}
-     * @memberof ProductModel
-     */
     'organization': OrganizationModel;
     /**
      * Identifier of the Product.
-     * @type {string}
-     * @memberof ProductModel
      */
     'productId': string;
     /**
      * Name of the Product.
-     * @type {string}
-     * @memberof ProductModel
      */
     'name': string;
     /**
      * Description of the Product.
-     * @type {string}
-     * @memberof ProductModel
      */
     'description': string | null;
     /**
      * The order of the Product represented on the ConfigCat Dashboard. Determined from an ascending sequence of integers.
-     * @type {number}
-     * @memberof ProductModel
      */
     'order': number;
     /**
      * Determines whether a mandatory reason must be given every time when the Feature Flags or Settings within a Product are saved.
-     * @type {boolean}
-     * @memberof ProductModel
      */
     'reasonRequired': boolean;
+    /**
+     * Determines whether changes must be approved before they are applied within a Product.
+     */
+    'approveRequired': boolean;
 }
 

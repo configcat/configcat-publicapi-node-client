@@ -16,20 +16,14 @@
 
 /**
  * The Environment where the applied changes will invoke the Webhook.
- * @export
- * @interface WebhookEnvironment
  */
 export interface WebhookEnvironment {
     /**
      * The Environment\'s name.
-     * @type {string}
-     * @memberof WebhookEnvironment
      */
     'name': string;
     /**
      * The Environment\'s identifier.
-     * @type {string}
-     * @memberof WebhookEnvironment
      */
     'environmentId': string;
 }

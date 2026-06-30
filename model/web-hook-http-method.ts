@@ -14,15 +14,10 @@
 
 
 
-/**
- * 
- * @export
- * @enum {string}
- */
 
 export const WebHookHttpMethod = {
     Get: 'get',
-    Post: 'post'
+    Post: 'post',
 } as const;
 
 export type WebHookHttpMethod = typeof WebHookHttpMethod[keyof typeof WebHookHttpMethod];

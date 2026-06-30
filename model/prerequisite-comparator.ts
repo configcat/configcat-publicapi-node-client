@@ -16,13 +16,11 @@
 
 /**
  * Prerequisite flag comparison operator used during the evaluation process.
- * @export
- * @enum {string}
  */
 
 export const PrerequisiteComparator = {
     Equals: 'equals',
-    DoesNotEqual: 'doesNotEqual'
+    DoesNotEqual: 'doesNotEqual',
 } as const;
 
 export type PrerequisiteComparator = typeof PrerequisiteComparator[keyof typeof PrerequisiteComparator];

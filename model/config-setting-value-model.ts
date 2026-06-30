@@ -15,81 +15,55 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { IntegrationLinkModel } from './integration-link-model';
+import type { IntegrationLinkModel } from './integration-link-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { RolloutPercentageItemModel } from './rollout-percentage-item-model';
+import type { RolloutPercentageItemModel } from './rollout-percentage-item-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { RolloutRuleModel } from './rollout-rule-model';
+import type { RolloutRuleModel } from './rollout-rule-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingDataModel } from './setting-data-model';
+import type { SettingDataModel } from './setting-data-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingTagModel } from './setting-tag-model';
+import type { SettingTagModel } from './setting-tag-model';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SettingValueType } from './setting-value-type';
+import type { SettingValueType } from './setting-value-type';
 
-/**
- * 
- * @export
- * @interface ConfigSettingValueModel
- */
 export interface ConfigSettingValueModel {
-    /**
-     * 
-     * @type {SettingDataModel}
-     * @memberof ConfigSettingValueModel
-     */
     'setting': SettingDataModel;
     /**
      * The last updated date and time when the Feature Flag or Setting.
-     * @type {string}
-     * @memberof ConfigSettingValueModel
      */
     'updatedAt': string | null;
     /**
      * The email of the user who last updated the Feature Flag or Setting.
-     * @type {string}
-     * @memberof ConfigSettingValueModel
      */
     'lastUpdaterUserEmail': string | null;
     /**
      * The name of the user who last updated the Feature Flag or Setting.
-     * @type {string}
-     * @memberof ConfigSettingValueModel
      */
     'lastUpdaterUserFullName': string | null;
     /**
      * The integration links attached to the Feature Flag or Setting.
-     * @type {Array<IntegrationLinkModel>}
-     * @memberof ConfigSettingValueModel
      */
     'integrationLinks': Array<IntegrationLinkModel>;
     /**
      * The tags attached to the Feature Flag or Setting.
-     * @type {Array<SettingTagModel>}
-     * @memberof ConfigSettingValueModel
      */
     'settingTags': Array<SettingTagModel>;
     /**
      * The targeting rule collection.
-     * @type {Array<RolloutRuleModel>}
-     * @memberof ConfigSettingValueModel
      */
     'rolloutRules': Array<RolloutRuleModel>;
     /**
      * The percentage rule collection.
-     * @type {Array<RolloutPercentageItemModel>}
-     * @memberof ConfigSettingValueModel
      */
     'rolloutPercentageItems': Array<RolloutPercentageItemModel>;
     /**
      * The value to serve. It must respect the setting type. In some generated clients for strictly typed languages you may use double/float properties to handle integer values.
-     * @type {SettingValueType}
-     * @memberof ConfigSettingValueModel
      */
     'value': SettingValueType;
 }

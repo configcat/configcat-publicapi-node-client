@@ -18,18 +18,17 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { CodeReferenceModel } from '../model';
+import type { CodeReferenceModel } from '../model';
 // @ts-ignore
-import { CodeReferenceRequest } from '../model';
+import type { CodeReferenceRequest } from '../model';
 // @ts-ignore
-import { DeleteRepositoryReportsRequest } from '../model';
+import type { DeleteRepositoryReportsRequest } from '../model';
 /**
  * CodeReferencesApi - axios parameter creator
- * @export
  */
 export const CodeReferencesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -59,8 +58,6 @@ export const CodeReferencesApiAxiosParamCreator = function (configuration?: Conf
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -99,8 +96,6 @@ export const CodeReferencesApiAxiosParamCreator = function (configuration?: Conf
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -124,7 +119,7 @@ export const CodeReferencesApiAxiosParamCreator = function (configuration?: Conf
             // verify required parameter 'settingId' is not null or undefined
             assertParamExists('v1SettingsSettingIdCodeReferencesGet', 'settingId', settingId)
             const localVarPath = `/v1/settings/{settingId}/code-references`
-                .replace(`{${"settingId"}}`, encodeURIComponent(String(settingId)));
+                .replace('{settingId}', encodeURIComponent(String(settingId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -140,8 +135,8 @@ export const CodeReferencesApiAxiosParamCreator = function (configuration?: Conf
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -156,7 +151,6 @@ export const CodeReferencesApiAxiosParamCreator = function (configuration?: Conf
 
 /**
  * CodeReferencesApi - functional programming interface
- * @export
  */
 export const CodeReferencesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = CodeReferencesApiAxiosParamCreator(configuration)
@@ -205,7 +199,6 @@ export const CodeReferencesApiFp = function(configuration?: Configuration) {
 
 /**
  * CodeReferencesApi - factory interface
- * @export
  */
 export const CodeReferencesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = CodeReferencesApiFp(configuration)
@@ -217,7 +210,7 @@ export const CodeReferencesApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1CodeReferencesDeleteReportsPost(deleteRepositoryReportsRequest: DeleteRepositoryReportsRequest, options?: any): AxiosPromise<void> {
+        v1CodeReferencesDeleteReportsPost(deleteRepositoryReportsRequest: DeleteRepositoryReportsRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.v1CodeReferencesDeleteReportsPost(deleteRepositoryReportsRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -227,7 +220,7 @@ export const CodeReferencesApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1CodeReferencesPost(codeReferenceRequest: CodeReferenceRequest, options?: any): AxiosPromise<void> {
+        v1CodeReferencesPost(codeReferenceRequest: CodeReferenceRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.v1CodeReferencesPost(codeReferenceRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -237,7 +230,7 @@ export const CodeReferencesApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1SettingsSettingIdCodeReferencesGet(settingId: number, options?: any): AxiosPromise<Array<CodeReferenceModel>> {
+        v1SettingsSettingIdCodeReferencesGet(settingId: number, options?: RawAxiosRequestConfig): AxiosPromise<Array<CodeReferenceModel>> {
             return localVarFp.v1SettingsSettingIdCodeReferencesGet(settingId, options).then((request) => request(axios, basePath));
         },
     };
@@ -245,9 +238,6 @@ export const CodeReferencesApiFactory = function (configuration?: Configuration,
 
 /**
  * CodeReferencesApi - object-oriented interface
- * @export
- * @class CodeReferencesApi
- * @extends {BaseAPI}
  */
 export class CodeReferencesApi extends BaseAPI {
     /**
@@ -256,7 +246,6 @@ export class CodeReferencesApi extends BaseAPI {
      * @param {DeleteRepositoryReportsRequest} deleteRepositoryReportsRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CodeReferencesApi
      */
     public v1CodeReferencesDeleteReportsPost(deleteRepositoryReportsRequest: DeleteRepositoryReportsRequest, options?: RawAxiosRequestConfig) {
         return CodeReferencesApiFp(this.configuration).v1CodeReferencesDeleteReportsPost(deleteRepositoryReportsRequest, options).then((request) => request(this.axios, this.basePath));
@@ -268,7 +257,6 @@ export class CodeReferencesApi extends BaseAPI {
      * @param {CodeReferenceRequest} codeReferenceRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CodeReferencesApi
      */
     public v1CodeReferencesPost(codeReferenceRequest: CodeReferenceRequest, options?: RawAxiosRequestConfig) {
         return CodeReferencesApiFp(this.configuration).v1CodeReferencesPost(codeReferenceRequest, options).then((request) => request(this.axios, this.basePath));
@@ -280,7 +268,6 @@ export class CodeReferencesApi extends BaseAPI {
      * @param {number} settingId The identifier of the Feature Flag or Setting.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CodeReferencesApi
      */
     public v1SettingsSettingIdCodeReferencesGet(settingId: number, options?: RawAxiosRequestConfig) {
         return CodeReferencesApiFp(this.configuration).v1SettingsSettingIdCodeReferencesGet(settingId, options).then((request) => request(this.axios, this.basePath));

@@ -14,22 +14,13 @@
 
 
 
-/**
- * 
- * @export
- * @interface SdkKeysModel
- */
 export interface SdkKeysModel {
     /**
      * The primary SDK key.
-     * @type {string}
-     * @memberof SdkKeysModel
      */
     'primary': string;
     /**
      * The secondary SDK key.
-     * @type {string}
-     * @memberof SdkKeysModel
      */
     'secondary': string | null;
 }

@@ -18,22 +18,21 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import { CreateProductRequest } from '../model';
+import type { CreateProductRequest } from '../model';
 // @ts-ignore
-import { PreferencesModel } from '../model';
+import type { PreferencesModel } from '../model';
 // @ts-ignore
-import { ProductModel } from '../model';
+import type { ProductModel } from '../model';
 // @ts-ignore
-import { UpdatePreferencesRequest } from '../model';
+import type { UpdatePreferencesRequest } from '../model';
 // @ts-ignore
-import { UpdateProductRequest } from '../model';
+import type { UpdateProductRequest } from '../model';
 /**
  * ProductsApi - axios parameter creator
- * @export
  */
 export const ProductsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -51,7 +50,7 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'createProductRequest' is not null or undefined
             assertParamExists('createProduct', 'createProductRequest', createProductRequest)
             const localVarPath = `/v1/organizations/{organizationId}/products`
-                .replace(`{${"organizationId"}}`, encodeURIComponent(String(organizationId)));
+                .replace('{organizationId}', encodeURIComponent(String(organizationId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -67,9 +66,8 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -92,7 +90,7 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('deleteProduct', 'productId', productId)
             const localVarPath = `/v1/products/{productId}`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -109,7 +107,6 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -130,7 +127,7 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getProduct', 'productId', productId)
             const localVarPath = `/v1/products/{productId}`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -146,8 +143,8 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -168,7 +165,7 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'productId' is not null or undefined
             assertParamExists('getProductPreferences', 'productId', productId)
             const localVarPath = `/v1/products/{productId}/preferences`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -184,8 +181,8 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -218,8 +215,8 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -243,7 +240,7 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'updateProductRequest' is not null or undefined
             assertParamExists('updateProduct', 'updateProductRequest', updateProductRequest)
             const localVarPath = `/v1/products/{productId}`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -259,9 +256,8 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -287,7 +283,7 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // verify required parameter 'updatePreferencesRequest' is not null or undefined
             assertParamExists('updateProductPreferences', 'updatePreferencesRequest', updatePreferencesRequest)
             const localVarPath = `/v1/products/{productId}/preferences`
-                .replace(`{${"productId"}}`, encodeURIComponent(String(productId)));
+                .replace('{productId}', encodeURIComponent(String(productId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -303,9 +299,8 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -322,7 +317,6 @@ export const ProductsApiAxiosParamCreator = function (configuration?: Configurat
 
 /**
  * ProductsApi - functional programming interface
- * @export
  */
 export const ProductsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ProductsApiAxiosParamCreator(configuration)
@@ -425,7 +419,6 @@ export const ProductsApiFp = function(configuration?: Configuration) {
 
 /**
  * ProductsApi - factory interface
- * @export
  */
 export const ProductsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ProductsApiFp(configuration)
@@ -438,7 +431,7 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createProduct(organizationId: string, createProductRequest: CreateProductRequest, options?: any): AxiosPromise<ProductModel> {
+        createProduct(organizationId: string, createProductRequest: CreateProductRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductModel> {
             return localVarFp.createProduct(organizationId, createProductRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -448,7 +441,7 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteProduct(productId: string, options?: any): AxiosPromise<void> {
+        deleteProduct(productId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deleteProduct(productId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -458,7 +451,7 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProduct(productId: string, options?: any): AxiosPromise<ProductModel> {
+        getProduct(productId: string, options?: RawAxiosRequestConfig): AxiosPromise<ProductModel> {
             return localVarFp.getProduct(productId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -468,7 +461,7 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductPreferences(productId: string, options?: any): AxiosPromise<PreferencesModel> {
+        getProductPreferences(productId: string, options?: RawAxiosRequestConfig): AxiosPromise<PreferencesModel> {
             return localVarFp.getProductPreferences(productId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -477,7 +470,7 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProducts(options?: any): AxiosPromise<Array<ProductModel>> {
+        getProducts(options?: RawAxiosRequestConfig): AxiosPromise<Array<ProductModel>> {
             return localVarFp.getProducts(options).then((request) => request(axios, basePath));
         },
         /**
@@ -488,7 +481,7 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateProduct(productId: string, updateProductRequest: UpdateProductRequest, options?: any): AxiosPromise<ProductModel> {
+        updateProduct(productId: string, updateProductRequest: UpdateProductRequest, options?: RawAxiosRequestConfig): AxiosPromise<ProductModel> {
             return localVarFp.updateProduct(productId, updateProductRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -499,7 +492,7 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateProductPreferences(productId: string, updatePreferencesRequest: UpdatePreferencesRequest, options?: any): AxiosPromise<PreferencesModel> {
+        updateProductPreferences(productId: string, updatePreferencesRequest: UpdatePreferencesRequest, options?: RawAxiosRequestConfig): AxiosPromise<PreferencesModel> {
             return localVarFp.updateProductPreferences(productId, updatePreferencesRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -507,9 +500,6 @@ export const ProductsApiFactory = function (configuration?: Configuration, baseP
 
 /**
  * ProductsApi - object-oriented interface
- * @export
- * @class ProductsApi
- * @extends {BaseAPI}
  */
 export class ProductsApi extends BaseAPI {
     /**
@@ -519,7 +509,6 @@ export class ProductsApi extends BaseAPI {
      * @param {CreateProductRequest} createProductRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApi
      */
     public createProduct(organizationId: string, createProductRequest: CreateProductRequest, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).createProduct(organizationId, createProductRequest, options).then((request) => request(this.axios, this.basePath));
@@ -531,7 +520,6 @@ export class ProductsApi extends BaseAPI {
      * @param {string} productId The identifier of the Product.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApi
      */
     public deleteProduct(productId: string, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).deleteProduct(productId, options).then((request) => request(this.axios, this.basePath));
@@ -543,7 +531,6 @@ export class ProductsApi extends BaseAPI {
      * @param {string} productId The identifier of the Product.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApi
      */
     public getProduct(productId: string, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).getProduct(productId, options).then((request) => request(this.axios, this.basePath));
@@ -555,7 +542,6 @@ export class ProductsApi extends BaseAPI {
      * @param {string} productId The identifier of the Product.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApi
      */
     public getProductPreferences(productId: string, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).getProductPreferences(productId, options).then((request) => request(this.axios, this.basePath));
@@ -566,7 +552,6 @@ export class ProductsApi extends BaseAPI {
      * @summary List Products
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApi
      */
     public getProducts(options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).getProducts(options).then((request) => request(this.axios, this.basePath));
@@ -579,7 +564,6 @@ export class ProductsApi extends BaseAPI {
      * @param {UpdateProductRequest} updateProductRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApi
      */
     public updateProduct(productId: string, updateProductRequest: UpdateProductRequest, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).updateProduct(productId, updateProductRequest, options).then((request) => request(this.axios, this.basePath));
@@ -592,7 +576,6 @@ export class ProductsApi extends BaseAPI {
      * @param {UpdatePreferencesRequest} updatePreferencesRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProductsApi
      */
     public updateProductPreferences(productId: string, updatePreferencesRequest: UpdatePreferencesRequest, options?: RawAxiosRequestConfig) {
         return ProductsApiFp(this.configuration).updateProductPreferences(productId, updatePreferencesRequest, options).then((request) => request(this.axios, this.basePath));
