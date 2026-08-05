@@ -1,6 +1,6 @@
 {
     "name": "configcat-publicapi-node-client",
-    "version": "3.3.0",
+    "version": "3.4.0",
     "description": "NodeJS client for configcat-publicapi-node-client",
     "license": "MIT",
     "main": "dist/index.js",
