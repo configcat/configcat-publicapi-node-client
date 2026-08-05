@@ -15,6 +15,7 @@
 
 
 export * from './api/audit-logs-api';
+export * from './api/change-requests-approval-flow-scheduled-changes-beta-api';
 export * from './api/code-references-api';
 export * from './api/configs-api';
 export * from './api/environments-api';

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**lastVersionId** | **string** |  | [default to undefined]
+**lastVersionId** | **string** | The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. | [default to undefined]
 **defaultValue** | [**ValueModel**](ValueModel.md) |  | [default to undefined]
 **targetingRules** | [**Array&lt;TargetingRuleModel&gt;**](TargetingRuleModel.md) | The targeting rules of the Feature Flag or Setting. | [default to undefined]
 **setting** | [**SettingDataV2Model**](SettingDataV2Model.md) |  | [default to undefined]

@@ -21,7 +21,7 @@
 export const ApprovalPermissionType = {
     CannotApprove: 'cannotApprove',
     CanApproveOthers: 'canApproveOthers',
-    CanBypassApproves: 'canBypassApproves',
+    CanBypassApproval: 'canBypassApproval',
     Custom: 'custom',
 } as const;
 

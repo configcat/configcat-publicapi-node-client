@@ -8,6 +8,6 @@ Represents the environment specific change request approval permission.
 
 * `CanApproveOthers` (value: `'canApproveOthers'`)
 
-* `CanBypassApproves` (value: `'canBypassApproves'`)
+* `CanBypassApproval` (value: `'canBypassApproval'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

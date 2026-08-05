@@ -146,13 +146,15 @@ let environmentId: string; //The identifier of the Environment. (default to unde
 let updateEvaluationFormulasModel: UpdateEvaluationFormulasModel; //
 let reason: string; //The reason note for the Audit Log if the Product\'s \"Config changes require a reason\" preference is turned on. (optional) (default to undefined)
 let bypassApproval: boolean; //Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission. (optional) (default to undefined)
+let latestVersionId: string; //Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the `LastVersionId` property of the response models. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.postSettingValuesV2(
     configId,
     environmentId,
     updateEvaluationFormulasModel,
     reason,
-    bypassApproval
+    bypassApproval,
+    latestVersionId
 );
 ```
 
@@ -165,6 +167,7 @@ const { status, data } = await apiInstance.postSettingValuesV2(
 | **environmentId** | [**string**] | The identifier of the Environment. | defaults to undefined|
 | **reason** | [**string**] | The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on. | (optional) defaults to undefined|
 | **bypassApproval** | [**boolean**] | Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission. | (optional) defaults to undefined|
+| **latestVersionId** | [**string**] | Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -213,13 +216,15 @@ let settingId: number; //The id of the Setting. (default to undefined)
 let updateEvaluationFormulaModel: UpdateEvaluationFormulaModel; //
 let reason: string; //The reason note for the Audit Log if the Product\'s \"Config changes require a reason\" preference is turned on. (optional) (default to undefined)
 let bypassApproval: boolean; //Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission. (optional) (default to undefined)
+let latestVersionId: string; //Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the `LastVersionId` property of the response models. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.replaceSettingValueV2(
     environmentId,
     settingId,
     updateEvaluationFormulaModel,
     reason,
-    bypassApproval
+    bypassApproval,
+    latestVersionId
 );
 ```
 
@@ -232,6 +237,7 @@ const { status, data } = await apiInstance.replaceSettingValueV2(
 | **settingId** | [**number**] | The id of the Setting. | defaults to undefined|
 | **reason** | [**string**] | The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on. | (optional) defaults to undefined|
 | **bypassApproval** | [**boolean**] | Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission. | (optional) defaults to undefined|
+| **latestVersionId** | [**string**] | Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -279,13 +285,15 @@ let settingId: number; //The id of the Setting. (default to undefined)
 let jsonPatchOperation: Array<JsonPatchOperation>; //
 let reason: string; //The reason note for the Audit Log if the Product\'s \"Config changes require a reason\" preference is turned on. (optional) (default to undefined)
 let bypassApproval: boolean; //Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission. (optional) (default to undefined)
+let latestVersionId: string; //Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the `LastVersionId` property of the response models. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.updateSettingValueV2(
     environmentId,
     settingId,
     jsonPatchOperation,
     reason,
-    bypassApproval
+    bypassApproval,
+    latestVersionId
 );
 ```
 
@@ -298,6 +306,7 @@ const { status, data } = await apiInstance.updateSettingValueV2(
 | **settingId** | [**number**] | The id of the Setting. | defaults to undefined|
 | **reason** | [**string**] | The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on. | (optional) defaults to undefined|
 | **bypassApproval** | [**boolean**] | Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission. | (optional) defaults to undefined|
+| **latestVersionId** | [**string**] | Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models. | (optional) defaults to undefined|
 
 
 ### Return type

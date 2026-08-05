@@ -8,7 +8,7 @@ Represents the permission group level change request approval permission.
 
 * `CanApproveOthers` (value: `'canApproveOthers'`)
 
-* `CanBypassApproves` (value: `'canBypassApproves'`)
+* `CanBypassApproval` (value: `'canBypassApproval'`)
 
 * `Custom` (value: `'custom'`)
 

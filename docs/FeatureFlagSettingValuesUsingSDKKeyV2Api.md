@@ -86,6 +86,7 @@ let settingKeyOrId: string; //The key or id of the Setting. (default to undefine
 let updateEvaluationFormulaModel: UpdateEvaluationFormulaModel; //
 let reason: string; //The reason note for the Audit Log if the Product\'s \"Config changes require a reason\" preference is turned on. (optional) (default to undefined)
 let bypassApproval: boolean; //Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission. (optional) (default to undefined)
+let latestVersionId: string; //Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the `LastVersionId` property of the response models. (optional) (default to undefined)
 let xCONFIGCATSDKKEY: string; //The ConfigCat SDK Key. (https://app.configcat.com/sdkkey) (optional) (default to undefined)
 
 const { status, data } = await apiInstance.replaceSettingValueBySdkkeyV2(
@@ -93,6 +94,7 @@ const { status, data } = await apiInstance.replaceSettingValueBySdkkeyV2(
     updateEvaluationFormulaModel,
     reason,
     bypassApproval,
+    latestVersionId,
     xCONFIGCATSDKKEY
 );
 ```
@@ -105,6 +107,7 @@ const { status, data } = await apiInstance.replaceSettingValueBySdkkeyV2(
 | **settingKeyOrId** | [**string**] | The key or id of the Setting. | defaults to undefined|
 | **reason** | [**string**] | The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on. | (optional) defaults to undefined|
 | **bypassApproval** | [**boolean**] | Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission. | (optional) defaults to undefined|
+| **latestVersionId** | [**string**] | Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models. | (optional) defaults to undefined|
 | **xCONFIGCATSDKKEY** | [**string**] | The ConfigCat SDK Key. (https://app.configcat.com/sdkkey) | (optional) defaults to undefined|
 
 
@@ -152,6 +155,7 @@ let settingKeyOrId: string; //The key or id of the Setting. (default to undefine
 let jsonPatchOperation: Array<JsonPatchOperation>; //
 let reason: string; //The reason note for the Audit Log if the Product\'s \"Config changes require a reason\" preference is turned on. (optional) (default to undefined)
 let bypassApproval: boolean; //Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission. (optional) (default to undefined)
+let latestVersionId: string; //Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the `LastVersionId` property of the response models. (optional) (default to undefined)
 let xCONFIGCATSDKKEY: string; //The ConfigCat SDK Key. (https://app.configcat.com/sdkkey) (optional) (default to undefined)
 
 const { status, data } = await apiInstance.updateSettingValueBySdkkeyV2(
@@ -159,6 +163,7 @@ const { status, data } = await apiInstance.updateSettingValueBySdkkeyV2(
     jsonPatchOperation,
     reason,
     bypassApproval,
+    latestVersionId,
     xCONFIGCATSDKKEY
 );
 ```
@@ -171,6 +176,7 @@ const { status, data } = await apiInstance.updateSettingValueBySdkkeyV2(
 | **settingKeyOrId** | [**string**] | The key or id of the Setting. | defaults to undefined|
 | **reason** | [**string**] | The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on. | (optional) defaults to undefined|
 | **bypassApproval** | [**boolean**] | Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission. | (optional) defaults to undefined|
+| **latestVersionId** | [**string**] | Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models. | (optional) defaults to undefined|
 | **xCONFIGCATSDKKEY** | [**string**] | The ConfigCat SDK Key. (https://app.configcat.com/sdkkey) | (optional) defaults to undefined|
 
 

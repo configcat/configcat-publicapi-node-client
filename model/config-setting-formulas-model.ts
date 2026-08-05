@@ -29,11 +29,26 @@ import type { FeatureFlagLimitations } from './feature-flag-limitations';
 export interface ConfigSettingFormulasModel {
     'config': ConfigModel;
     'environment': EnvironmentModel;
+    /**
+     * Indicates whether you have Read-only access to the Environment.
+     */
     'readOnly': boolean;
     /**
      * Evaluation descriptors of each updated Feature Flag and Setting.
      */
     'settingFormulas': Array<ConfigSettingFormulaModel>;
     'featureFlagLimitations': FeatureFlagLimitations;
+    /**
+     * Indicates that a mandatory approval is required for saving and publishing.
+     */
+    'approveRequired': boolean;
+    /**
+     * Indicates whether the user can bypass the approval flow.
+     */
+    'canBypassApproval': boolean;
+    /**
+     * Indicates that a mandatory note is required for saving and publishing.
+     */
+    'reasonRequired': boolean;
 }
 

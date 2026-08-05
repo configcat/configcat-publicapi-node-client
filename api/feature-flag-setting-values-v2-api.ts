@@ -128,10 +128,11 @@ export const FeatureFlagSettingValuesV2ApiAxiosParamCreator = function (configur
          * @param {UpdateEvaluationFormulasModel} updateEvaluationFormulasModel 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
          * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
+         * @param {string} [latestVersionId] Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSettingValuesV2: async (configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, bypassApproval?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postSettingValuesV2: async (configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, bypassApproval?: boolean, latestVersionId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'configId' is not null or undefined
             assertParamExists('postSettingValuesV2', 'configId', configId)
             // verify required parameter 'environmentId' is not null or undefined
@@ -164,6 +165,10 @@ export const FeatureFlagSettingValuesV2ApiAxiosParamCreator = function (configur
                 localVarQueryParameter['bypassApproval'] = bypassApproval;
             }
 
+            if (latestVersionId !== undefined) {
+                localVarQueryParameter['latestVersionId'] = latestVersionId;
+            }
+
             localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarHeaderParameter['Accept'] = 'application/json';
 
@@ -185,10 +190,11 @@ export const FeatureFlagSettingValuesV2ApiAxiosParamCreator = function (configur
          * @param {UpdateEvaluationFormulaModel} updateEvaluationFormulaModel 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
          * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
+         * @param {string} [latestVersionId] Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        replaceSettingValueV2: async (environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        replaceSettingValueV2: async (environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, latestVersionId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'environmentId' is not null or undefined
             assertParamExists('replaceSettingValueV2', 'environmentId', environmentId)
             // verify required parameter 'settingId' is not null or undefined
@@ -221,6 +227,10 @@ export const FeatureFlagSettingValuesV2ApiAxiosParamCreator = function (configur
                 localVarQueryParameter['bypassApproval'] = bypassApproval;
             }
 
+            if (latestVersionId !== undefined) {
+                localVarQueryParameter['latestVersionId'] = latestVersionId;
+            }
+
             localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarHeaderParameter['Accept'] = 'application/json';
 
@@ -242,10 +252,11 @@ export const FeatureFlagSettingValuesV2ApiAxiosParamCreator = function (configur
          * @param {Array<JsonPatchOperation>} jsonPatchOperation 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
          * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
+         * @param {string} [latestVersionId] Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateSettingValueV2: async (environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateSettingValueV2: async (environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, latestVersionId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'environmentId' is not null or undefined
             assertParamExists('updateSettingValueV2', 'environmentId', environmentId)
             // verify required parameter 'settingId' is not null or undefined
@@ -276,6 +287,10 @@ export const FeatureFlagSettingValuesV2ApiAxiosParamCreator = function (configur
 
             if (bypassApproval !== undefined) {
                 localVarQueryParameter['bypassApproval'] = bypassApproval;
+            }
+
+            if (latestVersionId !== undefined) {
+                localVarQueryParameter['latestVersionId'] = latestVersionId;
             }
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -336,11 +351,12 @@ export const FeatureFlagSettingValuesV2ApiFp = function(configuration?: Configur
          * @param {UpdateEvaluationFormulasModel} updateEvaluationFormulasModel 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
          * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
+         * @param {string} [latestVersionId] Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, bypassApproval?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ConfigSettingFormulasModel>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postSettingValuesV2(configId, environmentId, updateEvaluationFormulasModel, reason, bypassApproval, options);
+        async postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, bypassApproval?: boolean, latestVersionId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ConfigSettingFormulasModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postSettingValuesV2(configId, environmentId, updateEvaluationFormulasModel, reason, bypassApproval, latestVersionId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeatureFlagSettingValuesV2Api.postSettingValuesV2']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -353,11 +369,12 @@ export const FeatureFlagSettingValuesV2ApiFp = function(configuration?: Configur
          * @param {UpdateEvaluationFormulaModel} updateEvaluationFormulaModel 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
          * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
+         * @param {string} [latestVersionId] Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SettingFormulaModel>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.replaceSettingValueV2(environmentId, settingId, updateEvaluationFormulaModel, reason, bypassApproval, options);
+        async replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, latestVersionId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SettingFormulaModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.replaceSettingValueV2(environmentId, settingId, updateEvaluationFormulaModel, reason, bypassApproval, latestVersionId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeatureFlagSettingValuesV2Api.replaceSettingValueV2']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -370,11 +387,12 @@ export const FeatureFlagSettingValuesV2ApiFp = function(configuration?: Configur
          * @param {Array<JsonPatchOperation>} jsonPatchOperation 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
          * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
+         * @param {string} [latestVersionId] Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SettingFormulaModel>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateSettingValueV2(environmentId, settingId, jsonPatchOperation, reason, bypassApproval, options);
+        async updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, latestVersionId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SettingFormulaModel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateSettingValueV2(environmentId, settingId, jsonPatchOperation, reason, bypassApproval, latestVersionId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FeatureFlagSettingValuesV2Api.updateSettingValueV2']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -418,11 +436,12 @@ export const FeatureFlagSettingValuesV2ApiFactory = function (configuration?: Co
          * @param {UpdateEvaluationFormulasModel} updateEvaluationFormulasModel 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
          * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
+         * @param {string} [latestVersionId] Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, bypassApproval?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<ConfigSettingFormulasModel> {
-            return localVarFp.postSettingValuesV2(configId, environmentId, updateEvaluationFormulasModel, reason, bypassApproval, options).then((request) => request(axios, basePath));
+        postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, bypassApproval?: boolean, latestVersionId?: string, options?: RawAxiosRequestConfig): AxiosPromise<ConfigSettingFormulasModel> {
+            return localVarFp.postSettingValuesV2(configId, environmentId, updateEvaluationFormulasModel, reason, bypassApproval, latestVersionId, options).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint replaces the value and the Targeting Rules of a Feature Flag or Setting in a specified Environment identified by the <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://app.configcat.com/sdkkey\">SDK key</a> passed in the `X-CONFIGCAT-SDKKEY` header.  Only the `defaultValue`, `targetingRules`, and `percentageEvaluationAttribute` fields are modifiable by this endpoint.  **Important:** As this endpoint is doing a complete replace, it\'s important to set every other field that you don\'t want to change to its original state. Not listing one means it will reset.  For example: We have the following resource of a Feature Flag. ```json {   \"defaultValue\": {     \"boolValue\": false   },   \"targetingRules\": [     {       \"conditions\": [         {           \"userCondition\": {             \"comparisonAttribute\": \"Email\",             \"comparator\": \"sensitiveTextEquals\",             \"comparisonValue\": {               \"stringValue\": \"test@example.com\"             }           }         }       ],       \"percentageOptions\": [],       \"value\": {         \"boolValue\": true       }     }   ] } ``` If we send a replace request body as below: ```json {   \"defaultValue\": {     \"boolValue\": true   } } ``` Then besides that the default served value is set to `true`, all the Targeting Rules are deleted. So we get a response like this: ```json {   \"defaultValue\": {     \"boolValue\": true   },   \"targetingRules\": [] } ```
@@ -432,11 +451,12 @@ export const FeatureFlagSettingValuesV2ApiFactory = function (configuration?: Co
          * @param {UpdateEvaluationFormulaModel} updateEvaluationFormulaModel 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
          * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
+         * @param {string} [latestVersionId] Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<SettingFormulaModel> {
-            return localVarFp.replaceSettingValueV2(environmentId, settingId, updateEvaluationFormulaModel, reason, bypassApproval, options).then((request) => request(axios, basePath));
+        replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, latestVersionId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SettingFormulaModel> {
+            return localVarFp.replaceSettingValueV2(environmentId, settingId, updateEvaluationFormulaModel, reason, bypassApproval, latestVersionId, options).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint updates the value of a Feature Flag or Setting with a collection of [JSON Patch](https://jsonpatch.com) operations in a specified Environment.  Only the `defaultValue`, `targetingRules`, and `percentageEvaluationAttribute` fields are modifiable by this endpoint.  The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don\'t want to change. It supports collection reordering, so it also can be used for reordering the targeting rules of a Feature Flag or Setting.  For example: We have the following resource of a Feature Flag. ```json {   \"defaultValue\": {     \"boolValue\": false   },   \"targetingRules\": [     {       \"conditions\": [         {           \"userCondition\": {             \"comparisonAttribute\": \"Email\",             \"comparator\": \"sensitiveTextEquals\",             \"comparisonValue\": {               \"stringValue\": \"test@example.com\"             }           }         }       ],       \"percentageOptions\": [],       \"value\": {         \"boolValue\": true       }     }   ] } ``` If we send an update request body as below: ```json [   {     \"op\": \"replace\",     \"path\": \"/targetingRules/0/value/boolValue\",     \"value\": true   } ] ``` Only the first Targeting Rule\'s `value` is going to be set to `false` and all the other fields are remaining unchanged.  So we get a response like this: ```json {   \"defaultValue\": {     \"boolValue\": false   },   \"targetingRules\": [     {       \"conditions\": [         {           \"userCondition\": {             \"comparisonAttribute\": \"Email\",             \"comparator\": \"sensitiveTextEquals\",             \"comparisonValue\": {               \"stringValue\": \"test@example.com\"             }           }         }       ],       \"percentageOptions\": [],       \"value\": {         \"boolValue\": false       }     }   ] } ```
@@ -446,11 +466,12 @@ export const FeatureFlagSettingValuesV2ApiFactory = function (configuration?: Co
          * @param {Array<JsonPatchOperation>} jsonPatchOperation 
          * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
          * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
+         * @param {string} [latestVersionId] Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<SettingFormulaModel> {
-            return localVarFp.updateSettingValueV2(environmentId, settingId, jsonPatchOperation, reason, bypassApproval, options).then((request) => request(axios, basePath));
+        updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, latestVersionId?: string, options?: RawAxiosRequestConfig): AxiosPromise<SettingFormulaModel> {
+            return localVarFp.updateSettingValueV2(environmentId, settingId, jsonPatchOperation, reason, bypassApproval, latestVersionId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -491,11 +512,12 @@ export class FeatureFlagSettingValuesV2Api extends BaseAPI {
      * @param {UpdateEvaluationFormulasModel} updateEvaluationFormulasModel 
      * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
      * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
+     * @param {string} [latestVersionId] Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, bypassApproval?: boolean, options?: RawAxiosRequestConfig) {
-        return FeatureFlagSettingValuesV2ApiFp(this.configuration).postSettingValuesV2(configId, environmentId, updateEvaluationFormulasModel, reason, bypassApproval, options).then((request) => request(this.axios, this.basePath));
+    public postSettingValuesV2(configId: string, environmentId: string, updateEvaluationFormulasModel: UpdateEvaluationFormulasModel, reason?: string, bypassApproval?: boolean, latestVersionId?: string, options?: RawAxiosRequestConfig) {
+        return FeatureFlagSettingValuesV2ApiFp(this.configuration).postSettingValuesV2(configId, environmentId, updateEvaluationFormulasModel, reason, bypassApproval, latestVersionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -506,11 +528,12 @@ export class FeatureFlagSettingValuesV2Api extends BaseAPI {
      * @param {UpdateEvaluationFormulaModel} updateEvaluationFormulaModel 
      * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
      * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
+     * @param {string} [latestVersionId] Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, options?: RawAxiosRequestConfig) {
-        return FeatureFlagSettingValuesV2ApiFp(this.configuration).replaceSettingValueV2(environmentId, settingId, updateEvaluationFormulaModel, reason, bypassApproval, options).then((request) => request(this.axios, this.basePath));
+    public replaceSettingValueV2(environmentId: string, settingId: number, updateEvaluationFormulaModel: UpdateEvaluationFormulaModel, reason?: string, bypassApproval?: boolean, latestVersionId?: string, options?: RawAxiosRequestConfig) {
+        return FeatureFlagSettingValuesV2ApiFp(this.configuration).replaceSettingValueV2(environmentId, settingId, updateEvaluationFormulaModel, reason, bypassApproval, latestVersionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -521,11 +544,12 @@ export class FeatureFlagSettingValuesV2Api extends BaseAPI {
      * @param {Array<JsonPatchOperation>} jsonPatchOperation 
      * @param {string} [reason] The reason note for the Audit Log if the Product\&#39;s \&quot;Config changes require a reason\&quot; preference is turned on.
      * @param {boolean} [bypassApproval] Whether to bypass the approval process and directly apply the change. This is only applicable for users with bypass approval permission.
+     * @param {string} [latestVersionId] Optional. The version identifier of the last change made to the Feature Flag or Setting in the Environment. It can be used to make sure concurrent updates are not overwriting each other. If provided and the version identifier does not match the current version, the update will be rejected with a 409 Conflict response. The latest version id can be acquired from the &#x60;LastVersionId&#x60; property of the response models.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, options?: RawAxiosRequestConfig) {
-        return FeatureFlagSettingValuesV2ApiFp(this.configuration).updateSettingValueV2(environmentId, settingId, jsonPatchOperation, reason, bypassApproval, options).then((request) => request(this.axios, this.basePath));
+    public updateSettingValueV2(environmentId: string, settingId: number, jsonPatchOperation: Array<JsonPatchOperation>, reason?: string, bypassApproval?: boolean, latestVersionId?: string, options?: RawAxiosRequestConfig) {
+        return FeatureFlagSettingValuesV2ApiFp(this.configuration).updateSettingValueV2(environmentId, settingId, jsonPatchOperation, reason, bypassApproval, latestVersionId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
