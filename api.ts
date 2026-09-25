@@ -15,7 +15,7 @@
 
 
 export * from './api/audit-logs-api';
-export * from './api/change-requests-approval-flow-scheduled-changes-beta-api';
+export * from './api/change-requests-approval-flow-scheduled-changes-api';
 export * from './api/code-references-api';
 export * from './api/configs-api';
 export * from './api/environments-api';
@@ -35,6 +35,7 @@ export * from './api/proxy-profiles-api';
 export * from './api/sdkkeys-api';
 export * from './api/segments-api';
 export * from './api/tags-api';
+export * from './api/usage-quota-api';
 export * from './api/webhooks-api';
 export * from './api/zombie-stale-flags-api';
 

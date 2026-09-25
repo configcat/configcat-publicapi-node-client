@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **closedByUserId** | **string** | Identifier of the user who closed the Change Request. | [default to undefined]
 **closedByUserEmail** | **string** | Email of the user who closed the Change Request. | [default to undefined]
 **closedByUserFullName** | **string** | Full name of the user who closed the Change Request. | [default to undefined]
+**sendNotificationsToApprovers** | **boolean** | When true, email notifications are sent to team members with approval permission about this Change Request. | [default to undefined]
 
 ## Example
 
@@ -59,6 +60,7 @@ const instance: ChangeRequestSummaryModel = {
     closedByUserId,
     closedByUserEmail,
     closedByUserFullName,
+    sendNotificationsToApprovers,
 };
 ```
 

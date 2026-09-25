@@ -14,26 +14,25 @@
 
 
 
-export interface UpdateChangeRequestModel {
+/**
+ * Represents the aggregated monthly usage statistics for a Product.
+ */
+export interface ProductMonthlyStatisticV2Model {
     /**
-     * The updated title of the Change Request.
+     * The identifier of the Product associated with the statistics.
      */
-    'title': string;
+    'productId': string;
     /**
-     * The updated optional notes describing the purpose of the Change Request.
+     * The date for which the statistics are reported.
      */
-    'reason'?: string | null;
+    'date': string;
     /**
-     * The updated optional UTC date and time when the Change Request should be applied automatically.
+     * The total request volume in millions for the Product.
      */
-    'applyAt'?: string | null;
+    'millionRequestCount': number;
     /**
-     * The updated bypass-approval flag for scheduled changes.
+     * The total network traffic in megabytes for the Product.
      */
-    'bypassApproval'?: boolean | null;
-    /**
-     * The updated flag for whether email notifications should be sent to team members with approval permission about this Change Request.
-     */
-    'sendNotificationsToApprovers'?: boolean | null;
+    'responseMegaBytes': number;
 }
 
