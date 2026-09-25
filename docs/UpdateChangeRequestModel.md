@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **reason** | **string** | The updated optional notes describing the purpose of the Change Request. | [optional] [default to undefined]
 **applyAt** | **string** | The updated optional UTC date and time when the Change Request should be applied automatically. | [optional] [default to undefined]
 **bypassApproval** | **boolean** | The updated bypass-approval flag for scheduled changes. | [optional] [default to undefined]
+**sendNotificationsToApprovers** | **boolean** | The updated flag for whether email notifications should be sent to team members with approval permission about this Change Request. | [optional] [default to undefined]
 
 ## Example
 
@@ -20,6 +21,7 @@ const instance: UpdateChangeRequestModel = {
     reason,
     applyAt,
     bypassApproval,
+    sendNotificationsToApprovers,
 };
 ```
 

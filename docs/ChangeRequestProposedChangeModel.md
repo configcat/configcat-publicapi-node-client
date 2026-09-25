@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **settingName** | **string** | Display name of the Setting. | [default to undefined]
 **settingHint** | **string** | Optional hint or description for the Setting. | [default to undefined]
 **settingType** | [**SettingType**](SettingType.md) |  | [default to undefined]
+**isJson** | **boolean** | Indicates whether this setting should validate string values as JSON values. | [default to undefined]
 **hasConflict** | **boolean** | Indicates whether the proposed changes to the Setting are in conflict with concurrently published changes. | [default to undefined]
 **originalEvaluationFormula** | [**AuditLogSettingValueV2EvaluationFormula**](AuditLogSettingValueV2EvaluationFormula.md) |  | [default to undefined]
 **proposedEvaluationFormula** | [**AuditLogSettingValueV2EvaluationFormula**](AuditLogSettingValueV2EvaluationFormula.md) |  | [default to undefined]
@@ -26,6 +27,7 @@ const instance: ChangeRequestProposedChangeModel = {
     settingName,
     settingHint,
     settingType,
+    isJson,
     hasConflict,
     originalEvaluationFormula,
     proposedEvaluationFormula,

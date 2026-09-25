@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **hint** | **string** | Description of the Feature Flag or Setting. | [default to undefined]
 **order** | **number** | The order of the Feature Flag or Setting represented on the ConfigCat Dashboard. | [default to undefined]
 **settingType** | [**SettingType**](SettingType.md) |  | [default to undefined]
-**isJson** | **boolean** |  | [default to undefined]
+**isJson** | **boolean** | Indicates whether this setting should validate string values as JSON values. | [default to undefined]
 **configId** | **string** | Identifier of the Feature Flag\&#39;s Config. | [default to undefined]
 **configName** | **string** | Name of the Feature Flag\&#39;s Config. | [default to undefined]
 **createdAt** | **string** | The creation time of the Feature Flag or Setting. | [default to undefined]

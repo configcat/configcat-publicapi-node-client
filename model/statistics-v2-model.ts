@@ -13,27 +13,43 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { DetailedStatisticV2Model } from './detailed-statistic-v2-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OrganizationMonthlyStatisticV2Model } from './organization-monthly-statistic-v2-model';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ProductMonthlyStatisticV2Model } from './product-monthly-statistic-v2-model';
 
-export interface UpdateChangeRequestModel {
+/**
+ * Represents the monthly usage and quota statistics for an Organization.
+ */
+export interface StatisticsV2Model {
     /**
-     * The updated title of the Change Request.
+     * Indicates whether the Organization has a connected application.
      */
-    'title': string;
+    'hasConnectedApplication': boolean;
     /**
-     * The updated optional notes describing the purpose of the Change Request.
+     * The monthly request quota limit in millions.
      */
-    'reason'?: string | null;
+    'millionRequestLimitPerMonth': number;
     /**
-     * The updated optional UTC date and time when the Change Request should be applied automatically.
+     * The monthly network traffic quota limit in gigabytes.
      */
-    'applyAt'?: string | null;
+    'networkTrafficGigaByteLimitPerMonth': number;
     /**
-     * The updated bypass-approval flag for scheduled changes.
+     * The aggregated monthly statistics for the Organization.
      */
-    'bypassApproval'?: boolean | null;
+    'organizationStatistics': Array<OrganizationMonthlyStatisticV2Model>;
     /**
-     * The updated flag for whether email notifications should be sent to team members with approval permission about this Change Request.
+     * The aggregated monthly statistics for Products within the scope.
      */
-    'sendNotificationsToApprovers'?: boolean | null;
+    'productStatistics': Array<ProductMonthlyStatisticV2Model>;
+    /**
+     * The detailed per-day, per-Config, per-Environment usage statistics.
+     */
+    'detailedStatistics': Array<DetailedStatisticV2Model>;
 }
 

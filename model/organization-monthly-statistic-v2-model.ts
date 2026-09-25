@@ -14,26 +14,41 @@
 
 
 
-export interface UpdateChangeRequestModel {
+/**
+ * Represents the aggregated monthly usage statistics for an Organization.
+ */
+export interface OrganizationMonthlyStatisticV2Model {
     /**
-     * The updated title of the Change Request.
+     * The date for which the aggregate statistics are reported.
      */
-    'title': string;
+    'date': string;
     /**
-     * The updated optional notes describing the purpose of the Change Request.
+     * The total request volume in millions for the period.
      */
-    'reason'?: string | null;
+    'millionRequestCount': number;
     /**
-     * The updated optional UTC date and time when the Change Request should be applied automatically.
+     * The total network traffic in megabytes for the period.
      */
-    'applyAt'?: string | null;
+    'responseMegaBytes': number;
     /**
-     * The updated bypass-approval flag for scheduled changes.
+     * Indicates whether the request quota was exceeded.
      */
-    'bypassApproval'?: boolean | null;
+    'overLimit': boolean;
     /**
-     * The updated flag for whether email notifications should be sent to team members with approval permission about this Change Request.
+     * Indicates whether the network traffic quota was exceeded.
      */
-    'sendNotificationsToApprovers'?: boolean | null;
+    'overNetworkTrafficLimit': boolean;
+    /**
+     * The monthly request quota limit in millions.
+     */
+    'millionRequestLimitPerMonth': number;
+    /**
+     * The monthly network traffic quota limit in gigabytes.
+     */
+    'networkTrafficGigaByteLimitPerMonth': number;
+    /**
+     * The number of Public API calls recorded for the period.
+     */
+    'publicApiCallCount': number;
 }
 

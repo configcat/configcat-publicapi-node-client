@@ -33,6 +33,7 @@ Name | Type | Description | Notes
 **closedByUserEmail** | **string** | Email of the user who closed the Change Request. | [default to undefined]
 **closedByUserFullName** | **string** | Full name of the user who closed the Change Request. | [default to undefined]
 **bypassApproval** | **boolean** | Indicates whether approval flow is bypassed. | [default to undefined]
+**sendNotificationsToApprovers** | **boolean** | When true, email notifications are sent to team members with approval permission about this Change Request. | [default to undefined]
 
 ## Example
 
@@ -67,6 +68,7 @@ const instance: ChangeRequestModel = {
     closedByUserEmail,
     closedByUserFullName,
     bypassApproval,
+    sendNotificationsToApprovers,
 };
 ```
 

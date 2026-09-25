@@ -14,26 +14,53 @@
 
 
 
-export interface UpdateChangeRequestModel {
+/**
+ * Represents the detailed request and traffic usage for a single Config/Environment entry.
+ */
+export interface DetailedStatisticV2Model {
     /**
-     * The updated title of the Change Request.
+     * The date for which the usage was recorded.
      */
-    'title': string;
+    'date': string;
     /**
-     * The updated optional notes describing the purpose of the Change Request.
+     * The identifier of the Product associated with the usage.
      */
-    'reason'?: string | null;
+    'productId': string;
     /**
-     * The updated optional UTC date and time when the Change Request should be applied automatically.
+     * The name of the Product associated with the usage.
      */
-    'applyAt'?: string | null;
+    'productName': string;
     /**
-     * The updated bypass-approval flag for scheduled changes.
+     * The identifier of the Config associated with the usage.
      */
-    'bypassApproval'?: boolean | null;
+    'configId': string;
     /**
-     * The updated flag for whether email notifications should be sent to team members with approval permission about this Change Request.
+     * The name of the Config associated with the usage.
      */
-    'sendNotificationsToApprovers'?: boolean | null;
+    'configName': string;
+    /**
+     * The identifier of the Environment associated with the usage, if available.
+     */
+    'environmentId': string | null;
+    /**
+     * The name of the Environment associated with the usage.
+     */
+    'environmentName': string;
+    /**
+     * The SDK type that generated the usage.
+     */
+    'sdk': string;
+    /**
+     * The SDK key used for the request.
+     */
+    'sdkKey': string;
+    /**
+     * The number of requests recorded for the entry.
+     */
+    'requestCount': number;
+    /**
+     * The total response payload size in kilobytes for the entry.
+     */
+    'responseKiloBytes': number;
 }
 
